@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import {
   motion,
@@ -16,9 +16,22 @@ import {
   Globe,
   LineChart,
   PhoneCall,
+  Check,
+  Sparkles,
+  Volume2,
+  Clock,
+  Phone,
+  Mic,
+  TrendingUp,
+  BarChart3,
+  Headset,
 } from "lucide-react";
 import CityScene from "./CityScene";
 import { SCENES, type Scene } from "./scenes";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const N = SCENES.length;
 
@@ -69,148 +82,18 @@ function CountUp({
   );
 }
 
-function EcosystemDiagram() {
-  const nodes = [
-    {
-      label: "Sales Cloud",
-      icon: Target,
-      delay: 2.8,
-      position: { left: "50%", top: "16%" },
-    },
-    {
-      label: "Marketing Cloud",
-      icon: Megaphone,
-      delay: 3.0,
-      position: { left: "82.3%", top: "39.5%" },
-    },
-    {
-      label: "Experience Cloud",
-      icon: Globe,
-      delay: 3.2,
-      position: { left: "70%", top: "77.5%" },
-    },
-    {
-      label: "Analytics",
-      icon: LineChart,
-      delay: 3.4,
-      position: { left: "30%", top: "77.5%" },
-    },
-    {
-      label: "AI Voice Platform",
-      icon: PhoneCall,
-      delay: 3.6,
-      position: { left: "17.7%", top: "39.5%" },
-    },
-  ];
 
-  return (
-    <div className="relative w-full max-w-[260px] sm:max-w-[280px] md:max-w-[310px] lg:max-w-[330px] aspect-square flex items-center justify-center select-none">
-      {/* SVG Connection Lines */}
-      <motion.svg
-        viewBox="0 0 500 500"
-        className="absolute inset-0 w-full h-full pointer-events-none"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2.4, duration: 0.6 }}
-      >
-        <defs>
-          <filter id="glow-filter" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="5" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-
-          <linearGradient id="grad-0" x1="50%" y1="50%" x2="50%" y2="16%">
-            <stop offset="0%" stopColor="#0EA5E9" stopOpacity="0.8" />
-            <stop offset="100%" stopColor="#0EA5E9" stopOpacity="0.1" />
-          </linearGradient>
-          <linearGradient id="grad-1" x1="50%" y1="50%" x2="82.3%" y2="39.5%">
-            <stop offset="0%" stopColor="#0EA5E9" stopOpacity="0.8" />
-            <stop offset="100%" stopColor="#0EA5E9" stopOpacity="0.1" />
-          </linearGradient>
-          <linearGradient id="grad-2" x1="50%" y1="50%" x2="70%" y2="77.5%">
-            <stop offset="0%" stopColor="#0EA5E9" stopOpacity="0.8" />
-            <stop offset="100%" stopColor="#0EA5E9" stopOpacity="0.1" />
-          </linearGradient>
-          <linearGradient id="grad-3" x1="50%" y1="50%" x2="30%" y2="77.5%">
-            <stop offset="0%" stopColor="#0EA5E9" stopOpacity="0.8" />
-            <stop offset="100%" stopColor="#0EA5E9" stopOpacity="0.1" />
-          </linearGradient>
-          <linearGradient id="grad-4" x1="50%" y1="50%" x2="17.7%" y2="39.5%">
-            <stop offset="0%" stopColor="#2563EB" stopOpacity="0.8" />
-            <stop offset="100%" stopColor="#2563EB" stopOpacity="0.1" />
-          </linearGradient>
-        </defs>
-
-        <line x1="250" y1="250" x2="250" y2="80" stroke="url(#grad-0)" strokeWidth="3.5" filter="url(#glow-filter)" />
-        <line x1="250" y1="250" x2="411.6" y2="197.5" stroke="url(#grad-1)" strokeWidth="3.5" filter="url(#glow-filter)" />
-        <line x1="250" y1="250" x2="350" y2="387.5" stroke="url(#grad-2)" strokeWidth="3.5" filter="url(#glow-filter)" />
-        <line x1="250" y1="250" x2="150" y2="387.5" stroke="url(#grad-3)" strokeWidth="3.5" filter="url(#glow-filter)" />
-        <line x1="250" y1="250" x2="88.4" y2="197.5" stroke="url(#grad-4)" strokeWidth="3.5" filter="url(#glow-filter)" />
-
-        <line x1="250" y1="250" x2="250" y2="80" stroke="#38BDF8" strokeWidth="2" strokeDasharray="6, 12" className="animated-pulse-line" />
-        <line x1="250" y1="250" x2="411.6" y2="197.5" stroke="#38BDF8" strokeWidth="2" strokeDasharray="6, 12" className="animated-pulse-line" />
-        <line x1="250" y1="250" x2="350" y2="387.5" stroke="#38BDF8" strokeWidth="2" strokeDasharray="6, 12" className="animated-pulse-line" />
-        <line x1="250" y1="250" x2="150" y2="387.5" stroke="#38BDF8" strokeWidth="2" strokeDasharray="6, 12" className="animated-pulse-line" />
-        <line x1="250" y1="250" x2="88.4" y2="197.5" stroke="#60A5FA" strokeWidth="2" strokeDasharray="6, 12" className="animated-pulse-line" />
-      </motion.svg>
-
-      {/* Center Node */}
-      <motion.div
-        className="absolute w-18 h-18 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-[#0EA5E9] to-[#2563EB] text-white flex flex-col items-center justify-center z-10 shadow-[0_0_24px_rgba(14,165,233,0.35)] border border-white/20 select-none text-center p-2"
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{
-          type: "spring",
-          stiffness: 100,
-          damping: 15,
-          delay: 2.1,
-        }}
-      >
-        <div className="p-1 bg-white/10 rounded-lg mb-0.5 backdrop-blur-[2px]">
-          <CloudCog className="w-3.5 h-3.5 text-white animate-pulse" />
-        </div>
-        <span className="text-[7px] uppercase tracking-[0.15em] font-semibold text-white/70">Salesforce</span>
-        <span className="text-[8px] md:text-[9px] font-extrabold tracking-wider leading-none">CORE</span>
-      </motion.div>
-
-      {/* Radial Nodes */}
-      {nodes.map((node, index) => (
-        <motion.div
-          key={index}
-          className="absolute w-14 h-14 md:w-16 md:h-16 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/85 backdrop-blur-[12px] border border-white/95 shadow-[0_6px_18px_rgba(15,23,42,0.05)] flex flex-col items-center justify-center hover:scale-105 hover:bg-white/90 transition-all duration-300 z-10 p-1 text-center"
-          style={node.position}
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{
-            type: "spring",
-            stiffness: 120,
-            damping: 14,
-            delay: node.delay,
-          }}
-        >
-          <div className="p-0.5 bg-[#0EA5E9]/10 rounded-md mb-0.5">
-            <node.icon className="w-3 h-3 text-[#0EA5E9]" />
-          </div>
-          <span className="text-[7px] md:text-[7.5px] font-bold text-[#0F172A] leading-tight max-w-[48px]">
-            {node.label}
-          </span>
-        </motion.div>
-      ))}
-    </div>
-  );
-}
 
 function SceneOverlay({
   scene,
   index,
   progress,
+  active,
 }: {
   scene: Scene;
   index: number;
   progress: MotionValue<number>;
+  active: number;
 }) {
   const center = (index + 0.5) / N;
   const w = 1 / N;
@@ -243,6 +126,9 @@ function SceneOverlay({
     [0.94, 1, 1.04],
   );
 
+  const shouldRender = Math.abs(active - index) <= 1;
+  if (!shouldRender) return null;
+
   return (
     <motion.div
       style={{ opacity, y, scale }}
@@ -269,137 +155,324 @@ function SceneContent({ scene }: { scene: Scene }) {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.0, ease: "easeOut", delay: 0.5 }}
-        className="pointer-events-auto glass-panel shadow-[0_30px_90px_rgba(15,23,42,0.06)] rounded-[32px] p-5 sm:p-6 lg:p-7 xl:p-8 w-full max-w-5xl relative overflow-hidden grid grid-cols-1 gap-6 lg:gap-8 items-center lg:grid-cols-12"
+        className="pointer-events-auto hero-glass-panel rounded-[32px] w-[92vw] md:w-[90vw] h-[86vh] md:h-[80vh] max-w-7xl relative overflow-hidden flex flex-col md:flex-row p-8 md:p-10 justify-center gap-6 md:gap-10"
       >
-        {/* Left column: story content */}
-        <div className="lg:col-span-7 xl:col-span-6 flex flex-col justify-start">
-          <div>
-            <Kicker>STRATEGIC INNOVATION PARTNER</Kicker>
+        <div className="w-full md:w-1/2 flex flex-col justify-between h-full text-left">
+          {/* Top content */}
+          <div className="flex flex-col justify-start">
+            {/* Kicker Pill */}
+            <div className="inline-flex items-center gap-1.5 bg-[#F0F9FF] border border-[#E0F2FE] rounded-full px-3 py-1 text-[10px] font-bold tracking-wider text-[#0369A1] w-fit mb-2">
+              <span className="size-1.5 rounded-full bg-[#0284C7] animate-pulse" />
+              Salesforce Partner &bull; AI Voice Platform
+            </div>
+
+            <h1 className="text-2xl sm:text-3xl lg:text-[38px] xl:text-[44px] font-[800] leading-[1.08] tracking-tight text-[#0F172A] font-display">
+              Empowering <br />
+              Growth Through <br />
+              <span className="text-[#0284C7]">Salesforce Expertise</span> <br />
+              & AI Innovation
+            </h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.7 }}
+              className="mt-2 text-xs sm:text-sm text-[#475569] font-medium leading-relaxed max-w-md"
+            >
+              Unlocking potential through strategic Salesforce solutions and next-generation AI voice technology.
+            </motion.p>
+
+            {/* Action Row */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.9 }}
+              className="mt-3.5 flex flex-wrap gap-3 pointer-events-auto"
+            >
+              <button
+                onClick={() =>
+                  window.scrollTo({
+                    top: (1.5 / N) * (document.body.scrollHeight - window.innerHeight),
+                    behavior: "smooth",
+                  })
+                }
+                className="bg-[#0284C7] hover:bg-[#0369A1] text-xs font-bold py-2.5 px-5 rounded-full inline-flex items-center gap-2 shadow-lg shadow-sky-500/10 transition-all duration-300 hover:scale-[1.03]"
+              >
+                Start a conversation
+                <ArrowUpRight className="size-3.5" />
+              </button>
+              <button
+                onClick={() =>
+                  window.scrollTo({
+                    top: (6.5 / N) * (document.body.scrollHeight - window.innerHeight),
+                    behavior: "smooth",
+                  })
+                }
+                className="border border-[#E0F2FE] bg-white hover:bg-slate-50 text-[#0284C7] text-xs font-bold py-2.5 px-5 rounded-full inline-flex items-center gap-2 transition-all duration-300 hover:scale-[1.02]"
+              >
+                Explore AI Voice
+              </button>
+            </motion.div>
           </div>
 
-          <h1 className="mt-3 text-xl sm:text-2xl md:text-3xl lg:text-[32px] xl:text-[36px] font-extrabold leading-[1.02] tracking-tight text-[#0F172A] font-display">
-            <div className="overflow-hidden">
-              <motion.span
-                className="block"
-                initial={{ y: "100%" }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut", delay: 0.9 }}
-              >
-                Cascade Tech:
-              </motion.span>
-            </div>
-            <div className="overflow-hidden mt-0.5">
-              <motion.span
-                className="block"
-                initial={{ y: "100%" }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut", delay: 1.1 }}
-              >
-                Empowering Growth
-              </motion.span>
-            </div>
-            <div className="overflow-hidden mt-0.5">
-              <motion.span
-                className="block"
-                initial={{ y: "100%" }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut", delay: 1.3 }}
-              >
-                Through <span className="text-[#0EA5E9]">Salesforce Expertise</span>
-              </motion.span>
-            </div>
-            <div className="overflow-hidden mt-0.5">
-              <motion.span
-                className="block"
-                initial={{ y: "100%" }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut", delay: 1.5 }}
-              >
-                & <span className="text-[#2563EB]">AI Innovation</span>
-              </motion.span>
-            </div>
-          </h1>
+          {/* Bottom elements (Stats & scroll indicator) */}
+          <div className="flex flex-col gap-3 mt-auto">
+            {/* Statistics Row - Premium Mini KPI Cards */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 2.1 }}
+              className="grid grid-cols-3 gap-2.5 pt-3 border-t border-slate-200/40 w-full"
+            >
+              {/* KPI Card 1 */}
+              <div className="bg-white/80 hover:bg-white border border-[#E2E8F0] rounded-[16px] p-2.5 flex flex-col justify-between text-left shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 cursor-default">
+                <div className="size-7 rounded-full bg-[#0284C7] text-white flex items-center justify-center mb-1.5 shadow-sm shadow-sky-500/10">
+                  <CloudCog className="size-3.5" />
+                </div>
+                <div>
+                  <span className="block text-base sm:text-lg font-[800] text-[#0F172A] font-display leading-none">
+                    <CountUp value={6} suffix="+" delay={2.3} />
+                  </span>
+                  <span className="block text-[9px] font-bold text-[#475569] mt-0.5 leading-tight">
+                    Salesforce Clouds
+                  </span>
+                </div>
+                <div className="mt-1.5 inline-flex items-center gap-1 bg-[#F0F9FF] text-[#0284C7] rounded-full px-1.5 py-0.5 text-[7px] font-bold tracking-wide w-fit">
+                  <Check className="size-2 text-[#0284C7] stroke-[3]" />
+                  <span>Enterprise Ready</span>
+                </div>
+              </div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.7 }}
-            className="mt-3 text-xs md:text-sm text-[#475569] font-semibold leading-relaxed max-w-xl"
-          >
-            Unlocking potential through strategic Salesforce solutions and next-generation AI voice technology.
-          </motion.p>
+              {/* KPI Card 2 */}
+              <div className="bg-white/80 hover:bg-white border border-[#E2E8F0] rounded-[16px] p-2.5 flex flex-col justify-between text-left shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 cursor-default">
+                <div className="size-7 rounded-full bg-[#0284C7] text-white flex items-center justify-center mb-1.5 shadow-sm shadow-sky-500/10">
+                  <BarChart3 className="size-3.5" />
+                </div>
+                <div>
+                  <span className="block text-base sm:text-lg font-[800] text-[#0F172A] font-display leading-none">
+                    70-90%
+                  </span>
+                  <span className="block text-[9px] font-bold text-[#475569] mt-0.5 leading-tight">
+                    Cost Savings
+                  </span>
+                </div>
+                <div className="mt-1.5 inline-flex items-center gap-1 bg-[#F0F9FF] text-[#0284C7] rounded-full px-1.5 py-0.5 text-[7px] font-bold tracking-wide w-fit">
+                  <Check className="size-2 text-[#0284C7] stroke-[3]" />
+                  <span>Proven ROI</span>
+                </div>
+              </div>
 
-          {/* Metrics Info Section with thin dividers */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1.9 }}
-            className="grid grid-cols-2 gap-y-3 mt-4 pt-4 border-t border-slate-200/40"
-          >
-            {/* Item 1 */}
-            <div className="flex flex-col pr-4">
-              <span className="text-xl md:text-2xl lg:text-[26px] font-extrabold text-[#0F172A] tracking-tight font-display">
-                <CountUp value={50} suffix="+" delay={2.0} />
-              </span>
-              <span className="mt-0.5 text-[9px] md:text-[10px] font-bold text-[#475569] uppercase tracking-wider">
-                Projects Delivered
-              </span>
-            </div>
+              {/* KPI Card 3 */}
+              <div className="bg-white/80 hover:bg-white border border-[#E2E8F0] rounded-[16px] p-2.5 flex flex-col justify-between text-left shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 cursor-default">
+                <div className="size-7 rounded-full bg-[#0284C7] text-white flex items-center justify-center mb-1.5 shadow-sm shadow-sky-500/10">
+                  <Headset className="size-3.5" />
+                </div>
+                <div>
+                  <span className="block text-base sm:text-lg font-[800] text-[#0F172A] font-display leading-none">
+                    24/7
+                  </span>
+                  <span className="block text-[9px] font-bold text-[#475569] mt-0.5 leading-tight">
+                    AI Voice Agents
+                  </span>
+                </div>
+                <div className="mt-1.5 inline-flex items-center gap-1 bg-[#F0F9FF] text-[#0284C7] rounded-full px-1.5 py-0.5 text-[7px] font-bold tracking-wide w-fit">
+                  <Check className="size-2 text-[#0284C7] stroke-[3]" />
+                  <span>Always On</span>
+                </div>
+              </div>
+            </motion.div>
 
-            {/* Item 2 */}
-            <div className="flex flex-col pl-6 border-l border-slate-200/40">
-              <span className="text-xl md:text-2xl lg:text-[26px] font-extrabold text-[#0F172A] tracking-tight font-display">
-                <CountUp value={99} suffix="%" delay={2.1} />
-              </span>
-              <span className="mt-0.5 text-[9px] md:text-[10px] font-bold text-[#475569] uppercase tracking-wider">
-                Client Satisfaction
-              </span>
-            </div>
-
-            {/* Item 3 */}
-            <div className="flex flex-col pr-4 pt-4 border-t border-slate-200/40 mt-0.5">
-              <span className="text-xl md:text-2xl lg:text-[26px] font-extrabold text-[#0F172A] tracking-tight font-display">
-                <CountUp value={100} suffix="%" delay={2.2} />
-              </span>
-              <span className="mt-0.5 text-[9px] md:text-[10px] font-bold text-[#475569] uppercase tracking-wider">
-                Salesforce Experts
-              </span>
-            </div>
-
-            {/* Item 4 */}
-            <div className="flex flex-col pl-6 border-t border-l border-slate-200/40 pt-4 mt-0.5">
-              <span className="text-xl md:text-2xl lg:text-[26px] font-extrabold text-[#0F172A] tracking-tight font-display">
-                Next-Gen
-              </span>
-              <span className="mt-0.5 text-[9px] md:text-[10px] font-bold text-[#475569] uppercase tracking-wider">
-                AI Solutions
-              </span>
-            </div>
-          </motion.div>
-
-          {/* Scroll Indicator */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 3.5, duration: 0.6 }}
-            className="mt-4 pt-3 border-t border-slate-200/20 flex items-center gap-3 text-[#475569]"
-          >
-            <span className="text-[10px] font-bold uppercase tracking-[0.25em]">Scroll to explore</span>
-            <ChevronDown className="size-4 animate-bounce text-[#0EA5E9]" />
-          </motion.div>
+            {/* Scroll Indicator */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 3.2, duration: 0.6 }}
+              className="pt-1.5 flex items-center gap-2 text-[#0284C7] font-bold tracking-wider text-[10px]"
+            >
+              <span>Scroll to explore</span>
+              <ChevronDown className="size-4 animate-bounce text-[#0284C7]" />
+            </motion.div>
+          </div>
         </div>
 
-        {/* Right column: animated ecosystem node diagram */}
-        <div className="lg:col-span-5 xl:col-span-6 flex justify-center items-center h-full">
-          <EcosystemDiagram />
+        {/* RIGHT SIDE (50%) - LIVE CONSOLE REDESIGNED */}
+        <div className="hidden md:flex md:w-1/2 flex-col h-full rounded-2xl border border-white/60 bg-[#F8FAFC]/90 shadow-inner p-6 md:p-7 relative overflow-visible">
+          {/* Floating Claude AI badge (top-left edge, overlapping Card 1) */}
+          <div className="absolute -left-6 top-[20%] bg-white/95 border border-slate-100 rounded-[16px] py-2 px-3 shadow-lg flex items-center gap-3 z-15 animate-float-slow hover:scale-105 hover:shadow-xl transition-all duration-300 cursor-default">
+            <div className="size-8 rounded-full bg-[#0284C7] text-white flex items-center justify-center shadow-md shadow-sky-500/10">
+              <Sparkles className="size-4 text-white" />
+            </div>
+            <div className="text-left">
+              <span className="block text-[10px] font-black text-slate-800 leading-none">Claude AI</span>
+              <span className="block text-[8px] text-slate-400 font-bold mt-1 leading-none">
+                Real-time NLU
+              </span>
+            </div>
+          </div>
+
+          {/* Floating +44% Conversion badge (bottom-right edge) */}
+          <div className="absolute -right-4 bottom-[6%] bg-white/95 border border-slate-100 rounded-2xl p-2.5 shadow-xl flex items-center gap-2 max-w-[190px] text-left z-15 animate-float-slow hover:scale-105 hover:shadow-2xl transition-all duration-300 cursor-default">
+            <div className="size-7 rounded-full bg-emerald-50 text-emerald-500 flex items-center justify-center border border-emerald-100">
+              <TrendingUp className="size-4 text-[#10B981]" />
+            </div>
+            <div>
+              <p className="text-[10px] font-extrabold text-[#10B981] leading-none">+44% Conversion</p>
+              <p className="text-[8px] font-bold text-slate-400 mt-1 leading-none">AI-assisted leads</p>
+            </div>
+          </div>
+
+          {/* Console Header */}
+          <div className="flex items-center justify-between border-b border-slate-200/40 pb-3 mb-4">
+            <div className="flex items-center gap-1.5">
+              <div className="size-2.5 rounded-full bg-[#EF4444]/90" />
+              <div className="size-2.5 rounded-full bg-[#F59E0B]/90" />
+              <div className="size-2.5 rounded-full bg-[#10B981]/90" />
+            </div>
+            <span className="text-[10px] font-bold text-slate-400 tracking-wider font-mono">
+              cascade.cloud / dashboard
+            </span>
+          </div>
+
+          {/* Grid Layout of Status Cards - Row 1 */}
+          <div className="grid grid-cols-3 gap-4">
+            {/* Card 1: Claude AI */}
+            <div className="relative bg-white border border-slate-100 rounded-2xl p-4 pt-7 shadow-sm hover:shadow-md hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between text-left cursor-default">
+              <div className="flex items-start justify-between">
+                <div className="size-7 rounded-full bg-sky-50 text-[#0284C7] flex items-center justify-center border border-sky-100">
+                  <BarChart3 className="size-4 text-[#0284C7]" />
+                </div>
+                <span className="absolute top-3 right-3 text-[8px] font-extrabold text-[#10B981] bg-emerald-50 px-1.5 py-0.5 rounded-full">
+                  +18%
+                </span>
+              </div>
+
+              <div className="mt-3">
+                <p className="text-base md:text-lg font-black text-slate-800 font-display leading-none">$4.2M</p>
+                <p className="text-[8px] text-slate-400 font-black uppercase tracking-wider mt-1.5">Pipeline</p>
+              </div>
+            </div>
+
+            {/* Card 2: Closed */}
+            <div className="relative bg-white border border-slate-100 rounded-2xl p-4 shadow-sm hover:shadow-md hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between text-left cursor-default">
+              <div className="flex items-start justify-between">
+                <div className="size-7 rounded-full bg-sky-50 text-[#0284C7] flex items-center justify-center border border-sky-100">
+                  <Clock className="size-4 text-[#0284C7]" />
+                </div>
+                <span className="absolute top-3 right-3 text-[8px] font-extrabold text-[#10B981] bg-emerald-50 px-1.5 py-0.5 rounded-full">
+                  +9%
+                </span>
+              </div>
+              <div className="mt-3">
+                <p className="text-base md:text-lg font-black text-slate-800 font-display leading-none">312</p>
+                <p className="text-[8px] text-slate-400 font-black uppercase tracking-wider mt-1.5">Closed</p>
+              </div>
+            </div>
+
+            {/* Card 3: AI Calls */}
+            <div className="relative bg-white border border-slate-100 rounded-2xl p-4 shadow-sm hover:shadow-md hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between text-left cursor-default">
+              <div className="flex items-start justify-between">
+                <div className="size-7 rounded-full bg-sky-50 text-[#0284C7] flex items-center justify-center border border-sky-100">
+                  <Phone className="size-4 text-[#0284C7]" />
+                </div>
+                <span className="absolute top-3 right-3 text-[8px] font-extrabold text-[#10B981] bg-emerald-50 px-1.5 py-0.5 rounded-full">
+                  +44%
+                </span>
+              </div>
+              <div className="mt-3">
+                <p className="text-base md:text-lg font-black text-slate-800 font-display leading-none">8,914</p>
+                <p className="text-[8px] text-slate-400 font-black uppercase tracking-wider mt-1.5">AI Calls</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Lead Conversion Rounded Column Chart - Row 2 */}
+          <div className="mt-4 bg-white border border-slate-100 rounded-2xl p-4 shadow-sm hover:shadow-md hover:scale-[1.01] hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between text-left cursor-default">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-[10px] font-extrabold text-slate-700 tracking-wider">Lead &rarr; Conversion</span>
+              <span className="text-[8px] font-bold text-slate-400">Last 30 days</span>
+            </div>
+            
+            <div className="flex items-end justify-between h-28 w-full mt-2 pt-2 px-1">
+              {[
+                { h: "20%" },
+                { h: "35%" },
+                { h: "28%" },
+                { h: "45%" },
+                { h: "55%" },
+                { h: "35%" },
+                { h: "70%" },
+                { h: "60%" },
+                { h: "85%" },
+                { h: "75%" },
+                { h: "95%" },
+              ].map((bar, idx) => (
+                <div
+                  key={idx}
+                  style={{ height: bar.h }}
+                  className="w-[7%] bg-[#0EA5E9] rounded-t-full transition-all duration-500 hover:bg-[#38BDF8]"
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Grid Layout - Row 3 */}
+          <div className="grid grid-cols-2 gap-4 mt-4">
+            {/* Live AI Voice */}
+            <div className="bg-white border border-slate-100 rounded-2xl p-4 shadow-sm hover:shadow-md hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-300 text-left flex flex-col justify-between cursor-default">
+              <div className="flex items-center gap-1.5 mb-1.5">
+                <Mic className="size-3.5 text-[#0EA5E9]" />
+                <span className="text-[9px] md:text-[10px] font-extrabold text-slate-800 tracking-wider">Live AI Voice</span>
+              </div>
+              
+              {/* Waveform visual */}
+              <div className="flex items-end justify-between h-8 mt-2 px-1">
+                {[3, 6, 4, 7, 5, 8, 4, 6, 5, 7, 3, 5].map((h, i) => (
+                  <span
+                    key={i}
+                    className="w-1 bg-[#0EA5E9] rounded-full animate-pulse"
+                    style={{
+                      height: `${h * 10}%`,
+                      animationDelay: `${i * 0.15}s`,
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Salesforce Sync checklist */}
+            <div className="bg-white border border-slate-100 rounded-2xl p-4 shadow-sm hover:shadow-md hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-300 text-left flex flex-col justify-between cursor-default">
+              <div className="flex items-center gap-1.5 mb-1.5">
+                <CloudCog className="size-3.5 text-[#0EA5E9]" />
+                <span className="text-[9px] md:text-[10px] font-extrabold text-slate-800 tracking-wider">Salesforce Sync</span>
+              </div>
+              
+              <div className="flex flex-col gap-1.5 mt-1">
+                {[
+                  "Contact updated",
+                  "Opportunity created",
+                  "Case logged",
+                ].map((text) => (
+                  <div key={text} className="flex items-center gap-2 text-[9px] font-bold text-slate-600">
+                    <div className="size-3.5 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-100 flex-shrink-0">
+                      <Check className="size-2" />
+                    </div>
+                    <span>{text}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
+
+        {/* Bottom Glow reflection element */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4/5 h-[3px] bg-gradient-to-r from-transparent via-[#74CBF4] to-transparent shadow-[0_-4px_30px_rgba(116,203,244,0.95),0_0_15px_rgba(116,203,244,1)] opacity-95 rounded-full pointer-events-none" />
       </motion.div>
     );
   }
 
   if (scene.variant === "final") {
     return (
-      <div className="pointer-events-auto glass-panel shadow-[0_30px_90px_rgba(15,23,42,0.06)] rounded-[32px] p-5 sm:p-6 lg:p-8 w-full max-w-4xl flex flex-col items-center text-center">
+      <div className="pointer-events-auto glass-panel shadow-[0_30px_90px_rgba(15,23,42,0.06)] rounded-[32px] p-6 sm:p-8 lg:p-10 w-full max-w-5xl flex flex-col items-center text-center">
         <Kicker>{scene.kicker}</Kicker>
         <h2 className="mt-4 text-3xl font-bold text-[#0F172A] md:text-4xl">
           {scene.title}
@@ -436,7 +509,7 @@ function SceneContent({ scene }: { scene: Scene }) {
 
   if (scene.variant === "duo") {
     return (
-      <div className="pointer-events-auto glass-panel shadow-[0_30px_90px_rgba(15,23,42,0.06)] rounded-[32px] p-5 sm:p-6 lg:p-8 w-full max-w-5xl">
+      <div className="pointer-events-auto glass-panel shadow-[0_30px_90px_rgba(15,23,42,0.06)] rounded-[32px] p-6 sm:p-8 lg:p-10 w-full max-w-5xl">
         <Header scene={scene} />
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           {scene.items?.map((it) => (
@@ -474,7 +547,7 @@ function SceneContent({ scene }: { scene: Scene }) {
 
   if (scene.variant === "flow") {
     return (
-      <div className="pointer-events-auto glass-panel shadow-[0_30px_90px_rgba(15,23,42,0.06)] rounded-[32px] p-5 sm:p-6 lg:p-8 w-full max-w-5xl">
+      <div className="pointer-events-auto glass-panel shadow-[0_30px_90px_rgba(15,23,42,0.06)] rounded-[32px] p-6 sm:p-8 lg:p-10 w-full max-w-5xl">
         <Header scene={scene} />
         {scene.stats && (
           <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
@@ -506,9 +579,8 @@ function SceneContent({ scene }: { scene: Scene }) {
     );
   }
 
-  // grid (default)
   return (
-    <div className="pointer-events-auto glass-panel shadow-[0_30px_90px_rgba(15,23,42,0.06)] rounded-[32px] p-5 sm:p-6 lg:p-8 w-full max-w-5xl">
+    <div className="pointer-events-auto glass-panel shadow-[0_30px_90px_rgba(15,23,42,0.06)] rounded-[32px] p-6 sm:p-8 lg:p-10 w-full max-w-5xl">
       <Header scene={scene} />
       <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {scene.items?.map((it) => (
@@ -546,11 +618,7 @@ function Header({ scene }: { scene: Scene }) {
   );
 }
 
-function ProgressDots({ progress }: { progress: MotionValue<number> }) {
-  const [active, setActive] = useState(0);
-  useMotionValueEvent(progress, "change", (v) => {
-    setActive(Math.min(N - 1, Math.round(v * (N - 1))));
-  });
+function ProgressDots({ progress, active }: { progress: MotionValue<number>; active: number }) {
   return (
     <div className="fixed right-5 top-1/2 z-20 hidden -translate-y-1/2 flex-col gap-2.5 md:flex">
       {SCENES.map((s, i) => (
@@ -566,9 +634,8 @@ function ProgressDots({ progress }: { progress: MotionValue<number> }) {
           className="group flex items-center justify-end gap-2"
         >
           <span
-            className={`h-1.5 rounded-full bg-primary transition-all ${
-              i === active ? "w-7 opacity-100" : "w-1.5 opacity-30 group-hover:opacity-60"
-            }`}
+            className={`h-1.5 rounded-full bg-primary transition-all ${i === active ? "w-7 opacity-100" : "w-1.5 opacity-30 group-hover:opacity-60"
+              }`}
           />
         </button>
       ))}
@@ -580,6 +647,65 @@ export default function Experience() {
   const containerRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef(0);
   const [mounted, setMounted] = useState(false);
+  const [initStage, setInitStage] = useState(0);
+  const [active, setActive] = useState(0);
+
+  // Stage 1: mounted
+  useLayoutEffect(() => {
+    if (initStage === 0) {
+      console.log("mounted")
+      if ('scrollRestoration' in window.history) {
+        window.history.scrollRestoration = 'manual';
+      }
+      try {
+        sessionStorage.removeItem("tsr-scroll-restoration-v1_3");
+      } catch (e) { }
+
+      // Scroll immediately
+      window.scrollTo(0, 0);
+
+      // Scroll after a small timeout to let browser layout/restoration register
+      const t = setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 60);
+
+      setInitStage(1);
+      return () => clearTimeout(t);
+    }
+  }, [initStage]);
+
+  // Stage 2: layout ready
+  useLayoutEffect(() => {
+    if (initStage === 1) {
+      console.log("layout ready")
+      setInitStage(2);
+    }
+  }, [initStage]);
+
+  // Stage 3: gsap initialized
+  useLayoutEffect(() => {
+    if (initStage === 2) {
+      console.log("gsap initialized")
+      setInitStage(3);
+    }
+  }, [initStage]);
+
+  // Stage 4: scrolltrigger initialized
+  useLayoutEffect(() => {
+    if (initStage === 3) {
+      ScrollTrigger.refresh();
+      console.log("scrolltrigger initialized")
+      setInitStage(4);
+    }
+  }, [initStage]);
+
+  // Stage 5: camera initialized
+  useLayoutEffect(() => {
+    if (initStage === 4) {
+      console.log("camera initialized")
+      setInitStage(5);
+    }
+  }, [initStage]);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -588,6 +714,7 @@ export default function Experience() {
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
     progressRef.current = v;
+    setActive(Math.min(N - 1, Math.round(v * (N - 1))));
   });
 
   const barScaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
@@ -604,32 +731,44 @@ export default function Experience() {
             camera={{ position: [0, 14, 60], fov: 52, near: 0.1, far: 600 }}
             gl={{ antialias: true, alpha: false }}
           >
-            <CityScene progress={progressRef} />
+            <CityScene progress={progressRef} isCameraReady={initStage >= 5} />
           </Canvas>
         )}
       </div>
 
       {/* Top brand bar */}
-      <div className="pointer-events-none fixed inset-x-0 top-0 z-20 flex items-center justify-between px-6 py-5 md:px-10">
-        <div className="glass-chip pointer-events-auto flex items-center gap-2 rounded-full px-4 py-2">
-          <span className="flex size-6 items-center justify-center rounded-md bg-primary text-[11px] font-bold text-primary-foreground">
-            C
-          </span>
-          <span className="text-sm font-bold tracking-tight text-foreground">
+      <div className="pointer-events-none fixed inset-x-0 top-0 z-20 flex items-center justify-between px-6 py-4 md:px-12 max-w-7xl mx-auto w-full left-1/2 -translate-x-1/2">
+        {/* Logo */}
+        <div className="glass-chip pointer-events-auto flex items-center gap-2 rounded-full px-4 py-2 shadow-sm">
+          <div className="size-6 rounded-full bg-[#0EA5E9] flex items-center justify-center text-white">
+            <Sparkles className="size-3.5 text-white" />
+          </div>
+          <span className="text-sm font-extrabold tracking-tight text-[#0F172A]">
             Cascade Tech
           </span>
         </div>
-        <span className="glass-chip pointer-events-auto hidden rounded-full px-4 py-2 text-xs font-semibold text-muted-foreground sm:block">
-          Salesforce · AI Voice · Analytics
-        </span>
+
+        {/* Center Links */}
+        <div className="glass-chip pointer-events-auto hidden md:flex items-center gap-6 rounded-full px-6 py-2 shadow-sm text-xs font-bold text-[#475569]">
+          <button className="hover:text-[#0F172A] transition-colors cursor-pointer bg-transparent border-0 p-0">Who We Are</button>
+          <button className="hover:text-[#0F172A] transition-colors cursor-pointer bg-transparent border-0 p-0">Specializations</button>
+          <button className="hover:text-[#0F172A] transition-colors cursor-pointer bg-transparent border-0 p-0">AI Voice</button>
+          <button className="hover:text-[#0F172A] transition-colors cursor-pointer bg-transparent border-0 p-0">Pricing</button>
+          <button className="hover:text-[#0F172A] transition-colors cursor-pointer bg-transparent border-0 p-0">Roadmap</button>
+        </div>
+
+        {/* Get in touch Button */}
+        <button className="pointer-events-auto bg-[#0EA5E9] hover:bg-[#0284C7] text-white text-xs font-bold py-2.5 px-5 rounded-full shadow-md shadow-sky-500/10 transition-all duration-300 hover:scale-[1.03]">
+          Get in touch
+        </button>
       </div>
 
       {/* Scene overlays */}
       {SCENES.map((scene, i) => (
-        <SceneOverlay key={scene.id} scene={scene} index={i} progress={scrollYProgress} />
+        <SceneOverlay key={scene.id} scene={scene} index={i} progress={scrollYProgress} active={active} />
       ))}
 
-      <ProgressDots progress={scrollYProgress} />
+      <ProgressDots progress={scrollYProgress} active={active} />
 
       {/* Bottom progress bar */}
       <div className="fixed inset-x-0 bottom-0 z-20 h-1 bg-border/40">

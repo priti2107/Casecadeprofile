@@ -246,13 +246,15 @@ function DataStreams() {
   );
 }
 
-function CameraRig({ progress }: { progress: RefObject<number> }) {
+function CameraRig({ progress, isCameraReady }: { progress: RefObject<number>; isCameraReady: boolean }) {
   const target = useRef(new THREE.Vector3(0, 8, 0));
   const camPos = useRef(new THREE.Vector3());
   const lookPos = useRef(new THREE.Vector3());
   const mountTime = useRef<number | null>(null);
 
   useFrame((state) => {
+    if (!isCameraReady) return;
+
     if (mountTime.current === null) {
       mountTime.current = state.clock.getElapsedTime();
     }
@@ -286,7 +288,7 @@ function CameraRig({ progress }: { progress: RefObject<number> }) {
   return null;
 }
 
-export default function CityScene({ progress }: { progress: RefObject<number> }) {
+export default function CityScene({ progress, isCameraReady }: { progress: RefObject<number>; isCameraReady: boolean }) {
   return (
     <>
       <color attach="background" args={["#F8FAFC"]} />
@@ -322,7 +324,7 @@ export default function CityScene({ progress }: { progress: RefObject<number> })
       <Beacons />
       <DataStreams />
 
-      <CameraRig progress={progress} />
+      <CameraRig progress={progress} isCameraReady={isCameraReady} />
     </>
   );
 }
