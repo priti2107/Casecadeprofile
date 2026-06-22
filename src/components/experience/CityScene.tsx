@@ -80,7 +80,7 @@ function Buildings() {
         metalness={0.35}
         roughness={0.18}
         transparent
-        opacity={0.92}
+        opacity={0.18}
       />
       {buildings.map((b, i) => (
         <Instance key={i} position={b.pos} scale={b.scale} color={b.color} />
@@ -142,6 +142,47 @@ function Beacons() {
                 opacity={0.06}
               />
             </mesh>
+
+            {/* Hero Tower behind Salesforce Core (District 0) */}
+            {i === 0 && (
+              <group position={[0, 0, -28]}>
+                {/* Outer Glass Tower */}
+                <mesh position={[0, 48, 0]}>
+                  <boxGeometry args={[7, 96, 7]} />
+                  <meshStandardMaterial
+                    color="#0EA5E9"
+                    metalness={0.9}
+                    roughness={0.05}
+                    transparent
+                    opacity={0.12}
+                  />
+                </mesh>
+                {/* Inner Glowing Core Pillar */}
+                <mesh position={[0, 48, 0]}>
+                  <cylinderGeometry args={[0.8, 0.8, 96, 12]} />
+                  <meshStandardMaterial
+                    color="#0EA5E9"
+                    emissive="#0EA5E9"
+                    emissiveIntensity={2.5}
+                    transparent
+                    opacity={0.75}
+                  />
+                </mesh>
+                {/* Floating glowing rings around Hero Tower */}
+                <mesh position={[0, 24, 0]} rotation={[Math.PI / 2, 0, 0]}>
+                  <torusGeometry args={[6, 0.15, 8, 48]} />
+                  <meshStandardMaterial color="#38BDF8" emissive="#38BDF8" emissiveIntensity={2} />
+                </mesh>
+                <mesh position={[0, 52, 0]} rotation={[Math.PI / 2, 0, 0]}>
+                  <torusGeometry args={[5, 0.15, 8, 48]} />
+                  <meshStandardMaterial color="#38BDF8" emissive="#38BDF8" emissiveIntensity={2} />
+                </mesh>
+                <mesh position={[0, 78, 0]} rotation={[Math.PI / 2, 0, 0]}>
+                  <torusGeometry args={[4, 0.15, 8, 48]} />
+                  <meshStandardMaterial color="#38BDF8" emissive="#38BDF8" emissiveIntensity={2} />
+                </mesh>
+              </group>
+            )}
           </group>
         );
       })}
@@ -175,12 +216,17 @@ function DataStreams() {
     return { geometry: g, speeds: sp };
   }, []);
 
-  useFrame((_, delta) => {
+  useFrame((state, delta) => {
     const pos = geometry.getAttribute("position") as THREE.BufferAttribute;
     const arr = pos.array as Float32Array;
+    const time = state.clock.getElapsedTime();
     for (let i = 0; i < speeds.length; i++) {
-      arr[i * 3 + 1] += speeds[i] * delta;
+      arr[i * 3 + 1] += speeds[i] * 0.45 * delta;
       if (arr[i * 3 + 1] > 64) arr[i * 3 + 1] = 0;
+
+      // Add soft side-to-side floating drift for ambiance
+      arr[i * 3] += Math.sin(time * 0.4 + i) * 0.04;
+      arr[i * 3 + 2] += Math.cos(time * 0.3 + i) * 0.04;
     }
     pos.needsUpdate = true;
   });
@@ -204,16 +250,33 @@ function CameraRig({ progress }: { progress: RefObject<number> }) {
   const target = useRef(new THREE.Vector3(0, 8, 0));
   const camPos = useRef(new THREE.Vector3());
   const lookPos = useRef(new THREE.Vector3());
+  const mountTime = useRef<number | null>(null);
 
   useFrame((state) => {
+    if (mountTime.current === null) {
+      mountTime.current = state.clock.getElapsedTime();
+    }
+    const elapsed = state.clock.getElapsedTime() - mountTime.current;
+    
+    // Camera slow mount entry over 3.5 seconds
+    const entryProgress = Math.min(1, elapsed / 3.5);
+    const smoothEntry = smooth(entryProgress);
+
     const p = THREE.MathUtils.clamp(progress.current ?? 0, 0, 1);
     const f = THREE.MathUtils.clamp(p * (N - 1), 0, N - 1);
     const i = Math.floor(f);
     const j = Math.min(i + 1, N - 1);
     const t = smooth(f - i);
 
-    camPos.current.lerpVectors(CAM_POINTS[i], CAM_POINTS[j], t);
-    lookPos.current.lerpVectors(LOOK_POINTS[i], LOOK_POINTS[j], t);
+    const targetCam = new THREE.Vector3().lerpVectors(CAM_POINTS[i], CAM_POINTS[j], t);
+    const targetLook = new THREE.Vector3().lerpVectors(LOOK_POINTS[i], LOOK_POINTS[j], t);
+
+    // Initial far sweeping coordinate
+    const startCam = new THREE.Vector3(26, 42, 115);
+    const startLook = new THREE.Vector3(0, 12, -15);
+
+    camPos.current.lerpVectors(startCam, targetCam, smoothEntry);
+    lookPos.current.lerpVectors(startLook, targetLook, smoothEntry);
 
     state.camera.position.lerp(camPos.current, 0.06);
     target.current.lerp(lookPos.current, 0.06);
@@ -227,12 +290,13 @@ export default function CityScene({ progress }: { progress: RefObject<number> })
   return (
     <>
       <color attach="background" args={["#F8FAFC"]} />
-      <fog attach="fog" args={["#F8FAFC", 60, 240]} />
+      <fog attach="fog" args={["#F8FAFC", 30, 170]} />
 
-      <ambientLight intensity={0.9} />
-      <hemisphereLight args={["#ffffff", "#cfe4f5", 0.7]} />
-      <directionalLight position={[40, 80, 30]} intensity={1.1} color="#ffffff" />
+      <ambientLight intensity={0.7} color="#e0f2fe" />
+      <hemisphereLight args={["#f8fafc", "#bae6fd", 0.8]} />
+      <directionalLight position={[40, 80, 30]} intensity={1.0} color="#f0f9ff" />
       <pointLight position={[0, 30, 0]} intensity={120} color="#38BDF8" distance={160} />
+      <pointLight position={[0, 30, -28]} intensity={150} color="#0EA5E9" distance={100} />
       <pointLight
         position={[0, 30, -360]}
         intensity={140}

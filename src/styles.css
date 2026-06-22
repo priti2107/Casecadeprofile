@@ -33,7 +33,7 @@
   --color-ring: var(--ring);
   --color-grid: var(--grid);
 
-  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "General Sans", "Satoshi", "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
 }
 
@@ -99,20 +99,22 @@
   .glass-panel {
     background: linear-gradient(
       150deg,
-      color-mix(in oklab, white 78%, transparent),
-      color-mix(in oklab, white 55%, transparent)
+      color-mix(in oklab, white 40%, transparent),
+      color-mix(in oklab, white 15%, transparent)
     );
-    backdrop-filter: blur(22px) saturate(140%);
-    border: 1px solid color-mix(in oklab, white 70%, transparent);
+    -webkit-backdrop-filter: blur(24px) saturate(140%);
+    backdrop-filter: blur(24px) saturate(140%);
+    border: 1px solid color-mix(in oklab, white 45%, transparent);
     box-shadow:
-      0 24px 60px -28px color-mix(in oklab, var(--primary) 45%, transparent),
-      0 2px 0 0 color-mix(in oklab, white 80%, transparent) inset;
+      0 24px 60px -28px color-mix(in oklab, var(--primary) 18%, transparent),
+      0 2px 0 0 color-mix(in oklab, white 40%, transparent) inset;
   }
 
   .glass-chip {
-    background: color-mix(in oklab, white 60%, transparent);
+    background: color-mix(in oklab, white 40%, transparent);
+    -webkit-backdrop-filter: blur(14px);
     backdrop-filter: blur(14px);
-    border: 1px solid color-mix(in oklab, var(--primary) 22%, white);
+    border: 1px solid color-mix(in oklab, var(--primary) 15%, white);
   }
 
   .text-gradient {
@@ -153,4 +155,14 @@
 
 .animate-float-soft {
   animation: float-soft 6s ease-in-out infinite;
+}
+
+@keyframes pulse-dash {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+
+.animated-pulse-line {
+  animation: pulse-dash 2s linear infinite;
 }
