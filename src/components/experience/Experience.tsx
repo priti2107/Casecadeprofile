@@ -25,6 +25,13 @@ import {
   TrendingUp,
   BarChart3,
   Headset,
+  Workflow,
+  Users,
+  Search,
+  Code,
+  ChevronRight,
+  Cloud,
+  Layers,
 } from "lucide-react";
 import CityScene from "./CityScene";
 import { SCENES, type Scene } from "./scenes";
@@ -575,6 +582,242 @@ function SceneContent({ scene }: { scene: Scene }) {
             </div>
           ))}
         </div>
+      </div>
+    );
+  }
+
+  if (scene.id === 2) {
+    return (
+      <div className="pointer-events-auto who-we-are-glass-panel rounded-[40px] w-[92vw] md:w-[90vw] h-[86vh] md:h-[80vh] max-w-7xl relative overflow-hidden flex flex-col p-8 md:p-12 justify-between">
+        {/* TOP ROW: Content (55%) + Dashboard (45%) */}
+        <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-center justify-between h-[48%] md:h-[50%] w-full">
+          {/* LEFT SIDE: Content (55% width) */}
+          <div className="w-full md:w-[55%] flex flex-col justify-center text-left max-w-[600px]">
+            <div className="inline-flex items-center gap-2 bg-[#F0F9FF] border border-[#E0F2FE] rounded-full px-4 py-1.5 text-xs font-bold tracking-wider text-[#0369A1] w-fit mb-4">
+              <span className="size-2 rounded-full bg-[#0284C7] animate-pulse" />
+              {scene.kicker}
+            </div>
+
+            <h2 className="text-2xl sm:text-3xl lg:text-[42px] xl:text-[48px] font-[800] leading-[1.08] tracking-tight text-[#0F172A] font-display max-w-[600px] mb-3">
+              Built for the Modern Enterprise
+            </h2>
+            <div className="w-16 h-[3px] bg-[#0284C7] rounded mb-4" />
+
+            <p className="text-sm md:text-base text-[#475569] font-medium leading-relaxed max-w-[550px]">
+              Cascade Tech Ventures combines deep Salesforce craftsmanship with cutting-edge AI to help organizations grow, scale, and operate with precision.
+            </p>
+          </div>
+
+          {/* RIGHT SIDE: Floating Dashboard Panel (45% width, reduced height and width) */}
+          <div className="w-full md:w-[43%] flex flex-col h-full rounded-2xl border border-white/60 bg-[#F8FAFC]/90 shadow-inner p-4 relative overflow-visible max-h-[90%] justify-between">
+            {/* Console Header */}
+            <div className="flex items-center justify-between border-b border-slate-200/40 pb-2 mb-2">
+              <div className="flex items-center gap-1">
+                <div className="size-2 rounded-full bg-[#EF4444]/90" />
+                <div className="size-2 rounded-full bg-[#F59E0B]/90" />
+                <div className="size-2 rounded-full bg-[#10B981]/90" />
+              </div>
+              <span className="text-[9px] font-bold text-slate-400 tracking-wider font-mono">
+                cascade.cloud / performance
+              </span>
+            </div>
+
+            {/* Dashboard Widgets Grid - Compact sizing */}
+            <div className="grid grid-cols-2 gap-2.5 h-[calc(100%-25px)] content-center">
+              {/* CRM Performance Card */}
+              <div className="bg-white border border-slate-100 rounded-xl p-2.5 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 text-left">
+                <div className="flex items-center justify-between">
+                  <span className="text-[8px] font-extrabold text-slate-500 uppercase tracking-wider">CRM Performance</span>
+                  <span className="text-[8px] font-bold text-emerald-600 bg-emerald-50 px-1 rounded-full">+24%</span>
+                </div>
+                <p className="text-base md:text-lg lg:text-xl font-black text-slate-800 mt-0.5 font-display leading-none">99.8% Sync</p>
+                <p className="text-[8px] text-slate-400 mt-0.5 font-medium">Real-time Health Check</p>
+              </div>
+
+              {/* Workflow Automation Metrics */}
+              <div className="bg-white border border-slate-100 rounded-xl p-2.5 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 text-left">
+                <div className="flex items-center justify-between">
+                  <span className="text-[8px] font-extrabold text-slate-500 uppercase tracking-wider">Workflows Active</span>
+                  <span className="text-[8px] font-bold text-sky-600 bg-sky-50 px-1 rounded-full">Active</span>
+                </div>
+                <p className="text-base md:text-lg lg:text-xl font-black text-slate-800 mt-0.5 font-display leading-none">1,420 / hr</p>
+                <p className="text-[8px] text-slate-400 mt-0.5 font-medium">Auto-routing tasks</p>
+              </div>
+
+              {/* Customer Growth Analytics */}
+              <div className="bg-white border border-slate-100 rounded-xl p-2.5 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 text-left">
+                <div className="flex items-center justify-between">
+                  <span className="text-[8px] font-extrabold text-slate-500 uppercase tracking-wider">Customer Growth</span>
+                  <span className="text-[8px] font-bold text-[#10B981] bg-emerald-50 px-1.5 rounded-full">+120%</span>
+                </div>
+                <div className="flex items-end justify-between h-6 mt-1.5 px-0.5">
+                  {[20, 45, 30, 55, 60, 40, 80].map((h, i) => (
+                    <div key={i} className="w-[8%] bg-[#0EA5E9] rounded-t-sm" style={{ height: `${h}%` }} />
+                  ))}
+                </div>
+              </div>
+
+              {/* Salesforce Ecosystem Overview */}
+              <div className="bg-white border border-slate-100 rounded-xl p-2.5 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 text-left">
+                <div className="flex items-center justify-between mb-0.5">
+                  <span className="text-[8px] font-extrabold text-slate-500 uppercase tracking-wider">Ecosystem Link</span>
+                  <span className="text-[8px] font-bold text-emerald-600 bg-emerald-50 px-1 rounded-full">Secure</span>
+                </div>
+                <div className="flex items-center justify-center gap-1.5 mt-2 h-6">
+                  <div className="size-5 rounded bg-sky-50 border border-sky-100 flex items-center justify-center">
+                    <Cloud className="size-3 text-[#0284C7]" />
+                  </div>
+                  <div className="h-[1px] bg-slate-200 flex-grow relative">
+                    <div className="absolute top-1/2 -translate-y-1/2 left-[40%] size-1 bg-[#0284C7] rounded-full animate-ping" />
+                  </div>
+                  <div className="size-5 rounded bg-emerald-50 border border-emerald-100 flex items-center justify-center">
+                    <Sparkles className="size-3 text-emerald-500" />
+                  </div>
+                </div>
+              </div>
+
+              {/* AI Process Optimization Chart (Col span 2) */}
+              <div className="bg-white border border-slate-100 rounded-xl p-2.5 shadow-sm hover:shadow-md hover:scale-[1.01] transition-all duration-300 text-left col-span-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[8px] font-extrabold text-slate-500 uppercase tracking-wider">AI Process Optimization</span>
+                  <span className="text-[8px] font-bold text-emerald-600 bg-emerald-50 px-1.5 rounded-full">-35% Latency</span>
+                </div>
+                <div className="flex items-center gap-2 mt-1.5">
+                  <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+                    <div className="bg-[#0284C7] h-full rounded-full w-[85%]" />
+                  </div>
+                  <span className="text-[10px] font-bold text-slate-700">85%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* BOTTOM ROW: 3 Enterprise Feature Cards (height: ~42%) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-[42%] w-full items-stretch mt-12 md:mt-16">
+          {scene.items?.map((it, idx) => {
+            const titleText = idx === 0 
+              ? "Tailored Digital Transformation" 
+              : idx === 1 
+              ? "Enhanced Operational Efficiency" 
+              : "CRM Expertise for Success";
+
+            const descText = idx === 0
+              ? "Custom Salesforce strategies designed around your operating model, your customers, and your growth targets — never templated."
+              : idx === 1
+              ? "Automate manual workflows, eliminate data silos, and free your teams to focus on revenue-generating activity."
+              : "Deep multi-cloud Salesforce expertise — from architecture and implementation to managed support and optimization.";
+
+            return (
+              <div
+                key={it.title}
+                className="bg-white/80 hover:bg-white border border-[#E2E8F0] rounded-2xl p-5 md:p-6 flex flex-col justify-between text-left shadow-sm hover:shadow-md hover:scale-[1.01] transition-all duration-300 flex-1 h-full"
+              >
+                <div>
+                  <div className="flex items-center gap-3">
+                    <div className="flex size-9 items-center justify-center rounded-xl bg-sky-50 border border-sky-100 flex-shrink-0">
+                      <it.icon className="size-5 text-[#0284C7]" />
+                    </div>
+                    <h3 className="text-sm md:text-base lg:text-lg font-[800] text-[#0F172A] leading-tight">
+                      {titleText}
+                    </h3>
+                  </div>
+                  <p className="mt-2 text-xs md:text-sm leading-relaxed text-[#475569] font-medium">
+                    {descText}
+                  </p>
+                </div>
+
+                {/* Mini visual component anchored to card bottom */}
+                <div className="mt-auto pt-4">
+                  {idx === 0 && (
+                    <div className="flex items-center justify-between w-full bg-slate-50/50 px-2.5 py-3 rounded-xl border border-slate-100 text-[10px] md:text-xs font-bold text-[#475569]">
+                      <div className="flex flex-col items-center gap-1 flex-1">
+                        <div className="size-7 rounded-full bg-sky-50 text-[#0284C7] flex items-center justify-center border border-sky-100 shadow-sm">
+                          <Search className="size-3.5" />
+                        </div>
+                        <span className="text-[9px] font-bold text-slate-600 mt-1">Discovery</span>
+                      </div>
+                      <ChevronRight className="size-3 text-slate-400" />
+                      <div className="flex flex-col items-center gap-1 flex-1">
+                        <div className="size-7 rounded-full bg-sky-50 text-[#0284C7] flex items-center justify-center border border-sky-100 shadow-sm">
+                          <Layers className="size-3.5" />
+                        </div>
+                        <span className="text-[9px] font-bold text-slate-600 mt-1">Architecture</span>
+                      </div>
+                      <ChevronRight className="size-3 text-slate-400" />
+                      <div className="flex flex-col items-center gap-1 flex-1">
+                        <div className="size-7 rounded-full bg-sky-50 text-[#0284C7] flex items-center justify-center border border-sky-100 shadow-sm">
+                          <Code className="size-3.5" />
+                        </div>
+                        <span className="text-[9px] font-bold text-slate-600 mt-1">Build</span>
+                      </div>
+                      <ChevronRight className="size-3 text-slate-400" />
+                      <div className="flex flex-col items-center gap-1 flex-1">
+                        <div className="size-7 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-100 shadow-sm animate-pulse">
+                          <Check className="size-3.5" />
+                        </div>
+                        <span className="text-[9px] font-bold text-emerald-600 mt-1">Adopt</span>
+                      </div>
+                    </div>
+                  )}
+
+                  {idx === 1 && (
+                    <div className="flex flex-col gap-1 w-full bg-slate-50/50 px-2.5 py-2.5 rounded-xl border border-slate-100">
+                      <div className="flex items-center justify-between text-[10px] md:text-xs font-extrabold text-[#475569]">
+                        <span>Automation Gains</span>
+                        <span className="text-[#10B981] font-black text-xs">↓ 65% Operations</span>
+                      </div>
+                      <div className="flex flex-col gap-1 mt-1">
+                        <div className="flex items-center gap-2">
+                          <span className="text-[9px] text-slate-400 font-bold w-20">Manual Hours</span>
+                          <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+                            <div className="bg-slate-300 h-full rounded-full w-[30%]" />
+                          </div>
+                          <span className="text-[9px] text-slate-400 font-bold w-6 text-right">30%</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-[9px] text-[#0284C7] font-bold w-20">Automated</span>
+                          <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+                            <div className="bg-[#0284C7] h-full rounded-full w-[85%]" />
+                          </div>
+                          <span className="text-[9px] text-[#0284C7] font-bold w-6 text-right">85%</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {idx === 2 && (
+                    <div className="flex items-center justify-around w-full bg-slate-50/50 px-2.5 py-3 rounded-xl border border-slate-100 text-[10px] font-bold uppercase text-[#475569] tracking-wider">
+                      <div className="flex flex-col items-center gap-1">
+                        <div className="size-7 rounded-full bg-sky-50 text-[#0284C7] flex items-center justify-center border border-[#E2E8F0] shadow-sm">
+                          <Target className="size-3.5 text-[#0284C7]" />
+                        </div>
+                        <span className="text-[8px] md:text-[9px] font-bold text-slate-500 mt-1">Sales Cloud</span>
+                      </div>
+                      <div className="h-[1px] bg-slate-200 flex-grow max-w-[30px] mx-1 border-dashed border-sky-300 border-t" />
+                      <div className="flex flex-col items-center gap-1">
+                        <div className="size-8.5 rounded-full bg-sky-100 text-[#0284C7] flex items-center justify-center border border-sky-200 shadow-md animate-pulse">
+                          <Headset className="size-4 text-[#0284C7]" />
+                        </div>
+                        <span className="text-[8px] md:text-[9px] font-black text-[#0284C7] mt-1">Service Cloud</span>
+                      </div>
+                      <div className="h-[1px] bg-slate-200 flex-grow max-w-[30px] mx-1 border-dashed border-sky-300 border-t" />
+                      <div className="flex flex-col items-center gap-1">
+                        <div className="size-7 rounded-full bg-sky-50 text-[#0284C7] flex items-center justify-center border border-[#E2E8F0] shadow-sm">
+                          <Megaphone className="size-3.5 text-[#0284C7]" />
+                        </div>
+                        <span className="text-[8px] md:text-[9px] font-bold text-slate-500 mt-1">Marketing Cloud</span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Bottom Glow reflection element */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4/5 h-[3px] bg-gradient-to-r from-transparent via-[#74CBF4] to-transparent shadow-[0_-4px_30px_rgba(116,203,244,0.95),0_0_15px_rgba(116,203,244,1)] opacity-95 rounded-full pointer-events-none" />
       </div>
     );
   }
