@@ -125,33 +125,33 @@ export const SCENES: Scene[] = [
     align: "center",
     variant: "grid",
     items: [
-      { 
-        icon: Target, 
+      {
+        icon: Target,
         title: "Sales Cloud",
         body: "Pipeline visibility, forecasting and AI-assisted selling that closes faster."
       },
-      { 
-        icon: Megaphone, 
+      {
+        icon: Megaphone,
         title: "Marketing Cloud",
         body: "Personalized journeys, segmentation and analytics across every touchpoint."
       },
-      { 
-        icon: Globe, 
+      {
+        icon: Globe,
         title: "Experience Cloud",
         body: "Branded portals and communities that scale customer and partner engagement."
       },
-      { 
-        icon: HeartPulse, 
+      {
+        icon: HeartPulse,
         title: "Health Cloud",
         body: "Patient-360 workflows that connect care teams, records and outcomes."
       },
-      { 
-        icon: GraduationCap, 
+      {
+        icon: GraduationCap,
         title: "Education Cloud",
         body: "Recruit, engage and retain learners across the full education lifecycle."
       },
-      { 
-        icon: ShoppingCart, 
+      {
+        icon: ShoppingCart,
         title: "Commerce Cloud",
         body: "Unified B2B and B2C commerce experiences powered by data and AI."
       },
@@ -367,14 +367,22 @@ export const SCENES: Scene[] = [
     id: 12,
     kicker: "District 12 · Engagement Model",
     title: "How We Work With You",
-    subtitle: "A structured, transparent roadmap built for predictability and rapid execution.",
+    subtitle: "From the first conversation to long-term partnership — here is what working with Cascade looks like.",
     variant: "final",
     items: [
-      { icon: Search, title: "Discovery", body: "Requirements gathering, process mapping, and system analysis." },
-      { icon: Layers, title: "Blueprint", body: "Architecture design, data schema mapping, and integration plan." },
-      { icon: Code, title: "Build", body: "Salesforce configuration, automations, and custom development." },
-      { icon: GraduationCap, title: "Train & UAT", body: "Stakeholder testing, feedback loops, and user enablement." },
-      { icon: Rocket, title: "Go-Live & Support", body: "Production deployment, transition support, and optimization." },
+      { icon: Search, title: "Discovery", body: "We learn how leads come in and how your team works today — before suggesting anything. No assumptions." },
+      { icon: Layers, title: "Blueprint", body: "We design the org architecture, data model and automation map. You see exactly what we'll build and why." },
+      { icon: Code, title: "Build", body: "Configuration, Apex/LWC, integrations and migration — delivered in sprints with weekly demos." },
+      { icon: GraduationCap, title: "Train & UAT", body: "Role-based training, UAT cycles and adoption playbooks — your team is ready on day one." },
+      { icon: Rocket, title: "Go-Live & Support", body: "We go live with you. First 30 days covered; our AMC keeps us your ongoing Salesforce partner." },
     ],
+  },
+  {
+    id: 13,
+    kicker: "District 13 · Conclusion",
+    title: "Let's Build Something That Actually Works.",
+    subtitle:
+      "Whether you're implementing Salesforce, building AI-powered automation, launching digital products, or transforming customer operations — let's discuss what success looks like for your business.",
+    variant: "final",
   },
 ];
