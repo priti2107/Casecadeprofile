@@ -566,8 +566,787 @@ function WhoWeAreScene({ scene, isActive = false, activeCardIdx = 0 }: { scene: 
   );
 }
 
+
+
+function ProductEcosystemScene() {
+  const [productSlide, setProductSlide] = useState(0);
+  const totalProductSlides = 2;
+
+  return (
+    <div
+      className="pointer-events-auto who-we-are-glass-panel rounded-[32px] w-[92vw] md:w-[90vw] h-[88vh] md:h-[82vh] max-w-7xl relative overflow-hidden flex flex-col pt-5 pb-4 px-6 md:px-10 gap-4 border border-white/30"
+      style={{
+        background: "radial-gradient(ellipse at 60% 0%, rgba(0,119,182,0.07) 0%, transparent 55%), radial-gradient(ellipse at 10% 100%, rgba(59,169,245,0.05) 0%, transparent 50%), rgba(247,250,253,0.98)",
+        backdropFilter: "blur(28px)",
+        boxShadow: "0 32px 80px rgba(0,90,160,0.10), 0 2px 0 rgba(255,255,255,0.8) inset, 0 -1px 0 rgba(0,119,182,0.08) inset",
+      }}
+    >
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes flowPulse { to { stroke-dashoffset: -30; } }
+        @keyframes floatNode { 0%,100%{transform:translateY(0px)} 50%{transform:translateY(-6px)} }
+        @keyframes glowBeat { 0%,100%{opacity:0.35;transform:scale(1)} 50%{opacity:0.85;transform:scale(1.15)} }
+        @keyframes pulseRing1 { 0%{r:30;opacity:0.7} 100%{r:52;opacity:0} }
+        @keyframes pulseRing2 { 0%{r:30;opacity:0.5} 100%{r:62;opacity:0} }
+        @keyframes fadeSlideIn { from{opacity:0;transform:translateX(20px)} to{opacity:1;transform:translateX(0)} }
+        @keyframes chipHover { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-1px)} }
+        @keyframes orbitSpin { from{transform:rotateZ(0deg) rotateX(72deg)} to{transform:rotateZ(360deg) rotateX(72deg)} }
+        @keyframes orbitSpin2 { from{transform:rotateZ(120deg) rotateX(55deg)} to{transform:rotateZ(480deg) rotateX(55deg)} }
+        @keyframes orbitSpin3 { from{transform:rotateZ(240deg) rotateX(30deg)} to{transform:rotateZ(600deg) rotateX(30deg)} }
+        @keyframes spherePulse { 0%,100%{transform:scale(1);opacity:0.55} 50%{transform:scale(1.06);opacity:0.75} }
+        @keyframes particleDrift { 0%{opacity:0;transform:translateY(0)} 30%{opacity:1} 70%{opacity:1} 100%{opacity:0;transform:translateY(-28px)} }
+        .eco-flow-line { stroke-dasharray: 10 6; animation: flowPulse 1.6s linear infinite; }
+        .eco-float { animation: floatNode 3.2s ease-in-out infinite; }
+        .eco-float-2 { animation: floatNode 4s ease-in-out infinite; animation-delay:0.9s; }
+        .eco-float-3 { animation: floatNode 3.6s ease-in-out infinite; animation-delay:1.6s; }
+        .eco-glow { animation: glowBeat 2.4s ease-in-out infinite; }
+        .eco-ring1 { animation: pulseRing1 2.4s ease-out infinite; }
+        .eco-ring2 { animation: pulseRing2 2.4s ease-out infinite; animation-delay:0.8s; }
+        .eco-slide-in { animation: fadeSlideIn 0.4s cubic-bezier(0.22,1,0.36,1) forwards; }
+        .eco-chip:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(0,119,182,0.15); }
+        .eco-chip { transition: all 0.2s ease; }
+        .holo-orbit1 { animation: orbitSpin 12s linear infinite; transform-origin: center; }
+        .holo-orbit2 { animation: orbitSpin2 18s linear infinite; transform-origin: center; }
+        .holo-orbit3 { animation: orbitSpin3 24s linear infinite reverse; transform-origin: center; }
+        .holo-sphere { animation: spherePulse 4s ease-in-out infinite; }
+        .holo-p1 { animation: particleDrift 3.5s ease-in-out infinite; }
+        .holo-p2 { animation: particleDrift 4.2s ease-in-out infinite; animation-delay:1.2s; }
+        .holo-p3 { animation: particleDrift 3.8s ease-in-out infinite; animation-delay:2.1s; }
+        .holo-p4 { animation: particleDrift 5s ease-in-out infinite; animation-delay:0.6s; }
+        .holo-p5 { animation: particleDrift 4.5s ease-in-out infinite; animation-delay:1.8s; }
+      ` }} />
+
+      {/* Ambient background orbs */}
+      <div className="absolute -right-20 -top-20 w-[500px] h-[500px] rounded-full pointer-events-none -z-10 opacity-60"
+        style={{ background: "radial-gradient(circle, rgba(0,119,182,0.09) 0%, transparent 68%)" }} />
+      <div className="absolute -left-16 -bottom-16 w-[380px] h-[380px] rounded-full pointer-events-none -z-10 opacity-50"
+        style={{ background: "radial-gradient(circle, rgba(59,169,245,0.07) 0%, transparent 68%)" }} />
+      <div className="absolute inset-0 pointer-events-none -z-10 opacity-[0.045]"
+        style={{ backgroundImage: "radial-gradient(#0077B6 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
+
+      {/* ── HOLOGRAPHIC AI SPHERE (background decoration) ── */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ zIndex: 0, top: "38%" }}>
+        <svg width="520" height="520" viewBox="0 0 520 520" xmlns="http://www.w3.org/2000/svg" style={{ opacity: 0.13 }}>
+          <defs>
+            <radialGradient id="hs-core" cx="42%" cy="38%" r="58%">
+              <stop offset="0%" stopColor="#7DD3FC" stopOpacity="0.95" />
+              <stop offset="35%" stopColor="#3BA9F5" stopOpacity="0.7" />
+              <stop offset="70%" stopColor="#0077B6" stopOpacity="0.5" />
+              <stop offset="100%" stopColor="#003F73" stopOpacity="0.2" />
+            </radialGradient>
+            <radialGradient id="hs-glow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#38BDF8" stopOpacity="0.5" />
+              <stop offset="100%" stopColor="#0077B6" stopOpacity="0" />
+            </radialGradient>
+            <radialGradient id="hs-shine" cx="35%" cy="28%" r="40%">
+              <stop offset="0%" stopColor="white" stopOpacity="0.6" />
+              <stop offset="100%" stopColor="white" stopOpacity="0" />
+            </radialGradient>
+            <filter id="hs-blur-glow">
+              <feGaussianBlur stdDeviation="18" result="b" />
+              <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+            </filter>
+            <filter id="hs-dot-glow">
+              <feGaussianBlur stdDeviation="2.5" result="b" />
+              <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+            </filter>
+          </defs>
+
+          {/* Outer soft ambient glow */}
+          <circle cx="260" cy="260" r="200" fill="url(#hs-glow)" filter="url(#hs-blur-glow)" />
+
+          {/* Orbit ring 1 — steep tilt */}
+          <g className="holo-orbit1" style={{ transformOrigin: "260px 260px" }}>
+            <ellipse cx="260" cy="260" rx="180" ry="52" fill="none" stroke="#3BA9F5" strokeWidth="1.2" strokeDasharray="6 4" opacity="0.9" />
+            {/* Orbit dot 1 */}
+            <circle cx="440" cy="260" r="5" fill="#7DD3FC" filter="url(#hs-dot-glow)" />
+            <circle cx="80" cy="260" r="3.5" fill="#3BA9F5" filter="url(#hs-dot-glow)" />
+          </g>
+
+          {/* Orbit ring 2 — moderate tilt */}
+          <g className="holo-orbit2" style={{ transformOrigin: "260px 260px" }}>
+            <ellipse cx="260" cy="260" rx="155" ry="70" fill="none" stroke="#0077B6" strokeWidth="1" strokeDasharray="4 6" opacity="0.7" />
+            <circle cx="415" cy="260" r="4" fill="#0EA5E9" filter="url(#hs-dot-glow)" />
+            <circle cx="105" cy="260" r="3" fill="#38BDF8" filter="url(#hs-dot-glow)" />
+          </g>
+
+          {/* Orbit ring 3 — shallow tilt (equatorial) */}
+          <g className="holo-orbit3" style={{ transformOrigin: "260px 260px" }}>
+            <ellipse cx="260" cy="260" rx="195" ry="30" fill="none" stroke="#6EC8FF" strokeWidth="0.8" strokeDasharray="8 5" opacity="0.6" />
+            <circle cx="455" cy="260" r="3.5" fill="#BAE6FD" filter="url(#hs-dot-glow)" />
+          </g>
+
+          {/* Core sphere */}
+          <circle cx="260" cy="260" r="88" fill="url(#hs-core)" className="holo-sphere" filter="url(#hs-blur-glow)" />
+          {/* Inner sphere body */}
+          <circle cx="260" cy="260" r="88" fill="url(#hs-core)" className="holo-sphere" />
+          {/* Specular highlight */}
+          <circle cx="260" cy="260" r="88" fill="url(#hs-shine)" />
+          {/* Equatorial latitude line */}
+          <ellipse cx="260" cy="260" rx="88" ry="24" fill="none" stroke="#7DD3FC" strokeWidth="0.8" opacity="0.5" />
+          {/* Meridian line */}
+          <ellipse cx="260" cy="260" rx="28" ry="88" fill="none" stroke="#7DD3FC" strokeWidth="0.8" opacity="0.4" />
+
+          {/* Floating ambient particles */}
+          <circle cx="170" cy="155" r="3" fill="#38BDF8" opacity="0.8" className="holo-p1" filter="url(#hs-dot-glow)" />
+          <circle cx="360" cy="140" r="2.5" fill="#7DD3FC" opacity="0.7" className="holo-p2" filter="url(#hs-dot-glow)" />
+          <circle cx="130" cy="310" r="2" fill="#0EA5E9" opacity="0.6" className="holo-p3" filter="url(#hs-dot-glow)" />
+          <circle cx="390" cy="340" r="3" fill="#3BA9F5" opacity="0.75" className="holo-p4" filter="url(#hs-dot-glow)" />
+          <circle cx="220" cy="390" r="2.5" fill="#38BDF8" opacity="0.65" className="holo-p5" filter="url(#hs-dot-glow)" />
+          <circle cx="310" cy="120" r="2" fill="#BAE6FD" opacity="0.7" className="holo-p1" filter="url(#hs-dot-glow)" />
+          <circle cx="400" cy="190" r="2" fill="#7DD3FC" opacity="0.6" className="holo-p3" filter="url(#hs-dot-glow)" />
+        </svg>
+      </div>
+
+      {/* ── HEADER ── */}
+      <div className="flex flex-col items-center text-center w-full flex-shrink-0 z-10 gap-3">
+        <div className="flex flex-col items-center">
+          <div className="inline-flex items-center gap-2 bg-[#EFF8FF] border border-[#BFDBFE]/80 rounded-full px-4 py-1.5 text-[11px] font-bold tracking-[0.15em] text-[#0077B6] w-fit mb-3 shadow-[0_2px_8px_rgba(0,119,182,0.10)]">
+            <span className="size-1.5 rounded-full bg-[#0077B6] animate-pulse" />
+            OUR PRODUCT ECOSYSTEM
+          </div>
+          <h2 className="text-[28px] sm:text-[32px] font-[900] leading-[1.1] tracking-tight text-[#0A1628]">
+            Real Problems.<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066A0] via-[#0077B6] to-[#3BA9F5]">
+              Purpose-Built Products.
+            </span>
+          </h2>
+          <p className="mt-2.5 text-[14px] md:text-[16px] text-slate-500 font-medium leading-relaxed max-w-[760px]">
+            Most Salesforce partners implement what Salesforce sells. We built products that solve real business problems for enterprise real estate teams. Every product is actively deployed and continuously improved with real customers.
+          </p>
+        </div>
+        {/* Slide nav */}
+        <div className="flex items-center gap-4">
+          <button onClick={() => setProductSlide(p => Math.max(0, p - 1))} disabled={productSlide === 0}
+            className="w-9 h-9 rounded-full flex items-center justify-center border border-slate-200/80 bg-white/90 text-slate-400 hover:border-[#0077B6] hover:text-[#0077B6] hover:bg-[#EFF8FF] hover:shadow-[0_4px_14px_rgba(0,119,182,0.15)] disabled:opacity-25 disabled:cursor-not-allowed transition-all duration-200 shadow-sm backdrop-blur">
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+          <div className="flex items-center gap-2">
+            {Array.from({ length: totalProductSlides }).map((_, i) => (
+              <button key={i} onClick={() => setProductSlide(i)}
+                className={`rounded-full transition-all duration-300 ${i === productSlide ? "w-7 h-2.5 bg-gradient-to-r from-[#0077B6] to-[#3BA9F5] shadow-[0_2px_8px_rgba(0,119,182,0.4)]" : "w-2.5 h-2.5 bg-slate-200 hover:bg-slate-300"}`} />
+            ))}
+          </div>
+          <button onClick={() => setProductSlide(p => Math.min(totalProductSlides - 1, p + 1))} disabled={productSlide === totalProductSlides - 1}
+            className="w-9 h-9 rounded-full flex items-center justify-center border border-slate-200/80 bg-white/90 text-slate-400 hover:border-[#0077B6] hover:text-[#0077B6] hover:bg-[#EFF8FF] hover:shadow-[0_4px_14px_rgba(0,119,182,0.15)] disabled:opacity-25 disabled:cursor-not-allowed transition-all duration-200 shadow-sm backdrop-blur">
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
+
+      {/* ── SLIDES ── */}
+      <div className="flex-1 min-h-0 w-full z-10 relative overflow-hidden">
+
+        {/* ── SLIDE 1 ── */}
+        {productSlide === 0 && (
+          <div className="eco-slide-in grid grid-cols-2 gap-5 h-full w-full">
+
+            {/* ══ CARD 1: Cascade Connect ══ */}
+            <div className="group relative rounded-[24px] p-5 flex flex-col gap-3 overflow-hidden transition-all duration-400 hover:-translate-y-1.5"
+              style={{
+                background: "radial-gradient(ellipse at 15% 0%, rgba(0,119,182,0.18) 0%, rgba(59,169,245,0.10) 40%, rgba(224,242,254,0.85) 100%)",
+                border: "1px solid rgba(0,119,182,0.25)",
+                boxShadow: "0 4px 24px rgba(0,90,160,0.12), 0 1px 0 rgba(255,255,255,0.7) inset",
+              }}>
+              {/* Inner top highlight */}
+              <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white to-transparent pointer-events-none" />
+              {/* Hover glow overlay */}
+              <div className="absolute inset-0 rounded-[24px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(0,119,182,0.05) 0%, transparent 65%)" }} />
+
+              {/* Top row */}
+              <div className="flex items-center justify-between flex-shrink-0">
+                <div className="flex items-center gap-3.5">
+                  {/* 3D gradient icon */}
+                  <div className="w-12 h-12 rounded-[14px] flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
+                    style={{ background: "linear-gradient(135deg, #E0F2FE 0%, #BAE6FD 40%, #7DD3FC 100%)", boxShadow: "0 6px 20px rgba(0,119,182,0.20), 0 1px 0 rgba(255,255,255,0.8) inset" }}>
+                    <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none">
+                      <defs>
+                        <linearGradient id="ic1" x1="0" y1="0" x2="1" y2="1">
+                          <stop offset="0%" stopColor="#0077B6" />
+                          <stop offset="100%" stopColor="#0EA5E9" />
+                        </linearGradient>
+                      </defs>
+                      <rect x="2" y="5" width="20" height="14" rx="3.5" fill="url(#ic1)" opacity="0.18" />
+                      <rect x="2" y="5" width="20" height="14" rx="3.5" stroke="url(#ic1)" strokeWidth="1.6" />
+                      <path d="M2 9.5l10 5.5 10-5.5" stroke="url(#ic1)" strokeWidth="1.6" strokeLinecap="round" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-[20px] font-[900] text-[#0A1628] leading-tight tracking-tight">Cascade Connect</h3>
+                    <p className="text-[13px] font-semibold text-[#0077B6] mt-0.5 leading-snug">Omnichannel communication inside Salesforce</p>
+                  </div>
+                </div>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F0FFF4] border border-emerald-200/70 text-emerald-600 text-[10px] font-bold shadow-[0_2px_8px_rgba(16,185,129,0.12)] flex-shrink-0">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />Live
+                </span>
+              </div>
+
+              {/* Illustration */}
+              <div className="flex-1 min-h-0 rounded-[16px] overflow-hidden relative flex items-center justify-center"
+                style={{ background: "radial-gradient(ellipse at 50% 40%, rgba(0,119,182,0.07) 0%, rgba(240,249,255,0.6) 55%, rgba(248,252,255,0.8) 100%)", border: "1px solid rgba(186,230,253,0.35)" }}>
+                <svg viewBox="0 0 360 195" className="w-full h-full" xmlns="http://www.w3.org/2000/svg" style={{ maxHeight: "100%" }}>
+                  <defs>
+                    <radialGradient id="cc-hub-g" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stopColor="#0077B6" stopOpacity="0.22" />
+                      <stop offset="100%" stopColor="#3BA9F5" stopOpacity="0" />
+                    </radialGradient>
+                    <linearGradient id="cc-ln1" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0%" stopColor="#3BA9F5" stopOpacity="0.1" />
+                      <stop offset="50%" stopColor="#3BA9F5" stopOpacity="0.9" />
+                      <stop offset="100%" stopColor="#0077B6" stopOpacity="0.2" />
+                    </linearGradient>
+                    <filter id="cc-glow-f" x="-40%" y="-40%" width="180%" height="180%">
+                      <feGaussianBlur stdDeviation="4" result="blur" />
+                      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                    <filter id="cc-soft-glow">
+                      <feGaussianBlur stdDeviation="6" result="b" /><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                    <linearGradient id="cc-card-g" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="white" stopOpacity="1" />
+                      <stop offset="100%" stopColor="#F0F9FF" stopOpacity="0.9" />
+                    </linearGradient>
+                  </defs>
+
+                  {/* Center glow */}
+                  <circle cx="178" cy="97" r="56" fill="url(#cc-hub-g)" />
+                  {/* Pulse rings */}
+                  <circle cx="178" cy="97" r="32" fill="none" stroke="#3BA9F5" strokeWidth="1.5" className="eco-ring1" opacity="0.6" />
+                  <circle cx="178" cy="97" r="32" fill="none" stroke="#0077B6" strokeWidth="1" className="eco-ring2" opacity="0.4" />
+
+                  {/* Paths */}
+                  <path d="M 76 57 Q 130 57 152 97" fill="none" stroke="#3BA9F5" strokeWidth="1.8" className="eco-flow-line" opacity="0.7"/>
+                  <path d="M 76 97 L 152 97" fill="none" stroke="#0077B6" strokeWidth="1.8" className="eco-flow-line" opacity="0.7"/>
+                  <path d="M 76 137 Q 130 137 152 97" fill="none" stroke="#6EC8FF" strokeWidth="1.8" className="eco-flow-line" opacity="0.7"/>
+                  <path d="M 204 97 L 268 97" fill="none" stroke="#3BA9F5" strokeWidth="1.8" className="eco-flow-line" opacity="0.7"/>
+
+                  {/* Animated particles */}
+                  <circle r="3.5" fill="#3BA9F5" opacity="0.9" filter="url(#cc-glow-f)">
+                    <animateMotion dur="2.2s" repeatCount="indefinite" path="M 76 57 Q 130 57 152 97" />
+                  </circle>
+                  <circle r="3" fill="#0077B6" opacity="0.85" filter="url(#cc-glow-f)">
+                    <animateMotion dur="1.8s" repeatCount="indefinite" path="M 76 97 L 152 97" begin="0.4s" />
+                  </circle>
+                  <circle r="3" fill="#6EC8FF" opacity="0.9" filter="url(#cc-glow-f)">
+                    <animateMotion dur="2.5s" repeatCount="indefinite" path="M 76 137 Q 130 137 152 97" begin="0.8s" />
+                  </circle>
+                  <circle r="3" fill="#3BA9F5" opacity="0.85" filter="url(#cc-glow-f)">
+                    <animateMotion dur="2s" repeatCount="indefinite" path="M 204 97 L 268 97" begin="0.2s" />
+                  </circle>
+
+                  {/* WhatsApp node */}
+                  <g className="eco-float">
+                    <rect x="10" y="38" width="66" height="38" rx="11" fill="url(#cc-card-g)" stroke="#E2EEF6" strokeWidth="1" filter="url(#cc-glow-f)" />
+                    <rect x="10" y="38" width="66" height="38" rx="11" fill="#25D366" opacity="0.06" />
+                    <circle cx="27" cy="57" r="9" fill="#25D366" opacity="0.18" />
+                    <path d="M27 51C23.5 51 20.5 54 20.5 57.5c0 1.2.3 2.3.9 3.2L20 65l4.4-.9c.9.5 1.9.8 3.1.8 3.5 0 6.5-3 6.5-6.5S30.5 51 27 51z" fill="#25D366" />
+                    <text x="40" y="55" fontSize="7.5" fontWeight="800" fill="#0F172A">What</text>
+                    <text x="40" y="65" fontSize="7.5" fontWeight="800" fill="#0F172A">sApp</text>
+                  </g>
+                  {/* Email node */}
+                  <g className="eco-float-2">
+                    <rect x="10" y="78" width="66" height="38" rx="11" fill="url(#cc-card-g)" stroke="#E2EEF6" strokeWidth="1" filter="url(#cc-glow-f)" />
+                    <rect x="10" y="78" width="66" height="38" rx="11" fill="#0077B6" opacity="0.05" />
+                    <rect x="19" y="88" width="20" height="14" rx="3.5" fill="#0077B6" opacity="0.12" stroke="#0077B6" strokeWidth="1" />
+                    <path d="M19 90.5 L29 96 L39 90.5" stroke="#0077B6" strokeWidth="1.2" fill="none" strokeLinecap="round"/>
+                    <text x="43" y="98" fontSize="7.5" fontWeight="800" fill="#0F172A">Email</text>
+                    <text x="43" y="108" fontSize="6.5" fill="#64748B">Native</text>
+                  </g>
+                  {/* SMS node */}
+                  <g className="eco-float-3">
+                    <rect x="10" y="118" width="66" height="38" rx="11" fill="url(#cc-card-g)" stroke="#E2EEF6" strokeWidth="1" filter="url(#cc-glow-f)" />
+                    <rect x="10" y="118" width="66" height="38" rx="11" fill="#6EC8FF" opacity="0.06" />
+                    <rect x="19" y="126" width="16" height="22" rx="5" fill="#6EC8FF" opacity="0.18" stroke="#6EC8FF" strokeWidth="1" />
+                    <rect x="22" y="140" width="10" height="3" rx="1.5" fill="#6EC8FF" />
+                    <text x="38" y="137" fontSize="7.5" fontWeight="800" fill="#0F172A">SMS</text>
+                    <text x="38" y="147" fontSize="6.5" fill="#64748B">Direct</text>
+                  </g>
+
+                  {/* Central AI Hub */}
+                  <circle cx="178" cy="97" r="32" fill="white" filter="url(#cc-soft-glow)" />
+                  <circle cx="178" cy="97" r="30" fill="none" stroke="#3BA9F5" strokeWidth="1" opacity="0.3" />
+                  <circle cx="178" cy="97" r="26" fill="url(#cc-hub-g)" />
+                  <path d="M170 97C170 92.6 173.6 89 178 89c4.4 0 8 3.6 8 8 0 4.4-3.6 8-8 8-1.6 0-3-.4-4.2-1.2L163 108l.8-2.9C162.7 104 170 102 170 97z" fill="#0077B6" className="eco-glow" />
+                  <path d="M173.5 95.5L182.5 95.5M173.5 97.5L181 97.5M173.5 99.5L182.5 99.5" stroke="white" strokeWidth="1.4" strokeLinecap="round" />
+
+                  {/* Salesforce CRM widget */}
+                  <g className="eco-float-2">
+                    <rect x="270" y="65" width="78" height="64" rx="14" fill="url(#cc-card-g)" stroke="#BAE6FD" strokeWidth="1.2" filter="url(#cc-glow-f)" />
+                    <rect x="270" y="65" width="78" height="14" rx="14" fill="#0077B6" opacity="0.08" />
+                    <text x="309" y="76" fontSize="7" fontWeight="900" fill="#0077B6" textAnchor="middle">SALESFORCE</text>
+                    <path d="M288 86 C288 82.5 290.8 80 294 80c1.2 0 2.3.4 3.2 1C298.3 79 300.7 77 303.5 77c3.9 0 7 3.2 7 7.2 0 .2 0 .4-.1.5 1.4.6 2.3 2 2.3 3.6 0 2.1-1.7 3.7-3.8 3.7h-21c-2.1 0-3.8-1.6-3.8-3.7 0-1.5.9-2.8 2.2-3.3" stroke="#0077B6" strokeWidth="1.2" fill="none" />
+                    <text x="309" y="107" fontSize="7" fontWeight="700" fill="#0077B6" textAnchor="middle">CRM Platform</text>
+                    <rect x="282" y="111" width="54" height="12" rx="6" fill="#0077B6" opacity="0.08" />
+                    <text x="309" y="121" fontSize="6.5" fontWeight="700" fill="#0077B6" textAnchor="middle">Connected</text>
+                  </g>
+
+                  {/* Floating badges */}
+                  <g className="eco-float">
+                    <rect x="143" y="56" width="70" height="19" rx="9.5" fill="white" stroke="#BAE6FD" strokeWidth="1" filter="url(#cc-glow-f)" />
+                    <circle cx="155" cy="65.5" r="3.5" fill="#0077B6" opacity="0.3" />
+                    <text x="163" y="69.5" fontSize="7" fontWeight="700" fill="#0077B6">Comm. History</text>
+                  </g>
+                  <g className="eco-float-3">
+                    <rect x="143" y="119" width="70" height="19" rx="9.5" fill="white" stroke="#BAE6FD" strokeWidth="1" filter="url(#cc-glow-f)" />
+                    <circle cx="155" cy="128.5" r="3.5" fill="#3BA9F5" opacity="0.3" />
+                    <text x="163" y="132.5" fontSize="7" fontWeight="700" fill="#0077B6">Read Receipts</text>
+                  </g>
+                </svg>
+              </div>
+
+              {/* Feature chips */}
+              <div className="flex flex-wrap gap-2 flex-shrink-0">
+                {["WhatsApp","Email","SMS","Comm. History"].map((label) => (
+                  <span key={label} className="eco-chip inline-flex items-center text-[10px] font-bold rounded-full px-3 py-1.5 cursor-default"
+                    style={{ background: "linear-gradient(135deg, rgba(240,249,255,0.9) 0%, rgba(224,242,254,0.7) 100%)", border: "1px solid rgba(125,211,252,0.5)", color: "#0055A5", boxShadow: "0 2px 8px rgba(0,119,182,0.08), 0 1px 0 rgba(255,255,255,0.8) inset" }}>
+                    {label}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* ══ CARD 2: CX Prism™ ══ */}
+            <div className="group relative rounded-[24px] p-5 flex flex-col gap-3 overflow-hidden transition-all duration-400 hover:-translate-y-1.5"
+              style={{
+                background: "radial-gradient(ellipse at 80% 0%, rgba(59,169,245,0.18) 0%, rgba(0,119,182,0.10) 40%, rgba(224,242,254,0.85) 100%)",
+                border: "1px solid rgba(0,119,182,0.25)",
+                boxShadow: "0 4px 24px rgba(0,90,160,0.12), 0 1px 0 rgba(255,255,255,0.7) inset",
+              }}>
+              <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white to-transparent pointer-events-none" />
+              <div className="absolute inset-0 rounded-[24px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(59,169,245,0.05) 0%, transparent 65%)" }} />
+
+              <div className="flex items-center justify-between flex-shrink-0">
+                <div className="flex items-center gap-3.5">
+                  <div className="w-12 h-12 rounded-[14px] flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
+                    style={{ background: "linear-gradient(135deg, #E0F2FE 0%, #BAE6FD 40%, #7DD3FC 100%)", boxShadow: "0 6px 20px rgba(0,119,182,0.20), 0 1px 0 rgba(255,255,255,0.8) inset" }}>
+                    <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none">
+                      <defs><linearGradient id="ic2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#0077B6"/><stop offset="100%" stopColor="#38BDF8"/></linearGradient></defs>
+                      <circle cx="12" cy="12" r="9" fill="url(#ic2)" opacity="0.15" stroke="url(#ic2)" strokeWidth="1.6" />
+                      <path d="M7.5 14.5L9.5 11l2.5 2.5 2.5-5L17 11" stroke="url(#ic2)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                      <circle cx="16.5" cy="7.5" r="2.5" fill="#38BDF8" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-[20px] font-[900] text-[#0A1628] leading-tight tracking-tight">CX Prism™</h3>
+                    <p className="text-[13px] font-semibold text-[#0077B6] mt-0.5">AI-powered customer intelligence platform</p>
+                  </div>
+                </div>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFFBEB] border border-amber-200/70 text-amber-600 text-[10px] font-bold shadow-[0_2px_8px_rgba(245,158,11,0.12)] flex-shrink-0">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />Deployment
+                </span>
+              </div>
+
+              <div className="flex-1 min-h-0 rounded-[16px] overflow-hidden relative flex items-center justify-center"
+                style={{ background: "radial-gradient(ellipse at 50% 40%, rgba(59,169,245,0.07) 0%, rgba(240,249,255,0.6) 55%, rgba(248,252,255,0.8) 100%)", border: "1px solid rgba(186,230,253,0.35)" }}>
+                <svg viewBox="0 0 360 195" className="w-full h-full" xmlns="http://www.w3.org/2000/svg" style={{ maxHeight: "100%" }}>
+                  <defs>
+                    <radialGradient id="cxp-hub-g" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stopColor="#3BA9F5" stopOpacity="0.2"/>
+                      <stop offset="100%" stopColor="#3BA9F5" stopOpacity="0"/>
+                    </radialGradient>
+                    <linearGradient id="cxp-bar-g" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#0077B6" stopOpacity="0.85"/>
+                      <stop offset="100%" stopColor="#3BA9F5" stopOpacity="0.4"/>
+                    </linearGradient>
+                    <linearGradient id="cxp-card-g" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="white"/>
+                      <stop offset="100%" stopColor="#F0F9FF" stopOpacity="0.95"/>
+                    </linearGradient>
+                    <filter id="cxp-glow-f">
+                      <feGaussianBlur stdDeviation="4" result="b"/>
+                      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                  </defs>
+
+                  <circle cx="178" cy="97" r="80" fill="url(#cxp-hub-g)" />
+
+                  {/* Connection lines */}
+                  <path d="M100 72 L140 90" fill="none" stroke="#3BA9F5" strokeWidth="1.5" className="eco-flow-line" opacity="0.6"/>
+                  <path d="M100 122 L140 105" fill="none" stroke="#0077B6" strokeWidth="1.5" className="eco-flow-line" opacity="0.6"/>
+                  <path d="M218 90 L258 72" fill="none" stroke="#6EC8FF" strokeWidth="1.5" className="eco-flow-line" opacity="0.6"/>
+                  <path d="M218 105 L258 122" fill="none" stroke="#3BA9F5" strokeWidth="1.5" className="eco-flow-line" opacity="0.6"/>
+
+                  {/* Particles */}
+                  <circle r="3" fill="#3BA9F5" opacity="0.9" filter="url(#cxp-glow-f)"><animateMotion dur="2s" repeatCount="indefinite" path="M100 72 L140 90"/></circle>
+                  <circle r="3" fill="#0077B6" opacity="0.85" filter="url(#cxp-glow-f)"><animateMotion dur="2.3s" repeatCount="indefinite" path="M218 90 L258 72" begin="0.5s"/></circle>
+                  <circle r="3" fill="#6EC8FF" opacity="0.9" filter="url(#cxp-glow-f)"><animateMotion dur="2.6s" repeatCount="indefinite" path="M218 105 L258 122" begin="1s"/></circle>
+
+                  {/* AI Brain card */}
+                  <g className="eco-float">
+                    <rect x="8" y="30" width="88" height="74" rx="14" fill="url(#cxp-card-g)" stroke="#BAE6FD" strokeWidth="1" filter="url(#cxp-glow-f)"/>
+                    <rect x="8" y="30" width="88" height="18" rx="14" fill="#0077B6" opacity="0.07"/>
+                    <text x="52" y="43" fontSize="8" fontWeight="900" fill="#0077B6" textAnchor="middle">AI BRAIN</text>
+                    {/* Neural dots */}
+                    <circle cx="28" cy="68" r="5" fill="#3BA9F5" opacity="0.25"/>
+                    <circle cx="52" cy="58" r="5" fill="#0077B6" opacity="0.25"/>
+                    <circle cx="76" cy="68" r="5" fill="#6EC8FF" opacity="0.25"/>
+                    <circle cx="40" cy="78" r="4" fill="#3BA9F5" opacity="0.2"/>
+                    <circle cx="64" cy="78" r="4" fill="#0077B6" opacity="0.2"/>
+                    <line x1="28" y1="68" x2="52" y2="58" stroke="#3BA9F5" strokeWidth="1.2" opacity="0.5"/>
+                    <line x1="52" y1="58" x2="76" y2="68" stroke="#0077B6" strokeWidth="1.2" opacity="0.5"/>
+                    <line x1="28" y1="68" x2="40" y2="78" stroke="#3BA9F5" strokeWidth="1.2" opacity="0.5"/>
+                    <line x1="76" y1="68" x2="64" y2="78" stroke="#0077B6" strokeWidth="1.2" opacity="0.5"/>
+                    <circle cx="28" cy="68" r="3" fill="#3BA9F5" className="eco-glow"/>
+                    <circle cx="52" cy="58" r="3" fill="#0077B6" className="eco-glow"/>
+                    <circle cx="76" cy="68" r="3" fill="#6EC8FF" className="eco-glow"/>
+                  </g>
+
+                  {/* Analytics Dashboard top */}
+                  <g className="eco-float-2">
+                    <rect x="116" y="8" width="124" height="60" rx="14" fill="url(#cxp-card-g)" stroke="#BAE6FD" strokeWidth="1" filter="url(#cxp-glow-f)"/>
+                    <rect x="116" y="8" width="124" height="18" rx="14" fill="#0077B6" opacity="0.07"/>
+                    <text x="178" y="21.5" fontSize="7.5" fontWeight="900" fill="#0077B6" textAnchor="middle">Analytics Dashboard</text>
+                    {/* Bar chart */}
+                    <rect x="128" y="56" width="10" height="8" rx="2" fill="url(#cxp-bar-g)"/>
+                    <rect x="142" y="48" width="10" height="16" rx="2" fill="url(#cxp-bar-g)"/>
+                    <rect x="156" y="40" width="10" height="24" rx="2" fill="url(#cxp-bar-g)"/>
+                    <rect x="170" y="35" width="10" height="29" rx="2" fill="url(#cxp-bar-g)"/>
+                    <rect x="184" y="42" width="10" height="22" rx="2" fill="url(#cxp-bar-g)"/>
+                    <rect x="198" y="50" width="10" height="14" rx="2" fill="url(#cxp-bar-g)"/>
+                    <rect x="212" y="45" width="10" height="19" rx="2" fill="url(#cxp-bar-g)"/>
+                    <path d="M128 56 L142 48 L156 40 L170 35 L184 42 L198 50 L212 45" stroke="#0077B6" strokeWidth="1.5" fill="none" strokeLinejoin="round"/>
+                    <circle cx="170" cy="35" r="3" fill="#0077B6" className="eco-glow"/>
+                  </g>
+
+                  {/* Health Score right */}
+                  <g className="eco-float-3">
+                    <rect x="264" y="22" width="90" height="80" rx="14" fill="url(#cxp-card-g)" stroke="#BAE6FD" strokeWidth="1" filter="url(#cxp-glow-f)"/>
+                    <rect x="264" y="22" width="90" height="18" rx="14" fill="#0077B6" opacity="0.07"/>
+                    <text x="309" y="35.5" fontSize="7.5" fontWeight="900" fill="#0077B6" textAnchor="middle">Health Score</text>
+                    <path d="M279 88 A 30 30 0 0 1 339 88" fill="none" stroke="#E2EEF8" strokeWidth="9" strokeLinecap="round"/>
+                    <path d="M279 88 A 30 30 0 0 1 336 73" fill="none" stroke="url(#cxp-bar-g)" strokeWidth="9" strokeLinecap="round"/>
+                    <text x="309" y="85" fontSize="16" fontWeight="900" fill="#0A1628" textAnchor="middle">82</text>
+                    <text x="309" y="96" fontSize="7" fontWeight="700" fill="#0077B6" textAnchor="middle">Healthy</text>
+                  </g>
+
+                  {/* Churn Prediction bottom left */}
+                  <g className="eco-float">
+                    <rect x="8" y="115" width="106" height="65" rx="14" fill="url(#cxp-card-g)" stroke="#BAE6FD" strokeWidth="1" filter="url(#cxp-glow-f)"/>
+                    <rect x="8" y="115" width="106" height="18" rx="14" fill="#0077B6" opacity="0.07"/>
+                    <text x="61" y="128.5" fontSize="7.5" fontWeight="900" fill="#0077B6" textAnchor="middle">Churn Prediction</text>
+                    <path d="M20 170 Q 38 145 60 155 T 102 140" fill="none" stroke="#0077B6" strokeWidth="2" strokeLinecap="round"/>
+                    <path d="M20 170 Q 38 145 60 155 T 102 140 L102 173 L20 173Z" fill="#0077B6" opacity="0.07"/>
+                    <circle cx="102" cy="140" r="3.5" fill="#0077B6" className="eco-glow"/>
+                  </g>
+
+                  {/* Revenue Intel bottom right */}
+                  <g className="eco-float-2">
+                    <rect x="254" y="115" width="100" height="65" rx="14" fill="url(#cxp-card-g)" stroke="#BAE6FD" strokeWidth="1" filter="url(#cxp-glow-f)"/>
+                    <rect x="254" y="115" width="100" height="18" rx="14" fill="#0077B6" opacity="0.07"/>
+                    <text x="304" y="128.5" fontSize="7.5" fontWeight="900" fill="#0077B6" textAnchor="middle">Revenue Intel</text>
+                    <text x="304" y="153" fontSize="19" fontWeight="900" fill="#0A1628" textAnchor="middle">₹48.7L</text>
+                    <text x="304" y="170" fontSize="8" fontWeight="700" fill="#3BA9F5" textAnchor="middle">↑ 28% vs last qtr</text>
+                  </g>
+                </svg>
+              </div>
+
+              <div className="flex flex-wrap gap-2 flex-shrink-0">
+                {["NPS Analytics","Churn Predict","Health Score","Revenue Intel"].map((label) => (
+                  <span key={label} className="eco-chip inline-flex items-center text-[10px] font-bold rounded-full px-3 py-1.5 cursor-default"
+                    style={{ background: "linear-gradient(135deg, rgba(240,249,255,0.9) 0%, rgba(224,242,254,0.7) 100%)", border: "1px solid rgba(125,211,252,0.5)", color: "#0055A5", boxShadow: "0 2px 8px rgba(0,119,182,0.08), 0 1px 0 rgba(255,255,255,0.8) inset" }}>
+                    {label}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ── SLIDE 2 ── */}
+        {productSlide === 1 && (
+          <div className="eco-slide-in grid grid-cols-2 gap-5 h-full w-full">
+
+            {/* ══ CARD 3: Case Flow ══ */}
+            <div className="group relative rounded-[24px] p-5 flex flex-col gap-3 overflow-hidden transition-all duration-400 hover:-translate-y-1.5"
+              style={{
+                background: "radial-gradient(ellipse at 15% 0%, rgba(0,119,182,0.18) 0%, rgba(59,169,245,0.10) 40%, rgba(224,242,254,0.85) 100%)",
+                border: "1px solid rgba(0,119,182,0.25)",
+                boxShadow: "0 4px 24px rgba(0,90,160,0.12), 0 1px 0 rgba(255,255,255,0.7) inset",
+              }}>
+              <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white to-transparent pointer-events-none" />
+              <div className="absolute inset-0 rounded-[24px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(0,119,182,0.05) 0%, transparent 65%)" }} />
+
+              <div className="flex items-center justify-between flex-shrink-0">
+                <div className="flex items-center gap-3.5">
+                  <div className="w-12 h-12 rounded-[14px] flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
+                    style={{ background: "linear-gradient(135deg, #E0F2FE 0%, #BAE6FD 40%, #7DD3FC 100%)", boxShadow: "0 6px 20px rgba(0,119,182,0.20), 0 1px 0 rgba(255,255,255,0.8) inset" }}>
+                    <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none">
+                      <defs><linearGradient id="ic3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#0077B6"/><stop offset="100%" stopColor="#0EA5E9"/></linearGradient></defs>
+                      <path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" stroke="url(#ic3)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-[20px] font-[900] text-[#0A1628] leading-tight tracking-tight">Case Flow</h3>
+                    <p className="text-[13px] font-semibold text-[#0077B6] mt-0.5">AI Customer Case Management Platform</p>
+                  </div>
+                </div>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F0FFF4] border border-emerald-200/70 text-emerald-600 text-[10px] font-bold shadow-[0_2px_8px_rgba(16,185,129,0.12)] flex-shrink-0">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />Live
+                </span>
+              </div>
+
+              <div className="flex-1 min-h-0 rounded-[16px] overflow-hidden relative flex items-center justify-center"
+                style={{ background: "radial-gradient(ellipse at 50% 30%, rgba(0,119,182,0.07) 0%, rgba(240,249,255,0.5) 60%, rgba(248,252,255,0.85) 100%)", border: "1px solid rgba(186,230,253,0.35)" }}>
+                <svg viewBox="0 0 340 195" className="w-full h-full" xmlns="http://www.w3.org/2000/svg" style={{ maxHeight: "100%" }}>
+                  <defs>
+                    <linearGradient id="cf-step-g" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="white"/>
+                      <stop offset="100%" stopColor="#F0F9FF" stopOpacity="0.95"/>
+                    </linearGradient>
+                    <linearGradient id="cf-accent" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0%" stopColor="#0077B6"/>
+                      <stop offset="100%" stopColor="#3BA9F5"/>
+                    </linearGradient>
+                    <filter id="cf-glow-f">
+                      <feGaussianBlur stdDeviation="4" result="b"/>
+                      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                    <marker id="cf-arr" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+                      <path d="M0,0 L0,8 L8,4 z" fill="#3BA9F5" opacity="0.8"/>
+                    </marker>
+                  </defs>
+
+                  {/* Vertical spine */}
+                  <line x1="170" y1="25" x2="170" y2="178" stroke="#E2EEF8" strokeWidth="2" strokeDasharray="4 4"/>
+
+                  {/* Step 1 */}
+                  <g className="eco-float">
+                    <rect x="88" y="10" width="164" height="38" rx="12" fill="url(#cf-step-g)" stroke="#BAE6FD" strokeWidth="1.2" filter="url(#cf-glow-f)"/>
+                    <rect x="88" y="10" width="164" height="38" rx="12" fill="#0077B6" opacity="0.04"/>
+                    <rect x="88" y="10" width="4" height="38" rx="2" fill="url(#cf-accent)"/>
+                    <rect x="100" y="19" width="20" height="20" rx="5" fill="#0077B6" opacity="0.12"/>
+                    <path d="M104 25L118 25M104 30L114 30" stroke="#0077B6" strokeWidth="1.5" strokeLinecap="round"/>
+                    <text x="128" y="27" fontSize="9" fontWeight="900" fill="#0A1628">Customer Ticket</text>
+                    <text x="128" y="39" fontSize="7.5" fontWeight="700" fill="#3BA9F5">Inbound case created</text>
+                  </g>
+
+                  {/* Arrow + particle */}
+                  <path d="M170 48 L170 62" stroke="#3BA9F5" strokeWidth="2.5" strokeLinecap="round" markerEnd="url(#cf-arr)" className="eco-flow-line"/>
+                  <circle r="3.5" fill="#3BA9F5" opacity="0.9" filter="url(#cf-glow-f)">
+                    <animateMotion dur="1.8s" repeatCount="indefinite" path="M170 48 L170 62"/>
+                  </circle>
+
+                  {/* Step 2 */}
+                  <g className="eco-float-2">
+                    <rect x="80" y="60" width="180" height="38" rx="12" fill="url(#cf-step-g)" stroke="#BAE6FD" strokeWidth="1.5" filter="url(#cf-glow-f)"/>
+                    <rect x="80" y="60" width="180" height="38" rx="12" fill="#0077B6" opacity="0.07"/>
+                    <rect x="80" y="60" width="4" height="38" rx="2" fill="url(#cf-accent)"/>
+                    <circle cx="100" cy="79" r="11" fill="#0077B6" opacity="0.14"/>
+                    <path d="M96 79 L100 72 L104 79 L100 86Z" fill="#0077B6" opacity="0.7"/>
+                    <text x="118" y="77" fontSize="9" fontWeight="900" fill="#0A1628">AI Routing Engine</text>
+                    <text x="118" y="89" fontSize="7.5" fontWeight="700" fill="#3BA9F5">Auto-assigns to best agent</text>
+                  </g>
+
+                  <path d="M170 98 L170 112" stroke="#3BA9F5" strokeWidth="2.5" strokeLinecap="round" markerEnd="url(#cf-arr)" className="eco-flow-line"/>
+                  <circle r="3.5" fill="#0077B6" opacity="0.9" filter="url(#cf-glow-f)">
+                    <animateMotion dur="2s" repeatCount="indefinite" path="M170 98 L170 112" begin="0.4s"/>
+                  </circle>
+
+                  {/* Step 3 */}
+                  <g className="eco-float-3">
+                    <rect x="88" y="110" width="164" height="38" rx="12" fill="url(#cf-step-g)" stroke="#BAE6FD" strokeWidth="1.2" filter="url(#cf-glow-f)"/>
+                    <rect x="88" y="110" width="164" height="38" rx="12" fill="#3BA9F5" opacity="0.04"/>
+                    <rect x="88" y="110" width="4" height="38" rx="2" fill="url(#cf-accent)"/>
+                    <circle cx="106" cy="129" r="10" fill="none" stroke="#3BA9F5" strokeWidth="1.8"/>
+                    <path d="M106 122 L106 129 L112 133" stroke="#3BA9F5" strokeWidth="1.8" strokeLinecap="round"/>
+                    <text x="124" y="127" fontSize="9" fontWeight="900" fill="#0A1628">SLA Tracking</text>
+                    <text x="124" y="139" fontSize="7.5" fontWeight="700" fill="#3BA9F5">12-min target enforced</text>
+                  </g>
+
+                  <path d="M170 148 L170 162" stroke="#3BA9F5" strokeWidth="2.5" strokeLinecap="round" markerEnd="url(#cf-arr)" className="eco-flow-line"/>
+                  <circle r="3.5" fill="#3BA9F5" opacity="0.9" filter="url(#cf-glow-f)">
+                    <animateMotion dur="1.9s" repeatCount="indefinite" path="M170 148 L170 162" begin="0.7s"/>
+                  </circle>
+
+                  {/* Step 4 */}
+                  <g className="eco-float-2">
+                    <rect x="88" y="160" width="164" height="30" rx="12" fill="url(#cf-step-g)" stroke="#BAE6FD" strokeWidth="1.2" filter="url(#cf-glow-f)"/>
+                    <rect x="88" y="160" width="164" height="30" rx="12" fill="#0077B6" opacity="0.04"/>
+                    <rect x="88" y="160" width="4" height="30" rx="2" fill="url(#cf-accent)"/>
+                    <circle cx="106" cy="175" r="9" fill="#0077B6" opacity="0.14"/>
+                    <path d="M101 175 L104 178 L111 170" stroke="#0077B6" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                    <text x="124" y="172" fontSize="9" fontWeight="900" fill="#0A1628">Resolution</text>
+                    <text x="124" y="183" fontSize="7.5" fontWeight="700" fill="#3BA9F5">Solved &amp; auto-closed</text>
+                  </g>
+
+                  {/* Ambient side glows */}
+                  <circle cx="60" cy="79" r="6" fill="#6EC8FF" opacity="0.35" className="eco-glow"/>
+                  <circle cx="280" cy="129" r="6" fill="#3BA9F5" opacity="0.35" className="eco-glow"/>
+                </svg>
+              </div>
+
+              <div className="flex flex-wrap gap-2 flex-shrink-0">
+                {["Auto Routing","SLA Automation","Escalation Mgmt","Resolution Track"].map((label) => (
+                  <span key={label} className="eco-chip inline-flex items-center text-[10px] font-bold rounded-full px-3 py-1.5 cursor-default"
+                    style={{ background: "linear-gradient(135deg, rgba(240,249,255,0.9) 0%, rgba(224,242,254,0.7) 100%)", border: "1px solid rgba(125,211,252,0.5)", color: "#0055A5", boxShadow: "0 2px 8px rgba(0,119,182,0.08), 0 1px 0 rgba(255,255,255,0.8) inset" }}>
+                    {label}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* ══ CARD 4: Nexora ══ */}
+            <div className="group relative rounded-[24px] p-5 flex flex-col gap-3 overflow-hidden transition-all duration-400 hover:-translate-y-1.5"
+              style={{
+                background: "radial-gradient(ellipse at 80% 0%, rgba(59,169,245,0.18) 0%, rgba(0,119,182,0.10) 40%, rgba(224,242,254,0.85) 100%)",
+                border: "1px solid rgba(0,119,182,0.25)",
+                boxShadow: "0 4px 24px rgba(0,90,160,0.12), 0 1px 0 rgba(255,255,255,0.7) inset",
+              }}>
+              <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white to-transparent pointer-events-none" />
+              <div className="absolute inset-0 rounded-[24px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(59,169,245,0.05) 0%, transparent 65%)" }} />
+
+              <div className="flex items-center justify-between flex-shrink-0">
+                <div className="flex items-center gap-3.5">
+                  <div className="w-12 h-12 rounded-[14px] flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
+                    style={{ background: "linear-gradient(135deg, #E0F2FE 0%, #BAE6FD 40%, #7DD3FC 100%)", boxShadow: "0 6px 20px rgba(0,119,182,0.20), 0 1px 0 rgba(255,255,255,0.8) inset" }}>
+                    <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none">
+                      <defs><linearGradient id="ic4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#0077B6"/><stop offset="100%" stopColor="#38BDF8"/></linearGradient></defs>
+                      <circle cx="12" cy="12" r="3.5" fill="url(#ic4)" opacity="0.25" stroke="url(#ic4)" strokeWidth="1.6"/>
+                      <circle cx="5" cy="6" r="2.5" stroke="#3BA9F5" strokeWidth="1.4"/>
+                      <circle cx="19" cy="6" r="2.5" stroke="#3BA9F5" strokeWidth="1.4"/>
+                      <circle cx="5" cy="18" r="2.5" stroke="#7DD3FC" strokeWidth="1.4"/>
+                      <circle cx="19" cy="18" r="2.5" stroke="#7DD3FC" strokeWidth="1.4"/>
+                      <path d="M7.5 7.5L10 10M16.5 7.5L14 10M7.5 16.5L10 14M16.5 16.5L14 14" stroke="url(#ic4)" strokeWidth="1.3" strokeLinecap="round"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-[20px] font-[900] text-[#0A1628] leading-tight tracking-tight">Nexora</h3>
+                    <p className="text-[13px] font-semibold text-[#0077B6] mt-0.5">Partner &amp; Sourcing Management Platform</p>
+                  </div>
+                </div>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F0FFF4] border border-emerald-200/70 text-emerald-600 text-[10px] font-bold shadow-[0_2px_8px_rgba(16,185,129,0.12)] flex-shrink-0">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />Live
+                </span>
+              </div>
+
+              <div className="flex-1 min-h-0 rounded-[16px] overflow-hidden relative flex items-center justify-center"
+                style={{ background: "radial-gradient(ellipse at 50% 45%, rgba(0,119,182,0.08) 0%, rgba(240,249,255,0.55) 55%, rgba(248,252,255,0.85) 100%)", border: "1px solid rgba(186,230,253,0.35)" }}>
+                <svg viewBox="0 0 360 200" className="w-full h-full" xmlns="http://www.w3.org/2000/svg" style={{ maxHeight: "100%" }}>
+                  <defs>
+                    <radialGradient id="nx-hub-g" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stopColor="#0077B6" stopOpacity="0.22"/>
+                      <stop offset="100%" stopColor="#0077B6" stopOpacity="0"/>
+                    </radialGradient>
+                    <linearGradient id="nx-card-g" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="white"/>
+                      <stop offset="100%" stopColor="#F0F9FF" stopOpacity="0.95"/>
+                    </linearGradient>
+                    <filter id="nx-glow-f">
+                      <feGaussianBlur stdDeviation="4" result="b"/>
+                      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                  </defs>
+
+                  <circle cx="180" cy="100" r="70" fill="url(#nx-hub-g)"/>
+                  {/* Pulse rings on hub */}
+                  <circle cx="180" cy="100" r="34" fill="none" stroke="#3BA9F5" strokeWidth="1.5" className="eco-ring1" opacity="0.5"/>
+                  <circle cx="180" cy="100" r="34" fill="none" stroke="#0077B6" strokeWidth="1" className="eco-ring2" opacity="0.35"/>
+
+                  {/* Connections: left 2 nodes */}
+                  <path d="M98 60 L152 100" fill="none" stroke="#3BA9F5" strokeWidth="1.8" className="eco-flow-line" opacity="0.65"/>
+                  <path d="M98 140 L152 100" fill="none" stroke="#0077B6" strokeWidth="1.8" className="eco-flow-line" opacity="0.65"/>
+                  {/* Connections: right 3 nodes */}
+                  <path d="M208 100 L262 55" fill="none" stroke="#6EC8FF" strokeWidth="1.8" className="eco-flow-line" opacity="0.65"/>
+                  <path d="M208 100 L262 100" fill="none" stroke="#3BA9F5" strokeWidth="1.8" className="eco-flow-line" opacity="0.65"/>
+                  <path d="M208 100 L262 145" fill="none" stroke="#0077B6" strokeWidth="1.8" className="eco-flow-line" opacity="0.65"/>
+
+                  {/* Particles */}
+                  <circle r="3.5" fill="#3BA9F5" opacity="0.9" filter="url(#nx-glow-f)"><animateMotion dur="2.2s" repeatCount="indefinite" path="M98 60 L152 100"/></circle>
+                  <circle r="3" fill="#0077B6" opacity="0.85" filter="url(#nx-glow-f)"><animateMotion dur="2.5s" repeatCount="indefinite" path="M98 140 L152 100" begin="0.5s"/></circle>
+                  <circle r="3" fill="#6EC8FF" opacity="0.9" filter="url(#nx-glow-f)"><animateMotion dur="2s" repeatCount="indefinite" path="M208 100 L262 55" begin="0.3s"/></circle>
+                  <circle r="3" fill="#3BA9F5" opacity="0.85" filter="url(#nx-glow-f)"><animateMotion dur="2.3s" repeatCount="indefinite" path="M208 100 L262 100" begin="0.8s"/></circle>
+                  <circle r="3" fill="#0077B6" opacity="0.9" filter="url(#nx-glow-f)"><animateMotion dur="2.1s" repeatCount="indefinite" path="M208 100 L262 145" begin="1.1s"/></circle>
+
+                  {/* Central Nexora Hub */}
+                  <circle cx="180" cy="100" r="36" fill="white" filter="url(#nx-glow-f)"/>
+                  <circle cx="180" cy="100" r="34" fill="url(#nx-hub-g)"/>
+                  <text x="180" y="96" fontSize="8" fontWeight="900" fill="#0077B6" textAnchor="middle">NEXORA</text>
+                  <text x="180" y="108" fontSize="7" fontWeight="700" fill="#64748B" textAnchor="middle">Platform</text>
+                  <circle cx="180" cy="100" r="34" stroke="#3BA9F5" strokeWidth="1.2" strokeDasharray="4 3" fill="none" className="eco-glow"/>
+
+                  {/* Left: Partner Network */}
+                  <g className="eco-float">
+                    <rect x="10" y="35" width="88" height="50" rx="13" fill="url(#nx-card-g)" stroke="#BAE6FD" strokeWidth="1" filter="url(#nx-glow-f)"/>
+                    <rect x="10" y="35" width="88" height="15" rx="13" fill="#3BA9F5" opacity="0.07"/>
+                    <text x="54" y="47" fontSize="7" fontWeight="900" fill="#0077B6" textAnchor="middle">Partner Network</text>
+                    <circle cx="26" cy="64" r="7" fill="#3BA9F5" opacity="0.2"/>
+                    <circle cx="22" cy="61" r="4" fill="#3BA9F5" opacity="0.5"/>
+                    <circle cx="30" cy="61" r="3.5" fill="#6EC8FF" opacity="0.5"/>
+                    <circle cx="26" cy="68" r="4" fill="#0077B6" opacity="0.4"/>
+                    <line x1="22" y1="61" x2="26" y2="68" stroke="#3BA9F5" strokeWidth="1"/>
+                    <line x1="30" y1="61" x2="26" y2="68" stroke="#6EC8FF" strokeWidth="1"/>
+                    <text x="68" y="63" fontSize="7.5" fontWeight="800" fill="#0A1628" textAnchor="middle">120+</text>
+                    <text x="68" y="73" fontSize="6.5" fill="#64748B" textAnchor="middle">active</text>
+                  </g>
+                  {/* Left: Meeting Planning */}
+                  <g className="eco-float-3">
+                    <rect x="10" y="115" width="88" height="50" rx="13" fill="url(#nx-card-g)" stroke="#BAE6FD" strokeWidth="1" filter="url(#nx-glow-f)"/>
+                    <rect x="10" y="115" width="88" height="15" rx="13" fill="#0077B6" opacity="0.07"/>
+                    <text x="54" y="127" fontSize="7" fontWeight="900" fill="#0077B6" textAnchor="middle">Meeting Planning</text>
+                    <rect x="20" y="134" width="22" height="22" rx="5" fill="#0077B6" opacity="0.1"/>
+                    <line x1="22" y1="140" x2="40" y2="140" stroke="#0077B6" strokeWidth="1.2" strokeLinecap="round"/>
+                    <line x1="22" y1="145" x2="36" y2="145" stroke="#3BA9F5" strokeWidth="1.2" strokeLinecap="round"/>
+                    <line x1="22" y1="150" x2="40" y2="150" stroke="#0077B6" strokeWidth="1.2" strokeLinecap="round"/>
+                    <text x="70" y="143" fontSize="7.5" fontWeight="800" fill="#0A1628" textAnchor="middle">Auto</text>
+                    <text x="70" y="153" fontSize="7.5" fontWeight="800" fill="#0A1628" textAnchor="middle">Sched.</text>
+                  </g>
+                  {/* Right: Activity */}
+                  <g className="eco-float-2">
+                    <rect x="262" y="30" width="88" height="50" rx="13" fill="url(#nx-card-g)" stroke="#BAE6FD" strokeWidth="1" filter="url(#nx-glow-f)"/>
+                    <rect x="262" y="30" width="88" height="15" rx="13" fill="#6EC8FF" opacity="0.08"/>
+                    <text x="306" y="42" fontSize="7" fontWeight="900" fill="#0077B6" textAnchor="middle">Activity Tracker</text>
+                    <rect x="272" y="51" width="10" height="20" rx="3" fill="#6EC8FF" opacity="0.5"/>
+                    <rect x="285" y="44" width="10" height="27" rx="3" fill="#3BA9F5" opacity="0.6"/>
+                    <rect x="298" y="38" width="10" height="33" rx="3" fill="#0077B6" opacity="0.7"/>
+                    <text x="330" y="63" fontSize="7.5" fontWeight="800" fill="#3BA9F5" textAnchor="middle">High ↑</text>
+                  </g>
+                  {/* Right: Deal Pipeline */}
+                  <g className="eco-float">
+                    <rect x="262" y="75" width="88" height="50" rx="13" fill="url(#nx-card-g)" stroke="#BAE6FD" strokeWidth="1" filter="url(#nx-glow-f)"/>
+                    <rect x="262" y="75" width="88" height="15" rx="13" fill="#0077B6" opacity="0.07"/>
+                    <text x="306" y="87" fontSize="7" fontWeight="900" fill="#0077B6" textAnchor="middle">Deal Pipeline</text>
+                    <path d="M272 115 L278 106 L284 110 L292 98 L300 102" stroke="#0077B6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+                    <circle cx="300" cy="102" r="3" fill="#0077B6" className="eco-glow"/>
+                    <text x="326" y="107" fontSize="9" fontWeight="900" fill="#0A1628" textAnchor="middle">₹4.2Cr</text>
+                  </g>
+                  {/* Right: Growth */}
+                  <g className="eco-float-3">
+                    <rect x="262" y="120" width="88" height="50" rx="13" fill="url(#nx-card-g)" stroke="#BAE6FD" strokeWidth="1" filter="url(#nx-glow-f)"/>
+                    <rect x="262" y="120" width="88" height="15" rx="13" fill="#3BA9F5" opacity="0.07"/>
+                    <text x="306" y="132" fontSize="7" fontWeight="900" fill="#0077B6" textAnchor="middle">Growth Dashboard</text>
+                    <path d="M272 163 L280 152 L288 156 L296 144 L304 148 L312 138" stroke="#3BA9F5" strokeWidth="2" strokeLinecap="round" fill="none"/>
+                    <path d="M272 163 L280 152 L288 156 L296 144 L304 148 L312 138 L312 165 L272 165Z" fill="#3BA9F5" opacity="0.07"/>
+                    <circle cx="312" cy="138" r="3.5" fill="#3BA9F5" className="eco-glow"/>
+                    <text x="338" y="148" fontSize="7" fontWeight="700" fill="#3BA9F5" textAnchor="middle">↑ Trend</text>
+                  </g>
+                </svg>
+              </div>
+
+              <div className="flex flex-wrap gap-2 flex-shrink-0">
+                {["Meeting Planner","Activity Track","Partner Mgmt","Deal Pipeline"].map((label) => (
+                  <span key={label} className="eco-chip inline-flex items-center text-[10px] font-bold rounded-full px-3 py-1.5 cursor-default"
+                    style={{ background: "linear-gradient(135deg, rgba(240,249,255,0.9) 0%, rgba(224,242,254,0.7) 100%)", border: "1px solid rgba(125,211,252,0.5)", color: "#0055A5", boxShadow: "0 2px 8px rgba(0,119,182,0.08), 0 1px 0 rgba(255,255,255,0.8) inset" }}>
+                    {label}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Bottom Glow */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4/5 h-[3px] bg-gradient-to-r from-transparent via-[#74CBF4] to-transparent shadow-[0_-6px_30px_rgba(116,203,244,0.9)] opacity-90 rounded-full pointer-events-none" />
+    </div>
+  );
+}
+
 function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: Scene; isActive?: boolean; activeCardIdx?: number }) {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
 
   useEffect(() => {
     if (scene.variant !== "hero") return;
@@ -1881,455 +2660,9 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
   }
 
   if (scene.id === 3) {
-    return (
-      <div
-        className="pointer-events-auto who-we-are-glass-panel rounded-[32px] w-[92vw] md:w-[90vw] h-[88vh] md:h-[82vh] max-w-7xl relative overflow-y-auto md:overflow-hidden flex flex-col pt-3 pb-2.5 px-4 md:px-6 justify-between gap-2 border border-white/20 shadow-[0_30px_100px_rgba(1,118,211,0.08)] shadow-[inset_0_0_20px_rgba(255,255,255,0.75)]"
-        style={{
-          background: "rgba(248, 250, 252, 0.95)",
-          backdropFilter: "blur(24px)",
-        }}
-      >
-        {/* Style injection for animations */}
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `
-          @keyframes pulseFlow {
-            to {
-              stroke-dashoffset: -20;
-            }
-          }
-          .animated-flow-line {
-            stroke-dasharray: 6, 4;
-            animation: pulseFlow 1.2s linear infinite;
-          }
-        `,
-          }}
-        />
-
-        {/* Subtle geometric dot grid and blue ambient glows */}
-        <div 
-          className="absolute inset-0 opacity-[0.08] pointer-events-none -z-10"
-          style={{
-            backgroundImage: "radial-gradient(#0077B6 1px, transparent 1px)",
-            backgroundSize: "24px 24px"
-          }}
-        />
-        <div
-          className="absolute right-[-10%] top-[10%] w-[450px] h-[450px] rounded-full blur-3xl pointer-events-none -z-10"
-          style={{
-            background: "radial-gradient(circle, rgba(0,119,182,0.12) 0%, transparent 70%)",
-          }}
-        />
-        <div
-          className="absolute left-[-5%] bottom-[-5%] w-[350px] h-[350px] rounded-full blur-3xl pointer-events-none -z-10"
-          style={{
-            background: "radial-gradient(circle, rgba(59,169,245,0.06) 0%, transparent 70%)",
-          }}
-        />
-
-        {/* 2-Column main content layout */}
-        <div className="flex flex-col lg:flex-row gap-5 lg:gap-8 items-stretch w-full flex-1 min-h-0 relative z-10 my-1 overflow-y-auto lg:overflow-hidden">
-          {/* LEFT SIDE (35% on lg screens) */}
-          <div className="w-full lg:w-[35%] flex flex-col justify-start text-left lg:pr-4 flex-shrink-0 pt-2 lg:pt-6">
-            <div className="inline-flex items-center gap-1.5 bg-[#F0F9FF] border border-[#E0F2FE] rounded-full px-3 py-1 text-[10px] md:text-[11px] font-bold tracking-wider text-[#0077B6] w-fit mb-3">
-              <span className="size-1.5 rounded-full bg-[#0077B6] animate-pulse" />
-              OUR PRODUCT ECOSYSTEM
-            </div>
-
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[34px] xl:text-[42px] font-[900] leading-[1.1] tracking-tight text-[#0F172A] font-display">
-              Real Problems.<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0077B6] to-[#3BA9F5]">
-                Purpose-Built Products.
-              </span>
-            </h2>
-
-            <p className="mt-4 text-xs md:text-sm text-slate-500 font-medium leading-relaxed max-w-[360px]">
-              Most Salesforce partners implement what Salesforce sells. We went further. Working with real estate developers and enterprise teams, we built products that solve real business problems. Every product is deployed, actively used, and continuously improved with real customers.
-            </p>
-          </div>
-
-          {/* RIGHT SIDE (65% on lg screens) - 2x2 Grid of Premium Cards */}
-          <div className="w-full lg:w-[65%] flex flex-col min-h-0 justify-center">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 md:gap-4 overflow-y-auto max-h-[50vh] lg:max-h-[56vh] xl:max-h-[60vh] pr-1.5 pb-2 scrollbar-thin">
-              
-              {/* Card 1: Cascade Connect */}
-              <div className="bg-white/80 backdrop-blur-md border border-slate-100 hover:border-[#3BA9F5]/40 rounded-[24px] p-4 flex flex-col justify-between h-[250px] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(59,169,245,0.08)] group relative overflow-hidden">
-                <div>
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-9 h-9 rounded-xl bg-blue-50 border border-blue-100/60 flex items-center justify-center text-[#0077B6] shadow-[0_4px_12px_rgba(0,119,182,0.08)] group-hover:scale-105 transition-transform duration-300">
-                        <MessageSquare className="w-5 h-5 text-[#0077B6]" />
-                      </div>
-                      <div>
-                        <h3 className="text-sm md:text-base font-[900] text-[#0F172A] leading-none tracking-tight">
-                          Cascade Connect
-                        </h3>
-                        <p className="text-[10px] font-bold text-[#0077B6] mt-0.5 leading-tight">
-                          Omnichannel communication platform inside Salesforce.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full border border-sky-100 bg-[#F0F9FF] text-[#0077B6] text-[9px] font-bold shadow-sm flex-shrink-0">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#0077B6] animate-pulse"></span>
-                      Live
-                    </div>
-                  </div>
-
-                  {/* Custom visualization for Cascade Connect */}
-                  <div className="border border-slate-100/60 rounded-xl p-1 bg-slate-50/50 mt-2.5 flex items-center justify-center h-[62px] relative overflow-hidden">
-                    <div className="relative w-full h-full flex items-center justify-between px-2">
-                      <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
-                        <path d="M 15 25 C 40 25, 45 50, 50 50" fill="none" className="animated-flow-line stroke-[#0077B6]" strokeWidth="1.5" />
-                        <path d="M 15 50 L 50 50" fill="none" className="animated-flow-line stroke-[#3BA9F5]" strokeWidth="1.5" />
-                        <path d="M 15 75 C 40 75, 45 50, 50 50" fill="none" className="animated-flow-line stroke-[#6EC8FF]" strokeWidth="1.5" />
-                        <path d="M 50 50 L 85 50" fill="none" className="animated-flow-line stroke-[#0077B6]" strokeWidth="1.5" />
-                      </svg>
-                      <div className="flex flex-col justify-between h-full py-0.5 z-10 w-[30%]">
-                        <div className="flex items-center gap-0.5 bg-white border border-slate-100 rounded px-1 py-0.5 shadow-xs text-[7px] font-bold text-slate-600">
-                          <MessageSquare className="w-2 h-2 text-[#0077B6]" /> WhatsApp
-                        </div>
-                        <div className="flex items-center gap-0.5 bg-white border border-slate-100 rounded px-1 py-0.5 shadow-xs text-[7px] font-bold text-slate-600">
-                          <Mail className="w-2 h-2 text-[#3BA9F5]" /> Email
-                        </div>
-                        <div className="flex items-center gap-0.5 bg-white border border-slate-100 rounded px-1 py-0.5 shadow-xs text-[7px] font-bold text-slate-600">
-                          <Phone className="w-2 h-2 text-[#6EC8FF]" /> SMS
-                        </div>
-                      </div>
-                      <div className="w-6 h-6 rounded-full bg-white border border-[#0077B6] flex items-center justify-center shadow-sm z-10">
-                        <div className="w-3 h-3 rounded-full bg-[#0077B6]" />
-                      </div>
-                      <div className="flex flex-col items-center justify-center bg-white border border-slate-100 rounded p-1 shadow-sm z-10 w-[30%]">
-                        <Cloud className="w-3 h-3 text-[#0077B6]" />
-                        <span className="text-[7px] font-bold text-slate-700 mt-0.5">CRM Sync</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Feature chips */}
-                  <div className="flex flex-wrap gap-1 mt-2.5">
-                    {["WhatsApp", "Email", "SMS", "History", "Read Receipts"].map((feature) => {
-                      let IconComponent = MessageSquare;
-                      if (feature === "Email") IconComponent = Mail;
-                      if (feature === "SMS") IconComponent = Phone;
-                      if (feature === "History") IconComponent = Clock;
-                      if (feature === "Read Receipts") IconComponent = Check;
-                      return (
-                        <span key={feature} className="inline-flex items-center gap-0.5 bg-[#F0F9FF] border border-[#E0F2FE] rounded-full px-1.5 py-0.5 text-[8.5px] font-bold text-[#0077B6]">
-                          <IconComponent className="w-2 h-2 text-[#0077B6]" />
-                          {feature}
-                        </span>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Bottom status metrics */}
-                <div className="grid grid-cols-3 gap-1 pt-2 border-t border-slate-100/80 text-left">
-                  <div>
-                    <span className="text-[7.5px] uppercase font-bold text-slate-400 block leading-none">Sync Status</span>
-                    <span className="text-[10px] font-black text-slate-800 leading-tight">100% Native</span>
-                  </div>
-                  <div>
-                    <span className="text-[7.5px] uppercase font-bold text-slate-400 block leading-none">Response</span>
-                    <span className="text-[10px] font-black text-slate-800 leading-tight">&lt; 1s Real-time</span>
-                  </div>
-                  <div>
-                    <span className="text-[7.5px] uppercase font-bold text-slate-400 block leading-none">Delivery</span>
-                    <span className="text-[10px] font-black text-slate-800 leading-tight">99.9% Acc.</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Card 2: CX Prism™ */}
-              <div className="bg-white/80 backdrop-blur-md border border-slate-100 hover:border-[#3BA9F5]/40 rounded-[24px] p-4 flex flex-col justify-between h-[250px] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(59,169,245,0.08)] group relative overflow-hidden">
-                <div>
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-9 h-9 rounded-xl bg-blue-50 border border-blue-100/60 flex items-center justify-center text-[#0077B6] shadow-[0_4px_12px_rgba(0,119,182,0.08)] group-hover:scale-105 transition-transform duration-300">
-                        <LineChart className="w-5 h-5 text-[#0077B6]" />
-                      </div>
-                      <div>
-                        <h3 className="text-sm md:text-base font-[900] text-[#0F172A] leading-none tracking-tight">
-                          CX Prism™
-                        </h3>
-                        <p className="text-[10px] font-bold text-[#0077B6] mt-0.5 leading-tight">
-                          AI-powered customer intelligence platform.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full border border-blue-100 bg-[#F0F9FF] text-[#3BA9F5] text-[9px] font-bold shadow-sm flex-shrink-0">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#3BA9F5] animate-pulse"></span>
-                      Deployment
-                    </div>
-                  </div>
-
-                  {/* Custom visualization for CX Prism */}
-                  <div className="border border-slate-100/60 rounded-xl p-1 bg-slate-50/50 mt-2.5 flex items-center justify-center h-[62px] relative overflow-hidden">
-                    <div className="relative w-full h-full flex items-center justify-between px-2 gap-2">
-                      <div className="flex flex-col items-center justify-center w-[40%] h-full border-r border-slate-100 pr-2">
-                        <span className="text-[6.5px] uppercase font-bold text-slate-400">Health</span>
-                        <div className="relative w-10 h-7 flex items-center justify-center mt-0.5">
-                          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 60">
-                            <path d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#F1F5F9" strokeWidth="12" strokeLinecap="round" />
-                            <path d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="url(#health-gauge-grad)" strokeWidth="12" strokeLinecap="round" strokeDasharray="125.6" strokeDashoffset="22" />
-                            <defs>
-                              <linearGradient id="health-gauge-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                                <stop offset="0%" stopColor="#3BA9F5" />
-                                <stop offset="100%" stopColor="#0077B6" />
-                              </linearGradient>
-                            </defs>
-                          </svg>
-                          <div className="absolute top-2 flex flex-col items-center">
-                            <span className="text-[10px] font-extrabold text-[#0F172A]">82</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="flex flex-col justify-between w-[60%] h-full pl-1 py-0.5">
-                        <span className="text-[6.5px] uppercase font-bold text-slate-400 text-left">Sentiment Trend</span>
-                        <div className="relative w-full h-6">
-                          <svg className="w-full h-full" viewBox="0 0 100 40" preserveAspectRatio="none">
-                            <path d="M 0 35 Q 20 15 40 28 T 80 10 T 100 5" fill="none" stroke="#0077B6" strokeWidth="2.5" strokeLinecap="round" />
-                            <path d="M 0 35 Q 20 15 40 28 T 80 10 T 100 5 L 100 40 L 0 40 Z" fill="url(#trend-grad)" />
-                            <defs>
-                              <linearGradient id="trend-grad" x1="0%" y1="0%" x2="0%" y2="100%">
-                                <stop offset="0%" stopColor="#3BA9F5" stopOpacity="0.3" />
-                                <stop offset="100%" stopColor="#3BA9F5" stopOpacity="0" />
-                              </linearGradient>
-                            </defs>
-                            <circle cx="100" cy="5" r="2" fill="#0077B6" />
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Feature chips */}
-                  <div className="flex flex-wrap gap-1 mt-2.5">
-                    {["NPS Analytics", "Churn Predict", "Health Score", "Revenue Intel"].map((feature) => {
-                      let IconComponent = TrendingUp;
-                      if (feature === "Churn Predict") IconComponent = AlertTriangle;
-                      if (feature === "Health Score") IconComponent = HeartPulse;
-                      if (feature === "Revenue Intel") IconComponent = LineChart;
-                      return (
-                        <span key={feature} className="inline-flex items-center gap-0.5 bg-[#F0F9FF] border border-[#E0F2FE] rounded-full px-1.5 py-0.5 text-[8.5px] font-bold text-[#0077B6]">
-                          <IconComponent className="w-2 h-2 text-[#0077B6]" />
-                          {feature}
-                        </span>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Bottom status metrics */}
-                <div className="grid grid-cols-3 gap-1 pt-2 border-t border-slate-100/80 text-left">
-                  <div>
-                    <span className="text-[7.5px] uppercase font-bold text-slate-400 block leading-none">Accuracy</span>
-                    <span className="text-[10px] font-black text-slate-800 leading-tight">94.5% AI Model</span>
-                  </div>
-                  <div>
-                    <span className="text-[7.5px] uppercase font-bold text-slate-400 block leading-none">Risk Alerts</span>
-                    <span className="text-[10px] font-black text-slate-800 leading-tight">Real-time Live</span>
-                  </div>
-                  <div>
-                    <span className="text-[7.5px] uppercase font-bold text-slate-400 block leading-none">NPS Score</span>
-                    <span className="text-[10px] font-black text-slate-800 leading-tight">72 Avg. Score</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Card 3: Case Flow */}
-              <div className="bg-white/80 backdrop-blur-md border border-slate-100 hover:border-[#3BA9F5]/40 rounded-[24px] p-4 flex flex-col justify-between h-[250px] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(59,169,245,0.08)] group relative overflow-hidden">
-                <div>
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-9 h-9 rounded-xl bg-blue-50 border border-blue-100/60 flex items-center justify-center text-[#0077B6] shadow-[0_4px_12px_rgba(0,119,182,0.08)] group-hover:scale-105 transition-transform duration-300">
-                        <Workflow className="w-5 h-5 text-[#0077B6]" />
-                      </div>
-                      <div>
-                        <h3 className="text-sm md:text-base font-[900] text-[#0F172A] leading-none tracking-tight">
-                          Case Flow
-                        </h3>
-                        <p className="text-[10px] font-bold text-[#0077B6] mt-0.5 leading-tight">
-                          AI Customer Case Management Platform.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full border border-sky-100 bg-[#F0F9FF] text-[#0077B6] text-[9px] font-bold shadow-sm flex-shrink-0">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#0077B6] animate-pulse"></span>
-                      Live
-                    </div>
-                  </div>
-
-                  {/* Custom visualization for Case Flow */}
-                  <div className="border border-slate-100/60 rounded-xl p-1 bg-slate-50/50 mt-2.5 flex items-center justify-center h-[62px] relative overflow-hidden">
-                    <div className="relative w-full h-full flex items-center justify-between px-1">
-                      <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 200 60" preserveAspectRatio="none">
-                        <path d="M 30 30 L 170 30" fill="none" className="animated-flow-line stroke-[#3BA9F5]" strokeWidth="2" />
-                      </svg>
-                      <div className="flex flex-col items-center bg-white border border-slate-100 rounded px-1 py-0.5 shadow-xs z-10 w-[22%]">
-                        <MessageSquare className="w-2.5 h-2.5 text-[#0077B6]" />
-                        <span className="text-[6px] font-bold text-slate-500 uppercase mt-0.5">Inbound</span>
-                      </div>
-                      <div className="flex flex-col items-center bg-white border border-[#0077B6]/30 rounded px-1 py-0.5 shadow-xs z-10 w-[24%] ring-2 ring-[#0077B6]/5">
-                        <Sparkles className="w-2.5 h-2.5 text-[#0077B6] animate-pulse" />
-                        <span className="text-[6px] font-bold text-[#0077B6] uppercase mt-0.5">AI Route</span>
-                      </div>
-                      <div className="flex flex-col items-center bg-white border border-slate-100 rounded px-1 py-0.5 shadow-xs z-10 w-[22%]">
-                        <Clock className="w-2.5 h-2.5 text-[#3BA9F5]" />
-                        <span className="text-[6px] font-bold text-slate-500 uppercase mt-0.5">SLA Watch</span>
-                      </div>
-                      <div className="flex flex-col items-center bg-white border border-slate-100 rounded px-1 py-0.5 shadow-xs z-10 w-[22%]">
-                        <ShieldCheck className="w-2.5 h-2.5 text-[#6EC8FF]" />
-                        <span className="text-[6px] font-bold text-slate-500 uppercase mt-0.5">Resolve</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Feature chips */}
-                  <div className="flex flex-wrap gap-1 mt-2.5">
-                    {["Auto Routing", "SLA Auto", "Escalation", "Resolution"].map((feature) => {
-                      let IconComponent = RefreshCw;
-                      if (feature === "SLA Auto") IconComponent = Clock;
-                      if (feature === "Escalation") IconComponent = AlertTriangle;
-                      if (feature === "Resolution") IconComponent = Check;
-                      return (
-                        <span key={feature} className="inline-flex items-center gap-0.5 bg-[#F0F9FF] border border-[#E0F2FE] rounded-full px-1.5 py-0.5 text-[8.5px] font-bold text-[#0077B6]">
-                          <IconComponent className="w-2 h-2 text-[#0077B6]" />
-                          {feature}
-                        </span>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Bottom status metrics */}
-                <div className="grid grid-cols-3 gap-1 pt-2 border-t border-slate-100/80 text-left">
-                  <div>
-                    <span className="text-[7.5px] uppercase font-bold text-slate-400 block leading-none">Auto-Route</span>
-                    <span className="text-[10px] font-black text-slate-800 leading-tight">92% Classified</span>
-                  </div>
-                  <div>
-                    <span className="text-[7.5px] uppercase font-bold text-slate-400 block leading-none">Avg SLA</span>
-                    <span className="text-[10px] font-black text-slate-800 leading-tight">12 min Target</span>
-                  </div>
-                  <div>
-                    <span className="text-[7.5px] uppercase font-bold text-slate-400 block leading-none">Resolved</span>
-                    <span className="text-[10px] font-black text-slate-800 leading-tight">98.6% Solved</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Card 4: Nexora */}
-              <div className="bg-white/80 backdrop-blur-md border border-slate-100 hover:border-[#3BA9F5]/40 rounded-[24px] p-4 flex flex-col justify-between h-[250px] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(59,169,245,0.08)] group relative overflow-hidden">
-                <div>
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-9 h-9 rounded-xl bg-blue-50 border border-blue-100/60 flex items-center justify-center text-[#0077B6] shadow-[0_4px_12px_rgba(0,119,182,0.08)] group-hover:scale-105 transition-transform duration-300">
-                        <Users className="w-5 h-5 text-[#0077B6]" />
-                      </div>
-                      <div>
-                        <h3 className="text-sm md:text-base font-[900] text-[#0F172A] leading-none tracking-tight">
-                          Nexora
-                        </h3>
-                        <p className="text-[10px] font-bold text-[#0077B6] mt-0.5 leading-tight">
-                          Partner & Sourcing Management Platform.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full border border-sky-100 bg-[#F0F9FF] text-[#0077B6] text-[9px] font-bold shadow-sm flex-shrink-0">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#0077B6] animate-pulse"></span>
-                      Live
-                    </div>
-                  </div>
-
-                  {/* Custom visualization for Nexora */}
-                  <div className="border border-slate-100/60 rounded-xl p-1 bg-slate-50/50 mt-2.5 flex items-center justify-center h-[62px] relative overflow-hidden">
-                    <div className="relative w-full h-full flex items-center justify-center">
-                      <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 200 60" preserveAspectRatio="none">
-                        <path d="M 100 30 L 45 15" className="animated-flow-line stroke-[#0077B6]" strokeWidth="1.5" />
-                        <path d="M 100 30 L 45 45" className="animated-flow-line stroke-[#3BA9F5]" strokeWidth="1.5" />
-                        <path d="M 100 30 L 155 30" className="animated-flow-line stroke-[#6EC8FF]" strokeWidth="1.5" />
-                      </svg>
-                      <div className="absolute left-[88px] top-[18px] w-6 h-6 rounded-full bg-white border border-[#0077B6] flex items-center justify-center shadow-xs z-10">
-                        <Database className="w-3 h-3 text-[#0077B6]" />
-                      </div>
-                      <div className="absolute left-[12px] top-[4px] flex items-center gap-0.5 bg-white border border-slate-100 rounded px-1 py-0.5 shadow-xs text-[6.5px] font-bold text-slate-600 z-10">
-                        <Users className="w-2 h-2 text-[#0077B6]" /> Partner A
-                      </div>
-                      <div className="absolute left-[12px] bottom-[4px] flex items-center gap-0.5 bg-white border border-slate-100 rounded px-1 py-0.5 shadow-xs text-[6.5px] font-bold text-slate-600 z-10">
-                        <Users className="w-2 h-2 text-[#3BA9F5]" /> Partner B
-                      </div>
-                      <div className="absolute right-[15px] top-[20px] flex items-center gap-0.5 bg-white border border-slate-100 rounded px-1 py-0.5 shadow-xs text-[6.5px] font-bold text-slate-600 z-10">
-                        <Compass className="w-2 h-2 text-[#6EC8FF]" /> Supply Hub
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Feature chips */}
-                  <div className="flex flex-wrap gap-1 mt-2.5">
-                    {["Meeting Plan", "Activity Track", "Partner Mgmt", "Deal Pipeline"].map((feature) => {
-                      let IconComponent = Calendar;
-                      if (feature === "Activity Track") IconComponent = Gauge;
-                      if (feature === "Partner Mgmt") IconComponent = Users;
-                      if (feature === "Deal Pipeline") IconComponent = TrendingUp;
-                      return (
-                        <span key={feature} className="inline-flex items-center gap-0.5 bg-[#F0F9FF] border border-[#E0F2FE] rounded-full px-1.5 py-0.5 text-[8.5px] font-bold text-[#0077B6]">
-                          <IconComponent className="w-2 h-2 text-[#0077B6]" />
-                          {feature}
-                        </span>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Bottom status metrics */}
-                <div className="grid grid-cols-3 gap-1 pt-2 border-t border-slate-100/80 text-left">
-                  <div>
-                    <span className="text-[7.5px] uppercase font-bold text-slate-400 block leading-none">Partners</span>
-                    <span className="text-[10px] font-black text-slate-800 leading-tight">120+ Active</span>
-                  </div>
-                  <div>
-                    <span className="text-[7.5px] uppercase font-bold text-slate-400 block leading-none">Pipeline</span>
-                    <span className="text-[10px] font-black text-slate-800 leading-tight">₹4.2Cr Sourced</span>
-                  </div>
-                  <div>
-                    <span className="text-[7.5px] uppercase font-bold text-slate-400 block leading-none">Activity</span>
-                    <span className="text-[10px] font-black text-slate-800 leading-tight">High Index</span>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        {/* PREMIUM METRIC STRIP: Slim unified glass ribbon */}
-        <div className="flex flex-wrap md:flex-nowrap items-center justify-between gap-3 md:gap-4 w-full max-w-5xl mx-auto py-2.5 px-6 rounded-2xl bg-white/80 backdrop-blur-md border border-[#0077B6]/15 shadow-[0_10px_30px_rgba(59,169,245,0.04)] z-10 relative">
-          {[
-            { value: "3+", label: "Live Products", emoji: "🚀" },
-            { value: "100%", label: "Paying Clients", emoji: "✅" },
-            { value: "8+", label: "Enterprise Clients", emoji: "🏢" },
-            { value: "100%", label: "Built In-house", emoji: "🛠" },
-          ].map((stat, idx) => (
-            <div key={idx} className="flex items-center gap-3 px-2 py-0.5 group cursor-default">
-              <span className="text-xl md:text-2xl">{stat.emoji}</span>
-              <div className="flex flex-col text-left">
-                <span className="text-base md:text-lg font-black text-slate-800 tracking-tight leading-none">
-                  {stat.value}
-                </span>
-                <span className="text-[9px] uppercase font-bold text-slate-400 mt-1 leading-none">
-                  {stat.label}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Bottom Glow reflection element */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4/5 h-[3px] bg-gradient-to-r from-transparent via-[#74CBF4] to-transparent shadow-[0_-4px_30px_rgba(116,203,244,0.95),0_0_15px_rgba(116,203,244,1)] opacity-95 rounded-full pointer-events-none" />
-      </div>
-    );
+    return <ProductEcosystemScene />;
   }
+
 
   if (scene.id === 7) {
     const industries = [
