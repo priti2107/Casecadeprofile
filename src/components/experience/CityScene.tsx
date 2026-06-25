@@ -2,8 +2,9 @@ import { useMemo, useRef, type RefObject } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Grid, Instances, Instance, Float } from "@react-three/drei";
 import * as THREE from "three";
+import { SCENES } from "./scenes";
 
-const N = 12;
+const N = SCENES.length;
 
 // District centers laid out along a winding depth path.
 const DISTRICTS: THREE.Vector3[] = Array.from(
@@ -18,7 +19,7 @@ const accentFor = (i: number) => (i % 2 === 0 ? PRIMARY : SECONDARY);
 
 // Camera keyframes: weave between districts, slightly elevated.
 const CAM_POINTS: THREE.Vector3[] = DISTRICTS.map((d, i) => {
-  const side = i % 2 === 0 ? 1 : -1;
+  const side = i === 0 ? -1 : (i % 2 === 0 ? 1 : -1);
   const last = i === N - 1;
   return new THREE.Vector3(
     d.x * 0.35 + side * (last ? 0 : 16),

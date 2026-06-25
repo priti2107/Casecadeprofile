@@ -219,16 +219,17 @@ function SceneOverlay({
     scaleOutput = [0.94, 1, 1.04];
   }
 
-  const opacity = useTransform(progress, opacityRange, opacityOutput);
-  const y = useTransform(progress, yRange, yOutput);
-  const scale = useTransform(progress, scaleRange, scaleOutput);
+  const opacity = useTransform(progress, opacityRange, opacityOutput, { clamp: true });
+  const y = useTransform(progress, yRange, yOutput, { clamp: true });
+  const scale = useTransform(progress, scaleRange, scaleOutput, { clamp: true });
+  const visibility = useTransform(opacity, (o) => (o > 0.01 ? "visible" : "hidden"));
 
   const shouldRender = Math.abs(active - index) <= 1;
   if (!shouldRender) return null;
   return (
     <motion.div
-      style={{ opacity, y, scale }}
-      className={`pointer-events-none fixed inset-0 flex items-center justify-center px-6 md:px-12 py-10`}
+      style={{ opacity, y, scale, visibility }}
+      className={`pointer-events-none fixed inset-0 z-10 flex items-center justify-center px-6 md:px-12 py-10`}
     >
       <SceneContent scene={scene} isActive={active === index} activeCardIdx={activeCardIdx} />
     </motion.div>
@@ -257,6 +258,13 @@ function WhoWeAreScene({ scene, isActive = false, activeCardIdx = 0 }: { scene: 
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
+  const stats = [
+    { value: 3, suffix: "+", title: "Years Experience", icon: Clock },
+    { value: 65, suffix: "+", title: "Projects Delivered", icon: Award },
+    { value: 8, suffix: "+", title: "Enterprise Clients", icon: Users },
+    { value: 2, suffix: "", title: "Proprietary Products", icon: Layers },
+  ];
+
   return (
     <div className="pointer-events-auto who-we-are-glass-panel rounded-[32px] w-[92vw] md:w-[90vw] h-[88vh] md:h-[82vh] max-w-7xl relative overflow-y-auto md:overflow-hidden flex flex-col pt-5 pb-5 px-6 md:px-8 justify-center gap-4">
       {/* Scoped CSS classes for District 02 foundations scene styling */}
@@ -270,60 +278,21 @@ function WhoWeAreScene({ scene, isActive = false, activeCardIdx = 0 }: { scene: 
             inset 0 1px 0 0 rgba(255, 255, 255, 0.9) !important;
         }
         .foundations-quote-card {
-          background: linear-gradient(135deg, #0077B6 0%, #0096C7 100%) !important;
-          backdrop-filter: blur(24px) !important;
-          border: 1px solid rgba(255, 255, 255, 0.25) !important;
+          background: rgba(255, 255, 255, 0.45) !important;
+          backdrop-filter: blur(20px) !important;
           box-shadow: 
-            0 20px 45px -10px rgba(0, 119, 182, 0.2),
-            inset 0 1px 0 0 rgba(255, 255, 255, 0.3) !important;
+            0 15px 35px -10px rgba(0, 119, 182, 0.04),
+            inset 0 1px 0 0 rgba(255, 255, 255, 0.7) !important;
           transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
         }
         .foundations-quote-card:hover {
-          background: linear-gradient(135deg, #0096C7 0%, #00B4D8 100%) !important;
+          background: rgba(255, 255, 255, 0.6) !important;
           box-shadow: 
-            0 25px 50px -8px rgba(0, 119, 182, 0.28),
-            inset 0 1px 0 0 rgba(255, 255, 255, 0.4) !important;
-          transform: translateY(-6px) !important;
+            0 20px 45px -8px rgba(0, 119, 182, 0.08),
+            inset 0 1px 0 0 rgba(255, 255, 255, 0.8) !important;
+          transform: translateY(-4px) !important;
         }
         
-        .differentiator-card-1 {
-          background: rgba(255, 255, 255, 0.65) !important;
-          backdrop-filter: blur(20px) !important;
-          border: 1px solid rgba(255, 255, 255, 0.5) !important;
-          box-shadow: 0 10px 30px rgba(0, 119, 182, 0.04), inset 0 1px 0 0 rgba(255, 255, 255, 0.6) !important;
-          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
-        }
-        .differentiator-card-1:hover {
-          background: rgba(255, 255, 255, 0.95) !important;
-          box-shadow: 0 20px 40px rgba(0, 119, 182, 0.08) !important;
-          transform: translateY(-6px) !important;
-        }
-
-        .differentiator-card-2 {
-          background: rgba(243, 250, 254, 0.8) !important;
-          backdrop-filter: blur(20px) !important;
-          border: 1px solid rgba(255, 255, 255, 0.5) !important;
-          box-shadow: 0 10px 30px rgba(0, 119, 182, 0.04), inset 0 1px 0 0 rgba(255, 255, 255, 0.6) !important;
-          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
-        }
-        .differentiator-card-2:hover {
-          background: rgba(243, 250, 254, 0.98) !important;
-          box-shadow: 0 20px 40px rgba(0, 119, 182, 0.08) !important;
-          transform: translateY(-6px) !important;
-        }
-
-        .differentiator-card-3 {
-          background: rgba(255, 255, 255, 0.65) !important;
-          backdrop-filter: blur(20px) !important;
-          border: 1px solid rgba(255, 255, 255, 0.5) !important;
-          box-shadow: 0 10px 30px rgba(0, 119, 182, 0.04), inset 0 1px 0 0 rgba(255, 255, 255, 0.6) !important;
-          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
-        }
-        .differentiator-card-3:hover {
-          background: rgba(255, 255, 255, 0.95) !important;
-          box-shadow: 0 20px 40px rgba(0, 119, 182, 0.08) !important;
-          transform: translateY(-6px) !important;
-        }
         @keyframes float-particle {
           0%, 100% {
             transform: translate3d(0, 0, 0);
@@ -344,6 +313,34 @@ function WhoWeAreScene({ scene, isActive = false, activeCardIdx = 0 }: { scene: 
             transform: scale(1.04);
           }
         }
+        @keyframes dash-animation {
+          to {
+            stroke-dashoffset: -50;
+          }
+        }
+        .animated-data-path {
+          animation: dash-animation 6s linear infinite;
+        }
+        @keyframes float-cloud {
+          0%, 100% {
+            transform: translate(-50%, -50%) translateY(0px) rotate(0deg);
+          }
+          50% {
+            transform: translate(-50%, -50%) translateY(-8px) rotate(1deg);
+          }
+        }
+        @keyframes float-node-1 {
+          0%, 100% { transform: translate(-50%, -50%) translateY(0px); }
+          50% { transform: translate(-50%, -50%) translateY(-5px); }
+        }
+        @keyframes float-node-2 {
+          0%, 100% { transform: translate(-50%, -50%) translateY(0px); }
+          50% { transform: translate(-50%, -50%) translateY(-7px); }
+        }
+        @keyframes float-node-3 {
+          0%, 100% { transform: translate(-50%, -50%) translateY(0px); }
+          50% { transform: translate(-50%, -50%) translateY(-4px); }
+        }
       `}</style>
 
       {/* Blueprint Grid Accent (3.5% Opacity) */}
@@ -361,51 +358,6 @@ function WhoWeAreScene({ scene, isActive = false, activeCardIdx = 0 }: { scene: 
         </svg>
       </div>
 
-      {/* Subtle Center Divider Line with Glowing Nodes (md screens and above) */}
-      <div
-        className="hidden md:flex absolute top-[10%] bottom-[10%] left-[47.5%] -translate-x-1/2 flex-col items-center justify-between pointer-events-none -z-10"
-        style={{ width: "24px" }}
-      >
-        {/* Line */}
-        <div
-          className="absolute top-0 bottom-0 w-[1px]"
-          style={{
-            background: "linear-gradient(to bottom, rgba(14, 165, 233, 0) 0%, rgba(14, 165, 233, 0.25) 20%, rgba(14, 165, 233, 0.25) 80%, rgba(14, 165, 233, 0) 100%)",
-            left: "50%",
-            transform: "translateX(-50%)",
-            boxShadow: "0 0 6px rgba(14, 165, 233, 0.1)",
-          }}
-        />
-
-        {/* Node 1 */}
-        <div className="relative z-10 flex items-center justify-center">
-          <div className="size-4 rounded-full border border-sky-400/25 bg-sky-50/30 backdrop-blur-md flex items-center justify-center shadow-sm">
-            <div className="size-1.5 rounded-full bg-sky-400/90 shadow-[0_0_6px_#0ea5e9] animate-pulse" />
-          </div>
-        </div>
-
-        {/* Node 2 */}
-        <div className="relative z-10 flex items-center justify-center">
-          <div className="size-4 rounded-full border border-sky-400/25 bg-sky-50/30 backdrop-blur-md flex items-center justify-center shadow-sm">
-            <div className="size-1.5 rounded-full bg-sky-400/70 shadow-[0_0_4px_#38bdf8]" />
-          </div>
-        </div>
-
-        {/* Node 3 */}
-        <div className="relative z-10 flex items-center justify-center">
-          <div className="size-4 rounded-full border border-sky-400/25 bg-sky-50/30 backdrop-blur-md flex items-center justify-center shadow-sm">
-            <div className="size-1.5 rounded-full bg-sky-400/70 shadow-[0_0_4px_#38bdf8]" />
-          </div>
-        </div>
-
-        {/* Node 4 */}
-        <div className="relative z-10 flex items-center justify-center">
-          <div className="size-4 rounded-full border border-sky-400/25 bg-sky-50/30 backdrop-blur-md flex items-center justify-center shadow-sm">
-            <div className="size-1.5 rounded-full bg-sky-400/90 shadow-[0_0_6px_#0ea5e9] animate-pulse" />
-          </div>
-        </div>
-      </div>
-
       {/* One large blurred blue gradient behind the section at 6% opacity */}
       <div
         className="absolute w-[600px] h-[600px] rounded-full blur-[130px] pointer-events-none -z-20 opacity-[0.06] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
@@ -414,7 +366,7 @@ function WhoWeAreScene({ scene, isActive = false, activeCardIdx = 0 }: { scene: 
         }}
       />
 
-      {/* Keep only 2 tiny glowing particles */}
+      {/* 2 tiny glowing particles */}
       <div
         className="absolute rounded-full bg-[#90E0EF] pointer-events-none -z-10 shadow-[0_0_8px_#90E0EF]"
         style={{
@@ -437,260 +389,175 @@ function WhoWeAreScene({ scene, isActive = false, activeCardIdx = 0 }: { scene: 
       />
 
       <div className="flex flex-col md:flex-row gap-6 md:gap-8 lg:gap-10 items-stretch justify-between w-full h-full relative z-10 max-w-[1280px] mx-auto py-2">
-        {/* LEFT COLUMN: 45% width */}
+        {/* LEFT COLUMN: 48% width */}
         <div
-          className="w-full md:w-[45%] flex flex-col justify-between text-left h-full py-1 relative z-10"
+          className="w-full md:w-[48%] flex flex-col justify-center text-left h-full py-2 relative z-10"
           style={{
             transform: `translate3d(${mousePos.x * 4}px, ${mousePos.y * 4}px, 0)`,
           }}
         >
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-1.5">
             {/* Badge */}
-            <div className="inline-flex items-center gap-1.5 bg-sky-500/5 border border-sky-400/20 rounded-full px-3 py-1 text-[10px] md:text-[11px] font-bold tracking-wider text-[#0284C7] w-fit">
+            <div className="inline-flex items-center gap-1.5 bg-sky-500/5 border border-sky-400/20 rounded-full px-3 py-1 text-[10px] md:text-[11px] font-bold tracking-wider text-[#0284C7] w-fit mb-1">
               <span className="size-1.5 rounded-full bg-[#0284C7] animate-pulse" />
-              District 02 • Foundations
+              WHO WE ARE
             </div>
 
             {/* Title */}
-            <h2 className="text-xl sm:text-2xl md:text-[32px] lg:text-[40px] xl:text-[46px] font-[900] leading-[1.08] tracking-tight text-[#0F172A] font-display">
-              A Different Kind <br />
-              of{" "}
-              <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#0ea5e9] via-[#0284C7] to-[#2563EB]">
-                Salesforce Partner
-              </span>
+            <h2 className="text-2xl sm:text-3xl md:text-[34px] lg:text-[44px] font-[900] leading-[1.08] tracking-tight text-[#0F172A] font-display">
+              We Are <br />
+              <span className="text-[#0284C7]">Cascade Tech</span>
             </h2>
 
             {/* Horizontal Line Under Heading */}
-            <div className="w-12 h-[3.5px] bg-[#0284C7] rounded-full" />
+            <div className="w-16 h-[2.5px] bg-[#0284C7] rounded-full my-3" />
 
-            {/* Supporting Text */}
-            <p
-              className="max-w-[480px]"
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "16px",
-                fontWeight: 500,
-                lineHeight: "1.7",
-                color: "#475569",
-              }}
-            >
-              We cap our active client load deliberately. Cascade Tech Ventures was founded on the belief
-              that enterprise Salesforce architecture shouldn't be built on generic templates,
-              bloated overhead, or junior-only teams. We craft robust customer ecosystems designed
-              for high-value operations.
-            </p>
+            {/* Supporting Text paragraphs matching mockup */}
+            <div className="flex flex-col gap-3.5 text-[13.5px] md:text-[14.5px] leading-relaxed text-slate-600 font-medium max-w-[480px]">
+              <p>
+                Cascade Tech Ventures LLP is a Salesforce implementation partner helping real estate developers and enterprise businesses modernise their sales, marketing, and customer experience operations.
+              </p>
+              <p>
+                Founded by CRM practitioners not generalists, we bring deep knowledge of the Indian real estate sales cycle, from first inquiry to possession, and build Salesforce solutions that match how your teams actually work on the ground.
+              </p>
+              <p>
+                We are a boutique firm. Every client gets senior attention, faster turnarounds, and solutions built specifically for their business, not recycled from someone else's project.
+              </p>
+            </div>
           </div>
 
-          {/* Founder Philosophy Card */}
+          {/* Founder Philosophy Card with Outline Quote Icon & Checklist */}
           <div
-            className="foundations-quote-card rounded-[24px] px-6 py-5 text-left relative overflow-hidden w-full max-w-[460px]"
+            className="p-[1px] bg-gradient-to-br from-sky-400/20 to-blue-500/20 rounded-[20px] shadow-sm hover:shadow-md transition-all duration-300 max-w-[480px] w-full mt-5"
             style={{
               opacity: isActive ? 1 : 0,
               transform: isActive ? undefined : "translateY(20px) scale(0.98)",
               transition: "opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), scale 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
             }}
           >
-            {/* Soft Diagonal Glass Reflection Highlight */}
             <div
-              className="absolute inset-0 pointer-events-none z-10"
-              style={{
-                background: "linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0%, transparent 40%)",
-                opacity: 0.15,
-              }}
-            />
+              className="foundations-quote-card bg-white/45 backdrop-blur-xl rounded-[19px] p-5 text-left relative overflow-hidden w-full h-full flex flex-col justify-center"
+            >
+              {/* Soft Diagonal Glass Reflection Highlight */}
+              <div
+                className="absolute inset-0 pointer-events-none z-10"
+                style={{
+                  background: "linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0%, transparent 40%)",
+                  opacity: 0.15,
+                }}
+              />
 
-            {/* Large Quote Mark at 10% opacity */}
-            <span className="absolute -top-3 -left-1.5 text-[140px] font-serif text-white/10 leading-none select-none pointer-events-none">
-              “
-            </span>
+              {/* Soft glow in quote card */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-sky-400/10 rounded-full blur-2xl pointer-events-none -z-10" />
 
-            <div className="flex flex-col h-full justify-between relative z-10">
-              <div>
-                <div className="flex items-center gap-2 mb-3 relative z-10">
-                  <span className="text-[28px] font-serif text-white leading-none select-none font-extrabold">
-                    “
-                  </span>
-                  <span className="text-[10px] font-extrabold tracking-widest text-white uppercase block">
-                    Founder Philosophy
-                  </span>
+              <div className="flex gap-4 relative z-10">
+                {/* Double quotes icon wrapper */}
+                <div className="size-9 rounded-lg border border-sky-400/20 bg-sky-500/5 text-sky-600 flex items-center justify-center flex-shrink-0 shadow-sm">
+                  <svg className="size-4.5 text-sky-500" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M14 17h3l2-4V7h-6v6h3zM3 13h3l2-4V7H2v6h3z"/>
+                  </svg>
                 </div>
-                <div
-                  className="text-[15px] md:text-[17px] italic text-white leading-relaxed mb-3"
-                  style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}
-                >
-                  “We deliberately cap our active client load to ensure deep engineering
-                  integration. Your architecture is owned directly by senior strategists, not junior
-                  delegates.”
-                </div>
-              </div>
-
-              {/* Sub-list separated by border */}
-              <div className="border-t border-white/30 pt-3 mt-1.5 flex flex-col gap-2">
-                {[
-                  "Direct access to principal architects",
-                  "No junior-only delivery teams",
-                  "Bespoke high-value engineering",
-                ].map((item) => (
-                  <div
-                    key={item}
-                    className="flex items-center gap-2.5 text-[11px] md:text-[12px] font-semibold text-white"
-                  >
-                    <div className="size-4.5 rounded-full bg-white/25 text-white flex items-center justify-center flex-shrink-0 shadow-sm">
-                      <Check className="size-2.5 stroke-[4.5] text-white" />
-                    </div>
-                    <span style={{ fontFamily: "'Inter', sans-serif" }}>{item}</span>
-                  </div>
-                ))}
+                <p className="text-[13.5px] md:text-[14.5px] text-slate-700 leading-relaxed font-semibold italic">
+                  We deliberately cap our active client load to ensure deep engineering integration. Your architecture is owned directly by senior strategists, not junior delegates.
+                </p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* RIGHT COLUMN: Stack of 3 Differentiator Cards (51% width) */}
+        {/* RIGHT COLUMN: Asymmetric Image Container & Awards Capsule (48% width) */}
         <div
-          className="w-full md:w-[51%] flex flex-col justify-center h-full py-1 relative z-10"
+          className="w-full md:w-[48%] flex flex-col justify-between h-full py-2 relative z-10"
           style={{
             transform: `translate3d(${mousePos.x * -4}px, ${mousePos.y * -4}px, 0)`,
           }}
         >
-          <div className="relative pl-12 flex flex-col justify-center h-full">
-            {/* Thin vertical accent line */}
-            <div className="absolute left-[24px] top-4 bottom-4 w-[1.5px] bg-gradient-to-b from-sky-400/20 via-blue-500/35 to-sky-400/20" />
+          {/* Asymmetric Organic Glass Image Container */}
+          <div
+            className="w-full aspect-[4/3] md:flex-grow rounded-[140px_30px_140px_30px] border-[5px] border-white/80 shadow-[0_20px_50px_rgba(0,119,182,0.12)] relative overflow-hidden bg-white/20 backdrop-blur-md"
+            style={{
+              opacity: isActive ? 1 : 0,
+              transform: isActive ? undefined : "scale(0.96)",
+              transition: "opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
+            }}
+          >
+            {/* Salesforce office image inside */}
+            <img
+              src="/salesforce-office.png"
+              alt="Cascade Tech Office & Salesforce Operations"
+              className="w-full h-full object-cover select-none"
+            />
+            {/* Glossy overlay reflections */}
+            <div 
+              className="absolute inset-0 pointer-events-none z-10"
+              style={{
+                background: "linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, transparent 50%, rgba(255,255,255,0.1) 100%)",
+              }}
+            />
+            {/* Soft shadow gradient overlay */}
+            <div 
+              className="absolute inset-x-0 bottom-0 h-1/4 pointer-events-none z-10"
+              style={{
+                background: "linear-gradient(to top, rgba(0,0,0,0.12), transparent)",
+              }}
+            />
+            
+            {/* Floating Glass Spheres */}
+            {/* Top-right sphere overlapping the border */}
+            <div 
+              className="absolute size-14 rounded-full bg-gradient-to-br from-white/40 to-white/5 border border-white/50 shadow-[inset_-4px_-4px_8px_rgba(255,255,255,0.35),_4px_4px_12px_rgba(0,0,0,0.15)] backdrop-blur-md -top-3 -right-3 z-20 pointer-events-none"
+              style={{
+                transform: `translate3d(${mousePos.x * 6}px, ${mousePos.y * 6}px, 0)`,
+              }}
+            />
+            {/* Bottom-left sphere overlapping the border */}
+            <div 
+              className="absolute size-16 rounded-full bg-gradient-to-br from-white/45 to-white/8 border border-white/50 shadow-[inset_-5px_-5px_10px_rgba(255,255,255,0.4),_5px_5px_15px_rgba(0,0,0,0.18)] backdrop-blur-md -bottom-4 -left-4 z-20 pointer-events-none"
+              style={{
+                transform: `translate3d(${mousePos.x * -8}px, ${mousePos.y * -8}px, 0)`,
+              }}
+            />
+          </div>
 
-            <div className="flex flex-col gap-4">
-              {[
-                {
-                  title: "Boutique By Design",
-                  desc: "By capping our active client load, we ensure deep engineering integration. Your architecture is owned directly by senior strategists, not junior delegates.",
-                  badge: "Boutique",
-                },
-                {
-                  title: "Real Estate Expertise",
-                  desc: "Specialized workflows built specifically for developers, channel partners, and high-value customer acquisitions. We translate complex property cycles directly into CRM systems.",
-                  badge: "Real Estate",
-                },
-                {
-                  title: "Products + Services",
-                  desc: "We combine bespoke custom consulting with ready-to-deploy products. This hybrid approach accelerates delivery timelines and ensures a much faster return on your Salesforce investment.",
-                  badge: "Products",
-                },
-              ].map((card, idx) => {
-                const cardClass = `differentiator-card-${idx + 1} rounded-[24px] p-5 md:p-6 flex flex-col items-start text-left relative overflow-hidden transition-all duration-300 group`;
+          {/* Awards Capsule Bar below the image */}
+          <div 
+            className="w-fit mx-auto mt-4 px-6 py-2.5 bg-white/95 border border-white/60 shadow-sm rounded-full flex items-center gap-6 backdrop-blur-md"
+            style={{
+              opacity: isActive ? 1 : 0,
+              transform: isActive ? undefined : "translateY(10px)",
+              transition: "opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s",
+            }}
+          >
+            <span className="text-[11px] font-extrabold tracking-wider text-sky-850 uppercase whitespace-nowrap">
+              Our Achieved Awards
+            </span>
+            <div className="h-4 w-[1px] bg-slate-200" />
+            <div className="flex items-center gap-5">
+              {/* Award Logo 1: The Legal 500 */}
+              <div className="flex items-center text-slate-800" title="The Legal 500">
+                <svg className="h-6 w-auto text-slate-800" viewBox="0 0 100 30" fill="currentColor">
+                  <text x="0" y="14" fontFamily="Georgia, serif" fontSize="10" fontWeight="bold">The</text>
+                  <text x="0" y="24" fontFamily="Georgia, serif" fontSize="9" letterSpacing="0.5">LEGAL</text>
+                  <text x="35" y="25" fontFamily="Georgia, serif" fontSize="24" fontWeight="900" letterSpacing="-1">500</text>
+                </svg>
+              </div>
 
-                const cardStyle: React.CSSProperties = {
-                  opacity: isActive ? 1 : 0,
-                  transform: isActive ? undefined : "translateY(20px) scale(0.98)",
-                  transition: `opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${(idx + 1) * 0.1}s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${(idx + 1) * 0.1}s, scale 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${(idx + 1) * 0.1}s`,
-                };
+              {/* Award Logo 2: Shield/Crest */}
+              <div className="text-slate-700" title="Registered Salesforce Partner">
+                <svg className="h-6 w-auto text-slate-700" viewBox="0 0 32 32" fill="currentColor">
+                  <path d="M16 2C10 2 6 5 6 12C6 22 16 30 16 30C16 30 26 22 26 12C26 5 22 2 16 2ZM16 26C12 21 8.5 15 8.5 12C8.5 10 9 6.5 16 4.5C23 6.5 23.5 10 23.5 12C23.5 15 20 21 16 26Z" />
+                  <path d="M16 8V20M12 11V16C12 18 16 19 16 19C16 19 20 18 20 16V11" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                </svg>
+              </div>
 
-                const titleColorClass =
-                  "text-[#03045E] font-[800] text-lg md:text-[20px] leading-snug mb-2 tracking-tight font-display";
-
-                return (
-                  <div key={idx} className={cardClass} style={cardStyle}>
-                    {/* Soft Diagonal Glass Reflection Highlight */}
-                    <div
-                      className="absolute inset-0 pointer-events-none z-10"
-                      style={{
-                        background: "linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0%, transparent 40%)",
-                        opacity: 0.15,
-                      }}
-                    />
-                    {/* Blue dot on the line with matching light shades */}
-                    <div className="absolute left-[-29px] top-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none z-20">
-                      <div
-                        className="size-2.5 rounded-full transition-all duration-300"
-                        style={{
-                          backgroundColor: idx === 0 ? "#CAF0F8" : idx === 1 ? "#ADE8F4" : "#90E0EF",
-                          boxShadow: idx === 0
-                            ? "0 0 10px rgba(202, 240, 248, 0.8), 0 0 0 4px rgba(202, 240, 248, 0.2)"
-                            : idx === 1
-                              ? "0 0 10px rgba(173, 232, 244, 0.8), 0 0 0 4px rgba(173, 232, 244, 0.2)"
-                              : "0 0 10px rgba(144, 224, 239, 0.8), 0 0 0 4px rgba(144, 224, 239, 0.2)",
-                          border: "1px solid rgba(3, 4, 94, 0.15)"
-                        }}
-                      />
-                    </div>
-
-                    {/* Thin horizontal connecting line from timeline to card */}
-                    <div
-                      className="absolute left-[-24px] top-1/2 -translate-y-1/2 h-[1px] pointer-events-none z-10"
-                      style={{
-                        width: "24px",
-                        background: "linear-gradient(90deg, rgba(59, 130, 246, 0.45) 0%, rgba(59, 130, 246, 0.15) 100%)",
-                        boxShadow: "0 0 4px rgba(59, 130, 246, 0.15)",
-                      }}
-                    />
-
-                    {/* 3x3 Dot Matrix Pattern */}
-                    <div
-                      className="absolute top-3.5 right-3.5 pointer-events-none transition-opacity duration-300 text-[#03045E] opacity-15"
-                    >
-                      <svg width="16" height="16" viewBox="0 0 18 18" fill="currentColor">
-                        <circle cx="3" cy="3" r="1.5" />
-                        <circle cx="9" cy="3" r="1.5" />
-                        <circle cx="15" cy="3" r="1.5" />
-                        <circle cx="3" cy="9" r="1.5" />
-                        <circle cx="9" cy="9" r="1.5" />
-                        <circle cx="15" cy="9" r="1.5" />
-                        <circle cx="3" cy="15" r="1.5" />
-                        <circle cx="9" cy="15" r="1.5" />
-                        <circle cx="15" cy="15" r="1.5" />
-                      </svg>
-                    </div>
-
-                    <div className="flex-grow min-w-0 w-full">
-                      <div className="flex items-center gap-3.5 mb-3.5 w-full">
-                        {/* 42px circular glass icon badge */}
-                        <div
-                          className="size-[42px] rounded-full flex items-center justify-center border border-white/40 shadow-sm relative overflow-hidden backdrop-blur-md flex-shrink-0"
-                          style={{
-                            background: "linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.1) 100%)",
-                            boxShadow: "0 4px 12px rgba(3, 4, 94, 0.04), inset 0 1px 0 0 rgba(255, 255, 255, 0.6)",
-                          }}
-                        >
-                          <div
-                            className="absolute inset-0 pointer-events-none"
-                            style={{
-                              background: "linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, transparent 50%)",
-                            }}
-                          />
-                          {idx === 0 ? (
-                            <Compass className="size-5 text-[#0077B6]" />
-                          ) : idx === 1 ? (
-                            <Building2 className="size-5 text-[#0077B6]" />
-                          ) : (
-                            <Zap className="size-5 text-[#0077B6]" />
-                          )}
-                        </div>
-
-                        <div>
-                          {/* Subtle label instead of giant number */}
-                          <span className="text-[10px] font-extrabold tracking-widest text-[#0EA5E9] uppercase block leading-none mb-1">
-                            0{idx + 1} &bull; {card.badge}
-                          </span>
-                          <h3 className={titleColorClass} style={{ marginBottom: 0 }}>
-                            {card.title}
-                          </h3>
-                        </div>
-                      </div>
-
-                      <p
-                        className="line-clamp-2"
-                        style={{
-                          fontFamily: "'Inter', sans-serif",
-                          fontSize: "16px",
-                          fontWeight: 500,
-                          lineHeight: "1.7",
-                          color: "#475569",
-                        }}
-                      >
-                        {card.desc}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
+              {/* Award Logo 3: Scale circle 50 */}
+              <div className="text-slate-700" title="AppExchange Certified">
+                <svg className="h-6 w-auto text-slate-700" viewBox="0 0 32 32" fill="currentColor">
+                  <circle cx="16" cy="16" r="14" fill="none" stroke="currentColor" strokeWidth="2" />
+                  <path d="M16 8V24M10 13H22M10 13L13 19H7L10 13ZM22 13L25 19H19L22 13Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                  <text x="16" y="21.5" fontFamily="sans-serif" fontSize="7" fontWeight="bold" textAnchor="middle">50</text>
+                </svg>
+              </div>
             </div>
           </div>
         </div>
@@ -5221,9 +5088,7 @@ export default function Experience() {
     activeCardIdxRef.current = activeCardIdx;
   }, [activeCardIdx]);
 
-  useEffect(() => {
-    targetActiveRef.current = active;
-  }, [active]);
+
 
   useEffect(() => {
     if (active !== 1) {
@@ -5325,34 +5190,16 @@ export default function Experience() {
   };
 
   const handleNextSection = () => {
-    if (targetActiveRef.current === 1) {
-      if (activeCardIdx < 2) {
-        setActiveCardIdx((prev) => prev + 1);
-      } else if (targetActiveRef.current < N - 1) {
-        targetActiveRef.current += 1;
-        scrollToScene(targetActiveRef.current);
-      }
-    } else {
-      if (targetActiveRef.current < N - 1) {
-        targetActiveRef.current += 1;
-        scrollToScene(targetActiveRef.current);
-      }
+    if (targetActiveRef.current < N - 1) {
+      targetActiveRef.current += 1;
+      scrollToScene(targetActiveRef.current);
     }
   };
 
   const handlePrevSection = () => {
-    if (targetActiveRef.current === 1) {
-      if (activeCardIdx > 0) {
-        setActiveCardIdx((prev) => prev - 1);
-      } else if (targetActiveRef.current > 0) {
-        targetActiveRef.current -= 1;
-        scrollToScene(targetActiveRef.current);
-      }
-    } else {
-      if (targetActiveRef.current > 0) {
-        targetActiveRef.current -= 1;
-        scrollToScene(targetActiveRef.current);
-      }
+    if (targetActiveRef.current > 0) {
+      targetActiveRef.current -= 1;
+      scrollToScene(targetActiveRef.current);
     }
   };
 
@@ -5409,33 +5256,15 @@ export default function Experience() {
 
       if (isDown || isRight) {
         e.preventDefault();
-        if (targetActiveRef.current === 1) {
-          if (activeCardIdxRef.current < 2) {
-            setActiveCardIdx((prev) => prev + 1);
-          } else if (targetActiveRef.current < N - 1) {
-            targetActiveRef.current += 1;
-            scrollToScene(targetActiveRef.current);
-          }
-        } else {
-          if (targetActiveRef.current < N - 1) {
-            targetActiveRef.current += 1;
-            scrollToScene(targetActiveRef.current);
-          }
+        if (targetActiveRef.current < N - 1) {
+          targetActiveRef.current += 1;
+          scrollToScene(targetActiveRef.current);
         }
       } else if (isUp || isLeft) {
         e.preventDefault();
-        if (targetActiveRef.current === 1) {
-          if (activeCardIdxRef.current > 0) {
-            setActiveCardIdx((prev) => prev - 1);
-          } else if (targetActiveRef.current > 0) {
-            targetActiveRef.current -= 1;
-            scrollToScene(targetActiveRef.current);
-          }
-        } else {
-          if (targetActiveRef.current > 0) {
-            targetActiveRef.current -= 1;
-            scrollToScene(targetActiveRef.current);
-          }
+        if (targetActiveRef.current > 0) {
+          targetActiveRef.current -= 1;
+          scrollToScene(targetActiveRef.current);
         }
       }
     };
@@ -5476,7 +5305,7 @@ export default function Experience() {
         {mounted && (
           <Canvas
             dpr={[1, 1.8]}
-            camera={{ position: [0, 14, 60], fov: 52, near: 0.1, far: 600 }}
+            camera={{ position: [26, 42, 115], fov: 52, near: 0.1, far: 600 }}
             gl={{ antialias: true, alpha: false }}
           >
             <CityScene progress={progressRef} isCameraReady={initStage >= 5} />
