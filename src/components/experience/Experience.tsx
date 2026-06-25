@@ -3652,7 +3652,7 @@ function CaseStudiesScene({ scene }: { scene: Scene }) {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="fixed inset-0 z-[100] bg-slate-50/98 backdrop-blur-sm overflow-y-auto flex flex-col justify-start pointer-events-auto"
+          className="absolute inset-0 z-50 bg-[#f8fafc] overflow-y-auto flex flex-col justify-start pointer-events-auto rounded-[32px] shadow-2xl"
         >
           {/* Top Sticky Navigation Bar */}
           <div className="sticky top-0 z-30 bg-white border-b border-slate-200/50 px-6 py-4 flex items-center justify-between shadow-sm">
@@ -3716,16 +3716,16 @@ function CaseStudiesScene({ scene }: { scene: Scene }) {
                   return (
                     <div
                       key={mIdx}
-                      className="premium-glass-card rounded-2xl p-3 flex flex-col justify-between min-h-[90px]"
+                      className="premium-glass-card rounded-2xl p-2.5 flex flex-col justify-between min-h-[76px]"
                     >
                       <div className="text-sky-500 flex items-center justify-start">
                         <MetricIcon className="size-4" />
                       </div>
-                      <div className="flex flex-col gap-0.5 mt-2">
-                        <span className="text-[#0ea5e9] text-lg md:text-xl font-black tracking-tight font-display leading-none">
+                      <div className="flex flex-col gap-0.5 mt-1.5">
+                        <span className="text-[#0ea5e9] text-base md:text-lg font-black tracking-tight font-display leading-none">
                           <CountUpText text={m.value} />
                         </span>
-                        <span className="text-[8px] font-bold text-slate-400 uppercase tracking-wider leading-none mt-1.5 block overflow-hidden text-ellipsis whitespace-nowrap">
+                        <span className="text-[8px] font-bold text-slate-400 uppercase tracking-wider leading-none mt-1 block overflow-hidden text-ellipsis whitespace-nowrap">
                           {m.label}
                         </span>
                       </div>
@@ -3736,14 +3736,14 @@ function CaseStudiesScene({ scene }: { scene: Scene }) {
             </div>
 
             {/* Split Details Section */}
-            <div className="flex flex-col lg:flex-row gap-6 items-stretch w-full mt-2">
+            <div className="flex flex-col lg:flex-row gap-5 items-stretch w-full mt-1.5">
               {/* Left column details (Timeline Layout) */}
               <motion.div
                 key={`left-article-${selectedIdx}`}
                 initial={{ opacity: 0, x: -15 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.05 }}
-                className="w-full lg:w-[48%] flex flex-col gap-5 relative pl-12 justify-center py-2"
+                className="w-full lg:w-[48%] flex flex-col gap-3.5 relative pl-12 justify-center py-0.5"
               >
                 {/* Vertical Timeline Line */}
                 <div className="absolute left-[20px] top-6 bottom-6 w-[2px] bg-slate-200" />
@@ -3762,7 +3762,7 @@ function CaseStudiesScene({ scene }: { scene: Scene }) {
                     </div>
 
                     {/* Card Content */}
-                    <div className="premium-glass-card rounded-2xl p-4 md:p-5 flex flex-col justify-start text-left">
+                    <div className="premium-glass-card rounded-2xl p-3.5 md:p-4 flex flex-col justify-start text-left">
                       <span className="text-[10px] font-black uppercase tracking-wider text-sky-500">
                         {item.label}
                       </span>
@@ -5062,6 +5062,19 @@ export default function Experience() {
   // Turn off manual scroll events
   useEffect(() => {
     const preventDefault = (e: Event) => {
+      // Allow scrolling inside elements with overflow-y-auto or overflow-y-scroll
+      const path = e.composedPath();
+      for (const el of path) {
+        if (el instanceof HTMLElement) {
+          const style = window.getComputedStyle(el);
+          if (
+            el.scrollHeight > el.clientHeight &&
+            (style.overflowY === "auto" || style.overflowY === "scroll")
+          ) {
+            return;
+          }
+        }
+      }
       e.preventDefault();
     };
 
