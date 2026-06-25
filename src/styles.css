@@ -308,3 +308,16 @@
     inset 0 1px 0 0 rgba(255, 255, 255, 0.95),
     inset 0 0 20px rgba(255, 255, 255, 0.4) !important;
 }
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 200%;
+  }
+}
+
+.group:hover .group-hover\:animate-shine {
+  animation: shine 1.2s ease-in-out forwards;
+}

@@ -2213,58 +2213,59 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
       {
         id: "real-estate",
         title: "Real Estate & PropTech",
-        subtitle: "Primary Vertical",
-        desc: "Specialized lead pipelines, developer workflows, builder-broker portals, and automated booking engines.",
+        subtitle: "Vertical 01",
+        desc: "Integrated lead-to-possession pre-sales, post-booking CRM, and channel portals.",
+        bgImage: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80",
         icon: Home,
-        highlight: true,
+        isPrimary: true,
       },
       {
         id: "commercial-cre",
         title: "Commercial Real Estate",
-        subtitle: "Asset & Tenant Portals",
-        desc: "Custom transaction pipelines, tenant onboarding automation, lease management, and portfolio tracking.",
+        subtitle: "Vertical 02",
+        desc: "Advanced leasing pipelines, tenant engagement solutions, and broker analytics portals.",
+        bgImage: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80",
         icon: Building2,
-        highlight: false,
-      },
-      {
-        id: "financial-services",
-        title: "Financial Services",
-        subtitle: "Secure CRM & Compliance",
-        desc: "Highly secure investor onboarding, loan processing checklists, pipeline management, and wealth portals.",
-        icon: Landmark,
-        highlight: false,
-      },
-      {
-        id: "healthcare",
-        title: "Healthcare",
-        subtitle: "Patient Lifecycle & CRM",
-        desc: "Patient care coordination, provider portals, unified referral tracking, and automated appointment scheduling.",
-        icon: HeartPulse,
-        highlight: false,
       },
       {
         id: "education",
         title: "Education",
-        subtitle: "Student Lifecycle & Portals",
-        desc: "Automated student acquisition, enrollment pipelines, academic advisory portals, and alumni engagement.",
+        subtitle: "Vertical 03",
+        desc: "Admissions workflow automation, student lifecycles, and unified portal solutions.",
+        bgImage: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80",
         icon: GraduationCap,
-        highlight: false,
+      },
+      {
+        id: "healthcare",
+        title: "Healthcare",
+        subtitle: "Vertical 04",
+        desc: "Digital patient engagement CRM, referral tracking, and secure practitioner workflows.",
+        bgImage: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80",
+        icon: HeartPulse,
       },
       {
         id: "d2c-retail",
         title: "D2C & Retail",
-        subtitle: "Unified Commerce Support",
-        desc: "Automated support ticketing, loyalty management, customer 360 profiles, and behavioral journey building.",
+        subtitle: "Vertical 05",
+        desc: "Commerce automation, post-purchase loyalty systems, and conversion-linked attribution.",
+        bgImage: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=800&q=80",
         icon: ShoppingCart,
-        highlight: false,
+      },
+      {
+        id: "financial-services",
+        title: "Financial Services",
+        subtitle: "Vertical 06",
+        desc: "Advisor onboarding pipelines, secure client workspaces, and compliance-ready databases.",
+        bgImage: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=800&q=80",
+        icon: Landmark,
       },
     ];
 
     return (
       <div
-        className="pointer-events-auto who-we-are-glass-panel rounded-[32px] w-[92vw] md:w-[90vw] h-[88vh] md:h-[82vh] max-w-7xl relative overflow-y-auto md:overflow-hidden flex flex-col pt-5 pb-5 md:pt-8 md:pb-8 px-4 md:px-6 justify-center gap-4 md:gap-6 border border-white/20 shadow-[0_30px_100px_rgba(1,118,211,0.08)] shadow-[inset_0_0_20px_rgba(255,255,255,0.75)]"
+        className="pointer-events-auto who-we-are-glass-panel rounded-[32px] w-[92vw] md:w-[90vw] h-[88vh] md:h-[82vh] max-w-7xl relative overflow-y-auto flex flex-col pt-5 pb-5 px-4 md:px-8 justify-between gap-4 border border-slate-100 shadow-[0_30px_90px_rgba(15,23,42,0.04)]"
         style={{
-          background: "rgba(248, 250, 252, 0.95)",
+          background: "rgba(255, 255, 255, 0.98)",
           backdropFilter: "blur(24px)",
         }}
       >
@@ -2272,114 +2273,93 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
         <div
           className="absolute right-[-10%] top-[10%] w-[450px] h-[450px] rounded-full blur-3xl pointer-events-none -z-10"
           style={{
-            background: "radial-gradient(circle, rgba(1,118,211,0.12) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(14,165,233,0.06) 0%, transparent 70%)",
           }}
         />
         <div
           className="absolute left-[-5%] bottom-[-5%] w-[350px] h-[350px] rounded-full blur-3xl pointer-events-none -z-10"
           style={{
-            background: "radial-gradient(circle, rgba(0,161,224,0.06) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(14,165,233,0.04) 0%, transparent 70%)",
           }}
         />
 
-        {/* TOP ROW: Title & Kicker (left) + Description paragraphs (right) */}
-        <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-start justify-start w-full h-auto relative z-10 mt-0.5">
-          {/* LEFT SIDE: Title & Kicker */}
-          <div className="w-full md:w-fit flex flex-col justify-start text-left max-w-[500px] flex-shrink-0">
-            <div className="inline-flex items-center gap-1.5 bg-[#F0F9FF] border border-[#E0F2FE] rounded-full px-3 py-1 text-[10px] md:text-[11px] font-bold tracking-wider text-[#0284C7] w-fit mb-1">
-              <span className="size-1.5 rounded-full bg-[#0284C7] animate-pulse" />
-              DISTRICT 08 • INDUSTRIES WE SERVE
-            </div>
-
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[38px] xl:text-[44px] font-[900] leading-[1.05] tracking-tight text-[#0F172A] font-display">
-              Built for Real Estate. <br />
-              <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#0EA5E9] to-[#2563EB]">
-                Ready for Enterprise.
-                <svg
-                  className="absolute -bottom-0.5 left-0 w-full h-[5px]"
-                  viewBox="0 0 200 5"
-                  fill="none"
-                  preserveAspectRatio="none"
-                >
-                  <path
-                    d="M2 3.5 C 60 1.5, 140 1.5, 198 3.5"
-                    stroke="#0EA5E9"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </span>
-            </h2>
+        {/* TOP: Title & Paragraph Aligned Together on the Left */}
+        <div className="w-full flex flex-col justify-start text-left max-w-3xl relative z-10">
+          <div className="text-[10px] md:text-[11px] font-bold tracking-widest text-[#0ea5e9] uppercase mb-1">
+            INDUSTRIES WE SERVE
           </div>
-
-          {/* RIGHT SIDE: Description Paragraphs */}
-          <div className="w-full md:flex-1 flex flex-col justify-start text-left max-w-[620px] pt-0 md:pt-[24px]">
-            <p className="text-[14.5px] md:text-[18px] lg:text-[20px] font-[800] text-[#0F172A] leading-tight mb-1.5">
-              Deep industry-specific solutions built on Salesforce.
-              <br />
-              We deploy AI where it matters.
-            </p>
-            <p className="text-[12.5px] md:text-[15px] lg:text-[16px] text-slate-500 font-semibold leading-relaxed">
-              We design custom workflows, secure database architectures, and automated customer
-              journeys designed specifically to solve the unique operational pressures of your
-              industry vertical.
-            </p>
-          </div>
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[34px] xl:text-[38px] font-[900] leading-[1.1] tracking-tight text-[#0F172A] font-display mb-2">
+            Built for Real Estate. <span className="text-[#0ea5e9]">Ready for Enterprise.</span>
+          </h2>
+          <p className="text-[12px] md:text-[13px] lg:text-[14px] text-slate-500 font-semibold leading-relaxed max-w-2xl">
+            Indian real estate has one of the most complex pre-sales and post-booking journeys of any sector — site visits, token collections, unit blocking, construction-linked plans, channel partners. We understand it better than any generalist partner.
+          </p>
         </div>
 
-        {/* Divider 1 */}
-        <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-slate-200/80 to-transparent opacity-60 my-0.5 relative z-10" />
+        {/* Divider */}
+        <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-slate-200/80 to-transparent opacity-60 relative z-10" />
 
-        {/* BOTTOM ROW: 3x2 Grid of 6 Premium Industry Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-3.5 w-full max-w-[1120px] mx-auto items-stretch relative z-10 mb-2.5">
+        {/* Grid of 6 Premium Industry Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 w-full max-w-6xl mx-auto items-stretch relative z-10 flex-grow py-1">
           {industries.map((ind) => {
             const IconComp = ind.icon;
-
             return (
               <div
                 key={ind.id}
-                className={`rounded-[20px] p-3.5 flex flex-row items-center gap-3.5 text-left relative overflow-hidden group min-h-[96px] md:min-h-[110px] w-full ${ind.highlight
-                  ? "premium-glass-card-active"
-                  : "premium-glass-card premium-glass-card-hover"
-                  }`}
+                className={`group relative rounded-2xl overflow-hidden flex flex-col justify-end h-[140px] sm:h-[155px] md:h-[175px] lg:h-[195px] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer border ${
+                  ind.isPrimary ? "border-[#E2A857]/40 shadow-[0_4px_20px_rgba(226,168,87,0.08)]" : "border-slate-200/40"
+                }`}
               >
-                {/* Background brand color glow reflection */}
-                <div
-                  className={`absolute -inset-1 bg-gradient-to-br opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500 -z-10 ${ind.highlight
-                    ? "from-[#0EA5E9]/10 to-transparent"
-                    : "from-[#0EA5E9]/5 to-transparent"
-                    }`}
-                />
-
-                {/* 64px Icon Wrapper */}
-                <div
-                  className={`w-[60px] md:w-[64px] h-[60px] md:h-[64px] flex items-center justify-center rounded-xl transition-all duration-300 group-hover:scale-105 flex-shrink-0 ${ind.highlight
-                    ? "bg-gradient-to-br from-[#0EA5E9] to-[#2563EB] text-white shadow-[0_6px_20px_rgba(14,165,233,0.25)]"
-                    : "bg-[#F0F9FF] border border-[#E0F2FE]/50 text-[#0EA5E9] shadow-[0_4px_12px_rgba(14,165,233,0.08)]"
-                    }`}
-                >
-                  <IconComp
-                    className={`w-7 md:w-8 h-7 md:h-8 ${ind.highlight ? "text-white" : "text-[#0EA5E9]"}`}
+                {/* Background image container with Zoom */}
+                <div className="absolute inset-0 z-0 overflow-hidden">
+                  <img
+                    src={ind.bgImage}
+                    alt={ind.title}
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    style={{ objectPosition: "center 30%" }}
+                  />
+                  {/* Full image glassmorphism effect (frosted overlay blur) */}
+                  <div className="absolute inset-0 z-10 backdrop-blur-[1px] bg-slate-950/10 pointer-events-none" />
+                  
+                  {/* Dedicated bottom-only dark gradient overlay (top 65-70% remains visible) */}
+                  <div 
+                    className="absolute inset-0 z-20 pointer-events-none" 
+                    style={{
+                      background: "linear-gradient(to top, rgba(8, 16, 32, 0.9) 0%, rgba(8, 16, 32, 0.65) 30%, rgba(8, 16, 32, 0) 45%, transparent 100%)"
+                    }}
                   />
                 </div>
 
-                <div className="flex-grow min-w-0 flex flex-col justify-center h-full">
-                  <div className="flex items-center gap-1.5 flex-wrap">
-                    <h3 className="text-xs md:text-sm font-[900] text-[#0F172A] leading-tight tracking-tight truncate">
-                      {ind.title}
-                    </h3>
-                    {ind.highlight && (
-                      <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-[#E0F2FE] text-[#0EA5E9] text-[8px] font-black uppercase tracking-wider">
-                        Primary
+                {/* Glassmorphism content panel at the bottom containing badge, icon, title, and description */}
+                <div 
+                  className="relative z-30 w-full p-3 backdrop-blur-md border-t border-white/10 rounded-b-2xl transition-all duration-300 flex flex-col"
+                  style={{ backgroundColor: "rgba(10, 18, 35, 0.82)" }}
+                >
+                  {/* Badge & Icon Row */}
+                  <div className="flex items-center justify-between mb-1 w-full">
+                    <div className="flex items-center gap-1.5">
+                      <div className="size-5 rounded-full bg-white/10 flex items-center justify-center border border-white/10 text-[#0ea5e9]">
+                        <IconComp className="size-3" />
+                      </div>
+                      <span className="text-[8.5px] font-bold tracking-wider text-slate-400 uppercase">{ind.subtitle}</span>
+                    </div>
+                    {ind.isPrimary && (
+                      <span className="text-[7.5px] font-black tracking-widest text-[#E2A857] uppercase bg-[#E2A857]/10 px-1.5 py-0.5 rounded border border-[#E2A857]/30">
+                        PRIMARY
                       </span>
                     )}
                   </div>
 
-                  <p className="text-[10px] md:text-[11px] font-[800] text-[#0EA5E9] mt-0.5 leading-tight truncate">
-                    {ind.subtitle}
-                  </p>
-
-                  <p className="text-[9.5px] md:text-[10.5px] leading-normal text-slate-500 font-semibold mt-1 line-clamp-2 md:line-clamp-3">
+                  <h3 
+                    className="text-[13px] md:text-[14px] lg:text-[15px] font-extrabold text-white leading-tight tracking-tight mb-0.5"
+                    style={{ textShadow: "0 1px 4px rgba(0,0,0,0.3)" }}
+                  >
+                    {ind.title}
+                  </h3>
+                  <p 
+                    className="text-[11px] md:text-[11.5px] lg:text-[12px] leading-[1.4] text-white font-medium"
+                    style={{ textShadow: "0 1px 4px rgba(0,0,0,0.2)" }}
+                  >
                     {ind.desc}
                   </p>
                 </div>
@@ -2389,7 +2369,7 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
         </div>
 
         {/* Bottom Glow reflection element */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4/5 h-[3px] bg-gradient-to-r from-transparent via-[#74CBF4] to-transparent shadow-[0_-4px_30px_rgba(116,203,244,0.95),0_0_15px_rgba(116,203,244,1)] opacity-95 rounded-full pointer-events-none" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4/5 h-[3px] bg-gradient-to-r from-transparent via-[#74CBF4] to-transparent shadow-[0_-4px_30px_rgba(116,203,244,0.95)] opacity-95 rounded-full pointer-events-none" />
       </div>
     );
   }
