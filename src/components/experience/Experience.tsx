@@ -3543,15 +3543,15 @@ function ProductTemplateCard({ productKey }: ProductTemplateCardProps) {
       builtFor: "Customer support teams; IT helpdesk; operations; service departments",
       architecture: "Salesforce-native, official APIs — no middleware",
       pricing: "One-time fee + AMC · no per-message markup",
-      liveWith: "Kohinoor Group · Naiknavare (evaluation)",
+      liveWith: "Naiknavare",
       capabilities: [
         "Email-to-Case automation — capture, create & log cases instantly in Salesforce",
         "Smart routing & assignment — by rules, skills, queues or round-robin",
         "Multi-channel support — email, reply tracking and full conversation history",
         "SLA & escalation management — never miss a committed response",
         "Rich case collaboration — @mentions, internal notes and team updates",
-        "Real-time tracking of agent response and resolution timelines",
-        "AI-generated management summaries — no manual data crunching"
+        "Real-time dashboards & reports — case aging, SLA status, agent performance",
+        "Custom fields & workflows — designed to fit your business processes"
       ]
     },
     "nexora": {
