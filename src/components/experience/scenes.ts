@@ -357,6 +357,14 @@ export const SCENES: Scene[] = [
     ],
   },
   {
+    id: 13,
+    kicker: "Leadership & Team",
+    title: "The Architects Of Growth & Execution.",
+    subtitle:
+      "From strategy and architecture to implementation and client success — meet the team behind every Cascade Tech delivery.",
+    variant: "grid",
+  },
+  {
     id: 12,
     kicker: "District 12 · Conclusion",
     title: "Let's Build Something That Actually Works.",
@@ -365,4 +373,5 @@ export const SCENES: Scene[] = [
     variant: "final",
   },
 ];
+
 

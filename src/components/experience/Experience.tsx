@@ -1349,146 +1349,116 @@ function LeadershipScene({ scene: _scene }: { scene: Scene }) {
   const members = [
     {
       name: "Aashish Yadav",
-      role: "CEO & Co-Founder",
-      desc: "Founded Cascade Tech with a vision to build enterprise Salesforce solutions that solve real business problems through innovation, scalability and customer-first execution.",
+      role: "CEO & Founder",
+      desc: "Sets the vision and client strategy at Cascade Tech — pairing deep Salesforce knowledge with how Indian real estate and enterprises actually sell.",
       image: "/clients/Aashish Yadav.png",
       linkedin: "https://linkedin.com",
+      tags: ["Salesforce", "CRM Strategy", "Business Growth"],
+      impact: "Led 50+ enterprise rollouts across developers.",
+      imgPos: "[object-position:50%_15%]",
     },
     {
       name: "Yash Jain",
       role: "CTO & Co-Founder",
-      desc: "Leads engineering, architecture and AI innovation while building scalable Salesforce ecosystems and enterprise-grade digital products.",
+      desc: "Founded Cascade Tech to help businesses unlock the full potential of Salesforce — bridging technology and business growth with scalable, customer-centric solutions.",
       image: "/clients/Yash Jain.png",
       linkedin: "https://linkedin.com",
+      tags: ["Product Engineering", "AI & Automation"],
+      impact: "Architected 8+ enterprise-grade Salesforce orgs.",
+      imgPos: "[object-position:50%_15%]",
     },
     {
       name: "Pravesh Prajapati",
       role: "Project Manager",
-      desc: "Owns end-to-end Salesforce delivery, ensuring projects remain aligned with scope, timelines and exceptional implementation quality.",
+      desc: "Owns delivery end to end — keeping scope, timeline and quality aligned so every implementation lands on time and on budget.",
       image: "/clients/Pravesh Prajapati.png",
       linkedin: "https://linkedin.com",
+      tags: ["Project Delivery", "CRM Strategy"],
+      impact: "Managed 5+ concurrent enterprise implementations.",
+      imgPos: "object-top",
     },
     {
       name: "Jainam Jain",
       role: "Business Development Head",
-      desc: "Builds strategic partnerships and helps enterprises adopt the right Salesforce products, AI solutions and digital transformation initiatives.",
+      desc: "Leads growth and client partnerships — connecting developers and enterprises with the right Salesforce and product solutions.",
       image: "/clients/Jainam Jain.png",
       linkedin: "https://linkedin.com",
+      tags: ["Business Growth", "CRM Strategy"],
+      impact: "Drives E2E client acquisition & partnership.",
+      imgPos: "object-top",
     },
   ];
 
+
   return (
     <div
-      className="pointer-events-auto rounded-[32px] w-[92vw] md:w-[90vw] h-[88vh] md:h-[82vh] max-w-7xl relative overflow-y-auto flex flex-col pt-6 pb-4 px-4 md:px-12 justify-between border border-[#0d2a6e]/60 shadow-[0_30px_90px_rgba(8,27,69,0.8)]"
+      className="pointer-events-auto rounded-[28px] w-[92vw] md:w-[90vw] h-[88vh] md:h-[84vh] max-w-7xl relative overflow-hidden flex flex-col pt-6 pb-4 px-6 md:px-10 border border-slate-200/70 shadow-[0_24px_80px_rgba(0,55,120,0.13)]"
       style={{
-        background: "radial-gradient(ellipse at 30% 0%, #0d2460 0%, #081B45 45%, #061030 100%)",
-        backdropFilter: "blur(24px)",
+        background: "linear-gradient(160deg, rgba(255,255,255,0.97) 0%, rgba(241,248,255,0.95) 60%, rgba(224,240,255,0.93) 100%)",
+        backdropFilter: "blur(32px)",
       }}
     >
-      {/* Blueprint grid */}
-      <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
-        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="leader-grid" width="48" height="48" patternUnits="userSpaceOnUse">
-              <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#4DA6FF" strokeWidth="0.8" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#leader-grid)" />
-        </svg>
-      </div>
-
-      {/* Ambient glows */}
-      <div className="absolute left-[15%] top-[10%] w-[480px] h-[480px] rounded-full blur-[130px] pointer-events-none opacity-[0.12] bg-[#1E63FF]" />
-      <div className="absolute right-[10%] bottom-[5%] w-[380px] h-[380px] rounded-full blur-[150px] pointer-events-none opacity-[0.08] bg-[#4DA6FF]" />
-
-      {/* Wireframe hex top-right */}
-      <div className="absolute top-5 right-6 opacity-[0.07] pointer-events-none">
-        <svg width="130" height="130" viewBox="0 0 100 100" fill="none" stroke="#4DA6FF" strokeWidth="0.8">
-          <polygon points="50,6 92,29 92,74 50,96 8,74 8,29" />
-          <line x1="50" y1="6" x2="50" y2="96" />
-          <line x1="8" y1="29" x2="92" y2="74" />
-          <line x1="92" y1="29" x2="8" y2="74" />
-        </svg>
-      </div>
-
-      {/* Floating particles */}
-      <div className="absolute top-[18%] left-[8%] w-1.5 h-1.5 rounded-full bg-[#4DA6FF] opacity-25 animate-pulse" />
-      <div className="absolute top-[55%] left-[4%] w-1 h-1 rounded-full bg-[#0EA5E9] opacity-20 animate-pulse" style={{ animationDelay: "1.3s" }} />
-      <div className="absolute bottom-[28%] right-[12%] w-2 h-2 rounded-full bg-[#1E63FF] opacity-15 animate-pulse" style={{ animationDelay: "2.1s" }} />
-      <div className="absolute top-[35%] right-[6%] w-1 h-1 rounded-full bg-sky-400 opacity-20 animate-pulse" style={{ animationDelay: "0.7s" }} />
+      {/* Dot grid texture */}
+      <div
+        className="absolute inset-0 opacity-[0.035] pointer-events-none"
+        style={{ backgroundImage: "radial-gradient(circle, #0077B6 1px, transparent 1px)", backgroundSize: "28px 28px" }}
+      />
+      {/* Glow accents */}
+      <div className="absolute -top-16 -right-16 w-72 h-72 rounded-full blur-[100px] pointer-events-none opacity-[0.18] bg-[#0077B6]" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full blur-[120px] pointer-events-none opacity-[0.08] bg-[#48CAE4]" />
 
       {/* Header */}
-      <div className="flex flex-col items-center text-center mt-1 mb-5 max-w-3xl mx-auto w-full">
-        <span className="inline-flex items-center gap-2 text-[10px] sm:text-[11px] font-black tracking-[0.3em] text-[#4DA6FF] uppercase">
-          <span className="w-4 h-[1px] bg-[#4DA6FF]/60" />
-          LEADERSHIP
-          <span className="w-4 h-[1px] bg-[#4DA6FF]/60" />
+      <div className="flex flex-col items-start mb-4 max-w-2xl relative z-10">
+        <span className="inline-flex items-center gap-1.5 text-[10px] font-black tracking-[0.25em] text-[#0077B6] uppercase bg-[#E0F2FE] border border-[#BAE6FD] rounded-full px-3 py-1 mb-3">
+          <span className="size-1.5 rounded-full bg-[#0077B6] animate-pulse" />
+          Leadership &amp; Team
         </span>
-        <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-[900] tracking-tight text-white mt-2.5 leading-[1.12] font-display">
-          The Vision Behind{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#38BDF8] via-[#60A5FA] to-[#2563EB]">
-            Cascade Tech
+        <h2 className="text-[28px] sm:text-[34px] lg:text-[40px] font-[900] tracking-tight text-[#03045E] leading-[1.1]">
+          The Architects Of{" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0077B6] to-[#00B4D8]">
+            Growth &amp; Execution.
           </span>
         </h2>
-        <p className="text-xs sm:text-sm text-slate-300/75 mt-2.5 font-medium leading-relaxed max-w-xl">
-          From the blueprint to the boardroom — the people driving every successful Salesforce transformation.
+        <p className="text-slate-500 text-[13px] sm:text-sm font-medium leading-relaxed mt-2 max-w-lg">
+          From strategy and architecture to implementation and client success — meet the team behind every Cascade Tech delivery.
         </p>
       </div>
 
-      {/* 2x2 Grid */}
-      <div className="flex-1 flex items-center justify-center px-0 py-1">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 w-full max-w-[980px]">
-          {members.map((m) => (
-            <div
-              key={m.name}
-              className="group relative flex flex-col bg-[#0a1f52]/55 backdrop-blur-md border border-[#1E63FF]/20 rounded-[24px] p-5 sm:p-6 gap-4 cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:border-[#1E63FF]/55 hover:shadow-[0_18px_45px_rgba(30,99,255,0.28)]"
-            >
-              <div className="absolute inset-0 rounded-[24px] bg-[#1E63FF]/0 group-hover:bg-[#1E63FF]/[0.04] transition-all duration-300 pointer-events-none" />
-
-              <div className="w-full overflow-hidden rounded-[18px] border border-[#1E3A8A]/40" style={{ aspectRatio: "4/3" }}>
-                <img
-                  src={m.image}
-                  alt={m.name}
-                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                  loading="eager"
-                />
-              </div>
-
-              <div className="w-full bg-gradient-to-b from-[#0d2460] to-[#091a40] border border-[#1E63FF]/25 rounded-full px-5 py-2.5 text-center">
-                <h3 className="text-sm sm:text-[15px] font-black text-white leading-tight">{m.name}</h3>
-                <p className="text-[11px] font-bold text-[#4DA6FF] mt-0.5 leading-tight">{m.role}</p>
-              </div>
-
-              <div className="w-full flex-1 flex flex-col justify-between bg-[#081B45]/70 backdrop-blur-sm border border-[#143A7B]/35 rounded-2xl px-4 py-3 gap-3">
-                <p className="text-slate-300/90 text-[11px] sm:text-xs leading-relaxed">{m.desc}</p>
-                <div className="flex items-center justify-between pt-2 border-t border-[#143A7B]/40">
-                  <a
-                    href={m.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-slate-400 hover:text-white text-[10px] sm:text-[11px] font-bold transition-colors duration-200 group/li"
-                  >
-                    <Linkedin className="size-3.5 text-[#4DA6FF] transition-transform duration-300 group-hover/li:-translate-y-0.5" />
-                    <span>LinkedIn Profile</span>
-                  </a>
-                  <span className="text-[9px] text-[#4DA6FF]/70 font-black uppercase tracking-wider">Cascade Leader</span>
-                </div>
-              </div>
+      {/* 4-column card grid */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full relative z-10">
+        {members.map((m, idx) => (
+          <div
+            key={m.name}
+            className={`group flex flex-col rounded-2xl border overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_12px_36px_rgba(0,119,182,0.18)] cursor-pointer ${
+              idx === 0
+                ? "border-[#0077B6]/40 shadow-[0_4px_24px_rgba(0,119,182,0.15)] bg-white"
+                : "border-slate-200/80 bg-white/80 hover:border-[#0077B6]/30"
+            }`}
+          >
+            {/* Photo – 4:3 aspect ratio */}
+            <div className="w-full overflow-hidden" style={{ aspectRatio: "4/3" }}>
+              <img
+                src={m.image}
+                alt={m.name}
+                className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${m.imgPos}`}
+                loading="eager"
+              />
             </div>
-          ))}
-        </div>
+
+            {/* Info */}
+            <div className="flex flex-col px-4 pt-3 pb-4 gap-1.5">
+              <h3 className="text-[14px] font-black text-[#03045E] leading-tight">{m.name}</h3>
+              <p className="text-[11px] font-bold text-[#0077B6] leading-tight">{m.role}</p>
+              <p className="text-slate-500 text-[11px] leading-relaxed mt-1">{m.desc}</p>
+            </div>
+          </div>
+        ))}
       </div>
 
-      {/* Bottom tagline */}
-      <div className="mt-4 pt-3.5 flex flex-col items-center text-center relative flex-shrink-0">
-        <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-[#1E63FF]/30 to-transparent mb-3" />
-        <span className="text-[10px] text-slate-400/70 font-semibold italic tracking-wide">
-          &ldquo;The people behind every successful Salesforce transformation.&rdquo;
-        </span>
-      </div>
     </div>
   );
 }
+
 
 function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: Scene; isActive?: boolean; activeCardIdx?: number }) {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
