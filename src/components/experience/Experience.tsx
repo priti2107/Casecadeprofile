@@ -3651,70 +3651,52 @@ function ProductTemplateCard({ productKey }: ProductTemplateCardProps) {
       </div>
 
       {/* ── CONTENT CONTAINER ── */}
-      <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-5 overflow-y-auto">
+      <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-4 overflow-hidden">
         
         {/* Left Column (60%) */}
-        <div className="lg:col-span-7 flex flex-col gap-4">
-          {/* Section 1: The Problem It Solves */}
+        <div className="lg:col-span-7 flex flex-col gap-4 min-h-0">
+          {/* Business Challenge Card */}
           <div 
-            className="glass-card-hover p-4 rounded-[24px] border border-[rgba(59,130,246,0.12)] flex flex-col gap-2.5 relative overflow-hidden"
+            className="glass-card-hover p-2.5 rounded-[16px] border border-[rgba(59,130,246,0.12)] flex flex-col gap-1 relative overflow-hidden"
             style={{
-              background: "linear-gradient(135deg, #FFFFFF 0%, #F3F9FF 100%)",
-              boxShadow: "0 10px 35px rgba(37,99,235,0.08), 0 2px 8px rgba(37,99,235,0.05), inset 0 1px 0 rgba(255,255,255,0.8)"
+              background: "linear-gradient(135deg, #FFFFFF 0%, #F6FAFF 100%)",
+              boxShadow: "0 4px 15px rgba(37,99,235,0.03), 0 1px 3px rgba(37,99,235,0.02), inset 0 1px 0 rgba(255,255,255,0.8)"
             }}
           >
             {/* Left Accent gradient strip */}
-            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-16 rounded-r-md bg-gradient-to-b from-[#F43F5E] to-[#FDA4AF]" />
-            {/* Soft decorative elements inside card */}
-            <div className="absolute right-0 top-0 w-24 h-24 rounded-full pointer-events-none opacity-[0.03]" style={{ background: "radial-gradient(circle, #F43F5E 0%, transparent 70%)" }} />
-            <div className="absolute inset-0 pointer-events-none opacity-[0.02]" style={{ backgroundImage: "radial-gradient(#F43F5E 1px, transparent 1px)", backgroundSize: "10px 10px" }} />
-            
-            <div className="flex items-center gap-3 text-rose-500 pl-2">
-              <div className="w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center">
-                <AlertTriangle className="w-4.5 h-4.5" />
-              </div>
-              <div className="min-w-0">
-                <span className="text-[10px] font-black uppercase tracking-wider text-[#3B82F6]/70 mb-0.5 block">ANALYSIS</span>
-                <span className="text-[13px] font-extrabold text-[#0A1628] leading-none">The Problem It Solves</span>
-              </div>
+            <div className="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-[#F43F5E] to-[#FDA4AF]" />
+            <div className="flex items-center gap-2 text-rose-500 pl-1.5">
+              <AlertTriangle className="w-3.5 h-3.5" />
+              <span className="text-[9.5px] font-black uppercase tracking-wider text-[#3B82F6]/75">Business Challenge</span>
             </div>
-            <p className="text-[12.5px] font-semibold leading-relaxed text-slate-500 pl-2">
+            <p className="text-[11.5px] md:text-[12px] font-semibold leading-relaxed text-slate-500 pl-2">
               {placeholders.problem}
             </p>
           </div>
 
-          {/* Section 2: What It Does */}
+          {/* Our Solution Card */}
           <div 
-            className="glass-card-hover p-4 rounded-[24px] border border-[rgba(59,130,246,0.12)] flex flex-col gap-2.5 relative overflow-hidden"
+            className="glass-card-hover p-2.5 rounded-[16px] border border-[rgba(59,130,246,0.12)] flex flex-col gap-1 relative overflow-hidden"
             style={{
               background: "linear-gradient(135deg, #FFFFFF 0%, #F3F9FF 100%)",
-              boxShadow: "0 10px 35px rgba(37,99,235,0.08), 0 2px 8px rgba(37,99,235,0.05), inset 0 1px 0 rgba(255,255,255,0.8)"
+              boxShadow: "0 4px 15px rgba(37,99,235,0.03), 0 1px 3px rgba(37,99,235,0.02), inset 0 1px 0 rgba(255,255,255,0.8)"
             }}
           >
             {/* Left Accent gradient strip */}
-            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-16 rounded-r-md bg-gradient-to-b from-[#3B82F6] to-[#93C5FD]" />
-            {/* Soft decorative elements inside card */}
-            <div className="absolute right-0 top-0 w-24 h-24 rounded-full pointer-events-none opacity-[0.03]" style={{ background: "radial-gradient(circle, #3B82F6 0%, transparent 70%)" }} />
-            <div className="absolute inset-0 pointer-events-none opacity-[0.02]" style={{ backgroundImage: "radial-gradient(#0077B6 1px, transparent 1px)", backgroundSize: "10px 10px" }} />
-            
-            <div className="flex items-center gap-3 text-sky-500 pl-2">
-              <div className="w-8 h-8 rounded-full bg-sky-50 flex items-center justify-center">
-                <Sparkles className="w-4.5 h-4.5" />
-              </div>
-              <div className="min-w-0">
-                <span className="text-[10px] font-black uppercase tracking-wider text-[#3B82F6]/70 mb-0.5 block">SOLUTION</span>
-                <span className="text-[13px] font-extrabold text-[#0A1628] leading-none">What It Does</span>
-              </div>
+            <div className="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-[#3B82F6] to-[#93C5FD]" />
+            <div className="flex items-center gap-2 text-sky-500 pl-1.5">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span className="text-[9.5px] font-black uppercase tracking-wider text-[#3B82F6]/75">Our Solution</span>
             </div>
-            <p className="text-[12.5px] font-semibold leading-relaxed text-slate-500 pl-2">
+            <p className="text-[11.5px] md:text-[12px] font-semibold leading-relaxed text-slate-500 pl-2">
               {placeholders.does}
             </p>
           </div>
 
-          {/* Section 3: 2x2 Specifications Grid */}
-          <div className="flex flex-col gap-2">
-            <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Specifications</h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {/* Section 3: Four Separate Specification Cards */}
+          <div className="flex flex-col gap-1.5">
+            <h4 className="text-[9px] font-black text-slate-400 uppercase tracking-widest pl-1">Specifications</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               {[
                 { label: "Built For", value: placeholders.builtFor, icon: Users },
                 { label: "Architecture", value: placeholders.architecture, icon: Workflow },
@@ -3722,24 +3704,36 @@ function ProductTemplateCard({ productKey }: ProductTemplateCardProps) {
                 { label: "Live With", value: placeholders.liveWith, icon: Landmark }
               ].map((spec, i) => {
                 const Icon = spec.icon;
+                
+                // Parse values by splitting on common separators (new lines, commas, bullets, semicolons)
+                const items = spec.value
+                  .split(/[\n,·;]+/)
+                  .map(v => v.trim())
+                  .filter(v => v.length > 0);
+
                 return (
                   <div 
                     key={i} 
-                    className="spec-tile-hover p-4 rounded-[24px] border border-[rgba(59,130,246,0.12)] flex items-start gap-3 relative overflow-hidden"
+                    className="spec-tile-hover p-2.5 rounded-[16px] border border-[rgba(59,130,246,0.12)] flex flex-col gap-1.5 relative overflow-hidden"
                     style={{
-                      background: "linear-gradient(135deg, #FFFFFF 0%, #E6F3FF 100%)",
-                      boxShadow: "0 10px 35px rgba(37,99,235,0.06), 0 2px 8px rgba(37,99,235,0.03)"
+                      background: "linear-gradient(135deg, #FFFFFF 0%, #F6FAFF 100%)",
+                      boxShadow: "0 4px 15px rgba(37,99,235,0.03), 0 1px 3px rgba(37,99,235,0.02)"
                     }}
                   >
                     {/* Left Accent gradient strip */}
-                    <div className="absolute left-0 top-0 w-1.5 h-full bg-gradient-to-b from-[#3B82F6]/80 to-[#93C5FD]/60" />
+                    <div className="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-[#3B82F6] to-[#93C5FD]" />
                     
-                    <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <Icon className="w-4 h-4 text-blue-500" />
+                    <div className="flex items-center gap-1.5 text-slate-400 pl-1">
+                      <Icon className="w-3 h-3 text-[#3B82F6]" />
+                      <span className="text-[8.5px] font-black uppercase tracking-wider text-[#3B82F6]/75">{spec.label}</span>
                     </div>
-                    <div className="min-w-0 flex-1">
-                      <span className="text-[9px] font-black uppercase tracking-wider text-[#3B82F6]/60 mb-0.5 block">{spec.label}</span>
-                      <p className="text-[11px] font-extrabold text-slate-700 leading-tight" style={{ whiteSpace: "pre-line" }}>{spec.value}</p>
+                    
+                    <div className="flex flex-wrap gap-1 pl-1">
+                      {items.map((val, idx) => (
+                        <span key={idx} className="inline-flex items-center px-2 py-0.5 rounded-full bg-[#EFF8FF] border border-[#BFDBFE]/45 text-[#0077B6] text-[9.5px] font-bold">
+                          {val}
+                        </span>
+                      ))}
                     </div>
                   </div>
                 );
@@ -3749,26 +3743,26 @@ function ProductTemplateCard({ productKey }: ProductTemplateCardProps) {
         </div>
 
         {/* Right Column (40%) */}
-        <div className="lg:col-span-5 flex flex-col h-full">
+        <div className="lg:col-span-5 flex flex-col min-h-0">
           <div 
-            className="p-4 rounded-[24px] border border-[rgba(59,130,246,0.15)] flex flex-col h-full shadow-[0_10px_35px_rgba(37,99,235,0.06)] relative overflow-hidden"
+            className="p-3.5 rounded-[20px] border border-[rgba(59,130,246,0.15)] flex flex-col h-full shadow-[0_6px_20px_rgba(37,99,235,0.04)] relative overflow-hidden"
             style={{ background: "linear-gradient(180deg, #F6FBFF, #EEF7FF)" }}
           >
             {/* Blueprint bg dots for capability card */}
-            <div className="absolute inset-0 pointer-events-none opacity-[0.035]" style={{ backgroundImage: "radial-gradient(#0077B6 1px, transparent 1px)", backgroundSize: "16px 16px" }} />
+            <div className="absolute inset-0 pointer-events-none opacity-[0.03]" style={{ backgroundImage: "radial-gradient(#0077B6 1px, transparent 1px)", backgroundSize: "16px 16px" }} />
             
-            <h3 className="text-[13px] font-black text-[#0A1628] uppercase tracking-wider mb-4 relative z-10">Key Capabilities</h3>
-            <div className="flex-1 overflow-y-auto pr-1 flex flex-col relative z-10">
+            <h3 className="text-[11px] font-black text-[#0A1628] uppercase tracking-wider mb-2 relative z-10">Key Capabilities</h3>
+            <div className="flex-1 overflow-y-auto pr-1 flex flex-col relative z-10 justify-between">
               {placeholders.capabilities.map((cap, i) => (
                 <div key={i} className="flex flex-col">
-                  <div className="flex items-start gap-3 py-3.5 px-3 rounded-xl transition-all duration-200 hover:bg-[#F4F9FF]">
-                    <div className="w-6 h-6 rounded-full bg-white border border-[#BFDBFE] flex items-center justify-center flex-shrink-0 mt-0.5 shadow-[0_0_8px_rgba(59,130,246,0.18)]">
-                      <Check className="w-3.5 h-3.5 text-[#0077B6] stroke-[3.5]" />
+                  <div className="flex items-start gap-2.5 py-2 px-2.5 rounded-lg transition-all duration-200 hover:bg-[#F4F9FF]">
+                    <div className="w-5 h-5 rounded-full bg-white border border-[#BFDBFE] flex items-center justify-center flex-shrink-0 mt-0.5 shadow-[0_0_6px_rgba(59,130,246,0.12)]">
+                      <Check className="w-3 h-3 text-[#0077B6] stroke-[3.5]" />
                     </div>
-                    <span className="text-[14.5px] md:text-[16px] font-extrabold text-[#0A1628] leading-snug">{cap}</span>
+                    <span className="text-[13px] md:text-[14px] font-extrabold text-[#0A1628] leading-tight">{cap}</span>
                   </div>
                   {i < placeholders.capabilities.length - 1 && (
-                    <div className="h-[1px] w-full bg-[#3B82F6]/10" />
+                    <div className="h-[1px] w-full bg-[#3B82F6]/5" />
                   )}
                 </div>
               ))}
