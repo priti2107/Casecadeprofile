@@ -191,45 +191,57 @@ function SceneOverlay({
   let scaleOutput: number[];
 
   if (index === 0) {
-    opacityRange = [0, w * 0.75];
+    opacityRange = [0, w];
     opacityOutput = [1, 0];
 
-    yRange = [0, w * 0.75];
+    yRange = [0, w];
     yOutput = [0, -60];
 
-    scaleRange = [0, w * 0.75];
+    scaleRange = [0, w];
     scaleOutput = [1, 1.04];
   } else if (index === N - 1) {
-    opacityRange = [1 - w * 0.75, 1];
+    opacityRange = [1 - w, 1];
     opacityOutput = [0, 1];
 
-    yRange = [1 - w * 0.75, 1];
+    yRange = [1 - w, 1];
     yOutput = [60, 0];
 
-    scaleRange = [1 - w * 0.75, 1];
+    scaleRange = [1 - w, 1];
     scaleOutput = [0.94, 1];
   } else {
-    opacityRange = getSafeRange3(center - w * 0.75, center, center + w * 0.75);
+    opacityRange = getSafeRange3(center - w, center, center + w);
     opacityOutput = [0, 1, 0];
 
-    yRange = getSafeRange3(center - w * 0.75, center, center + w * 0.75);
+    yRange = getSafeRange3(center - w, center, center + w);
     yOutput = [60, 0, -60];
 
-    scaleRange = getSafeRange3(center - w * 0.75, center, center + w * 0.75);
+    scaleRange = getSafeRange3(center - w, center, center + w);
     scaleOutput = [0.94, 1, 1.04];
   }
+
+  const isCurrentActive = active === index;
 
   const opacity = useTransform(progress, opacityRange, opacityOutput, { clamp: true });
   const y = useTransform(progress, yRange, yOutput, { clamp: true });
   const scale = useTransform(progress, scaleRange, scaleOutput, { clamp: true });
-  const visibility = useTransform(opacity, (o) => (o > 0.01 ? "visible" : "hidden"));
+
+  // Strictly map visibility and pointerEvents dynamically to only allow the active slide
+  const visibility = useTransform(opacity, (o) => (isCurrentActive && o > 0.01 ? "visible" : "hidden"));
+  const pointerEvents = useTransform(opacity, (o) => (isCurrentActive && o > 0.99 ? "auto" : "none"));
 
   const shouldRender = Math.abs(active - index) <= 1;
   if (!shouldRender) return null;
+
   return (
     <motion.div
-      style={{ opacity, y, scale, visibility }}
-      className={`pointer-events-none fixed inset-0 z-10 flex items-center justify-center px-6 md:px-12 py-10`}
+      style={{
+        opacity,
+        y,
+        scale,
+        visibility,
+        pointerEvents
+      }}
+      className="fixed inset-0 z-10 flex items-center justify-center px-6 md:px-12 py-10 pointer-events-none"
     >
       <SceneContent scene={scene} isActive={active === index} activeCardIdx={activeCardIdx} />
     </motion.div>
@@ -1429,11 +1441,10 @@ function LeadershipScene({ scene: _scene }: { scene: Scene }) {
         {members.map((m, idx) => (
           <div
             key={m.name}
-            className={`group flex flex-col rounded-2xl border overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_12px_36px_rgba(0,119,182,0.18)] cursor-pointer ${
-              idx === 0
-                ? "border-[#0077B6]/40 shadow-[0_4px_24px_rgba(0,119,182,0.15)] bg-white"
-                : "border-slate-200/80 bg-white/80 hover:border-[#0077B6]/30"
-            }`}
+            className={`group flex flex-col rounded-2xl border overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_12px_36px_rgba(0,119,182,0.18)] cursor-pointer ${idx === 0
+              ? "border-[#0077B6]/40 shadow-[0_4px_24px_rgba(0,119,182,0.15)] bg-white"
+              : "border-slate-200/80 bg-white/80 hover:border-[#0077B6]/30"
+              }`}
           >
             {/* Photo – 4:3 aspect ratio */}
             <div className="w-full overflow-hidden" style={{ aspectRatio: "4/3" }}>
@@ -3624,7 +3635,7 @@ function ProductTemplateCard({ productKey }: ProductTemplateCardProps) {
 
       {/* ── HEADER ── */}
       <div className="flex flex-col md:flex-row items-start md:items-center gap-5 flex-shrink-0 border-b border-slate-100 pb-4">
-        <div 
+        <div
           className="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-white border border-sky-100 flex items-center justify-center flex-shrink-0 relative"
           style={{
             boxShadow: "0 12px 30px rgba(0,119,182,0.08), 0 0 20px rgba(59,169,245,0.12) inset",
@@ -3652,11 +3663,11 @@ function ProductTemplateCard({ productKey }: ProductTemplateCardProps) {
 
       {/* ── CONTENT CONTAINER ── */}
       <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-4 overflow-hidden">
-        
+
         {/* Left Column (60%) */}
         <div className="lg:col-span-7 flex flex-col gap-4 min-h-0">
           {/* Business Challenge Card */}
-          <div 
+          <div
             className="glass-card-hover p-2.5 rounded-[16px] border border-[rgba(59,130,246,0.12)] flex flex-col gap-1 relative overflow-hidden"
             style={{
               background: "linear-gradient(135deg, #FFFFFF 0%, #F6FAFF 100%)",
@@ -3675,7 +3686,7 @@ function ProductTemplateCard({ productKey }: ProductTemplateCardProps) {
           </div>
 
           {/* Our Solution Card */}
-          <div 
+          <div
             className="glass-card-hover p-2.5 rounded-[16px] border border-[rgba(59,130,246,0.12)] flex flex-col gap-1 relative overflow-hidden"
             style={{
               background: "linear-gradient(135deg, #FFFFFF 0%, #F3F9FF 100%)",
@@ -3704,7 +3715,7 @@ function ProductTemplateCard({ productKey }: ProductTemplateCardProps) {
                 { label: "Live With", value: placeholders.liveWith, icon: Landmark }
               ].map((spec, i) => {
                 const Icon = spec.icon;
-                
+
                 // Parse values by splitting on common separators (new lines, commas, bullets, semicolons)
                 const items = spec.value
                   .split(/[\n,·;]+/)
@@ -3712,8 +3723,8 @@ function ProductTemplateCard({ productKey }: ProductTemplateCardProps) {
                   .filter(v => v.length > 0);
 
                 return (
-                  <div 
-                    key={i} 
+                  <div
+                    key={i}
                     className="spec-tile-hover p-2.5 rounded-[16px] border border-[rgba(59,130,246,0.12)] flex flex-col gap-1.5 relative overflow-hidden"
                     style={{
                       background: "linear-gradient(135deg, #FFFFFF 0%, #F6FAFF 100%)",
@@ -3722,12 +3733,12 @@ function ProductTemplateCard({ productKey }: ProductTemplateCardProps) {
                   >
                     {/* Left Accent gradient strip */}
                     <div className="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-[#3B82F6] to-[#93C5FD]" />
-                    
+
                     <div className="flex items-center gap-1.5 text-slate-400 pl-1">
                       <Icon className="w-3 h-3 text-[#3B82F6]" />
                       <span className="text-[8.5px] font-black uppercase tracking-wider text-[#3B82F6]/75">{spec.label}</span>
                     </div>
-                    
+
                     <div className="flex flex-wrap gap-1 pl-1">
                       {items.map((val, idx) => (
                         <span key={idx} className="inline-flex items-center px-2 py-0.5 rounded-full bg-[#EFF8FF] border border-[#BFDBFE]/45 text-[#0077B6] text-[9.5px] font-bold">
@@ -3744,13 +3755,13 @@ function ProductTemplateCard({ productKey }: ProductTemplateCardProps) {
 
         {/* Right Column (40%) */}
         <div className="lg:col-span-5 flex flex-col min-h-0">
-          <div 
+          <div
             className="p-3.5 rounded-[20px] border border-[rgba(59,130,246,0.15)] flex flex-col h-full shadow-[0_6px_20px_rgba(37,99,235,0.04)] relative overflow-hidden"
             style={{ background: "linear-gradient(180deg, #F6FBFF, #EEF7FF)" }}
           >
             {/* Blueprint bg dots for capability card */}
             <div className="absolute inset-0 pointer-events-none opacity-[0.03]" style={{ backgroundImage: "radial-gradient(#0077B6 1px, transparent 1px)", backgroundSize: "16px 16px" }} />
-            
+
             <h3 className="text-[11px] font-black text-[#0A1628] uppercase tracking-wider mb-2 relative z-10">Key Capabilities</h3>
             <div className="flex-1 overflow-y-auto pr-1 flex flex-col relative z-10 justify-between">
               {placeholders.capabilities.map((cap, i) => (
@@ -5448,7 +5459,9 @@ export default function Experience() {
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
     progressRef.current = v;
-    setActive(Math.min(N - 1, Math.round(v * (N - 1))));
+    const currentActive = Math.min(N - 1, Math.round(v * (N - 1)));
+    setActive(currentActive);
+    targetActiveRef.current = currentActive;
   });
 
   const barScaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
@@ -5466,8 +5479,8 @@ export default function Experience() {
     const scrollObj = { y: window.scrollY };
     scrollTween.current = gsap.to(scrollObj, {
       y: targetScrollTop,
-      duration: 1.0,
-      ease: "power2.inOut",
+      duration: 0.45,
+      ease: "power2.out",
       onUpdate: () => {
         window.scrollTo(0, scrollObj.y);
       },
@@ -5491,10 +5504,69 @@ export default function Experience() {
     }
   };
 
-  // Turn off manual scroll events
+  // Expose navigation methods on the window object to serve as a unified navigation controller
   useEffect(() => {
-    const preventDefault = (e: Event) => {
+    (window as any).__experienceNavigateToScene = (sceneIndex: number) => {
+      scrollToScene(sceneIndex);
+    };
+    (window as any).__experienceNavigateNext = () => {
+      handleNextSection();
+    };
+    (window as any).__experienceNavigatePrev = () => {
+      handlePrevSection();
+    };
+    (window as any).__experienceActiveIndex = active;
+    (window as any).__experienceTotalScenes = N;
+
+    return () => {
+      delete (window as any).__experienceNavigateToScene;
+      delete (window as any).__experienceNavigateNext;
+      delete (window as any).__experienceNavigatePrev;
+      delete (window as any).__experienceActiveIndex;
+      delete (window as any).__experienceTotalScenes;
+    };
+  }, [active, N]);
+
+  // Turn off manual scroll events and implement smooth, debounced wheel scroll navigation
+  useEffect(() => {
+    let lastWheelTime = 0;
+    const scrollCooldown = 800; // ms to wait between transitions
+
+    const handleWheel = (e: WheelEvent) => {
       // Allow scrolling inside elements with overflow-y-auto or overflow-y-scroll
+      const path = e.composedPath();
+      for (const el of path) {
+        if (el instanceof HTMLElement) {
+          const style = window.getComputedStyle(el);
+          if (
+            el.scrollHeight > el.clientHeight &&
+            (style.overflowY === "auto" || style.overflowY === "scroll")
+          ) {
+            return;
+          }
+        }
+      }
+      
+      e.preventDefault();
+
+      // Check cooldown and active tween state
+      const now = Date.now();
+      if (now - lastWheelTime < scrollCooldown || scrollTween.current) {
+        return;
+      }
+
+      const threshold = 18; // ignore micro-scroll variations
+      if (Math.abs(e.deltaY) > threshold) {
+        lastWheelTime = now;
+        if (e.deltaY > 0) {
+          handleNextSection();
+        } else {
+          handlePrevSection();
+        }
+      }
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
       const path = e.composedPath();
       for (const el of path) {
         if (el instanceof HTMLElement) {
@@ -5510,14 +5582,14 @@ export default function Experience() {
       e.preventDefault();
     };
 
-    window.addEventListener("wheel", preventDefault, { passive: false });
-    window.addEventListener("touchmove", preventDefault, { passive: false });
+    window.addEventListener("wheel", handleWheel, { passive: false });
+    window.addEventListener("touchmove", handleTouchMove, { passive: false });
 
     return () => {
-      window.removeEventListener("wheel", preventDefault);
-      window.removeEventListener("touchmove", preventDefault);
+      window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("touchmove", handleTouchMove);
     };
-  }, []);
+  }, [active, N]);
 
   // Keyboard controls
   const activeRef = useRef(active);
@@ -5557,16 +5629,10 @@ export default function Experience() {
 
       if (isDown || isRight) {
         e.preventDefault();
-        if (targetActiveRef.current < N - 1) {
-          targetActiveRef.current += 1;
-          scrollToScene(targetActiveRef.current);
-        }
+        handleNextSection();
       } else if (isUp || isLeft) {
         e.preventDefault();
-        if (targetActiveRef.current > 0) {
-          targetActiveRef.current -= 1;
-          scrollToScene(targetActiveRef.current);
-        }
+        handlePrevSection();
       }
     };
 
@@ -5652,35 +5718,6 @@ export default function Experience() {
             </button>
           );
         })}
-      </div>
-
-      {/* Floating global page navigation controls */}
-      <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex flex-row items-center gap-3 bg-white/70 backdrop-blur-md border border-slate-200/50 rounded-full p-1.5 shadow-lg select-none pointer-events-auto">
-        {/* Prev Button */}
-        <button
-          onClick={handlePrevSection}
-          disabled={active === 0}
-          className={`group/btn w-8.5 h-8.5 rounded-full bg-white flex items-center justify-center border border-slate-200/60 shadow-sm transition-all duration-300 ${active === 0
-            ? "opacity-25 cursor-not-allowed text-slate-400"
-            : "cursor-pointer text-slate-600 hover:text-[#0EA5E9] hover:border-[#0EA5E9]/30 hover:scale-110 hover:shadow-[0_0_12px_rgba(14,165,233,0.2)]"
-            }`}
-          aria-label="Previous Section"
-        >
-          <ChevronLeft className="w-4 h-4 transition-transform duration-300 group-hover/btn:-translate-x-0.5" />
-        </button>
-
-        {/* Next Button */}
-        <button
-          onClick={handleNextSection}
-          disabled={active === N - 1}
-          className={`group/btn w-8.5 h-8.5 rounded-full bg-white flex items-center justify-center border border-slate-200/60 shadow-sm transition-all duration-300 ${active === N - 1
-            ? "opacity-25 cursor-not-allowed text-slate-400"
-            : "cursor-pointer text-slate-600 hover:text-[#0EA5E9] hover:border-[#0EA5E9]/30 hover:scale-110 hover:shadow-[0_0_12px_rgba(14,165,233,0.2)]"
-            }`}
-          aria-label="Next Section"
-        >
-          <ChevronRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-0.5" />
-        </button>
       </div>
 
       {/* Bottom progress bar */}
