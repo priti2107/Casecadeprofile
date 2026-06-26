@@ -343,7 +343,7 @@ export const SCENES: Scene[] = [
     id: 17,
     kicker: "PROPRIETARY PRODUCT",
     title: "Nexora",
-    subtitle: "Partner & Sourcing Management Platform",
+    subtitle: "Empowering Sourcing Teams to Manage Partners, Activities & Growth Intelligence",
   },
   {
     id: 11,

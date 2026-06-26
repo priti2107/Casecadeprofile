@@ -3557,20 +3557,21 @@ function ProductTemplateCard({ productKey }: ProductTemplateCardProps) {
     "nexora": {
       logo: "/clients/nexora.png",
       title: "Nexora",
-      tagline: "Partner & Sourcing Management Platform",
-      problem: "Managing external partner relations, project sourcing, scheduling partner meetings, and tracking deal pipelines across fragmented systems makes channel-sales coordination inefficient.",
-      does: "Nexora provides a unified portal for partner network collaboration. It automates meeting scheduling, tracks partner activity, handles deal pipelines natively inside Salesforce, and delivers growth dashboards to accelerate channel sales.",
-      builtFor: "Channel sales managers, partnership heads, project sourcing teams",
-      architecture: "Salesforce-native, secure partner portal framework",
-      pricing: "One-time setup fee + active partner licensing",
-      liveWith: "120+ active partners across leading real estate networks",
+      tagline: "Empowering Sourcing Teams to Manage Partners, Activities & Growth Intelligence",
+      problem: "Sourcing teams manage multiple channel partners, daily meetings, field visits, follow-ups, and relationship activities across different platforms. Without a centralized sourcing management system, teams struggle with missed follow-ups, untracked meetings, incomplete activity visibility, and lack of insights into sourcing manager productivity.",
+      does: "The platform provides real-time visibility into sourcing operations, automates follow-ups, and helps leadership improve sourcing efficiency through structured workflows and actionable insights.",
+      builtFor: "Sourcing Managers, Channel Partner Teams, Sales Heads, CRM Heads, Operations leader,",
+      architecture: "100% native Salesforce · Apex · Flow · Lightning Web Components · Reports",
+      pricing: "Flexible licensing model · One-time implementation + customized-pricing",
+      liveWith: "Nandivardhan · Raunak",
       capabilities: [
-        "Automated meeting scheduling & partner availability calendar sync",
-        "Real-time partner network directory with contact management",
-        "Activity tracker monitoring partner engagement and follow-up metrics",
-        "Deal pipeline visualizer showing channel deals stage-by-stage",
-        "Automated commission calculations and brokerage processing",
-        "Growth dashboard mapping partner sourcing trends and historical sales performance"
+        "Smart Sourcing Activity Management",
+        "Partner 360° View",
+        "Location-Based Field Tracking",
+        "Channel Partner (CP) Management",
+        "Partner Onboarding Journey",
+        "Task & Follow-Up Automation",
+        "Communication History Tracking"
       ]
     }
   };
