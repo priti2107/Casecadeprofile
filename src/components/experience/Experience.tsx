@@ -1345,6 +1345,151 @@ function ProductEcosystemScene() {
   );
 }
 
+function LeadershipScene({ scene: _scene }: { scene: Scene }) {
+  const members = [
+    {
+      name: "Aashish Yadav",
+      role: "CEO & Co-Founder",
+      desc: "Founded Cascade Tech with a vision to build enterprise Salesforce solutions that solve real business problems through innovation, scalability and customer-first execution.",
+      image: "/clients/Aashish Yadav.png",
+      linkedin: "https://linkedin.com",
+    },
+    {
+      name: "Yash Jain",
+      role: "CTO & Co-Founder",
+      desc: "Leads engineering, architecture and AI innovation while building scalable Salesforce ecosystems and enterprise-grade digital products.",
+      image: "/clients/Yash Jain.png",
+      linkedin: "https://linkedin.com",
+    },
+    {
+      name: "Pravesh Prajapati",
+      role: "Project Manager",
+      desc: "Owns end-to-end Salesforce delivery, ensuring projects remain aligned with scope, timelines and exceptional implementation quality.",
+      image: "/clients/Pravesh Prajapati.png",
+      linkedin: "https://linkedin.com",
+    },
+    {
+      name: "Jainam Jain",
+      role: "Business Development Head",
+      desc: "Builds strategic partnerships and helps enterprises adopt the right Salesforce products, AI solutions and digital transformation initiatives.",
+      image: "/clients/Jainam Jain.png",
+      linkedin: "https://linkedin.com",
+    },
+  ];
+
+  return (
+    <div
+      className="pointer-events-auto rounded-[32px] w-[92vw] md:w-[90vw] h-[88vh] md:h-[82vh] max-w-7xl relative overflow-y-auto flex flex-col pt-6 pb-4 px-4 md:px-12 justify-between border border-[#0d2a6e]/60 shadow-[0_30px_90px_rgba(8,27,69,0.8)]"
+      style={{
+        background: "radial-gradient(ellipse at 30% 0%, #0d2460 0%, #081B45 45%, #061030 100%)",
+        backdropFilter: "blur(24px)",
+      }}
+    >
+      {/* Blueprint grid */}
+      <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="leader-grid" width="48" height="48" patternUnits="userSpaceOnUse">
+              <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#4DA6FF" strokeWidth="0.8" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#leader-grid)" />
+        </svg>
+      </div>
+
+      {/* Ambient glows */}
+      <div className="absolute left-[15%] top-[10%] w-[480px] h-[480px] rounded-full blur-[130px] pointer-events-none opacity-[0.12] bg-[#1E63FF]" />
+      <div className="absolute right-[10%] bottom-[5%] w-[380px] h-[380px] rounded-full blur-[150px] pointer-events-none opacity-[0.08] bg-[#4DA6FF]" />
+
+      {/* Wireframe hex top-right */}
+      <div className="absolute top-5 right-6 opacity-[0.07] pointer-events-none">
+        <svg width="130" height="130" viewBox="0 0 100 100" fill="none" stroke="#4DA6FF" strokeWidth="0.8">
+          <polygon points="50,6 92,29 92,74 50,96 8,74 8,29" />
+          <line x1="50" y1="6" x2="50" y2="96" />
+          <line x1="8" y1="29" x2="92" y2="74" />
+          <line x1="92" y1="29" x2="8" y2="74" />
+        </svg>
+      </div>
+
+      {/* Floating particles */}
+      <div className="absolute top-[18%] left-[8%] w-1.5 h-1.5 rounded-full bg-[#4DA6FF] opacity-25 animate-pulse" />
+      <div className="absolute top-[55%] left-[4%] w-1 h-1 rounded-full bg-[#0EA5E9] opacity-20 animate-pulse" style={{ animationDelay: "1.3s" }} />
+      <div className="absolute bottom-[28%] right-[12%] w-2 h-2 rounded-full bg-[#1E63FF] opacity-15 animate-pulse" style={{ animationDelay: "2.1s" }} />
+      <div className="absolute top-[35%] right-[6%] w-1 h-1 rounded-full bg-sky-400 opacity-20 animate-pulse" style={{ animationDelay: "0.7s" }} />
+
+      {/* Header */}
+      <div className="flex flex-col items-center text-center mt-1 mb-5 max-w-3xl mx-auto w-full">
+        <span className="inline-flex items-center gap-2 text-[10px] sm:text-[11px] font-black tracking-[0.3em] text-[#4DA6FF] uppercase">
+          <span className="w-4 h-[1px] bg-[#4DA6FF]/60" />
+          LEADERSHIP
+          <span className="w-4 h-[1px] bg-[#4DA6FF]/60" />
+        </span>
+        <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-[900] tracking-tight text-white mt-2.5 leading-[1.12] font-display">
+          The Vision Behind{" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#38BDF8] via-[#60A5FA] to-[#2563EB]">
+            Cascade Tech
+          </span>
+        </h2>
+        <p className="text-xs sm:text-sm text-slate-300/75 mt-2.5 font-medium leading-relaxed max-w-xl">
+          From the blueprint to the boardroom — the people driving every successful Salesforce transformation.
+        </p>
+      </div>
+
+      {/* 2x2 Grid */}
+      <div className="flex-1 flex items-center justify-center px-0 py-1">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 w-full max-w-[980px]">
+          {members.map((m) => (
+            <div
+              key={m.name}
+              className="group relative flex flex-col bg-[#0a1f52]/55 backdrop-blur-md border border-[#1E63FF]/20 rounded-[24px] p-5 sm:p-6 gap-4 cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:border-[#1E63FF]/55 hover:shadow-[0_18px_45px_rgba(30,99,255,0.28)]"
+            >
+              <div className="absolute inset-0 rounded-[24px] bg-[#1E63FF]/0 group-hover:bg-[#1E63FF]/[0.04] transition-all duration-300 pointer-events-none" />
+
+              <div className="w-full overflow-hidden rounded-[18px] border border-[#1E3A8A]/40" style={{ aspectRatio: "4/3" }}>
+                <img
+                  src={m.image}
+                  alt={m.name}
+                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  loading="eager"
+                />
+              </div>
+
+              <div className="w-full bg-gradient-to-b from-[#0d2460] to-[#091a40] border border-[#1E63FF]/25 rounded-full px-5 py-2.5 text-center">
+                <h3 className="text-sm sm:text-[15px] font-black text-white leading-tight">{m.name}</h3>
+                <p className="text-[11px] font-bold text-[#4DA6FF] mt-0.5 leading-tight">{m.role}</p>
+              </div>
+
+              <div className="w-full flex-1 flex flex-col justify-between bg-[#081B45]/70 backdrop-blur-sm border border-[#143A7B]/35 rounded-2xl px-4 py-3 gap-3">
+                <p className="text-slate-300/90 text-[11px] sm:text-xs leading-relaxed">{m.desc}</p>
+                <div className="flex items-center justify-between pt-2 border-t border-[#143A7B]/40">
+                  <a
+                    href={m.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 text-slate-400 hover:text-white text-[10px] sm:text-[11px] font-bold transition-colors duration-200 group/li"
+                  >
+                    <Linkedin className="size-3.5 text-[#4DA6FF] transition-transform duration-300 group-hover/li:-translate-y-0.5" />
+                    <span>LinkedIn Profile</span>
+                  </a>
+                  <span className="text-[9px] text-[#4DA6FF]/70 font-black uppercase tracking-wider">Cascade Leader</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Bottom tagline */}
+      <div className="mt-4 pt-3.5 flex flex-col items-center text-center relative flex-shrink-0">
+        <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-[#1E63FF]/30 to-transparent mb-3" />
+        <span className="text-[10px] text-slate-400/70 font-semibold italic tracking-wide">
+          &ldquo;The people behind every successful Salesforce transformation.&rdquo;
+        </span>
+      </div>
+    </div>
+  );
+}
+
 function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: Scene; isActive?: boolean; activeCardIdx?: number }) {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
@@ -1366,6 +1511,10 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
 
   if (scene.id === 11) {
     return <EngagementModelScene scene={scene} />;
+  }
+
+  if (scene.id === 13) {
+    return <LeadershipScene scene={scene} />;
   }
 
   if (scene.variant === "hero") {
@@ -2305,9 +2454,8 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
             return (
               <div
                 key={ind.id}
-                className={`group relative rounded-2xl overflow-hidden flex flex-col justify-end h-[140px] sm:h-[155px] md:h-[175px] lg:h-[195px] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer border ${
-                  ind.isPrimary ? "border-[#E2A857]/40 shadow-[0_4px_20px_rgba(226,168,87,0.08)]" : "border-slate-200/40"
-                }`}
+                className={`group relative rounded-2xl overflow-hidden flex flex-col justify-end h-[140px] sm:h-[155px] md:h-[175px] lg:h-[195px] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer border ${ind.isPrimary ? "border-[#E2A857]/40 shadow-[0_4px_20px_rgba(226,168,87,0.08)]" : "border-slate-200/40"
+                  }`}
               >
                 {/* Background image container with Zoom */}
                 <div className="absolute inset-0 z-0 overflow-hidden">
@@ -2319,10 +2467,10 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
                   />
                   {/* Full image glassmorphism effect (frosted overlay blur) */}
                   <div className="absolute inset-0 z-10 backdrop-blur-[1px] bg-slate-950/10 pointer-events-none" />
-                  
+
                   {/* Dedicated bottom-only dark gradient overlay (top 65-70% remains visible) */}
-                  <div 
-                    className="absolute inset-0 z-20 pointer-events-none" 
+                  <div
+                    className="absolute inset-0 z-20 pointer-events-none"
                     style={{
                       background: "linear-gradient(to top, rgba(8, 16, 32, 0.9) 0%, rgba(8, 16, 32, 0.65) 30%, rgba(8, 16, 32, 0) 45%, transparent 100%)"
                     }}
@@ -2330,7 +2478,7 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
                 </div>
 
                 {/* Glassmorphism content panel at the bottom containing badge, icon, title, and description */}
-                <div 
+                <div
                   className="relative z-30 w-full p-3 backdrop-blur-md border-t border-white/10 rounded-b-2xl transition-all duration-300 flex flex-col"
                   style={{ backgroundColor: "rgba(10, 18, 35, 0.82)" }}
                 >
@@ -2349,13 +2497,13 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
                     )}
                   </div>
 
-                  <h3 
+                  <h3
                     className="text-[13px] md:text-[14px] lg:text-[15px] font-extrabold text-white leading-tight tracking-tight mb-0.5"
                     style={{ textShadow: "0 1px 4px rgba(0,0,0,0.3)" }}
                   >
                     {ind.title}
                   </h3>
-                  <p 
+                  <p
                     className="text-[11px] md:text-[11.5px] lg:text-[12px] leading-[1.4] text-white font-medium"
                     style={{ textShadow: "0 1px 4px rgba(0,0,0,0.2)" }}
                   >
@@ -2606,8 +2754,8 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
                 }}
               >
                 <div className={`absolute top-0 inset-x-0 h-[4px] bg-gradient-to-r ${ser.gradient} opacity-70 group-hover:opacity-100 group-hover:h-[5px] transition-all duration-300`} />
-                
-                <div 
+
+                <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none -z-10"
                   style={{
                     background: "radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.15) 0%, transparent 70%)"
@@ -2898,7 +3046,7 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
         <div className="absolute bottom-[-10%] right-[-10%] w-[250px] h-[250px] rounded-full blur-3xl pointer-events-none -z-10 bg-sky-400/6 animate-pulse" />
 
         {/* Soft radial blue glow behind the heading */}
-        <div 
+        <div
           className="absolute top-[20%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] rounded-full blur-3xl pointer-events-none -z-10"
           style={{
             background: "radial-gradient(circle, rgba(0,161,224,0.07) 0%, transparent 70%)",
@@ -2920,7 +3068,7 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
 
         {/* MAIN CONTAINER LAYOUT */}
         <div className="flex flex-col items-center justify-between w-full h-full relative z-10 max-w-[96%] mx-auto py-1 gap-3.5">
-          
+
           {/* TOP: Centered Heading Block */}
           <div className="w-full flex flex-col items-center text-center max-w-3xl relative z-10">
             {/* Badge */}
@@ -4897,11 +5045,10 @@ function ClientCard({ clientName, isFeatured }: { clientName: string; isFeatured
     .replace(/^_+|_+$/g, "");
 
   return (
-    <div className={`w-full aspect-[2.6/1] md:aspect-[2.8/1] min-h-[82px] md:min-h-[105px] rounded-[22px] p-1.5 md:p-2 flex items-center justify-center text-center overflow-hidden group/card border transition-all duration-300 hover:-translate-y-1 ${
-      isFeatured 
-        ? "border-blue-400/80 bg-gradient-to-br from-[#E0F2FE]/80 via-[#F0F9FF]/95 to-white shadow-[0_0_18px_rgba(0,112,210,0.16)] hover:shadow-[0_0_28px_rgba(0,112,210,0.24)]" 
-        : "border-blue-200/40 bg-gradient-to-br from-white/95 via-[#F1F8FF] to-white/90 shadow-[0_5px_15px_rgba(0,112,210,0.05)] hover:shadow-[0_10px_28px_rgba(0,112,210,0.16)] hover:border-blue-300/60 hover:bg-white"
-    }`}>
+    <div className={`w-full aspect-[2.6/1] md:aspect-[2.8/1] min-h-[82px] md:min-h-[105px] rounded-[22px] p-1.5 md:p-2 flex items-center justify-center text-center overflow-hidden group/card border transition-all duration-300 hover:-translate-y-1 ${isFeatured
+      ? "border-blue-400/80 bg-gradient-to-br from-[#E0F2FE]/80 via-[#F0F9FF]/95 to-white shadow-[0_0_18px_rgba(0,112,210,0.16)] hover:shadow-[0_0_28px_rgba(0,112,210,0.24)]"
+      : "border-blue-200/40 bg-gradient-to-br from-white/95 via-[#F1F8FF] to-white/90 shadow-[0_5px_15px_rgba(0,112,210,0.05)] hover:shadow-[0_10px_28px_rgba(0,112,210,0.16)] hover:border-blue-300/60 hover:bg-white"
+      }`}>
       {!imgError ? (
         <img
           src={`/clients/${normalizedName}.png`}
