@@ -3693,7 +3693,10 @@ function ProductTemplateCard({ productKey }: ProductTemplateCardProps) {
 
         {/* Right Column (40%) */}
         <div className="lg:col-span-5 flex flex-col h-full">
-          <div className="glass-card-hover p-4 rounded-2xl bg-white border border-slate-100 flex flex-col h-full shadow-[0_4px_20px_rgba(0,119,182,0.02)]">
+          <div 
+            className="glass-card-hover p-4 rounded-2xl border border-sky-100/60 flex flex-col h-full shadow-[0_4px_20px_rgba(0,119,182,0.04)]"
+            style={{ background: "linear-gradient(180deg, #F6FBFF, #EEF7FF)" }}
+          >
             <h3 className="text-[13px] font-black text-[#0A1628] uppercase tracking-wider mb-3">Key Capabilities</h3>
             <div className="flex-1 overflow-y-auto pr-1 flex flex-col gap-2.5">
               {placeholders.capabilities.map((cap, i) => (
