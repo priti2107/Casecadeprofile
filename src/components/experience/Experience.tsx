@@ -3602,7 +3602,19 @@ function ProductTemplateCard({ productKey }: ProductTemplateCardProps) {
         __html: `
         @keyframes subtlePulse { 0%,100% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.03); opacity: 1; } }
         .glass-card-hover { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .glass-card-hover:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(0,119,182,0.06); border-color: rgba(14,165,233,0.2) !important; }
+        .glass-card-hover:hover {
+          transform: translateY(-4px) !important;
+          box-shadow: 0 16px 45px rgba(37,99,235,0.12), 0 4px 12px rgba(37,99,235,0.06) !important;
+          border-color: rgba(59,130,246,0.30) !important;
+          background: linear-gradient(135deg, #FFFFFF 0%, #F5F9FF 100%) !important;
+        }
+        .spec-tile-hover { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .spec-tile-hover:hover {
+          transform: translateY(-5px) !important;
+          box-shadow: 0 12px 30px rgba(59,130,246,0.15) !important;
+          border-color: rgba(59,130,246,0.30) !important;
+          background: linear-gradient(135deg, #FFFFFF 0%, #E6F3FF 100%) !important;
+        }
         `
       }} />
 
@@ -3644,25 +3656,57 @@ function ProductTemplateCard({ productKey }: ProductTemplateCardProps) {
         {/* Left Column (60%) */}
         <div className="lg:col-span-7 flex flex-col gap-4">
           {/* Section 1: The Problem It Solves */}
-          <div className="glass-card-hover p-4 rounded-2xl bg-white border border-rose-100/80 shadow-[0_4px_12px_rgba(244,63,94,0.01)] flex flex-col gap-2 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-1.5 h-full bg-rose-400" />
-            <div className="flex items-center gap-2 text-rose-500">
-              <AlertTriangle className="w-4 h-4" />
-              <span className="text-[10px] font-black uppercase tracking-wider">The Problem It Solves</span>
+          <div 
+            className="glass-card-hover p-4 rounded-[24px] border border-[rgba(59,130,246,0.12)] flex flex-col gap-2.5 relative overflow-hidden"
+            style={{
+              background: "linear-gradient(135deg, #FFFFFF 0%, #F3F9FF 100%)",
+              boxShadow: "0 10px 35px rgba(37,99,235,0.08), 0 2px 8px rgba(37,99,235,0.05), inset 0 1px 0 rgba(255,255,255,0.8)"
+            }}
+          >
+            {/* Left Accent gradient strip */}
+            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-16 rounded-r-md bg-gradient-to-b from-[#F43F5E] to-[#FDA4AF]" />
+            {/* Soft decorative elements inside card */}
+            <div className="absolute right-0 top-0 w-24 h-24 rounded-full pointer-events-none opacity-[0.03]" style={{ background: "radial-gradient(circle, #F43F5E 0%, transparent 70%)" }} />
+            <div className="absolute inset-0 pointer-events-none opacity-[0.02]" style={{ backgroundImage: "radial-gradient(#F43F5E 1px, transparent 1px)", backgroundSize: "10px 10px" }} />
+            
+            <div className="flex items-center gap-3 text-rose-500 pl-2">
+              <div className="w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center">
+                <AlertTriangle className="w-4.5 h-4.5" />
+              </div>
+              <div className="min-w-0">
+                <span className="text-[10px] font-black uppercase tracking-wider text-[#3B82F6]/70 mb-0.5 block">ANALYSIS</span>
+                <span className="text-[13px] font-extrabold text-[#0A1628] leading-none">The Problem It Solves</span>
+              </div>
             </div>
-            <p className="text-[12.5px] font-medium leading-relaxed text-slate-500">
+            <p className="text-[12.5px] font-semibold leading-relaxed text-slate-500 pl-2">
               {placeholders.problem}
             </p>
           </div>
 
           {/* Section 2: What It Does */}
-          <div className="glass-card-hover p-4 rounded-2xl bg-white border border-sky-100/80 shadow-[0_4px_12px_rgba(14,165,233,0.01)] flex flex-col gap-2 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-1.5 h-full bg-[#3BA9F5]" />
-            <div className="flex items-center gap-2 text-[#0077B6]">
-              <Sparkles className="w-4 h-4" />
-              <span className="text-[10px] font-black uppercase tracking-wider">What It Does</span>
+          <div 
+            className="glass-card-hover p-4 rounded-[24px] border border-[rgba(59,130,246,0.12)] flex flex-col gap-2.5 relative overflow-hidden"
+            style={{
+              background: "linear-gradient(135deg, #FFFFFF 0%, #F3F9FF 100%)",
+              boxShadow: "0 10px 35px rgba(37,99,235,0.08), 0 2px 8px rgba(37,99,235,0.05), inset 0 1px 0 rgba(255,255,255,0.8)"
+            }}
+          >
+            {/* Left Accent gradient strip */}
+            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-16 rounded-r-md bg-gradient-to-b from-[#3B82F6] to-[#93C5FD]" />
+            {/* Soft decorative elements inside card */}
+            <div className="absolute right-0 top-0 w-24 h-24 rounded-full pointer-events-none opacity-[0.03]" style={{ background: "radial-gradient(circle, #3B82F6 0%, transparent 70%)" }} />
+            <div className="absolute inset-0 pointer-events-none opacity-[0.02]" style={{ backgroundImage: "radial-gradient(#0077B6 1px, transparent 1px)", backgroundSize: "10px 10px" }} />
+            
+            <div className="flex items-center gap-3 text-sky-500 pl-2">
+              <div className="w-8 h-8 rounded-full bg-sky-50 flex items-center justify-center">
+                <Sparkles className="w-4.5 h-4.5" />
+              </div>
+              <div className="min-w-0">
+                <span className="text-[10px] font-black uppercase tracking-wider text-[#3B82F6]/70 mb-0.5 block">SOLUTION</span>
+                <span className="text-[13px] font-extrabold text-[#0A1628] leading-none">What It Does</span>
+              </div>
             </div>
-            <p className="text-[12.5px] font-medium leading-relaxed text-slate-500">
+            <p className="text-[12.5px] font-semibold leading-relaxed text-slate-500 pl-2">
               {placeholders.does}
             </p>
           </div>
@@ -3679,12 +3723,24 @@ function ProductTemplateCard({ productKey }: ProductTemplateCardProps) {
               ].map((spec, i) => {
                 const Icon = spec.icon;
                 return (
-                  <div key={i} className="glass-card-hover p-3 rounded-xl bg-white border border-slate-100 flex flex-col gap-1.5">
-                    <div className="flex items-center gap-1.5 text-slate-400">
-                      <Icon className="w-3.5 h-3.5" />
-                      <span className="text-[9px] font-black uppercase tracking-wider">{spec.label}</span>
+                  <div 
+                    key={i} 
+                    className="spec-tile-hover p-4 rounded-[24px] border border-[rgba(59,130,246,0.12)] flex items-start gap-3 relative overflow-hidden"
+                    style={{
+                      background: "linear-gradient(135deg, #FFFFFF 0%, #E6F3FF 100%)",
+                      boxShadow: "0 10px 35px rgba(37,99,235,0.06), 0 2px 8px rgba(37,99,235,0.03)"
+                    }}
+                  >
+                    {/* Left Accent gradient strip */}
+                    <div className="absolute left-0 top-0 w-1.5 h-full bg-gradient-to-b from-[#3B82F6]/80 to-[#93C5FD]/60" />
+                    
+                    <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Icon className="w-4 h-4 text-blue-500" />
                     </div>
-                    <p className="text-[11px] font-extrabold text-slate-700 leading-tight">{spec.value}</p>
+                    <div className="min-w-0 flex-1">
+                      <span className="text-[9px] font-black uppercase tracking-wider text-[#3B82F6]/60 mb-0.5 block">{spec.label}</span>
+                      <p className="text-[11.5px] font-extrabold text-slate-700 leading-tight">{spec.value}</p>
+                    </div>
                   </div>
                 );
               })}
@@ -3695,21 +3751,24 @@ function ProductTemplateCard({ productKey }: ProductTemplateCardProps) {
         {/* Right Column (40%) */}
         <div className="lg:col-span-5 flex flex-col h-full">
           <div 
-            className="glass-card-hover p-4 rounded-2xl border border-sky-100/60 flex flex-col h-full shadow-[0_4px_20px_rgba(0,119,182,0.04)]"
+            className="p-4 rounded-[24px] border border-[rgba(59,130,246,0.15)] flex flex-col h-full shadow-[0_10px_35px_rgba(37,99,235,0.06)] relative overflow-hidden"
             style={{ background: "linear-gradient(180deg, #F6FBFF, #EEF7FF)" }}
           >
-            <h3 className="text-[13px] font-black text-[#0A1628] uppercase tracking-wider mb-3">Key Capabilities</h3>
-            <div className="flex-1 overflow-y-auto pr-1 flex flex-col gap-2.5">
+            {/* Blueprint bg dots for capability card */}
+            <div className="absolute inset-0 pointer-events-none opacity-[0.035]" style={{ backgroundImage: "radial-gradient(#0077B6 1px, transparent 1px)", backgroundSize: "16px 16px" }} />
+            
+            <h3 className="text-[13px] font-black text-[#0A1628] uppercase tracking-wider mb-4 relative z-10">Key Capabilities</h3>
+            <div className="flex-1 overflow-y-auto pr-1 flex flex-col relative z-10">
               {placeholders.capabilities.map((cap, i) => (
-                <div key={i} className="flex flex-col gap-2.5">
-                  <div className="flex items-start gap-2.5">
-                    <div className="w-5 h-5 rounded-full bg-[#EFF8FF] border border-[#BFDBFE] flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <Check className="w-3 h-3 text-[#0077B6] stroke-[3]" />
+                <div key={i} className="flex flex-col">
+                  <div className="flex items-start gap-3 py-3.5 px-3 rounded-xl transition-all duration-200 hover:bg-[#F4F9FF]">
+                    <div className="w-6 h-6 rounded-full bg-white border border-[#BFDBFE] flex items-center justify-center flex-shrink-0 mt-0.5 shadow-[0_0_8px_rgba(59,130,246,0.18)]">
+                      <Check className="w-3.5 h-3.5 text-[#0077B6] stroke-[3.5]" />
                     </div>
-                    <span className="text-[14.5px] md:text-[16px] font-bold text-slate-600 leading-snug">{cap}</span>
+                    <span className="text-[14.5px] md:text-[16px] font-extrabold text-[#0A1628] leading-snug">{cap}</span>
                   </div>
                   {i < placeholders.capabilities.length - 1 && (
-                    <div className="h-[1px] bg-slate-100/80" />
+                    <div className="h-[1px] w-full bg-[#3B82F6]/10" />
                   )}
                 </div>
               ))}
