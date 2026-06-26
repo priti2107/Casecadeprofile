@@ -2435,30 +2435,30 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     style={{ objectPosition: "center 30%" }}
                   />
-                  {/* Full image glassmorphism effect (frosted overlay blur) */}
-                  <div className="absolute inset-0 z-10 backdrop-blur-[1px] bg-slate-950/10 pointer-events-none" />
+                  {/* Light blue glassmorphism overlay on image */}
+                  <div className="absolute inset-0 z-10 backdrop-blur-[1.5px] pointer-events-none" style={{ background: "rgba(186,230,255,0.08)" }} />
 
-                  {/* Dedicated bottom-only dark gradient overlay (top 65-70% remains visible) */}
+                  {/* Light blue gradient at bottom */}
                   <div
                     className="absolute inset-0 z-20 pointer-events-none"
                     style={{
-                      background: "linear-gradient(to top, rgba(8, 16, 32, 0.9) 0%, rgba(8, 16, 32, 0.65) 30%, rgba(8, 16, 32, 0) 45%, transparent 100%)"
+                      background: "linear-gradient(to top, rgba(224,242,254,0.96) 0%, rgba(224,242,254,0.82) 30%, rgba(224,242,254,0.3) 55%, transparent 100%)"
                     }}
                   />
                 </div>
 
-                {/* Glassmorphism content panel at the bottom containing badge, icon, title, and description */}
+                {/* Light blue glassmorphism content panel */}
                 <div
-                  className="relative z-30 w-full p-3 backdrop-blur-md border-t border-white/10 rounded-b-2xl transition-all duration-300 flex flex-col"
-                  style={{ backgroundColor: "rgba(10, 18, 35, 0.82)" }}
+                  className="relative z-30 w-full p-3 rounded-b-2xl transition-all duration-300 flex flex-col border-t border-sky-200/60"
+                  style={{ background: "rgba(224,242,254,0.90)", backdropFilter: "blur(16px)" }}
                 >
                   {/* Badge & Icon Row */}
                   <div className="flex items-center justify-between mb-1 w-full">
                     <div className="flex items-center gap-1.5">
-                      <div className="size-5 rounded-full bg-white/10 flex items-center justify-center border border-white/10 text-[#0ea5e9]">
+                      <div className="size-5 rounded-full bg-sky-100 flex items-center justify-center border border-sky-200 text-[#0077B6]">
                         <IconComp className="size-3" />
                       </div>
-                      <span className="text-[8.5px] font-bold tracking-wider text-slate-400 uppercase">{ind.subtitle}</span>
+                      <span className="text-[8.5px] font-bold tracking-wider text-sky-600 uppercase">{ind.subtitle}</span>
                     </div>
                     {ind.isPrimary && (
                       <span className="text-[7.5px] font-black tracking-widest text-[#E2A857] uppercase bg-[#E2A857]/10 px-1.5 py-0.5 rounded border border-[#E2A857]/30">
@@ -2468,14 +2468,12 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
                   </div>
 
                   <h3
-                    className="text-[13px] md:text-[14px] lg:text-[15px] font-extrabold text-white leading-tight tracking-tight mb-0.5"
-                    style={{ textShadow: "0 1px 4px rgba(0,0,0,0.3)" }}
+                    className="text-[13px] md:text-[14px] lg:text-[15px] font-extrabold text-[#03045E] leading-tight tracking-tight mb-0.5"
                   >
                     {ind.title}
                   </h3>
                   <p
-                    className="text-[11px] md:text-[11.5px] lg:text-[12px] leading-[1.4] text-white font-medium"
-                    style={{ textShadow: "0 1px 4px rgba(0,0,0,0.2)" }}
+                    className="text-[11px] md:text-[11.5px] lg:text-[12px] leading-[1.4] text-slate-600 font-medium"
                   >
                     {ind.desc}
                   </p>
