@@ -30,8 +30,8 @@ export default function WorkflowVisualizer3D({ architecture, industryId }: Workf
   const outcomes = architecture.outcomes || [];
 
   return (
-    <div 
-      className="relative w-full h-full min-h-0 p-6 md:p-8 flex flex-col justify-between select-none overflow-hidden rounded-2xl bg-gradient-to-br from-sky-50/30 via-white/40 to-blue-50/20 backdrop-blur-xl border border-white/60 shadow-lg shadow-slate-200/20"
+    <div
+      className="relative w-full h-full min-h-0 p-6 md:p-8 flex flex-col justify-between select-none overflow-hidden rounded-2xl bg-transparent"
       style={{
         backgroundImage: `
           linear-gradient(to right, rgba(14, 165, 233, 0.03) 1px, transparent 1px),
@@ -58,7 +58,8 @@ export default function WorkflowVisualizer3D({ architecture, industryId }: Workf
         </div>
       </div>
 
-      <style dangerouslySetInnerHTML={{__html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         @keyframes float {
           0%, 100% { transform: translateY(0px) rotate(0deg); }
           50% { transform: translateY(-6px) rotate(1deg); }
@@ -158,7 +159,6 @@ export default function WorkflowVisualizer3D({ architecture, industryId }: Workf
           <span className="text-[9px] font-black text-sky-600 uppercase tracking-widest bg-sky-50 px-2 py-0.5 rounded border border-sky-100/80">
             Salesforce Implementation Journey
           </span>
-          <h3 className="text-xs font-bold text-slate-500 mt-1">Interactive Architecture Workflow</h3>
         </div>
         <div className="flex items-center gap-1.5 text-[9px] font-bold text-slate-400">
           <span className="inline-block size-1.5 rounded-full bg-emerald-500 animate-pulse" />
@@ -168,7 +168,7 @@ export default function WorkflowVisualizer3D({ architecture, industryId }: Workf
 
       {/* Main 3 Column Architecture Grid */}
       <div className="grid grid-cols-3 gap-6 relative z-10 items-stretch flex-1 my-auto">
-        
+
         {/* LEFT COLUMN: Challenges */}
         <div className="flex flex-col gap-2.5 justify-center">
           <div className="text-center mb-1">
@@ -187,21 +187,18 @@ export default function WorkflowVisualizer3D({ architecture, industryId }: Workf
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 10 }}
                     transition={{ duration: 0.35, delay: idx * 0.04 }}
-                    className={`group relative backdrop-blur-md transition-all duration-300 rounded-xl py-1.5 px-3 text-center cursor-help shadow-sm border ${
-                      isActive 
-                        ? "scale-[1.03] bg-rose-50/70 border-rose-400 shadow-md shadow-rose-500/10" 
+                    className={`group relative backdrop-blur-md transition-all duration-300 rounded-xl py-1.5 px-3 text-center cursor-help shadow-sm border ${isActive
+                        ? "scale-[1.03] bg-rose-50/70 border-rose-400 shadow-md shadow-rose-500/10"
                         : "bg-white/70 border-rose-200/40 hover:border-rose-300"
-                    }`}
+                      }`}
                   >
-                    <span className={`text-[10px] font-bold transition-colors ${
-                      isActive ? "text-rose-700 font-extrabold" : "text-slate-700 group-hover:text-rose-700"
-                    }`}>
+                    <span className={`text-[10px] font-bold transition-colors ${isActive ? "text-rose-700 font-extrabold" : "text-slate-700 group-hover:text-rose-700"
+                      }`}>
                       {challenge}
                     </span>
                     {/* Active pulse dot indicator */}
-                    <span className={`absolute left-2 top-1/2 -translate-y-1/2 size-1 rounded-full ${
-                      isActive ? "bg-rose-500 animate-pulse" : "bg-rose-400"
-                    }`} />
+                    <span className={`absolute left-2 top-1/2 -translate-y-1/2 size-1 rounded-full ${isActive ? "bg-rose-500 animate-pulse" : "bg-rose-400"
+                      }`} />
                   </motion.div>
                 );
               })}
@@ -235,26 +232,23 @@ export default function WorkflowVisualizer3D({ architecture, industryId }: Workf
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -8 }}
                     transition={{ duration: 0.35, delay: idx * 0.03 }}
-                    className={`group relative backdrop-blur-md transition-all duration-300 rounded-xl py-1 px-2.5 text-center cursor-help shadow-sm border ${
-                      isActive 
+                    className={`group relative backdrop-blur-md transition-all duration-300 rounded-xl py-1 px-2.5 text-center cursor-help shadow-sm border ${isActive
                         ? "scale-[1.03]"
                         : "bg-sky-100/40 border-sky-200/50 hover:border-sky-300/80 hover:shadow-md hover:scale-[1.01]"
-                    }`}
+                      }`}
                     style={isActive ? {
                       backgroundColor: "rgba(37, 99, 235, .08)",
                       border: "1px solid #3B82F6",
                       boxShadow: "0 0 20px rgba(59, 130, 246, .25)"
                     } : {}}
                   >
-                    <span className={`text-[10px] font-extrabold transition-colors ${
-                      isActive ? "text-blue-600" : "text-sky-900 group-hover:text-sky-600"
-                    }`}>
+                    <span className={`text-[10px] font-extrabold transition-colors ${isActive ? "text-blue-600" : "text-sky-900 group-hover:text-sky-600"
+                      }`}>
                       {solution}
                     </span>
                     {/* Active pulse dot */}
-                    <span className={`absolute right-2 top-1/2 -translate-y-1/2 size-1 rounded-full animate-pulse ${
-                      isActive ? "bg-blue-500" : "bg-sky-400"
-                    }`} />
+                    <span className={`absolute right-2 top-1/2 -translate-y-1/2 size-1 rounded-full animate-pulse ${isActive ? "bg-blue-500" : "bg-sky-400"
+                      }`} />
                   </motion.div>
                 );
               })}
@@ -280,21 +274,18 @@ export default function WorkflowVisualizer3D({ architecture, industryId }: Workf
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -10 }}
                     transition={{ duration: 0.35, delay: idx * 0.04 }}
-                    className={`group relative backdrop-blur-md transition-all duration-300 rounded-xl py-1.5 px-3 text-center cursor-help shadow-sm border ${
-                      isActive 
-                        ? "scale-[1.03] bg-emerald-50/70 border-emerald-400 shadow-md shadow-emerald-500/10" 
+                    className={`group relative backdrop-blur-md transition-all duration-300 rounded-xl py-1.5 px-3 text-center cursor-help shadow-sm border ${isActive
+                        ? "scale-[1.03] bg-emerald-50/70 border-emerald-400 shadow-md shadow-emerald-500/10"
                         : "bg-white/70 border-emerald-200/50 hover:border-emerald-300"
-                    }`}
+                      }`}
                   >
-                    <span className={`text-[10px] font-bold transition-colors ${
-                      isActive ? "text-emerald-700 font-extrabold" : "text-slate-700 group-hover:text-emerald-700"
-                    }`}>
+                    <span className={`text-[10px] font-bold transition-colors ${isActive ? "text-emerald-700 font-extrabold" : "text-slate-700 group-hover:text-emerald-700"
+                      }`}>
                       {outcome}
                     </span>
                     {/* Active checkmark dot indicator */}
-                    <span className={`absolute right-2 top-1/2 -translate-y-1/2 size-1 rounded-full ${
-                      isActive ? "bg-emerald-500 animate-pulse" : "bg-emerald-400"
-                    }`} />
+                    <span className={`absolute right-2 top-1/2 -translate-y-1/2 size-1 rounded-full ${isActive ? "bg-emerald-500 animate-pulse" : "bg-emerald-400"
+                      }`} />
                   </motion.div>
                 );
               })}
