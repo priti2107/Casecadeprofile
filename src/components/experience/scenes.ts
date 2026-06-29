@@ -245,7 +245,7 @@ export const SCENES: Scene[] = [
   {
     id: 8,
     kicker: "District 08 · Why Cascade Tech",
-    title: "Why Developers & Enterprises Choose Cascade",
+    title: "Why Developers & Enterprises Choose Cascade Tech",
     subtitle:
       "We combine Salesforce expertise, AI innovation, product thinking and real-world industry execution to deliver measurable business outcomes.",
     variant: "grid",

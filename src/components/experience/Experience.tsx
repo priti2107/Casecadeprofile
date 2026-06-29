@@ -2689,43 +2689,37 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
           }}
         />
 
-        {/* TOP ROW: Title & Kicker (left) + Description paragraphs (right) */}
-        <div className="flex flex-col md:flex-row md:items-center justify-start w-full h-auto relative z-10 gap-8 lg:gap-16 mt-1">
-          {/* LEFT SIDE: Title & Kicker */}
-          <div className="w-full md:max-w-[50%] lg:max-w-[580px] flex flex-col justify-start text-left">
-            <div className="inline-flex items-center gap-1.5 bg-[#F0F9FF] border border-[#E0F2FE] rounded-full px-3 py-1 text-[10px] md:text-[11px] font-bold tracking-wider text-[#0284C7] w-fit mb-1">
-              <span className="size-1.5 rounded-full bg-[#0284C7] animate-pulse" />
-              DISTRICT 09 • WHY CASCADE TECH
-            </div>
-
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[40px] xl:text-[48px] 2xl:text-[56px] font-[900] leading-[1.05] tracking-tight text-[#0F172A] font-display">
-              Why Developers & Enterprises <br className="hidden lg:inline" />
-              <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#0EA5E9] to-[#2563EB]">
-                Choose Cascade
-                <svg
-                  className="absolute -bottom-0.5 left-0 w-full h-[5px]"
-                  viewBox="0 0 200 5"
-                  fill="none"
-                  preserveAspectRatio="none"
-                >
-                  <path
-                    d="M2 3.5 C 60 1.5, 140 1.5, 198 3.5"
-                    stroke="#0EA5E9"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </span>
-            </h2>
+        {/* TOP ROW: Title & Kicker + Description */}
+        <div className="w-full flex flex-col justify-start text-left max-w-4xl relative z-10 shrink-0 mt-1">
+          <div className="inline-flex items-center gap-1.5 bg-[#F0F9FF] border border-[#E0F2FE] rounded-full px-3 py-1 text-[10px] md:text-[11px] font-bold tracking-wider text-[#0284C7] w-fit mb-1.5">
+            <span className="size-1.5 rounded-full bg-[#0284C7] animate-pulse" />
+            DISTRICT 09 • WHY CASCADE TECH
           </div>
 
-          {/* RIGHT SIDE: Subheading */}
-          <div className="w-full md:max-w-[40%] lg:max-w-[450px] flex flex-col justify-center text-left">
-            <p className="text-[11px] md:text-[13px] lg:text-[14.5px] text-slate-500 font-semibold leading-relaxed">
-              We combine Salesforce expertise, AI innovation, product thinking and real-world
-              industry execution to deliver measurable business outcomes.
-            </p>
-          </div>
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[40px] xl:text-[48px] 2xl:text-[56px] font-[900] leading-[1.05] tracking-tight text-[#0F172A] font-display">
+            Why Developers & Enterprises{" "}
+            <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#0EA5E9] to-[#2563EB]">
+              Choose Cascade Tech
+              <svg
+                className="absolute -bottom-0.5 left-0 w-full h-[5px]"
+                viewBox="0 0 200 5"
+                fill="none"
+                preserveAspectRatio="none"
+              >
+                <path
+                  d="M2 3.5 C 60 1.5, 140 1.5, 198 3.5"
+                  stroke="#0EA5E9"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </span>
+          </h2>
+
+          <p className="text-[12px] md:text-[14px] lg:text-[15.5px] text-slate-500 font-semibold leading-relaxed mt-2.5 max-w-3xl">
+            We combine Salesforce expertise, AI innovation, product thinking and real-world
+            industry execution to deliver measurable business outcomes.
+          </p>
         </div>
 
         {/* Divider 1 */}
@@ -2750,23 +2744,23 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
                   {/* Hover blue glow reflection */}
                   <div className="absolute -inset-1 bg-gradient-to-br from-[#0EA5E9]/12 via-[#2563EB]/6 to-transparent opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500 -z-10 pointer-events-none" />
 
-                  {/* Icon Wrapper */}
-                  <div className="w-[46px] h-[46px] md:w-[52px] md:h-[52px] flex items-center justify-center rounded-full border shadow-sm group-hover:scale-105 transition-all duration-300 flex-shrink-0 mb-2.5 bg-[#F0F9FF] border-[#E0F2FE]/50 text-[#0EA5E9] shadow-[0_4px_12px_rgba(14,165,233,0.06)] group-hover:shadow-[0_8px_24px_rgba(14,165,233,0.1)]">
-                    <IconComp className="w-5.5 h-5.5 md:w-6 h-6 text-[#0EA5E9]" />
+                  {/* Header Row: Icon + Title */}
+                  <div className="flex items-center gap-3 mb-2.5">
+                    <div className="w-[40px] h-[40px] md:w-[46px] md:h-[46px] flex items-center justify-center rounded-full border shadow-sm group-hover:scale-105 transition-all duration-300 flex-shrink-0 bg-[#F0F9FF] border-[#E0F2FE]/50 text-[#0EA5E9] shadow-[0_4px_12px_rgba(14,165,233,0.06)] group-hover:shadow-[0_8px_24px_rgba(14,165,233,0.1)]">
+                      <IconComp className="w-5 h-5 md:w-5.5 md:h-5.5 text-[#0EA5E9]" />
+                    </div>
+                    <div>
+                      <h3 className="text-[13px] sm:text-[15px] md:text-[16px] lg:text-[18px] font-[900] text-[#0F172A] leading-tight tracking-tight">
+                        {r.title}
+                      </h3>
+                      {/* Horizontal accent line */}
+                      <div className="w-8 h-[2px] bg-[#0EA5E9] rounded-full mt-1 transition-all duration-300 group-hover:w-12" />
+                    </div>
                   </div>
 
-                  <div className="flex-grow min-w-0 flex flex-col justify-start">
-                    <h3 className="text-[13px] sm:text-[15px] md:text-[16px] lg:text-[18px] font-[900] text-[#0F172A] leading-snug tracking-tight mb-0.5">
-                      {r.title}
-                    </h3>
-
-                    {/* Horizontal accent line */}
-                    <div className="w-8 h-[2px] bg-[#0EA5E9] rounded-full mb-1.5 transition-all duration-300 group-hover:w-12" />
-
-                    <p className="text-[9.5px] md:text-[10.5px] lg:text-[11px] leading-relaxed text-slate-500 font-semibold line-clamp-3 md:line-clamp-4">
-                      {r.desc}
-                    </p>
-                  </div>
+                  <p className="text-[12px] md:text-[13px] lg:text-[14px] leading-relaxed text-slate-500 font-semibold line-clamp-3 md:line-clamp-4">
+                    {r.desc}
+                  </p>
                 </div>
               );
             })}
@@ -2796,23 +2790,23 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
                   {/* Hover blue glow reflection */}
                   <div className="absolute -inset-1 bg-gradient-to-br from-[#0EA5E9]/12 via-[#2563EB]/6 to-transparent opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500 -z-10 pointer-events-none" />
 
-                  {/* Icon Wrapper */}
-                  <div className="w-[46px] h-[46px] md:w-[52px] md:h-[52px] flex items-center justify-center rounded-full border shadow-sm group-hover:scale-105 transition-all duration-300 flex-shrink-0 mb-2.5 bg-gradient-to-br from-[#0EA5E9] to-[#2563EB] border-[#0EA5E9]/20 text-white shadow-[0_8px_20px_rgba(14,165,233,0.2)] group-hover:shadow-[0_12px_28px_rgba(14,165,233,0.3)]">
-                    <IconComp className="w-6 h-6 md:w-7 md:h-7 text-white" />
+                  {/* Header Row: Icon + Title */}
+                  <div className="flex items-center gap-3 mb-2.5">
+                    <div className="w-[40px] h-[40px] md:w-[46px] md:h-[46px] flex items-center justify-center rounded-full border shadow-sm group-hover:scale-105 transition-all duration-300 flex-shrink-0 bg-gradient-to-br from-[#0EA5E9] to-[#2563EB] border-[#0EA5E9]/20 text-white shadow-[0_8px_20px_rgba(14,165,233,0.2)] group-hover:shadow-[0_12px_28px_rgba(14,165,233,0.3)]">
+                      <IconComp className="w-5 h-5 md:w-5.5 md:h-5.5 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-[13px] sm:text-[15px] md:text-[16px] lg:text-[18px] font-[900] text-[#0F172A] leading-tight tracking-tight">
+                        {r.title}
+                      </h3>
+                      {/* Horizontal accent line */}
+                      <div className="w-12 h-[2px] bg-[#2563EB] rounded-full mt-1 transition-all duration-300 group-hover:w-20" />
+                    </div>
                   </div>
 
-                  <div className="flex-grow min-w-0 flex flex-col justify-start">
-                    <h3 className="text-[13px] sm:text-[15px] md:text-[16px] lg:text-[18px] font-[900] text-[#0F172A] leading-snug tracking-tight mb-0.5">
-                      {r.title}
-                    </h3>
-
-                    {/* Horizontal accent line */}
-                    <div className="w-12 h-[2.5px] bg-[#2563EB] rounded-full mb-1.5 transition-all duration-300 group-hover:w-20" />
-
-                    <p className="text-[9.5px] md:text-[10.5px] lg:text-[11px] leading-relaxed text-slate-500 font-semibold line-clamp-3 md:line-clamp-4">
-                      {r.desc}
-                    </p>
-                  </div>
+                  <p className="text-[12px] md:text-[13px] lg:text-[14px] leading-relaxed text-slate-500 font-semibold line-clamp-3 md:line-clamp-4">
+                    {r.desc}
+                  </p>
                 </div>
               );
             })}
