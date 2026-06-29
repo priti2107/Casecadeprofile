@@ -420,8 +420,7 @@ function WhoWeAreScene({ scene, isActive = false, activeCardIdx = 0 }: { scene: 
 
             {/* Title */}
             <h2 className="text-2xl sm:text-3xl md:text-[34px] lg:text-[44px] font-[900] leading-[1.08] tracking-tight text-[#0F172A] font-display">
-              We Are <br />
-              <span className="text-[#0284C7]">Cascade Tech</span>
+              We Are <span className="text-[#0284C7]">Cascade Tech</span>
             </h2>
 
             {/* Horizontal Line Under Heading */}
@@ -534,47 +533,6 @@ function WhoWeAreScene({ scene, isActive = false, activeCardIdx = 0 }: { scene: 
             />
           </div>
 
-          {/* Awards Capsule Bar below the image */}
-          <div
-            className="w-fit mx-auto mt-4 px-6 py-2.5 bg-white/95 border border-white/60 shadow-sm rounded-full flex items-center gap-6 backdrop-blur-md"
-            style={{
-              opacity: isActive ? 1 : 0,
-              transform: isActive ? undefined : "translateY(10px)",
-              transition: "opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s",
-            }}
-          >
-            <span className="text-[11px] font-extrabold tracking-wider text-sky-850 uppercase whitespace-nowrap">
-              Our Achieved Awards
-            </span>
-            <div className="h-4 w-[1px] bg-slate-200" />
-            <div className="flex items-center gap-5">
-              {/* Award Logo 1: The Legal 500 */}
-              <div className="flex items-center text-slate-800" title="The Legal 500">
-                <svg className="h-6 w-auto text-slate-800" viewBox="0 0 100 30" fill="currentColor">
-                  <text x="0" y="14" fontFamily="Georgia, serif" fontSize="10" fontWeight="bold">The</text>
-                  <text x="0" y="24" fontFamily="Georgia, serif" fontSize="9" letterSpacing="0.5">LEGAL</text>
-                  <text x="35" y="25" fontFamily="Georgia, serif" fontSize="24" fontWeight="900" letterSpacing="-1">500</text>
-                </svg>
-              </div>
-
-              {/* Award Logo 2: Shield/Crest */}
-              <div className="text-slate-700" title="Registered Salesforce Partner">
-                <svg className="h-6 w-auto text-slate-700" viewBox="0 0 32 32" fill="currentColor">
-                  <path d="M16 2C10 2 6 5 6 12C6 22 16 30 16 30C16 30 26 22 26 12C26 5 22 2 16 2ZM16 26C12 21 8.5 15 8.5 12C8.5 10 9 6.5 16 4.5C23 6.5 23.5 10 23.5 12C23.5 15 20 21 16 26Z" />
-                  <path d="M16 8V20M12 11V16C12 18 16 19 16 19C16 19 20 18 20 16V11" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-                </svg>
-              </div>
-
-              {/* Award Logo 3: Scale circle 50 */}
-              <div className="text-slate-700" title="AppExchange Certified">
-                <svg className="h-6 w-auto text-slate-700" viewBox="0 0 32 32" fill="currentColor">
-                  <circle cx="16" cy="16" r="14" fill="none" stroke="currentColor" strokeWidth="2" />
-                  <path d="M16 8V24M10 13H22M10 13L13 19H7L10 13ZM22 13L25 19H19L22 13Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-                  <text x="16" y="21.5" fontFamily="sans-serif" fontSize="7" fontWeight="bold" textAnchor="middle">50</text>
-                </svg>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -948,8 +906,8 @@ function ProductEcosystemScene() {
                     <p className="text-[13px] font-semibold text-[#0077B6] mt-0.5">AI-powered customer intelligence platform</p>
                   </div>
                 </div>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFFBEB] border border-amber-200/70 text-amber-600 text-[10px] font-bold shadow-[0_2px_8px_rgba(245,158,11,0.12)] flex-shrink-0">
-                  <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />Deployment
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F0FFF4] border border-emerald-200/70 text-emerald-600 text-[10px] font-bold shadow-[0_2px_8px_rgba(16,185,129,0.12)] flex-shrink-0">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />Live
                 </span>
               </div>
 
@@ -5001,12 +4959,6 @@ function EngagementModelScene({ scene }: { scene: Scene }) {
                     {stages[activeStage].desc}
                   </p>
                 </div>
-                <button
-                  onClick={() => setExpandedStageIdx(activeStage)}
-                  className="flex-shrink-0 inline-flex items-center gap-1.5 py-2 px-3.5 rounded-xl bg-[#F0F9FF] border border-[#E0F2FE] text-[11.5px] font-black text-[#0284C7] hover:bg-[#E0F2FE] hover:scale-[1.02] active:scale-[0.98] transition-all pointer-events-auto"
-                >
-                  <span>Explore Case Study →</span>
-                </button>
               </div>
 
               {/* Dashboard Content Grid (Row 1 & Row 2 & Row 3) */}
@@ -5834,8 +5786,8 @@ export default function Experience() {
                   <span className="size-3 rounded-full bg-[#0EA5E9] shadow-[0_0_10px_rgba(14,165,233,0.8)] nav-active-pulse z-10" />
                 ) : (
                   <span className={`size-2 rounded-full transition-all duration-300 z-10 ${isPast
-                      ? "bg-slate-500 group-hover:scale-125"
-                      : "bg-slate-300 group-hover:scale-125"
+                    ? "bg-slate-500 group-hover:scale-125"
+                    : "bg-slate-300 group-hover:scale-125"
                     }`} />
                 )}
               </button>
@@ -5878,10 +5830,10 @@ export default function Experience() {
                       setIsMobileNavExpanded(false);
                     }}
                     className={`size-8 rounded-full flex items-center justify-center text-[10px] font-black transition-all ${isActive
-                        ? "bg-[#0EA5E9] text-white shadow-md shadow-sky-500/10"
-                        : isPast
-                          ? "bg-sky-50 text-[#0284C7] border border-sky-100"
-                          : "bg-slate-50 text-slate-400 border border-slate-100"
+                      ? "bg-[#0EA5E9] text-white shadow-md shadow-sky-500/10"
+                      : isPast
+                        ? "bg-sky-50 text-[#0284C7] border border-sky-100"
+                        : "bg-slate-50 text-slate-400 border border-slate-100"
                       }`}
                   >
                     {String(i + 1).padStart(2, '0')}
