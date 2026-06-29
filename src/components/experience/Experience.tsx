@@ -5453,6 +5453,7 @@ export default function Experience() {
   const [initStage, setInitStage] = useState(0);
   const [active, setActive] = useState(0);
   const [activeCardIdx, setActiveCardIdx] = useState(0);
+  const [isMobileNavExpanded, setIsMobileNavExpanded] = useState(false);
 
   const activeCardIdxRef = useRef(activeCardIdx);
   const targetActiveRef = useRef(active);
@@ -5767,31 +5768,124 @@ export default function Experience() {
         />
       ))}
 
-      {/* Floating dot navigation on the right side */}
-      <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-3.5 select-none pointer-events-auto hidden sm:flex">
-        {SCENES.map((scene, i) => {
-          const isActive = active === i;
-          return (
-            <button
-              key={scene.id}
-              onClick={() => scrollToScene(i)}
-              className="group relative flex items-center justify-center p-1 bg-transparent border-0 cursor-pointer focus:outline-none"
-              aria-label={`Go to section ${i + 1}: ${scene.kicker}`}
-            >
-              {/* Tooltip on hover */}
-              <span className="absolute right-7 scale-90 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 bg-white/95 backdrop-blur-md border border-slate-200/50 rounded-xl px-3 py-1.5 text-[11px] font-bold text-[#03045E] whitespace-nowrap shadow-md pointer-events-none tracking-tight">
-                {scene.kicker}
-              </span>
+      {/* Custom Styles for Nav pulsing glow and arrow bounce */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes nav-glow-pulse {
+          0%, 100% {
+            box-shadow: 0 0 8px rgba(14, 165, 233, 0.5);
+            transform: scale(1.05);
+          }
+          50% {
+            box-shadow: 0 0 16px rgba(14, 165, 233, 0.85);
+            transform: scale(1.2);
+          }
+        }
+        @keyframes nav-bounce {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(4px);
+          }
+        }
+        .nav-active-pulse {
+          animation: nav-glow-pulse 2s infinite ease-in-out;
+        }
+      ` }} />
 
-              {/* Dot visual */}
-              {isActive ? (
-                <span className="size-3.5 rounded-full bg-[#48CAE4] ring-4 ring-[#48CAE4]/20 shadow-[0_0_12px_rgba(72,202,228,0.85)] scale-110 transition-all duration-300" />
-              ) : (
-                <span className="size-2 rounded-full bg-[#03045E]/25 group-hover:bg-[#0077B6] group-hover:scale-125 transition-all duration-300" />
-              )}
-            </button>
-          );
-        })}
+      {/* Desktop Floating navigation on the right side */}
+      <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col items-center select-none pointer-events-auto hidden md:flex">
+        {/* Navigation Label Hint (Always-Visible Label) */}
+        <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-3 flex flex-col items-center gap-0.5 pointer-events-none">
+          <span>Scroll</span>
+          <ChevronDown className="size-3.5 animate-[nav-bounce_2s_infinite] text-slate-400" />
+        </div>
+
+        {/* Minimal Connective Container (No Pill Background, No Shadows) */}
+        <div className="relative flex flex-col items-center gap-4 py-2">
+          {/* Connecting vertical line (Very thin) */}
+          <div className="absolute top-3 bottom-3 w-[1px] bg-slate-200 -z-10" />
+
+          {SCENES.map((scene, i) => {
+            const isActive = active === i;
+            const isPast = i < active;
+            
+            return (
+              <button
+                key={scene.id}
+                onClick={() => scrollToScene(i)}
+                className="group relative flex items-center justify-center size-5 bg-transparent border-0 cursor-pointer focus:outline-none"
+                aria-label={`Go to section ${i + 1}: ${scene.kicker}`}
+              >
+                {/* Tooltip on hover (Frosted Glass text box) */}
+                <span className="absolute right-7 translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 bg-white/90 backdrop-blur-md border border-slate-200/50 rounded-xl px-3 py-1.5 text-[10px] font-black text-[#0ea5e9] uppercase tracking-wider whitespace-nowrap shadow-[0_8px_30px_rgb(0,0,0,0.03)] pointer-events-none z-30">
+                  {scene.kicker}
+                </span>
+
+                {/* Dot Visuals */}
+                {isActive ? (
+                  <span className="size-3 rounded-full bg-[#0EA5E9] shadow-[0_0_10px_rgba(14,165,233,0.8)] nav-active-pulse z-10" />
+                ) : (
+                  <span className={`size-2 rounded-full transition-all duration-300 z-10 ${
+                    isPast
+                      ? "bg-slate-500 group-hover:scale-125"
+                      : "bg-slate-300 group-hover:scale-125"
+                  }`} />
+                )}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Mobile Floating navigation at the bottom right */}
+      <div className="fixed right-6 bottom-6 z-50 md:hidden pointer-events-auto">
+        {!isMobileNavExpanded ? (
+          <button
+            onClick={() => setIsMobileNavExpanded(true)}
+            className="flex items-center gap-2 py-2 px-3.5 bg-white/95 backdrop-blur-md border border-slate-200 shadow-xl rounded-full text-xs font-black text-[#0EA5E9]"
+          >
+            <span className="size-2 rounded-full bg-[#0EA5E9] animate-ping" />
+            <span>{String(active + 1).padStart(2, '0')} / {String(N).padStart(2, '0')}</span>
+            <span className="text-[9px] text-slate-400 font-bold uppercase tracking-wider ml-1">NAV</span>
+          </button>
+        ) : (
+          <div className="flex flex-col items-center bg-white/97 backdrop-blur-md border border-slate-200 shadow-2xl rounded-2xl p-3 max-h-[60vh] w-48 overflow-y-auto">
+            <div className="flex items-center justify-between w-full pb-2 mb-2 border-b border-slate-100">
+              <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Jump to Section</span>
+              <button
+                onClick={() => setIsMobileNavExpanded(false)}
+                className="text-[10px] font-black text-slate-500 hover:text-slate-700"
+              >
+                Close
+              </button>
+            </div>
+            <div className="grid grid-cols-4 gap-2 w-full">
+              {SCENES.map((scene, i) => {
+                const isActive = active === i;
+                const isPast = i < active;
+                return (
+                  <button
+                    key={scene.id}
+                    onClick={() => {
+                      scrollToScene(i);
+                      setIsMobileNavExpanded(false);
+                    }}
+                    className={`size-8 rounded-full flex items-center justify-center text-[10px] font-black transition-all ${
+                      isActive
+                        ? "bg-[#0EA5E9] text-white shadow-md shadow-sky-500/10"
+                        : isPast
+                        ? "bg-sky-50 text-[#0284C7] border border-sky-100"
+                        : "bg-slate-50 text-slate-400 border border-slate-100"
+                    }`}
+                  >
+                    {String(i + 1).padStart(2, '0')}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Bottom progress bar */}
