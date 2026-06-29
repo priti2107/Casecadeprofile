@@ -95,7 +95,7 @@ export const INDUSTRIES_SHOWCASE_DATA: IndustryData[] = [
     id: "healthcare",
     title: "Healthcare",
     subtitle: "Vertical 04",
-    desc: "Salesforce-powered patient engagement platform improving appointment scheduling, referral management and patient lifecycle.",
+    desc: "Connected healthcare solutions that simplify patient journeys, appointment scheduling, referral management, and care coordination.",
     iconName: "HeartPulse",
     capabilities: [
       "Patient 360 Profiles",
@@ -128,7 +128,7 @@ export const INDUSTRIES_SHOWCASE_DATA: IndustryData[] = [
     id: "education",
     title: "Education",
     subtitle: "Vertical 03",
-    desc: "Student lifecycle management from inquiry to alumni engagement using Salesforce Education Cloud.",
+    desc: "Modern education platforms for admissions, student lifecycle management, communication, fee automation, and alumni engagement.",
     iconName: "GraduationCap",
     capabilities: [
       "Inquiry Management",
@@ -161,7 +161,7 @@ export const INDUSTRIES_SHOWCASE_DATA: IndustryData[] = [
     id: "d2c-retail",
     title: "D2C & Retail",
     subtitle: "Vertical 05",
-    desc: "Commerce automation connecting customer acquisition, orders, payments, delivery and loyalty.",
+    desc: "Commerce solutions that improve customer acquisition, order management, loyalty programs, personalized experiences, and post-purchase engagement.",
     iconName: "ShoppingCart",
     capabilities: [
       "Cart Abandonment",
@@ -194,7 +194,7 @@ export const INDUSTRIES_SHOWCASE_DATA: IndustryData[] = [
     id: "financial-services",
     title: "Financial Services",
     subtitle: "Vertical 06",
-    desc: "CRM solution for banking, lending and financial institutions with secure onboarding and compliance.",
+    desc: "Secure CRM and automation solutions for banks and financial institutions, enabling digital onboarding, compliance, loan workflows, and customer service.",
     iconName: "Landmark",
     capabilities: [
       "Portfolio Rollups",
