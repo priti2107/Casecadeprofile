@@ -1979,7 +1979,7 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
         <div className="flex flex-col md:flex-row gap-8 lg:gap-16 items-center justify-between w-full h-full relative z-10 max-w-[1080px] mx-auto py-2">
           {/* LEFT COLUMN: Narrative & CTAs (54% width) */}
           <div className="w-full md:w-[54%] flex flex-col justify-center items-start text-left h-full py-2">
-            <div className="flex flex-col items-start gap-3 w-full">
+            <div className="flex flex-col items-start gap-3.5 w-full">
               {/* Kicker Badge */}
               <motion.div
                 animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
@@ -1990,13 +1990,13 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
                 LET'S BUILD TOGETHER
               </motion.div>
 
-              {/* Headline - Slightly smaller & readable */}
+              {/* Headline - Sized and wrapped into two lines */}
               <motion.h2
                 animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="text-2xl sm:text-3xl md:text-[34px] lg:text-[42px] xl:text-[46px] font-[900] leading-[1.12] tracking-tight text-[#0F172A] font-display max-w-2xl"
               >
-                Let's Build Something{" "}
+                Let's Build Something <br className="hidden md:inline" />
                 <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#0EA5E9] to-[#2563EB]">
                   That Actually Works.
                   <svg
@@ -2015,97 +2015,34 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
                 </span>
               </motion.h2>
 
-              {/* Description - Slightly smaller space and font size */}
+              {/* Description - Concise and vertically aligned */}
               <motion.p
                 animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="mt-4 text-xs sm:text-sm md:text-sm lg:text-[14.5px] text-[#475569] font-medium leading-relaxed max-w-2xl"
+                className="mt-2 text-xs sm:text-sm md:text-sm lg:text-[14.5px] text-[#475569] font-medium leading-relaxed max-w-2xl"
               >
                 Whether you're implementing Salesforce, building AI-powered automation, launching
                 digital products, or transforming customer operations — let's discuss what success
                 looks like for your business.
               </motion.p>
 
-              {/* Proven at Scale Label */}
-              <div className="mt-2">
-                <span className="text-[8.5px] md:text-[9.5px] font-extrabold text-slate-400 uppercase tracking-widest block mb-0.5">
-                  Proven At Scale
-                </span>
-              </div>
-
-              {/* Statistics Cards - Sized down to avoid overlaps and improve layout fit */}
-              <div className="grid grid-cols-2 gap-2.5 w-full max-w-md mt-0.5">
-                {statsItems.map((item, idx) => (
-                  <motion.div
-                    key={idx}
-                    animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
-                    transition={{ duration: 0.5, delay: 0.3 + idx * 0.1 }}
-                    className="premium-glass-card premium-glass-card-hover rounded-xl p-1.5 px-3.5 flex items-center gap-3.5 cursor-default"
-                  >
-                    <span className="text-2xl md:text-3xl lg:text-[32px] font-[950] text-[#0284C7] font-display leading-none tracking-tight flex-shrink-0 min-w-[45px]">
-                      {isActive ? (
-                        <CountUp value={item.value} suffix={item.suffix} delay={0.4 + idx * 0.1} />
-                      ) : (
-                        `0${item.suffix}`
-                      )}
-                    </span>
-                    <span className="text-[8.5px] md:text-[9.5px] font-bold text-slate-500 uppercase tracking-wider leading-snug">
-                      {item.label}
-                    </span>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Trust Badges immediately below stats */}
-              <motion.div
-                animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-                transition={{ duration: 0.5, delay: 0.6 }}
-                className="flex flex-wrap gap-2.5 mt-2"
-              >
-                {[
-                  "Salesforce Partner",
-                  "AI-Native Team",
-                  "In-House Delivery",
-                  "Enterprise Ready",
-                ].map((tag) => (
-                  <span
-                    key={tag}
-                    className="glass-chip inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[#0284C7] text-[9.5px] md:text-[11px] font-black uppercase tracking-wider"
-                  >
-                    <Check className="size-2.5 text-[#0284C7] stroke-[3]" />
-                    {tag}
-                  </span>
-                ))}
-              </motion.div>
-
-              {/* CTA Buttons - Sized down to look highly compact & premium */}
+              {/* CTA Buttons - Premium Schedule A Discovery Call Only */}
               <motion.div
                 animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
-                transition={{ duration: 0.6, delay: 0.7 }}
-                className="relative flex flex-row items-center gap-2.5 mt-3 w-full"
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="relative flex flex-row items-center gap-2.5 mt-4 w-full"
               >
-                {/* Subtle blue glow behind buttons */}
-                <div className="absolute -inset-2 bg-gradient-to-r from-sky-400/15 via-blue-500/15 to-indigo-500/15 blur-lg rounded-full -z-10 pointer-events-none" />
+                {/* Subtle blue glow behind button */}
+                <div className="absolute -inset-2 bg-gradient-to-r from-sky-400/20 via-blue-500/20 to-indigo-500/20 blur-xl rounded-full -z-10 pointer-events-none group-hover:scale-105 transition-all duration-300" />
 
                 <a
                   href="mailto:hello@cascadetech.ventures"
-                  className="group relative bg-[#0284C7] hover:bg-[#0369A1] text-white text-[11px] md:text-xs font-extrabold py-2 px-4.5 rounded-full inline-flex items-center gap-1.5 shadow-md shadow-sky-500/5 transition-all duration-300 hover:scale-[1.02]"
+                  className="group relative bg-[#0284C7] hover:bg-[#0369A1] text-white text-xs md:text-sm font-extrabold py-3 px-6.5 rounded-full inline-flex items-center gap-2 shadow-md shadow-sky-500/10 transition-all duration-300 hover:scale-[1.03]"
                 >
                   <span className="absolute inset-0 rounded-full bg-gradient-to-r from-[#0EA5E9]/25 to-[#2563EB]/25 blur-md group-hover:blur-lg transition-all duration-300 -z-10 animate-pulse" />
-                  <span>Schedule A Discovery Call</span>
-                  <ArrowUpRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <span>Schedule a Discovery Call</span>
+                  <ArrowUpRight className="size-4.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </a>
-                <button
-                  onClick={() => {
-                    window.scrollTo({
-                      top: 10 * window.innerHeight,
-                      behavior: "smooth",
-                    });
-                  }}
-                  className="border border-[#E0F2FE] hover:border-[#0EA5E9]/20 bg-white hover:bg-slate-50 text-[#0284C7] text-[11px] md:text-xs font-bold py-2 px-4 rounded-full inline-flex items-center gap-1.5 transition-all duration-300 hover:scale-[1.01] shadow-sm"
-                >
-                  View Our Work
-                </button>
               </motion.div>
             </div>
           </div>
@@ -2116,7 +2053,7 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
             transition={{ duration: 0.7, delay: 0.4 }}
             className="w-full md:w-[41%] flex flex-col justify-center h-full py-2"
           >
-            <div className="premium-glass-card rounded-3xl p-5 md:p-6.5 flex flex-col gap-4 text-left relative overflow-hidden w-full max-w-[420px] mx-auto md:mx-0">
+            <div className="premium-glass-card rounded-3xl p-5 md:p-6 flex flex-col gap-4.5 text-left relative overflow-hidden w-full max-w-[420px] mx-auto md:mx-0">
               {/* Subtle grid pattern in background */}
               <div className="absolute inset-0 opacity-[0.015] pointer-events-none">
                 <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -2134,65 +2071,53 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
 
               {/* Headline inside card */}
               <div className="border-b border-slate-200/40 pb-2">
-                <span className="text-[10px] md:text-[11px] font-extrabold text-[#0284C7] uppercase tracking-widest block">
-                  Speak Directly With Our Founders
+                <span className="text-[11px] md:text-[12px] font-extrabold text-[#0284C7] uppercase tracking-widest block">
+                  Talk To Our Team
                 </span>
               </div>
 
-              {/* Leadership Profiles - Vertically centered with larger photos */}
-              <div className="flex flex-col gap-3">
+              {/* Leadership Profiles - Compact side-by-side row */}
+              <div className="grid grid-cols-2 gap-2.5">
                 {/* Aashish */}
-                <div className="flex items-center gap-4 premium-glass-card premium-glass-card-hover rounded-2xl p-2 px-3.5">
-                  <div className="relative flex-shrink-0">
-                    <img
-                      src="/clients/Aashish Yadav.png"
-                      className="w-13 h-13 rounded-full border border-sky-100 object-cover shadow-sm"
-                      alt="Aashish Yadav"
-                    />
-                    <span className="absolute bottom-0 right-0 size-2.5 bg-emerald-500 ring-2 ring-white rounded-full animate-pulse" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-black text-slate-800 leading-none">
+                <div className="flex items-center gap-2.5 premium-glass-card rounded-xl p-1.5 px-2.5">
+                  <img
+                    src="/clients/Aashish Yadav.png"
+                    className="w-10 h-10 rounded-full border border-sky-100 object-cover shadow-sm flex-shrink-0"
+                    alt="Aashish Yadav"
+                  />
+                  <div className="min-w-0">
+                    <h4 className="text-[12px] font-black text-slate-800 leading-none truncate">
                       Aashish Yadav
                     </h4>
-                    <p className="text-[9.5px] font-extrabold text-slate-400 uppercase tracking-wider mt-1.5 leading-none">
+                    <p className="text-[8px] font-extrabold text-slate-400 uppercase tracking-wider mt-1.5 leading-none truncate">
                       CEO & Founder
                     </p>
-                    <span className="inline-flex items-center gap-1 mt-1.5 text-[9px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full leading-none">
-                      <span className="size-1 rounded-full bg-emerald-500" />
-                      Active Online
-                    </span>
                   </div>
                 </div>
 
                 {/* Yash */}
-                <div className="flex items-center gap-4 premium-glass-card premium-glass-card-hover rounded-2xl p-2 px-3.5">
-                  <div className="relative flex-shrink-0">
-                    <img
-                      src="/clients/Yash Jain.png"
-                      className="w-13 h-13 rounded-full border border-sky-100 object-cover shadow-sm"
-                      alt="Yash Jain"
-                    />
-                    <span className="absolute bottom-0 right-0 size-2.5 bg-emerald-500 ring-2 ring-white rounded-full animate-pulse" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-black text-slate-800 leading-none">Yash Jain</h4>
-                    <p className="text-[9.5px] font-extrabold text-slate-400 uppercase tracking-wider mt-1.5 leading-none">
+                <div className="flex items-center gap-2.5 premium-glass-card rounded-xl p-1.5 px-2.5">
+                  <img
+                    src="/clients/Yash Jain.png"
+                    className="w-10 h-10 rounded-full border border-sky-100 object-cover shadow-sm flex-shrink-0"
+                    alt="Yash Jain"
+                  />
+                  <div className="min-w-0">
+                    <h4 className="text-[12px] font-black text-slate-800 leading-none truncate">
+                      Yash Jain
+                    </h4>
+                    <p className="text-[8px] font-extrabold text-slate-400 uppercase tracking-wider mt-1.5 leading-none truncate">
                       CTO & Co-Founder
                     </p>
-                    <span className="inline-flex items-center gap-1 mt-1.5 text-[9px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full leading-none">
-                      <span className="size-1 rounded-full bg-emerald-500" />
-                      Active Online
-                    </span>
                   </div>
                 </div>
               </div>
 
               {/* Subtle divider */}
-              <div className="border-t border-slate-200/40 my-1" />
+              <div className="border-t border-slate-200/40 my-0.5" />
 
               {/* Direct Action Chips - Compact premium pills */}
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2.5">
                 {[
                   {
                     label: "Website",
@@ -2226,7 +2151,7 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
                       href={chip.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-between px-4 py-2.5 rounded-2xl premium-glass-card premium-glass-card-hover group/chip"
+                      className="flex items-center justify-between px-4 py-2.5 rounded-2xl premium-glass-card premium-glass-card-hover bg-white/70 hover:bg-[#F8FAFC] border border-slate-100/60 hover:border-sky-100/80 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md group/chip"
                     >
                       <div className="flex items-center gap-2.5">
                         <Icon className="size-4.5 text-[#0EA5E9] transition-transform duration-300 group-hover/chip:scale-110" />
