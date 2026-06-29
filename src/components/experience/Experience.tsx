@@ -2693,7 +2693,7 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
         <div className="w-full flex flex-col justify-start text-left max-w-4xl relative z-10 shrink-0 mt-1">
           <div className="inline-flex items-center gap-1.5 bg-[#F0F9FF] border border-[#E0F2FE] rounded-full px-3 py-1 text-[10px] md:text-[11px] font-bold tracking-wider text-[#0284C7] w-fit mb-1.5">
             <span className="size-1.5 rounded-full bg-[#0284C7] animate-pulse" />
-            DISTRICT 09 • WHY CASCADE TECH
+            WHY CASCADE TECH
           </div>
 
           <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[40px] xl:text-[48px] 2xl:text-[56px] font-[900] leading-[1.05] tracking-tight text-[#0F172A] font-display">
@@ -2890,7 +2890,7 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
             {/* Badge */}
             <div className="inline-flex items-center gap-1.5 bg-[#F0F9FF] border border-[#E0F2FE]/80 rounded-full px-3 py-0.5 text-[10px] md:text-[11px] font-bold tracking-wider text-[#0284C7] w-fit mb-2">
               <span className="size-1.5 rounded-full bg-[#0284C7] animate-pulse" />
-              DISTRICT 09 • CLIENTS
+              CLIENTS
             </div>
 
             {/* Title */}
@@ -5177,20 +5177,32 @@ function ClientCard({ clientName, isFeatured }: { clientName: string; isFeatured
     .replace(/_+/g, "_")
     .replace(/^_+|_+$/g, "");
 
+  const nameLength = clientName.length;
+  let fontSizeClass = "text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px]";
+  if (nameLength > 15) {
+    fontSizeClass = "text-[11.5px] sm:text-[13px] md:text-[14.5px] lg:text-[16px]";
+  } else if (nameLength > 11) {
+    fontSizeClass = "text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px]";
+  } else if (nameLength > 8) {
+    fontSizeClass = "text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px]";
+  }
+
+  const isWideLogo = normalizedName === "nandivardhan" || normalizedName === "ashwin_sheth";
+
   return (
-    <div className={`w-full aspect-[2.6/1] md:aspect-[2.8/1] min-h-[82px] md:min-h-[105px] rounded-[22px] p-1.5 md:p-2 flex items-center justify-center text-center overflow-hidden group/card border transition-all duration-300 hover:-translate-y-1 ${isFeatured
-      ? "border-blue-400/80 bg-gradient-to-br from-[#E0F2FE]/80 via-[#F0F9FF]/95 to-white shadow-[0_0_18px_rgba(0,112,210,0.16)] hover:shadow-[0_0_28px_rgba(0,112,210,0.24)]"
-      : "border-blue-200/40 bg-gradient-to-br from-white/95 via-[#F1F8FF] to-white/90 shadow-[0_5px_15px_rgba(0,112,210,0.05)] hover:shadow-[0_10px_28px_rgba(0,112,210,0.16)] hover:border-blue-300/60 hover:bg-white"
+    <div className={`w-full aspect-[2.6/1] md:aspect-[2.8/1] min-h-[82px] md:min-h-[105px] rounded-[22px] p-0 flex items-center justify-center text-center overflow-hidden group/card border transition-all duration-300 hover:-translate-y-1 ${isFeatured
+      ? "border-blue-400 bg-white shadow-[0_4px_20px_rgba(0,112,210,0.08)] hover:shadow-[0_10px_28px_rgba(0,112,210,0.18)]"
+      : "border-slate-200 bg-white shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_25px_rgba(0,0,0,0.08)] hover:border-slate-300"
       }`}>
       {!imgError ? (
         <img
-          src={`/clients/${normalizedName}.png`}
+          src={`/clients/${normalizedName}.png?v=4`}
           alt={clientName}
           onError={() => setImgError(true)}
-          className="w-[82%] h-[82%] object-contain scale-[1.15] transition-transform duration-300 group-hover/card:scale-[1.22]"
+          className="w-full h-full object-contain p-2 bg-white transition-transform duration-300 group-hover/card:scale-105"
         />
       ) : (
-        <span className="text-[10px] md:text-[12px] lg:text-[13px] font-black text-slate-700 tracking-wider px-2.5">
+        <span className={`${fontSizeClass} font-black text-[#03045E]/90 tracking-wider px-1.5 select-none`}>
           {clientName}
         </span>
       )}

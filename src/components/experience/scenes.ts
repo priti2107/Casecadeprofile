@@ -244,7 +244,7 @@ export const SCENES: Scene[] = [
   },
   {
     id: 8,
-    kicker: "District 08 · Why Cascade Tech",
+    kicker: "Why Cascade Tech",
     title: "Why Developers & Enterprises Choose Cascade Tech",
     subtitle:
       "We combine Salesforce expertise, AI innovation, product thinking and real-world industry execution to deliver measurable business outcomes.",
@@ -285,7 +285,7 @@ export const SCENES: Scene[] = [
 
   {
     id: 9,
-    kicker: "District 09 · Clients",
+    kicker: "Clients",
     title: "Organizations That Trust Cascade Tech",
     subtitle:
       "From Mumbai's leading real estate developers to growing enterprise organizations, Cascade Tech powers Salesforce, AI and automation initiatives across multiple industries.",
