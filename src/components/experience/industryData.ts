@@ -29,7 +29,7 @@ export const INDUSTRIES_SHOWCASE_DATA: IndustryData[] = [
     id: "real-estate",
     title: "Real Estate & PropTech",
     subtitle: "Vertical 01",
-    desc: "End-to-end Salesforce solution for Indian real estate developers covering the complete customer journey from lead generation to possession with channel partner management, CRM automation, inventory, booking and post-sales engagement.",
+    desc: "End-to-end Salesforce solutions for developers, builders, and brokers—streamlining lead management, sales, bookings, inventory, and customer engagement.",
     iconName: "Home",
     capabilities: [
       "Lead Capture & Routing",
@@ -62,7 +62,7 @@ export const INDUSTRIES_SHOWCASE_DATA: IndustryData[] = [
     id: "commercial-cre",
     title: "Commercial Real Estate",
     subtitle: "Vertical 02",
-    desc: "Complete leasing lifecycle with tenant onboarding, lease automation, maintenance requests and portfolio management.",
+    desc: "Digital solutions for leasing and property operations with tenant management, contract automation, maintenance workflows, and portfolio visibility.",
     iconName: "Building2",
     capabilities: [
       "Tenant Onboarding",
