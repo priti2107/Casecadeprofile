@@ -1494,110 +1494,117 @@ function MeetOurTeamScene({ scene: _scene }: { scene: Scene }) {
     {
       name: "Pravesh Prajapati",
       role: "Project Manager",
-      responsibility: "Owns delivery end to end — keeping scope, timeline and quality aligned.",
+      responsibility: "Owns delivery end to end — keeping scope, timeline and quality aligned so every implementation lands on time and on budget.",
       image: "/clients/Pravesh Prajapati.png?v=5",
       imgPos: "object-top",
+      linkedin: "https://www.linkedin.com/in/pravesh-prajapati-0b1255219/",
+      skills: ["Project Delivery", "CRM Solutioning", "Agile Operations"],
     },
     {
       name: "Jainam Jain",
       role: "Business Development Head",
-      responsibility: "Leads growth and client partnerships — connecting clients with solutions.",
+      responsibility: "Leads growth and client partnerships — connecting developers and enterprises with the right Salesforce and product solutions.",
       image: "/clients/Jainam Jain.png?v=5",
       imgPos: "object-top",
+      linkedin: "https://www.linkedin.com/in/jainamjain-bd/",
+      skills: ["Client Success", "Business Strategy", "Salesforce Ecosystem"],
     },
   ];
 
   return (
     <div
-      className="pointer-events-auto rounded-[28px] w-[92vw] md:w-[90vw] h-[88vh] md:h-[84vh] max-w-7xl relative overflow-hidden flex flex-col pt-8 pb-6 px-6 md:px-12 border border-slate-200/70 shadow-[0_24px_80px_rgba(0,55,120,0.13)] justify-center"
+      className="pointer-events-auto rounded-[32px] w-[92vw] md:w-[90vw] h-[88vh] md:h-[82vh] max-w-7xl relative overflow-hidden flex flex-col pt-10 md:pt-14 pb-6 px-6 md:px-12 border border-slate-200/60 shadow-[0_30px_90px_rgba(0,55,120,0.06)] justify-start gap-6"
       style={{
-        background: "linear-gradient(160deg, rgba(255,255,255,0.97) 0%, rgba(241,248,255,0.95) 60%, rgba(224,240,255,0.93) 100%)",
-        backdropFilter: "blur(32px)",
+        background: "linear-gradient(145deg, #ffffff 0%, #f4f9ff 50%, #eef6ff 100%)",
+        backdropFilter: "blur(24px)",
       }}
     >
-      {/* Dot grid texture */}
-      <div
-        className="absolute inset-0 opacity-[0.035] pointer-events-none"
-        style={{ backgroundImage: "radial-gradient(circle, #0077B6 1px, transparent 1px)", backgroundSize: "28px 28px" }}
-      />
-      {/* Glow accents */}
-      <div className="absolute -top-16 -right-16 w-72 h-72 rounded-full blur-[100px] pointer-events-none opacity-[0.18] bg-[#0077B6]" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full blur-[120px] pointer-events-none opacity-[0.08] bg-[#48CAE4]" />
+      {/* 1. Thin Blueprint Grid Background */}
+      <div className="absolute inset-0 opacity-[0.015] pointer-events-none">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="grid-team-redesign" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#0077B6" strokeWidth="0.5" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid-team-redesign)" />
+        </svg>
+      </div>
+
+      {/* 2. Premium Radial Glow behind cards */}
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[450px] rounded-full blur-[140px] pointer-events-none opacity-[0.14] bg-gradient-to-br from-sky-400 via-blue-500 to-indigo-500 -z-10" />
 
       {/* Header */}
-      <div className="flex flex-col items-center text-center mb-10 max-w-2xl mx-auto relative z-10">
-        <span className="inline-flex items-center gap-1.5 text-[10px] font-black tracking-[0.25em] text-[#0077B6] uppercase bg-[#E0F2FE] border border-[#BAE6FD] rounded-full px-3 py-1 mb-3">
+      <div className="flex flex-col items-center text-center max-w-2xl mx-auto relative z-10">
+        <span className="inline-flex items-center gap-1.5 text-[9.5px] font-black tracking-[0.25em] text-[#0077B6] uppercase bg-sky-50 border border-sky-100 rounded-full px-3 py-1 mb-2.5">
           <span className="size-1.5 rounded-full bg-[#0077B6] animate-pulse" />
-          Meet Our Team
+          MEET OUR TEAM
         </span>
-        <h2 className="text-[28px] sm:text-[34px] lg:text-[40px] font-[900] tracking-tight text-[#03045E] leading-[1.1]">
+        <h2 className="text-[28px] sm:text-[34px] lg:text-[38px] font-[900] tracking-tight text-[#03045E] leading-[1.1]">
           The Execution{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0077B6] to-[#00B4D8]">
             Engine
           </span>
         </h2>
-        <p className="text-slate-500 text-[13px] sm:text-sm font-medium leading-relaxed mt-2 max-w-xl">
-          The PMs and domain experts driving every successful Salesforce implementation and enterprise rollout.
+        <p className="text-slate-500 text-[15px] sm:text-[16px] font-semibold leading-relaxed mt-3 max-w-xl">
+          The PMs and experts driving every successful Salesforce implementation and rollout.
         </p>
       </div>
 
-      {/* Grid of smaller profile cards (3-4 per row on desktop, centered) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full max-w-5xl mx-auto relative z-10">
+      {/* Cards container wrapper */}
+      <div className="flex flex-col xl:flex-row items-center justify-center gap-8 w-full max-w-6xl mx-auto z-10 mt-2 flex-grow">
         {team.map((m) => (
           <div
             key={m.name}
-            className="group flex flex-col rounded-2xl border border-slate-200/80 bg-white/80 overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_12px_36px_rgba(0,119,182,0.12)] hover:border-sky-300 cursor-pointer"
+            className="group relative flex flex-col sm:flex-row rounded-[24px] border border-white/80 bg-white/75 overflow-hidden transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(14,165,233,0.15)] hover:border-sky-300/80 cursor-pointer w-full xl:w-[540px] h-auto sm:h-[320px] shadow-[0_15px_45px_rgba(0,55,120,0.04)] z-10"
           >
-            {/* Photo – 4:3 aspect ratio */}
-            <div className="w-full overflow-hidden" style={{ aspectRatio: "4/3" }}>
+            {/* Left: Portrait Image (38% width) */}
+            <div className="w-full sm:w-[38%] h-[240px] sm:h-full overflow-hidden relative flex-shrink-0">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-slate-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none" />
               <img
                 src={m.image}
                 alt={m.name}
-                className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${m.imgPos}`}
+                className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03] ${m.imgPos}`}
                 loading="eager"
               />
             </div>
 
-            {/* Info */}
-            <div className="flex flex-col px-4 pt-3 pb-4 gap-1.5 text-left">
-              <h3 className="text-[14px] font-black text-[#03045E] leading-tight">{m.name}</h3>
-              <p className="text-[11px] font-bold text-[#0077B6] leading-tight">{m.role}</p>
-              <p className="text-slate-500 text-[11px] leading-relaxed mt-1">
-                {m.responsibility}
-              </p>
-            </div>
-          </div>
-        ))}
+            {/* Right: Content Details Block (62% width) */}
+            <div className="w-full sm:w-[62%] p-5 md:p-6 flex flex-col justify-between items-start text-left relative z-10">
+              <div className="w-full">
+                <div className="w-full flex flex-col">
+                  <h3 className="text-[17px] font-black text-[#03045E] leading-tight group-hover:text-[#0077B6] transition-colors duration-300">
+                    {m.name}
+                  </h3>
+                  <p className="text-[12px] font-bold text-[#0077B6] mt-0.5 leading-none">{m.role}</p>
+                </div>
+                <p className="text-slate-500 text-[12.5px] font-semibold leading-relaxed mt-3">
+                  {m.responsibility}
+                </p>
+              </div>
 
-        {/* 2 empty styled container cards */}
-        {[
-          {
-            title: "Join Our Team",
-            role: "Salesforce Developer",
-            desc: "Always looking for skilled builders to join the Cascade delivery engine.",
-          },
-          {
-            title: "Join Our Team",
-            role: "Consultant / Architect",
-            desc: "Always looking for domain specialists to design high-quality CRM systems.",
-          },
-        ].map((pos, idx) => (
-          <div
-            key={idx}
-            className="group flex flex-col rounded-2xl border border-dashed border-slate-300 bg-white/40 overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_12px_36px_rgba(0,119,182,0.06)] hover:border-sky-300/80 cursor-pointer min-h-[220px]"
-          >
-            {/* Aspect ratio matching empty placeholder box */}
-            <div className="w-full bg-slate-50/50 flex items-center justify-center border-b border-dashed border-slate-200" style={{ aspectRatio: "4/3" }}>
-              <Sparkles className="size-6 text-sky-300/85 group-hover:scale-110 transition-transform duration-300" />
-            </div>
-
-            {/* Info */}
-            <div className="flex flex-col px-4 pt-3 pb-4 gap-1.5 text-left">
-              <h3 className="text-[14px] font-black text-[#03045E]/60 leading-tight">{pos.title}</h3>
-              <p className="text-[11px] font-bold text-[#0077B6]/60 leading-tight">{pos.role}</p>
-              <p className="text-slate-400 text-[11px] leading-relaxed mt-1">
-                {pos.desc}
-              </p>
+              {/* Footer row: Tags on left, LinkedIn on right */}
+              <div className="w-full flex items-center justify-between gap-3 mt-4 pt-3.5 border-t border-slate-100">
+                <div className="flex flex-wrap gap-1">
+                  {m.skills.map((skill, idx) => (
+                    <span
+                      key={idx}
+                      className="text-[9.5px] font-black text-[#0284C7] bg-[#F0F9FF] border border-[#E0F2FE] rounded-full px-2.5 py-0.5"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+                <a
+                  href={m.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 py-1 px-3 rounded-lg border border-slate-200 hover:border-[#0077B6] hover:bg-sky-50 text-[10px] font-bold text-slate-500 hover:text-[#0077B6] transition-all flex-shrink-0 pointer-events-auto"
+                >
+                  <Linkedin className="size-3.5" />
+                  <span>Profile</span>
+                </a>
+              </div>
             </div>
           </div>
         ))}
@@ -5438,7 +5445,7 @@ function ClientCard({ clientName, isFeatured }: { clientName: string; isFeatured
 function Header({ scene }: { scene: Scene }) {
   return (
     <div className="max-w-2xl">
-      <Kicker>{scene.kicker}</Kicker>
+      <Kicker>{scene.kicker.replace(/^District\s+\d+\s+·\s+/i, "")}</Kicker>
       <h2 className="mt-4 text-3xl font-bold leading-tight text-foreground md:text-4xl">
         {scene.title}
       </h2>
@@ -5816,11 +5823,11 @@ export default function Experience() {
                 key={scene.id}
                 onClick={() => scrollToScene(i)}
                 className="group relative flex items-center justify-center size-5 bg-transparent border-0 cursor-pointer focus:outline-none"
-                aria-label={`Go to section ${i + 1}: ${scene.kicker}`}
+                aria-label={`Go to section ${i + 1}: ${scene.kicker.replace(/^District\s+\d+\s+·\s+/i, "")}`}
               >
                 {/* Tooltip on hover (Frosted Glass text box) */}
                 <span className="absolute right-7 translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 bg-white/90 backdrop-blur-md border border-slate-200/50 rounded-xl px-3 py-1.5 text-[10px] font-black text-[#0ea5e9] uppercase tracking-wider whitespace-nowrap shadow-[0_8px_30px_rgb(0,0,0,0.03)] pointer-events-none z-30">
-                  {scene.kicker}
+                  {scene.kicker.replace(/^District\s+\d+\s+·\s+/i, "")}
                 </span>
 
                 {/* Dot Visuals */}
