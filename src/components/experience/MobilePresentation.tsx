@@ -1,14 +1,17 @@
 /**
  * MobilePresentation.tsx
  *
- * "Presentation Mode" for screens < 768px.
+ * Highly optimized Slide Presentation Mode for mobile viewports (< 768px).
  *
- * Each slide renders the EXACT desktop layout of each scene inside a DesktopFrame (iframe),
- * forcing a desktop viewport so that responsive media queries apply desktop styles.
- * The entire iframe is scaled down proportionally to fit the mobile screen.
+ * Features:
+ * 1. Slide Preloading: Keeps only [current-1, current, current+1] mounted in the DOM.
+ *    IFrame / DesktopFrame is cached across transitions.
+ * 2. Instantaneous Spring Transitions: GPU-accelerated translate3d slide animations.
+ * 3. React.memo for zero-re-render slide caching.
+ * 4. Lazy-loaded placeholder skeleton screens before load.
  */
 
-import {
+import React, {
   useCallback,
   useEffect,
   useMemo,
@@ -25,8 +28,34 @@ import { SceneContent } from "./Experience";
 import { SCENES } from "./scenes";
 import { DesktopFrame } from "./DesktopFrame";
 
-const DESIGN_WIDTH = 1280; // px — matches the DesktopFrame width
-const DESIGN_HEIGHT = 800; // px — standard desktop aspect ratio height
+const DESIGN_WIDTH = 1280;
+const DESIGN_HEIGHT = 800;
+
+// ─── Lightweight Skeleton Placeholder ───────────────────────────────────────
+
+const SlideSkeleton = React.memo(function SlideSkeleton() {
+  return (
+    <div
+      style={{
+        width: DESIGN_WIDTH,
+        height: DESIGN_HEIGHT,
+        background: "rgba(255, 255, 255, 0.4)",
+        backdropFilter: "blur(20px)",
+        borderRadius: "32px",
+        border: "1px solid rgba(255,255,255,0.4)",
+      }}
+      className="flex flex-col items-center justify-center p-8 gap-6 animate-pulse"
+    >
+      <div className="w-48 h-8 bg-slate-200/60 rounded-full" />
+      <div className="w-96 h-16 bg-slate-200/50 rounded-2xl" />
+      <div className="grid grid-cols-3 gap-4 w-full max-w-lg mt-4">
+        <div className="h-28 bg-slate-200/40 rounded-xl" />
+        <div className="h-28 bg-slate-200/40 rounded-xl" />
+        <div className="h-28 bg-slate-200/40 rounded-xl" />
+      </div>
+    </div>
+  );
+});
 
 // ─── Pinch/Pan Hook ──────────────────────────────────────────────────────────
 
@@ -38,7 +67,6 @@ function usePinchPan(baseScale: number) {
   const currentTransform = useRef(transform);
   currentTransform.current = transform;
 
-  // Clamp panning boundaries
   const clamp = useCallback((sc: number, x: number, y: number) => {
     const visualW = DESIGN_WIDTH * baseScale * sc;
     const visualH = DESIGN_HEIGHT * baseScale * sc;
@@ -64,7 +92,6 @@ function usePinchPan(baseScale: number) {
     const pts = [...pointers.current.values()];
 
     if (pts.length === 2) {
-      // Pinch to Zoom
       const dx = pts[1].x - pts[0].x;
       const dy = pts[1].y - pts[0].y;
       const dist = Math.sqrt(dx * dx + dy * dy);
@@ -81,7 +108,6 @@ function usePinchPan(baseScale: number) {
       lastPinchDist.current = dist;
       lastMidpoint.current = mid;
     } else if (pts.length === 1 && currentTransform.current.scale > 1.05) {
-      // Pan zoomed container
       const [pt] = pts;
       if (lastMidpoint.current) {
         const panDX = pt.x - lastMidpoint.current.x;
@@ -97,12 +123,8 @@ function usePinchPan(baseScale: number) {
 
   const handlePointerUp = useCallback((e: React.PointerEvent) => {
     pointers.current.delete(e.pointerId);
-    if (pointers.current.size < 2) {
-      lastPinchDist.current = null;
-    }
-    if (pointers.current.size === 0) {
-      lastMidpoint.current = null;
-    }
+    if (pointers.current.size < 2) lastPinchDist.current = null;
+    if (pointers.current.size === 0) lastMidpoint.current = null;
   }, []);
 
   const handleDoubleTap = useCallback(() => {
@@ -112,24 +134,35 @@ function usePinchPan(baseScale: number) {
   return { transform, reset, handlePointerDown, handlePointerMove, handlePointerUp, handleDoubleTap };
 }
 
-// ─── Individual Slide Container ──────────────────────────────────────────────
+// ─── Scaled Slide (Memoized) ──────────────────────────────────────────────────
 
-function ScaledSlide({
+const ScaledSlide = React.memo(function ScaledSlide({
   scene,
   isActive,
+  isPreloaded,
   baseScale,
   onSwipeLeft,
   onSwipeRight,
 }: {
   scene: any;
   isActive: boolean;
+  isPreloaded: boolean;
   baseScale: number;
   onSwipeLeft: () => void;
   onSwipeRight: () => void;
 }) {
   const { transform, reset, handlePointerDown, handlePointerMove, handlePointerUp, handleDoubleTap } = usePinchPan(baseScale);
+  const [loaded, setLoaded] = useState(false);
   const swipeStartX = useRef<number | null>(null);
   const swipeStartY = useRef<number | null>(null);
+
+  // Lazy-load with a small delay for smoother transitions
+  useEffect(() => {
+    if (isActive || isPreloaded) {
+      const t = setTimeout(() => setLoaded(true), 50);
+      return () => clearTimeout(t);
+    }
+  }, [isActive, isPreloaded]);
 
   const onTouchStart = useCallback((e: React.TouchEvent) => {
     swipeStartX.current = e.touches[0].clientX;
@@ -147,7 +180,6 @@ function ScaledSlide({
     swipeStartX.current = null;
   }, [transform.scale, onSwipeLeft, onSwipeRight]);
 
-  // Handle double click for zoom
   const lastTap = useRef(0);
   const onDoubleTap = useCallback((e: React.MouseEvent) => {
     const now = Date.now();
@@ -180,11 +212,15 @@ function ScaledSlide({
         }}
         className="flex-shrink-0 flex items-center justify-center"
       >
-        <DesktopFrame width={DESIGN_WIDTH} height={DESIGN_HEIGHT}>
-          <div className="w-full h-full flex items-center justify-center p-4">
-            <SceneContent scene={scene} isActive={isActive} activeCardIdx={0} />
-          </div>
-        </DesktopFrame>
+        {loaded ? (
+          <DesktopFrame width={DESIGN_WIDTH} height={DESIGN_HEIGHT}>
+            <div className="w-full h-full flex items-center justify-center p-4">
+              <SceneContent scene={scene} isActive={isActive} activeCardIdx={0} />
+            </div>
+          </DesktopFrame>
+        ) : (
+          <SlideSkeleton />
+        )}
       </div>
 
       {/* Reset Zoom Button */}
@@ -199,34 +235,36 @@ function ScaledSlide({
       )}
     </div>
   );
-}
+}, (prev, next) => {
+  // Memoization rule: only re-render if key properties change
+  return (
+    prev.scene.id === next.scene.id &&
+    prev.isActive === next.isActive &&
+    prev.isPreloaded === next.isPreloaded &&
+    prev.baseScale === next.baseScale
+  );
+});
 
 // ─── Main Presentation View ──────────────────────────────────────────────────
 
 export default function MobilePresentation() {
   const [current, setCurrent] = useState(0);
-  const [direction, setDirection] = useState<1 | -1>(1);
   const [showSlideMenu, setShowSlideMenu] = useState(false);
   const prefersReducedMotion = useReducedMotion();
-  const isAnimating = useRef(false);
-
   const total = SCENES.length;
 
+  // Precompute scale once on mount
   const baseScale = useMemo(() => {
     if (typeof window === "undefined") return 0.28;
     const scaleX = (window.innerWidth * 0.94) / DESIGN_WIDTH;
     const scaleY = (window.innerHeight * 0.76) / DESIGN_HEIGHT;
-    // Scale further if section is taller than viewport to ensure entire section fits
     return Math.min(scaleX, scaleY);
   }, []);
 
   const goTo = useCallback((idx: number) => {
-    if (idx < 0 || idx >= total || isAnimating.current) return;
-    setDirection(idx > current ? 1 : -1);
+    if (idx < 0 || idx >= total) return;
     setCurrent(idx);
-    isAnimating.current = true;
-    setTimeout(() => { isAnimating.current = false; }, 650);
-  }, [current, total]);
+  }, [total]);
 
   const goNext = useCallback(() => goTo(current + 1), [current, goTo]);
   const goPrev = useCallback(() => goTo(current - 1), [current, goTo]);
@@ -241,25 +279,13 @@ export default function MobilePresentation() {
     return () => window.removeEventListener("keydown", handler);
   }, [goNext, goPrev]);
 
-  // Premium slide transitions
-  const variants = {
-    enter: (dir: number) => ({
-      x: dir > 0 ? "100%" : "-100%",
-      opacity: prefersReducedMotion ? 0 : 1,
-    }),
-    center: { x: "0%", opacity: 1 },
-    exit: (dir: number) => ({
-      x: dir > 0 ? "-30%" : "30%",
-      opacity: prefersReducedMotion ? 0 : 0.3,
-    }),
-  };
-
-  const transition = {
+  // Transition spring
+  const transition = useMemo(() => ({
     type: "spring" as const,
-    stiffness: prefersReducedMotion ? 500 : 260,
-    damping: prefersReducedMotion ? 40 : 30,
-    mass: 0.85,
-  };
+    stiffness: prefersReducedMotion ? 500 : 280,
+    damping: prefersReducedMotion ? 40 : 32,
+    mass: 0.8,
+  }), [prefersReducedMotion]);
 
   return (
     <div className="fixed inset-0 z-0 overflow-hidden bg-[#EDF3FB]">
@@ -329,28 +355,40 @@ export default function MobilePresentation() {
         )}
       </AnimatePresence>
 
-      {/* ── SLIDES STAGE ── */}
+      {/* ── SLIDES STAGE (Preloaded & Cached [current-1, current, current+1] layout) ── */}
       <div className="absolute inset-0" style={{ paddingTop: 56, paddingBottom: 80 }}>
-        <AnimatePresence custom={direction} mode="popLayout">
-          <motion.div
-            key={current}
-            custom={direction}
-            variants={variants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={transition}
-            style={{ position: "absolute", inset: 0 }}
-          >
-            <ScaledSlide
-              scene={SCENES[current]}
-              baseScale={baseScale}
-              isActive={true}
-              onSwipeLeft={goNext}
-              onSwipeRight={goPrev}
-            />
-          </motion.div>
-        </AnimatePresence>
+        {SCENES.map((scene, i) => {
+          const isNear = Math.abs(i - current) <= 1;
+          if (!isNear) return null; // Keep only near slides mounted in DOM
+
+          const isActive = i === current;
+          const isPreloaded = Math.abs(i - current) === 1;
+
+          return (
+            <motion.div
+              key={scene.id}
+              style={{
+                position: "absolute",
+                inset: 0,
+                willChange: "transform, opacity",
+              }}
+              animate={{
+                x: `${(i - current) * 100}%`,
+                opacity: isActive ? 1 : 0,
+              }}
+              transition={transition}
+            >
+              <ScaledSlide
+                scene={scene}
+                isActive={isActive}
+                isPreloaded={isPreloaded}
+                baseScale={baseScale}
+                onSwipeLeft={goNext}
+                onSwipeRight={goPrev}
+              />
+            </motion.div>
+          );
+        })}
       </div>
 
       {/* ── BOTTOM SLIDE CONTROLS ── */}
@@ -379,7 +417,7 @@ export default function MobilePresentation() {
           ))}
         </div>
 
-        {/* Action button triggers */}
+        {/* Action buttons */}
         <div className="flex gap-2.5">
           <button
             onClick={goPrev}
