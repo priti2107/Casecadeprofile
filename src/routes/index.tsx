@@ -1,7 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { lazy, Suspense, useEffect, useState } from "react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 const Experience = lazy(() => import("@/components/experience/Experience"));
+const MobilePresentation = lazy(
+  () => import("@/components/experience/MobilePresentation")
+);
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -33,22 +37,23 @@ function Loader() {
         C
       </div>
       <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">
-        Initializing the city…
+        Initializing…
       </p>
     </div>
   );
 }
 
 function Index() {
-  // The 3D experience is browser-only (WebGL). Render after mount to avoid SSR.
   const [ready, setReady] = useState(false);
+  const isMobile = useIsMobile();
+
   useEffect(() => setReady(true), []);
 
   if (!ready) return <Loader />;
 
   return (
     <Suspense fallback={<Loader />}>
-      <Experience />
+      {isMobile ? <MobilePresentation /> : <Experience />}
     </Suspense>
   );
 }

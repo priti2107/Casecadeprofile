@@ -169,7 +169,7 @@ const getSafeRange3 = (p0: number, p1: number, p2: number): [number, number, num
   return [r0, r1, r2];
 };
 
-function SceneOverlay({
+export function SceneOverlay({
   scene,
   index,
   progress,
@@ -244,7 +244,7 @@ function SceneOverlay({
         visibility,
         pointerEvents
       }}
-      className="fixed inset-0 z-10 flex items-center justify-center px-6 md:px-12 py-10 pointer-events-none"
+      className="fixed inset-0 z-10 flex items-center justify-center px-3 sm:px-6 md:px-12 py-3 sm:py-6 md:py-10 pointer-events-none"
     >
       <SceneContent scene={scene} isActive={active === index} activeCardIdx={activeCardIdx} />
     </motion.div>
@@ -281,7 +281,7 @@ function WhoWeAreScene({ scene, isActive = false, activeCardIdx = 0 }: { scene: 
   ];
 
   return (
-    <div className="pointer-events-auto who-we-are-glass-panel rounded-[32px] w-[92vw] md:w-[90vw] h-[88vh] md:h-[82vh] max-w-7xl relative overflow-y-auto md:overflow-hidden flex flex-col pt-5 pb-5 px-6 md:px-8 justify-center gap-4">
+    <div className="pointer-events-auto who-we-are-glass-panel rounded-[32px] w-[95vw] md:w-[90vw] h-[92vh] md:h-[82vh] max-w-7xl relative overflow-y-auto flex flex-col pt-4 pb-4 px-4 md:px-8 justify-start md:justify-center gap-3 md:gap-4">
       {/* Scoped CSS classes for District 02 foundations scene styling */}
       <style>{`
         .who-we-are-glass-panel {
@@ -403,10 +403,10 @@ function WhoWeAreScene({ scene, isActive = false, activeCardIdx = 0 }: { scene: 
         }}
       />
 
-      <div className="flex flex-col md:flex-row gap-6 md:gap-8 lg:gap-10 items-stretch justify-between w-full h-full relative z-10 max-w-[1280px] mx-auto py-2">
+      <div className="flex flex-col md:flex-row gap-4 md:gap-8 lg:gap-10 items-stretch justify-between w-full relative z-10 max-w-[1280px] mx-auto py-1 md:py-2 md:h-full">
         {/* LEFT COLUMN: 48% width */}
         <div
-          className="w-full md:w-[48%] flex flex-col justify-center text-left h-full py-2 relative z-10"
+          className="w-full md:w-[48%] flex flex-col justify-center text-left md:h-full py-1 md:py-2 relative z-10"
           style={{
             transform: `translate3d(${mousePos.x * 4}px, ${mousePos.y * 4}px, 0)`,
           }}
@@ -419,7 +419,7 @@ function WhoWeAreScene({ scene, isActive = false, activeCardIdx = 0 }: { scene: 
             </div>
 
             {/* Title */}
-            <h2 className="text-2xl sm:text-3xl md:text-[34px] lg:text-[44px] font-[900] leading-[1.08] tracking-tight text-[#0F172A] font-display">
+            <h2 className="text-xl sm:text-2xl md:text-[30px] lg:text-[40px] font-[900] leading-[1.08] tracking-tight text-[#0F172A] font-display">
               We Are <span className="text-[#0284C7]">Cascade Tech</span>
             </h2>
 
@@ -427,7 +427,7 @@ function WhoWeAreScene({ scene, isActive = false, activeCardIdx = 0 }: { scene: 
             <div className="w-16 h-[2.5px] bg-[#0284C7] rounded-full my-3" />
 
             {/* Supporting Text paragraphs matching mockup */}
-            <div className="flex flex-col gap-3.5 text-[13.5px] md:text-[14.5px] leading-relaxed text-slate-600 font-medium max-w-[480px]">
+            <div className="flex flex-col gap-2.5 md:gap-3.5 text-[12px] md:text-[14.5px] leading-relaxed text-slate-600 font-medium max-w-[480px]">
               <p>
                 Cascade Tech Ventures LLP is a Salesforce implementation partner helping real estate developers and enterprise businesses modernise their sales, marketing, and customer experience operations.
               </p>
@@ -481,7 +481,7 @@ function WhoWeAreScene({ scene, isActive = false, activeCardIdx = 0 }: { scene: 
 
         {/* RIGHT COLUMN: Asymmetric Image Container & Awards Capsule (48% width) */}
         <div
-          className="w-full md:w-[48%] flex flex-col justify-between h-full py-2 relative z-10"
+          className="hidden md:flex md:w-[48%] flex-col justify-between md:h-full py-2 relative z-10"
           style={{
             transform: `translate3d(${mousePos.x * -4}px, ${mousePos.y * -4}px, 0)`,
           }}
@@ -547,7 +547,7 @@ function ProductEcosystemScene() {
 
   return (
     <div
-      className="pointer-events-auto who-we-are-glass-panel rounded-[32px] w-[92vw] md:w-[90vw] h-[88vh] md:h-[82vh] max-w-7xl relative overflow-hidden flex flex-col pt-5 pb-4 px-6 md:px-10 gap-4 border border-white/30"
+      className="pointer-events-auto who-we-are-glass-panel rounded-[24px] md:rounded-[32px] w-[95vw] md:w-[90vw] h-[92vh] md:h-[82vh] max-w-7xl relative overflow-y-auto flex flex-col pt-3 pb-3 px-3 md:px-10 gap-3 md:gap-4 border border-white/30"
       style={{
         background: "radial-gradient(ellipse at 60% 0%, rgba(0,119,182,0.07) 0%, transparent 55%), radial-gradient(ellipse at 10% 100%, rgba(59,169,245,0.05) 0%, transparent 50%), rgba(247,250,253,0.98)",
         backdropFilter: "blur(28px)",
@@ -1571,7 +1571,7 @@ function MeetOurTeamScene({ scene: _scene }: { scene: Scene }) {
   );
 }
 
-function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: Scene; isActive?: boolean; activeCardIdx?: number }) {
+export function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: Scene; isActive?: boolean; activeCardIdx?: number }) {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -2577,7 +2577,7 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
 
         <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-slate-200/80 to-transparent opacity-60 relative z-10" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 w-full max-w-6xl mx-auto items-stretch relative z-10 flex-grow py-0.5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 md:gap-4 w-full max-w-6xl mx-auto items-stretch relative z-10 flex-grow py-0.5">
           {services.map((ser) => {
             return (
               <div
@@ -2681,7 +2681,7 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
 
     return (
       <div
-        className="pointer-events-auto who-we-are-glass-panel rounded-[32px] w-[92vw] md:w-[90vw] h-[88vh] md:h-[82vh] max-w-7xl relative overflow-y-auto md:overflow-hidden flex flex-col pt-5 pb-5 px-4 md:px-6 justify-center gap-3.5 md:gap-4 border border-white/20 shadow-[0_30px_100px_rgba(1,118,211,0.08)] shadow-[inset_0_0_20px_rgba(255,255,255,0.75)]"
+        className="pointer-events-auto who-we-are-glass-panel rounded-[32px] w-[95vw] md:w-[90vw] h-[92vh] md:h-[82vh] max-w-7xl relative overflow-y-auto flex flex-col pt-3 pb-3 px-3 md:px-6 justify-start md:justify-center gap-2.5 md:gap-4 border border-white/20 shadow-[0_30px_100px_rgba(1,118,211,0.08)] shadow-[inset_0_0_20px_rgba(255,255,255,0.75)]"
         style={{
           background: "rgba(248, 250, 252, 0.95)",
           backdropFilter: "blur(24px)",
@@ -2708,7 +2708,7 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
             WHY CASCADE TECH
           </div>
 
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[40px] xl:text-[48px] 2xl:text-[56px] font-[900] leading-[1.05] tracking-tight text-[#0F172A] font-display">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[38px] xl:text-[44px] font-[900] leading-[1.05] tracking-tight text-[#0F172A] font-display">
             Why Developers & Enterprises{" "}
             <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#0EA5E9] to-[#2563EB]">
               Choose Cascade Tech
@@ -2738,7 +2738,7 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
         <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-slate-200/80 to-transparent opacity-60 my-0 relative z-10" />
 
         {/* MIDDLE ROW: 4 Normal Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-[1280px] mx-auto items-stretch relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 md:gap-4 w-full max-w-[1280px] mx-auto items-stretch relative z-10">
           {reasons
             .filter((r) => !r.isLarge)
             .map((r) => {
@@ -2747,7 +2747,7 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
               return (
                 <div
                   key={r.id}
-                  className="premium-glass-card premium-glass-card-hover rounded-[20px] p-3.5 md:p-4 flex flex-col justify-start text-left relative overflow-hidden group w-full min-h-[160px] md:min-h-[190px]"
+                  className="premium-glass-card premium-glass-card-hover rounded-[16px] md:rounded-[20px] p-2.5 md:p-4 flex flex-col justify-start text-left relative overflow-hidden group w-full min-h-[120px] md:min-h-[190px]"
                 >
                   {/* Permanent subtle background glows */}
                   <div className="absolute inset-0 bg-gradient-to-br from-[#0EA5E9]/5 via-[#2563EB]/2 to-transparent rounded-[20px] pointer-events-none -z-10" />
@@ -2779,7 +2779,7 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
         </div>
 
         {/* BOTTOM ROW: 2 Featured Cards (1.5x wider, centered) */}
-        <div className="flex flex-col md:flex-row justify-center gap-4 w-full max-w-[1280px] mx-auto items-stretch relative z-10 mt-1">
+        <div className="flex flex-col md:flex-row gap-3 md:gap-4 w-full max-w-[1280px] mx-auto items-stretch relative z-10 mt-1">
           {reasons
             .filter((r) => r.isLarge)
             .map((r) => {
@@ -2846,7 +2846,7 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
 
     return (
       <div
-        className="pointer-events-auto who-we-are-glass-panel rounded-[32px] w-[92vw] md:w-[90vw] h-[88vh] md:h-[82vh] max-w-7xl relative overflow-y-auto md:overflow-hidden flex flex-col pt-4.5 pb-4 px-4 md:px-8 justify-between border border-white/20 shadow-[0_30px_100px_rgba(1,118,211,0.08)] shadow-[inset_0_0_20px_rgba(255,255,255,0.75)]"
+        className="pointer-events-auto who-we-are-glass-panel rounded-[32px] w-[95vw] md:w-[90vw] h-[92vh] md:h-[82vh] max-w-7xl relative overflow-y-auto flex flex-col pt-3 pb-3 px-3 md:px-8 justify-start md:justify-between border border-white/20 shadow-[0_30px_100px_rgba(1,118,211,0.08)] shadow-[inset_0_0_20px_rgba(255,255,255,0.75)]"
         style={{
           background: "rgba(248, 250, 252, 0.95)",
           backdropFilter: "blur(24px)",
@@ -2938,7 +2938,7 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
 
           {/* MIDDLE: Logo Grid with Center alignment and tighter spacing */}
           <div className="w-full max-w-5xl md:max-w-6xl px-4 md:px-6 -mt-3.5 md:-mt-5.5">
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-x-5 md:gap-x-6 gap-y-6 md:gap-y-7.5 justify-center items-center">
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-x-3 md:gap-x-6 gap-y-4 md:gap-y-7 justify-center items-center">
               {clients.map((clientName, index) => (
                 <ClientCard key={index} clientName={clientName} isFeatured={index === 0} />
               ))}
@@ -3003,7 +3003,7 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
   if (scene.id === 4) {
     return (
       <div
-        className="pointer-events-auto who-we-are-glass-panel rounded-[32px] w-[92vw] md:w-[90vw] h-[88vh] md:h-[82vh] max-w-7xl relative overflow-hidden flex flex-col pt-6 pb-4 px-6 md:px-10 gap-5"
+        className="pointer-events-auto who-we-are-glass-panel rounded-[24px] md:rounded-[32px] w-[95vw] md:w-[90vw] h-[92vh] md:h-[82vh] max-w-7xl relative overflow-y-auto flex flex-col pt-3 pb-3 px-3 md:px-10 gap-3 md:gap-5"
         style={{
           background: "radial-gradient(ellipse at 60% 0%, rgba(0,119,182,0.07) 0%, transparent 55%), radial-gradient(ellipse at 10% 100%, rgba(59,169,245,0.05) 0%, transparent 50%), rgba(247,250,253,0.98)",
           backdropFilter: "blur(28px)",
@@ -3138,7 +3138,7 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
           </div>
 
           {/* CENTER CARD: Company Credentials */}
-          <div className="relative rounded-[22px] p-5 flex flex-col gap-4 overflow-hidden"
+          <div className="relative rounded-[20px] md:rounded-[22px] p-3 md:p-5 flex flex-col gap-3 md:gap-4 overflow-hidden"
             style={{
               background: "radial-gradient(ellipse at 20% 0%, rgba(0,119,182,0.14) 0%, rgba(224,242,254,0.80) 100%)",
               border: "1px solid rgba(0,119,182,0.22)",
@@ -3186,7 +3186,7 @@ function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { scene: S
           </div>
 
           {/* RIGHT CARD: Team Certifications */}
-          <div className="relative rounded-[22px] p-5 flex flex-col gap-4 overflow-hidden"
+          <div className="relative rounded-[20px] md:rounded-[22px] p-3 md:p-5 flex flex-col gap-3 md:gap-4 overflow-hidden"
             style={{
               background: "radial-gradient(ellipse at 80% 0%, rgba(59,169,245,0.14) 0%, rgba(224,242,254,0.80) 100%)",
               border: "1px solid rgba(0,119,182,0.22)",
@@ -3451,7 +3451,7 @@ function ProductTemplateCard({ productKey }: ProductTemplateCardProps) {
 
   return (
     <div
-      className="pointer-events-auto who-we-are-glass-panel rounded-[32px] w-[92vw] md:w-[90vw] h-[88vh] md:h-[82vh] max-w-7xl relative overflow-hidden flex flex-col pt-5 pb-4 px-6 md:px-10 gap-4 border border-white/30"
+      className="pointer-events-auto who-we-are-glass-panel rounded-[24px] md:rounded-[32px] w-[95vw] md:w-[90vw] h-[92vh] md:h-[82vh] max-w-7xl relative overflow-y-auto flex flex-col pt-3 pb-3 px-3 md:px-10 gap-3 md:gap-4 border border-white/30"
       style={{
         background: "radial-gradient(ellipse at 50% 0%, rgba(0,119,182,0.06) 0%, transparent 60%), rgba(247,250,253,0.98)",
         backdropFilter: "blur(28px)",
@@ -3483,7 +3483,7 @@ function ProductTemplateCard({ productKey }: ProductTemplateCardProps) {
         style={{ backgroundImage: "radial-gradient(#0077B6 1px, transparent 1px)", backgroundSize: "20px 20px" }} />
 
       {/* ── HEADER ── */}
-      <div className="flex flex-col md:flex-row items-start md:items-center gap-5 flex-shrink-0 border-b border-slate-100 pb-4">
+      <div className="flex flex-col gap-3 md:flex-row md:items-center md:gap-5 flex-shrink-0 border-b border-slate-100 pb-3 md:pb-4">
         <div
           className="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-white border border-sky-100 flex items-center justify-center flex-shrink-0 relative"
           style={{
@@ -3499,7 +3499,7 @@ function ProductTemplateCard({ productKey }: ProductTemplateCardProps) {
             <span className="size-1 bg-[#0077B6] rounded-full animate-pulse" />
             PROPRIETARY PRODUCT
           </div>
-          <h2 className="text-[32px] md:text-[48px] lg:text-[52px] font-[950] leading-none tracking-tight text-[#0A1628]">
+          <h2 className="text-[24px] md:text-[40px] lg:text-[48px] font-[950] leading-none tracking-tight text-[#0A1628]">
             {placeholders.title}
           </h2>
           <div className="mt-2.5">
@@ -3511,7 +3511,7 @@ function ProductTemplateCard({ productKey }: ProductTemplateCardProps) {
       </div>
 
       {/* ── CONTENT CONTAINER ── */}
-      <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-4 overflow-hidden">
+      <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-3 md:gap-4 overflow-y-auto lg:overflow-hidden">
 
         {/* Left Column (60%) */}
         <div className="lg:col-span-7 flex flex-col gap-4 min-h-0">
@@ -3749,7 +3749,7 @@ function CaseStudiesScene({ scene }: { scene: Scene }) {
 
   return (
     <div
-      className="pointer-events-auto who-we-are-glass-panel rounded-[32px] w-[92vw] md:w-[90vw] h-[88vh] md:h-[82vh] max-w-7xl relative overflow-hidden flex flex-col pt-4 md:pt-5 pb-4 md:pb-5 px-4 md:px-6 justify-start gap-3.5 border border-white/20 shadow-[0_30px_100px_rgba(1,118,211,0.08)] shadow-[inset_0_0_20px_rgba(255,255,255,0.75)] animate-in fade-in duration-500"
+      className="pointer-events-auto who-we-are-glass-panel rounded-[24px] md:rounded-[32px] w-[95vw] md:w-[90vw] h-[92vh] md:h-[82vh] max-w-7xl relative overflow-y-auto flex flex-col pt-3 md:pt-5 pb-3 md:pb-5 px-3 md:px-6 justify-start gap-2.5 md:gap-3.5 border border-white/20 shadow-[0_30px_100px_rgba(1,118,211,0.08)] shadow-[inset_0_0_20px_rgba(255,255,255,0.75)] animate-in fade-in duration-500"
       style={{
         background: "rgba(248, 250, 252, 0.95)",
         backdropFilter: "blur(24px)",
@@ -3808,7 +3808,7 @@ function CaseStudiesScene({ scene }: { scene: Scene }) {
       <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-slate-200/80 to-transparent opacity-60 my-0.5 relative z-10" />
 
       {/* THREE LARGE FEATURED CARDS GRID */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 w-full relative z-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 w-full relative z-10">
         {caseStudies.map((cs, idx) => (
           <div
             key={cs.id}
@@ -4003,7 +4003,7 @@ function CaseStudiesScene({ scene }: { scene: Scene }) {
               </div>
 
               {/* Right Metrics Grid */}
-              <div className="w-full lg:w-[50%] grid grid-cols-4 gap-3">
+              <div className="w-full grid grid-cols-2 sm:grid-cols-4 gap-2 md:gap-3">
                 {selectedCaseStudy.metrics.map((m: any, mIdx: number) => {
                   const MetricIcon = m.icon;
                   return (
@@ -4029,7 +4029,7 @@ function CaseStudiesScene({ scene }: { scene: Scene }) {
             </div>
 
             {/* Split Details Section */}
-            <div className="flex flex-col lg:flex-row gap-5 items-stretch w-full mt-1.5">
+            <div className="flex flex-col gap-4 lg:flex-row lg:gap-5 items-stretch w-full mt-1.5">
               {/* Left column details (Timeline Layout) */}
               <motion.div
                 key={`left-article-${selectedIdx}`}
@@ -4789,7 +4789,7 @@ function EngagementModelScene({ scene }: { scene: Scene }) {
 
   return (
     <div
-      className="pointer-events-auto who-we-are-glass-panel rounded-[32px] w-[92vw] md:w-[90vw] h-[88vh] md:h-[82vh] max-w-7xl relative overflow-y-auto md:overflow-hidden flex flex-col pt-4 pb-4 px-4 md:px-5 justify-center gap-4 border border-white/20 shadow-[0_30px_100px_rgba(1,118,211,0.08)] shadow-[inset_0_0_20px_rgba(255,255,255,0.75)] animate-in fade-in duration-500"
+      className="pointer-events-auto who-we-are-glass-panel rounded-[24px] md:rounded-[32px] w-[95vw] md:w-[90vw] h-[92vh] md:h-[82vh] max-w-7xl relative overflow-y-auto flex flex-col pt-3 pb-3 px-3 md:px-5 justify-start md:justify-center gap-3 md:gap-4 border border-white/20 shadow-[0_30px_100px_rgba(1,118,211,0.08)] shadow-[inset_0_0_20px_rgba(255,255,255,0.75)] animate-in fade-in duration-500"
       style={{
         background: "rgba(248, 250, 252, 0.95)",
         backdropFilter: "blur(24px)",
@@ -4821,7 +4821,7 @@ function EngagementModelScene({ scene }: { scene: Scene }) {
         </svg>
       </div>
 
-      <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-stretch justify-between w-full h-full relative z-10 max-w-[1340px] mx-auto px-1">
+      <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-stretch justify-between w-full md:h-full relative z-10 max-w-[1340px] mx-auto px-0.5 md:px-1">
         {/* LEFT COLUMN: 30% width */}
         <div className="w-full md:w-[28%] flex flex-col text-left h-full py-2 flex-shrink-0">
           {/* Badge */}
@@ -4892,7 +4892,7 @@ function EngagementModelScene({ scene }: { scene: Scene }) {
         {/* RIGHT COLUMN: 72% width */}
         <div className="w-full md:w-[72%] flex flex-col justify-between h-full py-1 relative z-10">
 
-          <div className="w-full bg-[#E0F2FE]/95 border border-[#BAE6FD] rounded-2xl flex flex-col justify-between flex-grow shadow-[0_12px_45px_rgba(14,165,233,0.06)] relative z-10 overflow-hidden min-h-[360px]">
+          <div className="w-full bg-[#E0F2FE]/95 border border-[#BAE6FD] rounded-2xl flex flex-col justify-between flex-grow shadow-[0_12px_45px_rgba(14,165,233,0.06)] relative z-10 overflow-hidden min-h-[200px] md:min-h-[360px]">
 
             {/* Timeline Stage Navigation Header (Spacious with equal widths, no icons) */}
             <div className="relative w-full border-b border-slate-100 bg-slate-50/40 py-5 px-6 flex flex-col gap-2">
@@ -4913,7 +4913,7 @@ function EngagementModelScene({ scene }: { scene: Scene }) {
               </div>
 
               {/* Desktop Stage Pills Flex */}
-              <div className="hidden md:flex flex-row items-center justify-between gap-4 w-full relative z-10">
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-3 md:gap-4 w-full relative z-10">
                 {stages.map((stage, idx) => {
                   const isActive = activeStage === idx;
 
@@ -5599,6 +5599,11 @@ export default function Experience() {
       }
     };
 
+    let touchStartY = 0;
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartY = e.touches[0].clientY;
+    };
+
     const handleTouchMove = (e: TouchEvent) => {
       const path = e.composedPath();
       for (const el of path) {
@@ -5615,12 +5620,45 @@ export default function Experience() {
       e.preventDefault();
     };
 
+    let lastTouchTime = 0;
+    const touchCooldown = 800;
+    const handleTouchEnd = (e: TouchEvent) => {
+      const path = e.composedPath();
+      for (const el of path) {
+        if (el instanceof HTMLElement) {
+          const style = window.getComputedStyle(el);
+          if (
+            el.scrollHeight > el.clientHeight &&
+            (style.overflowY === "auto" || style.overflowY === "scroll")
+          ) {
+            return;
+          }
+        }
+      }
+      const now = Date.now();
+      if (now - lastTouchTime < touchCooldown || scrollTween.current) return;
+      const touchEndY = e.changedTouches[0].clientY;
+      const diff = touchStartY - touchEndY;
+      if (Math.abs(diff) > 40) {
+        lastTouchTime = now;
+        if (diff > 0) {
+          handleNextSection();
+        } else {
+          handlePrevSection();
+        }
+      }
+    };
+
     window.addEventListener("wheel", handleWheel, { passive: false });
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
     window.addEventListener("touchmove", handleTouchMove, { passive: false });
+    window.addEventListener("touchend", handleTouchEnd, { passive: true });
 
     return () => {
       window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchend", handleTouchEnd);
     };
   }, [active, N]);
 
@@ -5801,7 +5839,7 @@ export default function Experience() {
         {!isMobileNavExpanded ? (
           <button
             onClick={() => setIsMobileNavExpanded(true)}
-            className="flex items-center gap-2 py-2 px-3.5 bg-white/95 backdrop-blur-md border border-slate-200 shadow-xl rounded-full text-xs font-black text-[#0EA5E9]"
+            className="mobile-nav-pill flex items-center gap-2 py-2.5 px-4 bg-white/95 backdrop-blur-md border border-slate-200 shadow-xl rounded-full text-xs font-black text-[#0EA5E9]"
           >
             <span className="size-2 rounded-full bg-[#0EA5E9] animate-ping" />
             <span>{String(active + 1).padStart(2, '0')} / {String(N).padStart(2, '0')}</span>
