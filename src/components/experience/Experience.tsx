@@ -1988,7 +1988,7 @@ export function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { s
                 playsInline
                 className="w-full h-full object-cover rounded-[inherit]"
               >
-                <source src="/Create_a_premium_SaaS_product.mp4" type="video/mp4" />
+                <source src="/Create_a_premium_second_sea.mp4" type="video/mp4" />
               </video>
             </div>
           </div>
