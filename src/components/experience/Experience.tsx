@@ -777,11 +777,6 @@ function ProductEcosystemScene() {
               ▶
             </button>
           </div>
-          {showSwipeHint && (
-            <div className="text-[10px] font-black text-[#0077B6]/70 uppercase tracking-widest animate-pulse mt-1 select-none transition-opacity duration-1000">
-              Click on labels to switch products
-            </div>
-          )}
         </div>
       </div>
 
