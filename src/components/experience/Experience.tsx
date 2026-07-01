@@ -3182,13 +3182,13 @@ export function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { s
             <span className="size-1.5 rounded-full bg-[#0077B6] animate-pulse" />
             CREDENTIALS
           </div>
-          <h2 className="text-[28px] sm:text-[34px] font-[900] leading-[1.1] tracking-tight text-[#0A1628]">
+          <h2 className="text-[32px] sm:text-[38px] font-[900] leading-[1.1] tracking-tight text-[#0A1628]">
             Our Salesforce{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066A0] via-[#0077B6] to-[#3BA9F5]">
               Credentials
             </span>
           </h2>
-          <p className="text-[14px] text-slate-500 font-medium max-w-xl">
+          <p className="text-[16px] text-slate-500 font-medium max-w-xl">
             Before you evaluate us — here is what qualifies us.
           </p>
         </div>
@@ -3294,8 +3294,8 @@ export function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { s
                 </svg>
               </div>
               <div>
-                <h3 className="text-[17px] font-[900] text-[#0A1628] leading-tight">Company-Level</h3>
-                <p className="text-[11px] text-[#0077B6] font-semibold mt-0.5">Verified partner credentials</p>
+                <h3 className="text-[20px] font-[900] text-[#0A1628] leading-tight">Company-Level</h3>
+                <p className="text-[13px] text-[#0077B6] font-semibold mt-0.5">Verified partner credentials</p>
               </div>
             </div>
 
@@ -3315,8 +3315,8 @@ export function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { s
                     <svg viewBox="0 0 16 16" className="w-3.5 h-3.5"><path d="M3 8l3.5 3.5 6.5-7" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none" /></svg>
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="text-[11.5px] font-[800] text-[#0A1628] leading-tight">{label}</div>
-                    <div className="text-[10px] text-[#64748B] font-medium mt-0.5">{sub}</div>
+                    <div className="text-[14px] font-[800] text-[#0A1628] leading-tight">{label}</div>
+                    <div className="text-[11.5px] text-[#64748B] font-medium mt-0.5">{sub}</div>
                   </div>
                   <span className="text-[15px] flex-shrink-0">{icon}</span>
                 </div>
@@ -3343,8 +3343,8 @@ export function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { s
                 </svg>
               </div>
               <div>
-                <h3 className="text-[17px] font-[900] text-[#0A1628] leading-tight">Team Certifications</h3>
-                <p className="text-[11px] text-[#0077B6] font-semibold mt-0.5">Individual Salesforce credentials</p>
+                <h3 className="text-[20px] font-[900] text-[#0A1628] leading-tight">Team Certifications</h3>
+                <p className="text-[13px] text-[#0077B6] font-semibold mt-0.5">Individual Salesforce credentials</p>
               </div>
             </div>
 
@@ -3364,11 +3364,11 @@ export function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { s
                 <div key={label} className="cred-badge flex items-center gap-2 rounded-[12px] px-3 py-2 cursor-default"
                   style={{ background: "linear-gradient(135deg,rgba(255,255,255,0.85) 0%,rgba(240,249,255,0.75) 100%)", border: "1px solid rgba(125,211,252,0.4)", boxShadow: "0 2px 8px rgba(0,119,182,0.06), 0 1px 0 rgba(255,255,255,0.8) inset" }}>
                   {/* Mini cert medallion */}
-                  <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-[8px] font-[900] text-white"
+                  <div className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 text-[9px] font-[900] text-white"
                     style={{ background: "linear-gradient(135deg,#0077B6,#3BA9F5)", boxShadow: "0 2px 8px rgba(0,119,182,0.28)" }}>
                     {tier.slice(0, 2).toUpperCase()}
                   </div>
-                  <span className="text-[10.5px] font-[700] text-[#0A1628] leading-tight">{label}</span>
+                  <span className="text-[13px] font-[700] text-[#0A1628] leading-tight">{label}</span>
                 </div>
               ))}
             </div>
@@ -3387,13 +3387,13 @@ export function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { s
             <div key={value} className="flex items-center gap-3 flex-1 justify-center">
               <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: dot, boxShadow: `0 0 6px ${dot}` }} />
               <div className="flex flex-col">
-                <span className="text-[13px] font-[900] text-[#0A1628] leading-tight">{value}</span>
-                <span className="text-[10px] text-[#64748B] font-medium">{label}</span>
+                <span className="text-[15px] font-[900] text-[#0A1628] leading-tight">{value}</span>
+                <span className="text-[11.5px] text-[#64748B] font-medium">{label}</span>
               </div>
             </div>
           ))}
           <div className="h-8 w-[1px] bg-[#BAE6FD]/60 hidden md:block" />
-          <p className="text-[11px] text-[#475569] font-medium leading-snug max-w-[260px] text-center hidden lg:block">
+          <p className="text-[12.5px] text-[#475569] font-medium leading-snug max-w-[260px] text-center hidden lg:block">
             Our team collectively holds certifications across Sales, Marketing, Platform, and Service tracks.
           </p>
         </div>
