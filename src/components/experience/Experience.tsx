@@ -497,7 +497,7 @@ function WhoWeAreScene({ scene, isActive = false, activeCardIdx = 0 }: { scene: 
           >
             {/* Salesforce office image inside */}
             <img
-              src="/salesforce-office.png"
+              src="/image%20copy.png"
               alt="Cascade Tech Office & Salesforce Operations"
               className="w-full h-full object-cover select-none"
             />
