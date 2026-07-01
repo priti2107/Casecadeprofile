@@ -2129,9 +2129,8 @@ export function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { s
               }}
             />
 
-            {/* --- The Video Container (Centered & Shrunk by ~10% for visual breathing space) --- */}
             <div
-              className="w-[98%] h-[92%] max-w-full max-h-full aspect-[1.6] rounded-3xl border border-[#0284C7]/40 bg-white/5 backdrop-blur-md relative overflow-hidden shadow-[0_20px_50px_rgba(2,132,199,0.25),0_0_20px_rgba(2,132,199,0.15)] z-10 hover:scale-[1.01] transition-all duration-300"
+              className="w-[98%] h-[92%] max-w-full max-h-full aspect-[1.6] rounded-3xl border-2 border-[#00A1E0]/85 bg-white/5 backdrop-blur-md relative overflow-hidden shadow-[0_0_30px_rgba(0,161,224,0.35),0_20px_50px_rgba(2,132,199,0.25)] z-10 hover:scale-[1.01] transition-all duration-300"
               style={{
                 transform: `translate3d(${mousePos.x * -10}px, ${mousePos.y * -10}px, 0)`,
                 transition: "transform 0.4s cubic-bezier(0.1, 0.8, 0.2, 1)",
@@ -2144,7 +2143,7 @@ export function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { s
                 playsInline
                 className="w-full h-full object-cover rounded-[inherit]"
               >
-                <source src="/Create_a_premium_second_sea (2).mp4" type="video/mp4" />
+                <source src="/WhatsApp%20Video%202026-07-01%20at%2019.29.12.mp4" type="video/mp4" />
               </video>
             </div>
           </div>
@@ -2807,7 +2806,7 @@ export function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { s
 
     return (
       <div
-        className="pointer-events-auto who-we-are-glass-panel rounded-[32px] w-[95vw] md:w-[90vw] h-[92vh] md:h-[82vh] max-w-7xl relative overflow-y-auto md:overflow-hidden flex flex-col pt-3 pb-3 px-3 md:px-6 justify-start md:justify-center gap-2.5 md:gap-4 border border-white/20 shadow-[0_30px_100px_rgba(1,118,211,0.08)] shadow-[inset_0_0_20px_rgba(255,255,255,0.75)]"
+        className="pointer-events-auto who-we-are-glass-panel rounded-[32px] w-[95vw] md:w-[90vw] h-[92vh] md:h-[82vh] max-w-7xl relative overflow-y-auto md:overflow-hidden flex flex-col pt-2.5 pb-2.5 px-3 md:px-6 justify-start md:justify-center gap-2 md:gap-2.5 border border-white/20 shadow-[0_30px_100px_rgba(1,118,211,0.08)] shadow-[inset_0_0_20px_rgba(255,255,255,0.75)]"
         style={{
           background: "rgba(248, 250, 252, 0.95)",
           backdropFilter: "blur(24px)",
@@ -2828,18 +2827,18 @@ export function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { s
         />
 
         {/* TOP ROW: Title & Kicker + Description */}
-        <div className="w-full flex flex-col justify-start text-left max-w-4xl relative z-10 shrink-0 mt-1">
-          <div className="inline-flex items-center gap-1.5 bg-[#F0F9FF] border border-[#E0F2FE] rounded-full px-3 py-1 text-[10px] md:text-[11px] font-bold tracking-wider text-[#0284C7] w-fit mb-1.5">
+        <div className="w-full flex flex-col justify-start text-left max-w-4xl relative z-10 shrink-0 mt-0.5">
+          <div className="inline-flex items-center gap-1.5 bg-[#F0F9FF] border border-[#E0F2FE] rounded-full px-2.5 py-0.5 text-[9.5px] md:text-[10px] font-bold tracking-wider text-[#0284C7] w-fit mb-1">
             <span className="size-1.5 rounded-full bg-[#0284C7] animate-pulse" />
             WHY CASCADE TECH
           </div>
 
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[38px] xl:text-[44px] font-[900] leading-[1.05] tracking-tight text-[#0F172A] font-display">
+          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-[34px] xl:text-[38px] font-[900] leading-[1.05] tracking-tight text-[#0F172A] font-display">
             Why Developers & Enterprises{" "}
             <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#0EA5E9] to-[#2563EB]">
               Choose Cascade Tech
               <svg
-                className="absolute -bottom-0.5 left-0 w-full h-[5px]"
+                className="absolute -bottom-0.5 left-0 w-full h-[4px]"
                 viewBox="0 0 200 5"
                 fill="none"
                 preserveAspectRatio="none"
@@ -2854,54 +2853,98 @@ export function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { s
             </span>
           </h2>
 
-          <p className="text-[12px] md:text-[14px] lg:text-[15.5px] text-slate-500 font-semibold leading-relaxed mt-2.5 max-w-3xl">
+          <p className="text-[11px] md:text-[12.5px] lg:text-[13.5px] text-slate-500 font-semibold leading-relaxed mt-1.5 max-w-3xl">
             We combine Salesforce expertise, AI innovation, product thinking and real-world
             industry execution to deliver measurable business outcomes.
           </p>
         </div>
 
-        {/* Divider 1 */}
-        <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-slate-200/80 to-transparent opacity-60 my-0 relative z-10" />
+        <style dangerouslySetInnerHTML={{
+          __html: `
+          @keyframes travelFlowParticle {
+            0% { left: 12.5%; opacity: 0; }
+            8% { opacity: 1; }
+            92% { opacity: 1; }
+            100% { left: 87.5%; opacity: 0; }
+          }
+          .animate-travel-particle {
+            animation: travelFlowParticle 6s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+          }
 
-        {/* MIDDLE ROW: 4 Normal Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 md:gap-4 w-full max-w-[1280px] mx-auto items-stretch relative z-10">
-          {reasons
-            .filter((r) => !r.isLarge)
-            .map((r) => {
-              const IconComp = r.icon;
+          @keyframes activeJourneyCard1 {
+            0%, 24% { opacity: 1; transform: translateY(-4px) scale(1.03); filter: drop-shadow(0 10px 20px rgba(14,165,233,0.16)); border-color: rgba(14,165,233,0.6); box-shadow: 0 0 0 1px rgba(14,165,233,0.15); }
+            25%, 100% { opacity: 1; transform: translateY(0) scale(1); filter: none; border-color: rgba(226,232,240,0.7); box-shadow: none; }
+          }
+          @keyframes activeJourneyCard2 {
+            0%, 24% { opacity: 1; transform: translateY(0) scale(1); filter: none; border-color: rgba(226,232,240,0.7); box-shadow: none; }
+            25%, 49% { opacity: 1; transform: translateY(-4px) scale(1.03); filter: drop-shadow(0 10px 20px rgba(14,165,233,0.16)); border-color: rgba(14,165,233,0.6); box-shadow: 0 0 0 1px rgba(14,165,233,0.15); }
+            50%, 100% { opacity: 1; transform: translateY(0) scale(1); filter: none; border-color: rgba(226,232,240,0.7); box-shadow: none; }
+          }
+          @keyframes activeJourneyCard3 {
+            0%, 49% { opacity: 1; transform: translateY(0) scale(1); filter: none; border-color: rgba(226,232,240,0.7); box-shadow: none; }
+            50%, 74% { opacity: 1; transform: translateY(-4px) scale(1.03); filter: drop-shadow(0 10px 20px rgba(14,165,233,0.16)); border-color: rgba(14,165,233,0.6); box-shadow: 0 0 0 1px rgba(14,165,233,0.15); }
+            75%, 100% { opacity: 1; transform: translateY(0) scale(1); filter: none; border-color: rgba(226,232,240,0.7); box-shadow: none; }
+          }
+          @keyframes activeJourneyCard4 {
+            0%, 74% { opacity: 1; transform: translateY(0) scale(1); filter: none; border-color: rgba(226,232,240,0.7); box-shadow: none; }
+            75%, 100% { opacity: 1; transform: translateY(-4px) scale(1.03); filter: drop-shadow(0 10px 20px rgba(14,165,233,0.16)); border-color: rgba(14,165,233,0.6); box-shadow: 0 0 0 1px rgba(14,165,233,0.15); }
+          }
+          .animate-journey-card-1 { animation: activeJourneyCard1 6s infinite; }
+          .animate-journey-card-2 { animation: activeJourneyCard2 6s infinite; }
+          .animate-journey-card-3 { animation: activeJourneyCard3 6s infinite; }
+          .animate-journey-card-4 { animation: activeJourneyCard4 6s infinite; }
+          `
+        }} />
 
-              return (
-                <div
-                  key={r.id}
-                  className="premium-glass-card premium-glass-card-hover rounded-[16px] md:rounded-[20px] p-2.5 md:p-4 flex flex-col justify-start text-left relative overflow-hidden group w-full min-h-[120px] md:min-h-[190px]"
-                >
-                  {/* Permanent subtle background glows */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#0EA5E9]/5 via-[#2563EB]/2 to-transparent rounded-[20px] pointer-events-none -z-10" />
-                  <div className="absolute -inset-px bg-gradient-to-br from-[#0EA5E9]/10 via-transparent to-[#2563EB]/5 rounded-[20px] pointer-events-none -z-20" />
-
-                  {/* Hover blue glow reflection */}
-                  <div className="absolute -inset-1 bg-gradient-to-br from-[#0EA5E9]/12 via-[#2563EB]/6 to-transparent opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500 -z-10 pointer-events-none" />
-
-                  {/* Header Row: Icon + Title */}
-                  <div className="flex items-center gap-3 mb-2.5">
-                    <div className="w-[40px] h-[40px] md:w-[46px] md:h-[46px] flex items-center justify-center rounded-full border shadow-sm group-hover:scale-105 transition-all duration-300 flex-shrink-0 bg-[#F0F9FF] border-[#E0F2FE]/50 text-[#0EA5E9] shadow-[0_4px_12px_rgba(14,165,233,0.06)] group-hover:shadow-[0_8px_24px_rgba(14,165,233,0.1)]">
-                      <IconComp className="w-5 h-5 md:w-5.5 md:h-5.5 text-[#0EA5E9]" />
+        {/* MIDDLE ROW: Horizontal Timeline Flow */}
+        <div className="w-full max-w-[1280px] mx-auto mt-6 mb-1 relative z-10 select-none">
+          {/* Connecting Line (Thinner, glow-backed, starts at Step 1 center and ends at Step 4 center) */}
+          <div className="absolute top-[38px] left-[12.5%] right-[12.5%] h-[1.5px] bg-gradient-to-r from-sky-400 via-sky-500 to-sky-400 shadow-[0_0_8px_rgba(14,165,233,0.4)] z-0" />
+          
+          {/* Traveling glow particle */}
+          <div className="absolute top-[38px] -translate-y-1/2 h-2 w-2 rounded-full bg-[#00A1E0] blur-[0.5px] shadow-[0_0_8px_#00A1E0,0_0_15px_#00A1E0] z-20 animate-travel-particle" />
+          
+          {/* Grid Layout of the 4 steps */}
+          <div className="grid grid-cols-4 gap-4 relative z-10">
+            {reasons
+              .filter((r) => !r.isLarge)
+              .map((r, idx) => {
+                const IconComp = r.icon;
+                const stepNum = `0${idx + 1}`;
+                const cardAnimClass = `animate-journey-card-${idx + 1}`;
+                return (
+                  <div key={r.id} className="flex flex-col items-center text-center group">
+                    {/* Step bubble and Icon */}
+                    <div className="flex flex-col items-center gap-1.5 relative mb-1.5">
+                      {/* Step No. Bubble (15% smaller, positioned closer to icon) */}
+                      <div className="bg-[#EFF8FF] border border-[#BFDBFE]/60 rounded-full px-1.5 py-[0.5px] text-[7.5px] font-black text-[#0284C7] shadow-sm leading-none z-10">
+                        {stepNum}
+                      </div>
+                      
+                      {/* Circle Node */}
+                      <div className="w-11 h-11 md:w-12 md:h-12 rounded-full bg-white border border-[#BAE6FD] flex items-center justify-center shadow-[0_4px_12px_rgba(14,165,233,0.08)] group-hover:scale-105 group-hover:border-sky-400 transition-all duration-300 relative z-10">
+                        <IconComp className="w-4.5 h-4.5 text-[#0EA5E9]" />
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-[13px] sm:text-[15px] md:text-[16px] lg:text-[18px] font-[900] text-[#0F172A] leading-tight tracking-tight">
+
+                    {/* Short vertical connector line */}
+                    <div className="w-[1.5px] h-3 bg-gradient-to-b from-[#BAE6FD]/80 to-[#E2E8F0]/30 z-10" />
+                    
+                    {/* Card Container */}
+                    <div className={`w-full bg-white border border-slate-200/50 rounded-2xl p-3 transition-all duration-300 flex-grow flex flex-col justify-start min-h-[110px] md:min-h-[125px] ${cardAnimClass}`}>
+                      <h4 className="text-[12.5px] md:text-[13.5px] font-black text-[#0F172A] leading-tight">
                         {r.title}
-                      </h3>
-                      {/* Horizontal accent line */}
-                      <div className="w-8 h-[2px] bg-[#0EA5E9] rounded-full mt-1 transition-all duration-300 group-hover:w-12" />
+                      </h4>
+                      {/* Accent Underline separator */}
+                      <div className="w-7 h-[2px] bg-[#0EA5E9] rounded-full my-1.5 mx-auto" />
+                      <p className="text-[10.5px] md:text-[11px] leading-relaxed text-slate-500 font-semibold mt-0.5">
+                        {r.desc}
+                      </p>
                     </div>
                   </div>
-
-                  <p className="text-[12px] md:text-[13px] lg:text-[14px] leading-relaxed text-slate-500 font-semibold line-clamp-3 md:line-clamp-4">
-                    {r.desc}
-                  </p>
-                </div>
-              );
-            })}
+                );
+              })}
+          </div>
         </div>
 
         {/* BOTTOM ROW: 2 Featured Cards (1.5x wider, centered) */}
@@ -2914,10 +2957,10 @@ export function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { s
               return (
                 <div
                   key={r.id}
-                  className="premium-glass-card premium-glass-card-hover rounded-[20px] p-3.5 md:p-4 flex flex-col justify-start text-left relative overflow-hidden group w-full md:w-[36%] flex-shrink-0 min-h-[160px] md:min-h-[190px]"
+                  className="premium-glass-card premium-glass-card-hover rounded-[20px] p-2.5 md:p-3 flex flex-col justify-start text-left relative overflow-hidden group w-full md:w-[36%] flex-shrink-0 min-h-[80px] md:min-h-[96px]"
                 >
                   {/* Featured Badge */}
-                  <span className="absolute top-3 right-3 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#E0F2FE] text-[#0284C7] text-[8px] font-black uppercase tracking-wider shadow-sm border border-[#0EA5E9]/10">
+                  <span className="absolute top-2 right-2 inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-[#E0F2FE] text-[#0284C7] text-[7.5px] font-black uppercase tracking-wider shadow-sm border border-[#0EA5E9]/10">
                     Featured
                   </span>
 
@@ -2929,20 +2972,20 @@ export function SceneContent({ scene, isActive = false, activeCardIdx = 0 }: { s
                   <div className="absolute -inset-1 bg-gradient-to-br from-[#0EA5E9]/12 via-[#2563EB]/6 to-transparent opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500 -z-10 pointer-events-none" />
 
                   {/* Header Row: Icon + Title */}
-                  <div className="flex items-center gap-3 mb-2.5">
-                    <div className="w-[40px] h-[40px] md:w-[46px] md:h-[46px] flex items-center justify-center rounded-full border shadow-sm group-hover:scale-105 transition-all duration-300 flex-shrink-0 bg-gradient-to-br from-[#0EA5E9] to-[#2563EB] border-[#0EA5E9]/20 text-white shadow-[0_8px_20px_rgba(14,165,233,0.2)] group-hover:shadow-[0_12px_28px_rgba(14,165,233,0.3)]">
-                      <IconComp className="w-5 h-5 md:w-5.5 md:h-5.5 text-white" />
+                  <div className="flex items-center gap-2.5 mb-1.5">
+                    <div className="w-[32px] h-[32px] md:w-[36px] md:h-[36px] flex items-center justify-center rounded-full border shadow-sm group-hover:scale-105 transition-all duration-300 flex-shrink-0 bg-gradient-to-br from-[#0EA5E9] to-[#2563EB] border-[#0EA5E9]/20 text-white shadow-[0_4px_12px_rgba(14,165,233,0.15)] group-hover:shadow-[0_8px_20px_rgba(14,165,233,0.25)]">
+                      <IconComp className="w-4.5 h-4.5 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-[13px] sm:text-[15px] md:text-[16px] lg:text-[18px] font-[900] text-[#0F172A] leading-tight tracking-tight">
+                      <h3 className="text-[12px] sm:text-[14px] md:text-[15px] font-[900] text-[#0F172A] leading-tight tracking-tight">
                         {r.title}
                       </h3>
                       {/* Horizontal accent line */}
-                      <div className="w-12 h-[2px] bg-[#2563EB] rounded-full mt-1 transition-all duration-300 group-hover:w-20" />
+                      <div className="w-8 h-[2px] bg-[#2563EB] rounded-full mt-1 transition-all duration-300 group-hover:w-16" />
                     </div>
                   </div>
 
-                  <p className="text-[12px] md:text-[13px] lg:text-[14px] leading-relaxed text-slate-500 font-semibold line-clamp-3 md:line-clamp-4">
+                  <p className="text-[11px] md:text-[12px] leading-relaxed text-slate-500 font-semibold line-clamp-2 md:line-clamp-3">
                     {r.desc}
                   </p>
                 </div>
