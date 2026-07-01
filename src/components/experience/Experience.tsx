@@ -3530,19 +3530,19 @@ function ProductTemplateCard({ productKey }: ProductTemplateCardProps) {
       logo: "/clients/casecadeconnect.png",
       title: "Cascade Connect",
       tagline: "Omnichannel Communication, Inside Salesforce",
-      problem: "Customer conversations are scattered across WhatsApp, email and calls, leaving no unified CRM visibility or management oversight.",
-      does: "Unifies WhatsApp, Email and SMS inside Salesforce with automatic activity logging and a real-time customer communication timeline.",
+      problem: "Your team sends WhatsApp from personal phones, follows up by email in Outlook, and logs calls manually, none of it connected to your CRM. Managers can't coach what they can't see.",
+      does: "Cascade Connect brings WhatsApp, Email and SMS natively into Salesforce. Every message is auto-logged against its lead, contact or opportunity, and management gets a real-time, unified view of every touchpoint across every channel.",
       builtFor: "Sales Teams\nMarketing Teams\nCRM Managers",
       architecture: "Salesforce Native\nOfficial WhatsApp API\nNo Middleware",
       pricing: "One-time License\nAMC Support\nNo Per-message Charges",
       liveWith: "Kohinoor Group\nRaunak Group\nNaiknavare",
       capabilities: [
-        "WhatsApp Business API Integration",
-        "Bulk Personalized Messaging",
-        "Smart Conversation Routing",
-        "Compliance & Audit Logs",
-        "Workflow-based Follow-ups",
-        "Delivery & Read Receipt Tracking"
+        "WhatsApp Business API integration — send, receive & log natively in Salesforce",
+        "Bulk WhatsApp broadcasting personalised with Salesforce field data",
+        "Multi-agent chat routing — auto-assign conversations to the right rep",
+        "Compliance-ready logs with timestamp, sender and channel data",
+        "Automated follow-up sequences triggered by workflow or lead-stage changes",
+        "Real-time delivery & read-receipt tracking inside Salesforce dashboards"
       ]
     },
     "cx-prism": {
@@ -3698,9 +3698,9 @@ function ProductTemplateCard({ productKey }: ProductTemplateCardProps) {
             <div className="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-[#F43F5E] to-[#FDA4AF]" />
             <div className="flex items-center gap-2 text-rose-500 pl-1.5">
               <AlertTriangle className="w-3.5 h-3.5" />
-              <span className="text-[9.5px] font-black uppercase tracking-wider text-[#3B82F6]/75">Business Challenge</span>
+              <span className="text-[9.5px] font-black uppercase tracking-wider text-rose-500/85">Business Challenge</span>
             </div>
-            <p className="text-[11.5px] md:text-[12px] font-semibold leading-relaxed text-slate-500 pl-2">
+            <p className="text-[12.5px] md:text-[13px] font-semibold leading-relaxed text-slate-600 pl-2">
               {placeholders.problem}
             </p>
           </div>
@@ -3717,9 +3717,9 @@ function ProductTemplateCard({ productKey }: ProductTemplateCardProps) {
             <div className="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-[#3B82F6] to-[#93C5FD]" />
             <div className="flex items-center gap-2 text-sky-500 pl-1.5">
               <Sparkles className="w-3.5 h-3.5" />
-              <span className="text-[9.5px] font-black uppercase tracking-wider text-[#3B82F6]/75">Our Solution</span>
+              <span className="text-[9.5px] font-black uppercase tracking-wider text-sky-500/85">Our Solution</span>
             </div>
-            <p className="text-[11.5px] md:text-[12px] font-semibold leading-relaxed text-slate-500 pl-2">
+            <p className="text-[12.5px] md:text-[13px] font-semibold leading-relaxed text-slate-600 pl-2">
               {placeholders.does}
             </p>
           </div>
@@ -3783,7 +3783,7 @@ function ProductTemplateCard({ productKey }: ProductTemplateCardProps) {
             <div className="absolute inset-0 pointer-events-none opacity-[0.03]" style={{ backgroundImage: "radial-gradient(#0077B6 1px, transparent 1px)", backgroundSize: "16px 16px" }} />
 
             <h3 className="text-[11px] font-black text-[#0A1628] uppercase tracking-wider mb-2 relative z-10">Key Capabilities</h3>
-            <div className="flex-1 overflow-hidden pr-1 flex flex-col relative z-10 justify-between">
+            <div className="flex-1 overflow-hidden pr-1 flex flex-col relative z-10 justify-start gap-1">
               {placeholders.capabilities.map((cap, i) => (
                 <div key={i} className="flex flex-col">
                   <div className="flex items-start gap-2.5 py-2 px-2.5 rounded-lg transition-all duration-200 hover:bg-[#F4F9FF]">
