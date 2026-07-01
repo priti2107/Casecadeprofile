@@ -336,13 +336,13 @@ export const SCENES: Scene[] = [
   {
     id: 16,
     kicker: "PROPRIETARY PRODUCT",
-    title: "CaseFlow",
+    title: "CRM Suite",
     subtitle: "Email-to-Case & Customer Ticketing Automation",
   },
   {
     id: 17,
     kicker: "PROPRIETARY PRODUCT",
-    title: "Nexora",
+    title: "AI Voice",
     subtitle: "Empowering Sourcing Teams to Manage Partners, Activities & Growth Intelligence",
   },
   {

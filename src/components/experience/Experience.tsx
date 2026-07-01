@@ -709,7 +709,7 @@ function ProductEcosystemScene() {
       </div>
 
       {/* ── HEADER ── */}
-      <div className="flex flex-col items-center text-center w-full flex-shrink-0 z-10 gap-3">
+      <div className="flex flex-col items-center text-center w-full flex-shrink-0 z-20 gap-3">
         <div className="flex flex-col items-center">
           <div className="inline-flex items-center gap-2 bg-[#EFF8FF] border border-[#BFDBFE]/80 rounded-full px-4 py-1.5 text-[11px] font-bold tracking-[0.15em] text-[#0077B6] w-fit mb-3 shadow-[0_2px_8px_rgba(0,119,182,0.10)]">
             <span className="size-1.5 rounded-full bg-[#0077B6] animate-pulse" />
@@ -757,14 +757,14 @@ function ProductEcosystemScene() {
                 onClick={() => setProductSlide(1)}
                 className={`cursor-pointer transition-all duration-300 ${productSlide === 1 ? "text-[#0077B6] font-black scale-105 filter drop-shadow-[0_0_12px_rgba(0,119,182,0.4)]" : "hover:text-[#0077B6]/70"}`}
               >
-                AI Voice
+                Case Flow
               </span>
               <span className="text-[#BAE6FD]">•</span>
               <span 
                 onClick={() => setProductSlide(1)}
                 className={`cursor-pointer transition-all duration-300 ${productSlide === 1 ? "text-[#0077B6] font-black scale-105 filter drop-shadow-[0_0_12px_rgba(0,119,182,0.4)]" : "hover:text-[#0077B6]/70"}`}
               >
-                CRM Suite
+                Nexora
               </span>
             </div>
 
@@ -786,7 +786,7 @@ function ProductEcosystemScene() {
       </div>
 
       {/* ── SLIDES ── */}
-      <div className="flex-1 min-h-0 w-full z-10 relative overflow-hidden">
+      <div className="flex-1 min-h-0 w-full z-10 relative overflow-visible">
 
         {/* ── SLIDE 1 ── */}
         {productSlide === 0 && (
@@ -811,17 +811,7 @@ function ProductEcosystemScene() {
                   {/* 3D gradient icon */}
                   <div className="w-12 h-12 rounded-[14px] flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
                     style={{ background: "linear-gradient(135deg, #E0F2FE 0%, #BAE6FD 40%, #7DD3FC 100%)", boxShadow: "0 6px 20px rgba(0,119,182,0.20), 0 1px 0 rgba(255,255,255,0.8) inset" }}>
-                    <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none">
-                      <defs>
-                        <linearGradient id="ic1" x1="0" y1="0" x2="1" y2="1">
-                          <stop offset="0%" stopColor="#0077B6" />
-                          <stop offset="100%" stopColor="#0EA5E9" />
-                        </linearGradient>
-                      </defs>
-                      <rect x="2" y="5" width="20" height="14" rx="3.5" fill="url(#ic1)" opacity="0.18" />
-                      <rect x="2" y="5" width="20" height="14" rx="3.5" stroke="url(#ic1)" strokeWidth="1.6" />
-                      <path d="M2 9.5l10 5.5 10-5.5" stroke="url(#ic1)" strokeWidth="1.6" strokeLinecap="round" />
-                    </svg>
+                    <img src="/clients/casecadeconnect.png" className="w-9 h-9 object-contain" alt="Cascade Connect" />
                   </div>
                   <div>
                     <h3 className="text-[20px] font-[900] text-[#0A1628] leading-tight tracking-tight">Cascade Connect</h3>
@@ -835,125 +825,155 @@ function ProductEcosystemScene() {
 
               {/* Illustration */}
               <div className="flex-1 min-h-0 rounded-[16px] overflow-hidden relative flex items-center justify-center"
-                style={{ background: "radial-gradient(ellipse at 50% 40%, rgba(0,119,182,0.07) 0%, rgba(240,249,255,0.6) 55%, rgba(248,252,255,0.8) 100%)", border: "1px solid rgba(186,230,253,0.35)" }}>
-                <svg viewBox="0 0 360 195" className="w-full h-full" xmlns="http://www.w3.org/2000/svg" style={{ maxHeight: "100%" }}>
+                style={{ background: "radial-gradient(ellipse at 50% 40%, rgba(0,119,182,0.01) 0%, rgba(248,252,255,0.99) 100%)", border: "1px solid rgba(186,230,253,0.35)" }}>
+                <svg viewBox="0 0 540 260" className="w-full h-full" xmlns="http://www.w3.org/2000/svg" style={{ maxHeight: "100%" }}>
                   <defs>
-                    <radialGradient id="cc-hub-g" cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" stopColor="#0077B6" stopOpacity="0.22" />
+                    <radialGradient id="node-glow" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stopColor="#3BA9F5" stopOpacity="0.06" />
                       <stop offset="100%" stopColor="#3BA9F5" stopOpacity="0" />
                     </radialGradient>
-                    <linearGradient id="cc-ln1" x1="0" y1="0" x2="1" y2="0">
-                      <stop offset="0%" stopColor="#3BA9F5" stopOpacity="0.1" />
-                      <stop offset="50%" stopColor="#3BA9F5" stopOpacity="0.9" />
-                      <stop offset="100%" stopColor="#0077B6" stopOpacity="0.2" />
-                    </linearGradient>
-                    <filter id="cc-glow-f" x="-40%" y="-40%" width="180%" height="180%">
-                      <feGaussianBlur stdDeviation="4" result="blur" />
-                      <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+                    <filter id="svg-glow">
+                      <feGaussianBlur stdDeviation="3" result="blur" />
+                      <feMerge>
+                        <feMergeNode in="blur" />
+                        <feMergeNode in="SourceGraphic" />
+                      </feMerge>
                     </filter>
-                    <filter id="cc-soft-glow">
-                      <feGaussianBlur stdDeviation="6" result="b" /><feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
-                    </filter>
-                    <linearGradient id="cc-card-g" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="white" stopOpacity="1" />
-                      <stop offset="100%" stopColor="#F0F9FF" stopOpacity="0.9" />
-                    </linearGradient>
                   </defs>
 
-                  {/* Center glow */}
-                  <circle cx="178" cy="97" r="56" fill="url(#cc-hub-g)" />
-                  {/* Pulse rings */}
-                  <circle cx="178" cy="97" r="32" fill="none" stroke="#3BA9F5" strokeWidth="1.5" className="eco-ring1" opacity="0.6" />
-                  <circle cx="178" cy="97" r="32" fill="none" stroke="#0077B6" strokeWidth="1" className="eco-ring2" opacity="0.4" />
+                  {/* Soft blue glow behind Cascade Connect */}
+                  <circle cx="375" cy="50" r="90" fill="url(#node-glow)" pointerEvents="none" />
 
-                  {/* Paths */}
-                  <path d="M 76 57 Q 130 57 152 97" fill="none" stroke="#3BA9F5" strokeWidth="1.8" className="eco-flow-line" opacity="0.7" />
-                  <path d="M 76 97 L 152 97" fill="none" stroke="#0077B6" strokeWidth="1.8" className="eco-flow-line" opacity="0.7" />
-                  <path d="M 76 137 Q 130 137 152 97" fill="none" stroke="#6EC8FF" strokeWidth="1.8" className="eco-flow-line" opacity="0.7" />
-                  <path d="M 204 97 L 268 97" fill="none" stroke="#3BA9F5" strokeWidth="1.8" className="eco-flow-line" opacity="0.7" />
+                  {/* CONNECTING LINES */}
+                  {/* Line 1: Salesforce -> Cascade Connect (Horizontal) */}
+                  <path d="M 200 50 L 250 50" fill="none" stroke="#BAE6FD" strokeWidth="2" />
+                  <path d="M 200 50 L 250 50" fill="none" stroke="#0077B6" strokeWidth="2" strokeDasharray="5 5" opacity="0.8">
+                    <animate attributeName="stroke-dashoffset" values="20;0" dur="1.2s" repeatCount="indefinite" />
+                  </path>
 
-                  {/* Animated particles */}
-                  <circle r="3.5" fill="#3BA9F5" opacity="0.9" filter="url(#cc-glow-f)">
-                    <animateMotion dur="2.2s" repeatCount="indefinite" path="M 76 57 Q 130 57 152 97" />
+                  {/* S-Curve Link: Cascade Connect (Row 1 Right) -> Multi-Channel (Row 2 Left) */}
+                  <path d="M 375 82 C 375 125, 105 125, 105 151" fill="none" stroke="#BAE6FD" strokeWidth="2" />
+                  <path d="M 375 82 C 375 125, 105 125, 105 151" fill="none" stroke="#0077B6" strokeWidth="2" strokeDasharray="6 6" opacity="0.7">
+                    <animate attributeName="stroke-dashoffset" values="24;0" dur="1.5s" repeatCount="indefinite" />
+                  </path>
+
+                  {/* Line 3: Multi-Channel -> Customer (Horizontal) */}
+                  <path d="M 190 175 L 215 175" fill="none" stroke="#BAE6FD" strokeWidth="2" />
+                  <path d="M 190 175 L 215 175" fill="none" stroke="#0077B6" strokeWidth="2" strokeDasharray="5 5" opacity="0.8">
+                    <animate attributeName="stroke-dashoffset" values="20;0" dur="1.2s" repeatCount="indefinite" />
+                  </path>
+
+                  {/* Line 4: Customer -> Salesforce Timeline (Horizontal) */}
+                  <path d="M 345 175 L 360 175" fill="none" stroke="#BAE6FD" strokeWidth="2" />
+                  <path d="M 345 175 L 360 175" fill="none" stroke="#0077B6" strokeWidth="2" strokeDasharray="5 5" opacity="0.8">
+                    <animate attributeName="stroke-dashoffset" values="20;0" dur="1.2s" repeatCount="indefinite" />
+                  </path>
+
+                  {/* Vertical lines connecting timeline outputs */}
+                  <line x1="395" y1="197" x2="395" y2="220" stroke="#BAE6FD" strokeWidth="1.5" strokeDasharray="3 3" />
+                  <line x1="485" y1="197" x2="485" y2="220" stroke="#BAE6FD" strokeWidth="1.5" strokeDasharray="3 3" />
+
+                  {/* ANIMATED DATA PARTICLES */}
+                  <circle r="3.5" fill="#0ea5e9" filter="url(#svg-glow)">
+                    <animateMotion dur="1.8s" repeatCount="indefinite" path="M 200 50 L 250 50" />
                   </circle>
-                  <circle r="3" fill="#0077B6" opacity="0.85" filter="url(#cc-glow-f)">
-                    <animateMotion dur="1.8s" repeatCount="indefinite" path="M 76 97 L 152 97" begin="0.4s" />
+                  <circle r="3.5" fill="#0ea5e9" filter="url(#svg-glow)">
+                    <animateMotion dur="2.2s" repeatCount="indefinite" path="M 375 82 C 375 125, 105 125, 105 151" begin="0.4s" />
                   </circle>
-                  <circle r="3" fill="#6EC8FF" opacity="0.9" filter="url(#cc-glow-f)">
-                    <animateMotion dur="2.5s" repeatCount="indefinite" path="M 76 137 Q 130 137 152 97" begin="0.8s" />
+                  <circle r="3.5" fill="#0ea5e9" filter="url(#svg-glow)">
+                    <animateMotion dur="1.6s" repeatCount="indefinite" path="M 190 175 L 215 175" begin="0.8s" />
                   </circle>
-                  <circle r="3" fill="#3BA9F5" opacity="0.85" filter="url(#cc-glow-f)">
-                    <animateMotion dur="2s" repeatCount="indefinite" path="M 204 97 L 268 97" begin="0.2s" />
+                  <circle r="3.5" fill="#0ea5e9" filter="url(#svg-glow)">
+                    <animateMotion dur="1.7s" repeatCount="indefinite" path="M 345 175 L 360 175" begin="1.1s" />
                   </circle>
 
-                  {/* WhatsApp node */}
-                  <g className="eco-float">
-                    <rect x="10" y="38" width="66" height="38" rx="11" fill="url(#cc-card-g)" stroke="#E2EEF6" strokeWidth="1" filter="url(#cc-glow-f)" />
-                    <rect x="10" y="38" width="66" height="38" rx="11" fill="#25D366" opacity="0.06" />
-                    <circle cx="27" cy="57" r="9" fill="#25D366" opacity="0.18" />
-                    <path d="M27 51C23.5 51 20.5 54 20.5 57.5c0 1.2.3 2.3.9 3.2L20 65l4.4-.9c.9.5 1.9.8 3.1.8 3.5 0 6.5-3 6.5-6.5S30.5 51 27 51z" fill="#25D366" />
-                    <text x="40" y="55" fontSize="7.5" fontWeight="800" fill="#0F172A">What</text>
-                    <text x="40" y="65" fontSize="7.5" fontWeight="800" fill="#0F172A">sApp</text>
-                  </g>
-                  {/* Email node */}
-                  <g className="eco-float-2">
-                    <rect x="10" y="78" width="66" height="38" rx="11" fill="url(#cc-card-g)" stroke="#E2EEF6" strokeWidth="1" filter="url(#cc-glow-f)" />
-                    <rect x="10" y="78" width="66" height="38" rx="11" fill="#0077B6" opacity="0.05" />
-                    <rect x="19" y="88" width="20" height="14" rx="3.5" fill="#0077B6" opacity="0.12" stroke="#0077B6" strokeWidth="1" />
-                    <path d="M19 90.5 L29 96 L39 90.5" stroke="#0077B6" strokeWidth="1.2" fill="none" strokeLinecap="round" />
-                    <text x="43" y="98" fontSize="7.5" fontWeight="800" fill="#0F172A">Email</text>
-                    <text x="43" y="108" fontSize="6.5" fill="#64748B">Native</text>
-                  </g>
-                  {/* SMS node */}
-                  <g className="eco-float-3">
-                    <rect x="10" y="118" width="66" height="38" rx="11" fill="url(#cc-card-g)" stroke="#E2EEF6" strokeWidth="1" filter="url(#cc-glow-f)" />
-                    <rect x="10" y="118" width="66" height="38" rx="11" fill="#6EC8FF" opacity="0.06" />
-                    <rect x="19" y="126" width="16" height="22" rx="5" fill="#6EC8FF" opacity="0.18" stroke="#6EC8FF" strokeWidth="1" />
-                    <rect x="22" y="140" width="10" height="3" rx="1.5" fill="#6EC8FF" />
-                    <text x="38" y="137" fontSize="7.5" fontWeight="800" fill="#0F172A">SMS</text>
-                    <text x="38" y="147" fontSize="6.5" fill="#64748B">Direct</text>
+                  {/* ROW 1: NODE 1: Salesforce */}
+                  <g className="transition-transform duration-300 hover:scale-[1.02] origin-[120px_50px] cursor-pointer">
+                    <rect x="40" y="26" width="160" height="48" rx="10" fill="#ffffff" stroke="#E2E8F0" strokeWidth="1.5" />
+                    {/* Cloud Icon */}
+                    <path d="M 52 51.5 C 52 49.5 53.5 48 55.5 48 C 56 46.5 57.5 45.5 59 45.5 C 61 45.5 62.5 47 62.5 49 C 63.5 49.2 64 50 64 51 C 64 52.2 63 53 61.5 53 L 53.5 53 C 52.5 53 52 52.5 52 51.5 Z" fill="none" stroke="#0077B6" strokeWidth="1.8" />
+                    <text x="135" y="55" fontSize="15" fontWeight="800" fill="#0F172A" textAnchor="middle">Salesforce</text>
                   </g>
 
-                  {/* Central AI Hub */}
-                  <circle cx="178" cy="97" r="32" fill="white" filter="url(#cc-soft-glow)" />
-                  <circle cx="178" cy="97" r="30" fill="none" stroke="#3BA9F5" strokeWidth="1" opacity="0.3" />
-                  <circle cx="178" cy="97" r="26" fill="url(#cc-hub-g)" />
-                  <path d="M170 97C170 92.6 173.6 89 178 89c4.4 0 8 3.6 8 8 0 4.4-3.6 8-8 8-1.6 0-3-.4-4.2-1.2L163 108l.8-2.9C162.7 104 170 102 170 97z" fill="#0077B6" className="eco-glow" />
-                  <path d="M173.5 95.5L182.5 95.5M173.5 97.5L181 97.5M173.5 99.5L182.5 99.5" stroke="white" strokeWidth="1.4" strokeLinecap="round" />
-
-                  {/* Salesforce CRM widget */}
-                  <g className="eco-float-2">
-                    <rect x="270" y="65" width="78" height="64" rx="14" fill="url(#cc-card-g)" stroke="#BAE6FD" strokeWidth="1.2" filter="url(#cc-glow-f)" />
-                    <rect x="270" y="65" width="78" height="14" rx="14" fill="#0077B6" opacity="0.08" />
-                    <text x="309" y="76" fontSize="7" fontWeight="900" fill="#0077B6" textAnchor="middle">SALESFORCE</text>
-                    <path d="M288 86 C288 82.5 290.8 80 294 80c1.2 0 2.3.4 3.2 1C298.3 79 300.7 77 303.5 77c3.9 0 7 3.2 7 7.2 0 .2 0 .4-.1.5 1.4.6 2.3 2 2.3 3.6 0 2.1-1.7 3.7-3.8 3.7h-21c-2.1 0-3.8-1.6-3.8-3.7 0-1.5.9-2.8 2.2-3.3" stroke="#0077B6" strokeWidth="1.2" fill="none" />
-                    <text x="309" y="107" fontSize="7" fontWeight="700" fill="#0077B6" textAnchor="middle">CRM Platform</text>
-                    <rect x="282" y="111" width="54" height="12" rx="6" fill="#0077B6" opacity="0.08" />
-                    <text x="309" y="121" fontSize="6.5" fontWeight="700" fill="#0077B6" textAnchor="middle">Connected</text>
+                  {/* ROW 1: NODE 2: Cascade Connect (Core Focal Point - Sized Up) */}
+                  <g className="transition-transform duration-300 hover:scale-[1.02] origin-[375px_50px] cursor-pointer">
+                    <rect x="250" y="18" width="250" height="64" rx="12" fill="#F0F9FF" stroke="#0077B6" strokeWidth="2" className="filter drop-shadow-[0_4px_16px_rgba(0,119,182,0.18)]" />
+                    {/* Envelope Icon */}
+                    <rect x="270" y="38" width="20" height="16" rx="2" fill="none" stroke="#0077B6" strokeWidth="1.8" />
+                    <path d="M 270 40 L 280 47 L 290 40" fill="none" stroke="#0077B6" strokeWidth="1.8" strokeLinecap="round" />
+                    <text x="385" y="57" fontSize="18" fontWeight="955" fill="#0077B6" textAnchor="middle">Cascade Connect</text>
                   </g>
 
-                  {/* Floating badges */}
-                  <g className="eco-float">
-                    <rect x="143" y="56" width="70" height="19" rx="9.5" fill="white" stroke="#BAE6FD" strokeWidth="1" filter="url(#cc-glow-f)" />
-                    <circle cx="155" cy="65.5" r="3.5" fill="#0077B6" opacity="0.3" />
-                    <text x="163" y="69.5" fontSize="7" fontWeight="700" fill="#0077B6">Comm. History</text>
+                  {/* ROW 2: NODE 3: Multi-Channel */}
+                  <g className="transition-transform duration-300 hover:scale-[1.02] origin-[105px_175px] cursor-pointer">
+                    <rect x="20" y="151" width="170" height="48" rx="10" fill="#ffffff" stroke="#E2E8F0" strokeWidth="1.5" />
+                    {/* Share icon */}
+                    <circle cx="38" cy="175" r="2.2" fill="none" stroke="#0077B6" strokeWidth="1.8" />
+                    <circle cx="46" cy="170.5" r="2.2" fill="none" stroke="#0077B6" strokeWidth="1.8" />
+                    <circle cx="46" cy="179.5" r="2.2" fill="none" stroke="#0077B6" strokeWidth="1.8" />
+                    <line x1="40" y1="174" x2="44" y2="172" stroke="#0077B6" strokeWidth="1.8" />
+                    <line x1="40" y1="176" x2="44" y2="178" stroke="#0077B6" strokeWidth="1.8" />
+                    <text x="120" y="180" fontSize="14" fontWeight="800" fill="#0F172A" textAnchor="middle">Multi-Channel</text>
                   </g>
-                  <g className="eco-float-3">
-                    <rect x="143" y="119" width="70" height="19" rx="9.5" fill="white" stroke="#BAE6FD" strokeWidth="1" filter="url(#cc-glow-f)" />
-                    <circle cx="155" cy="128.5" r="3.5" fill="#3BA9F5" opacity="0.3" />
-                    <text x="163" y="132.5" fontSize="7" fontWeight="700" fill="#0077B6">Read Receipts</text>
+
+                  {/* ROW 2: NODE 4: Customer */}
+                  <g className="transition-transform duration-300 hover:scale-[1.02] origin-[280px_175px] cursor-pointer">
+                    <rect x="215" y="153" width="130" height="44" rx="10" fill="#ffffff" stroke="#E2E8F0" strokeWidth="1.5" />
+                    {/* User Icon */}
+                    <circle cx="232" cy="170" r="3.5" fill="none" stroke="#0077B6" strokeWidth="1.8" />
+                    <path d="M 226 180 C 226 177 229 175.5 232 175.5 C 235 175.5 238 177 238 180" fill="none" stroke="#0077B6" strokeWidth="1.8" />
+                    <text x="290" y="179" fontSize="14" fontWeight="800" fill="#0F172A" textAnchor="middle">Customer</text>
+                  </g>
+
+                  {/* ROW 2: NODE 5: Salesforce Timeline */}
+                  <g className="transition-transform duration-300 hover:scale-[1.02] origin-[445px_175px] cursor-pointer">
+                    <rect x="360" y="153" width="170" height="44" rx="10" fill="#ffffff" stroke="#E2E8F0" strokeWidth="1.5" />
+                    {/* Clock Icon */}
+                    <circle cx="378" cy="175" r="5.5" fill="none" stroke="#0077B6" strokeWidth="1.8" />
+                    <path d="M 378 171.5 L 378 175 L 381.5 175" fill="none" stroke="#0077B6" strokeWidth="1.8" strokeLinecap="round" />
+                    <text x="460" y="179" fontSize="13.5" fontWeight="800" fill="#0F172A" textAnchor="middle">SF Timeline</text>
+                  </g>
+
+                  {/* ROW 2: OUTPUT CHIPS */}
+                  {/* Read Receipts */}
+                  <g className="transition-transform duration-300 hover:scale-[1.02] origin-[385px_233px] cursor-pointer">
+                    <rect x="335" y="220" width="100" height="26" rx="13" fill="#F0F9FF" stroke="#BAE6FD" strokeWidth="1.2" />
+                    {/* Check icon */}
+                    <path d="M 345 233 L 348 236 L 354 229" fill="none" stroke="#0077B6" strokeWidth="1.8" strokeLinecap="round" />
+                    <text x="395" y="237" fontSize="11" fontWeight="850" fill="#0077B6" textAnchor="middle">Read Receipts</text>
+                  </g>
+
+                  {/* Communication History */}
+                  <g className="transition-transform duration-300 hover:scale-[1.02] origin-[490px_233px] cursor-pointer">
+                    <rect x="445" y="220" width="90" height="26" rx="13" fill="#F0F9FF" stroke="#BAE6FD" strokeWidth="1.2" />
+                    {/* List icon */}
+                    <line x1="454" y1="230" x2="459" y2="230" stroke="#0077B6" strokeWidth="1.8" strokeLinecap="round" />
+                    <line x1="454" y1="233" x2="459" y2="233" stroke="#0077B6" strokeWidth="1.8" strokeLinecap="round" />
+                    <line x1="454" y1="236" x2="459" y2="236" stroke="#0077B6" strokeWidth="1.8" strokeLinecap="round" />
+                    <text x="495" y="237" fontSize="11" fontWeight="850" fill="#0077B6" textAnchor="middle">History Log</text>
                   </g>
                 </svg>
               </div>
 
-              {/* Feature chips */}
-              <div className="flex flex-wrap gap-2 flex-shrink-0">
-                {["WhatsApp", "Email", "SMS", "Comm. History"].map((label) => (
-                  <span key={label} className="eco-chip inline-flex items-center text-[10px] font-bold rounded-full px-3 py-1.5 cursor-default"
+              {/* Feature chips & CTA */}
+              <div className="flex items-center justify-between flex-shrink-0 mt-1">
+                <div className="flex flex-wrap gap-2">
+                  <span className="eco-chip inline-flex items-center text-[10px] font-bold rounded-full px-3 py-1.5 cursor-default"
                     style={{ background: "linear-gradient(135deg, rgba(240,249,255,0.9) 0%, rgba(224,242,254,0.7) 100%)", border: "1px solid rgba(125,211,252,0.5)", color: "#0055A5", boxShadow: "0 2px 8px rgba(0,119,182,0.08), 0 1px 0 rgba(255,255,255,0.8) inset" }}>
-                    {label}
+                    WhatsApp &middot; Email &middot; SMS, natively logged in your CRM
                   </span>
-                ))}
+                </div>
+                <button 
+                  onClick={(e) => { 
+                    e.stopPropagation(); 
+                    if (typeof (window as any).__experienceNavigateToScene === 'function') {
+                      (window as any).__experienceNavigateToScene(9);
+                    }
+                  }}
+                  className="inline-flex items-center gap-1 text-[11px] font-extrabold text-white hover:text-white bg-[#0077B6] hover:bg-[#0055A5] border border-[#0077B6] hover:border-[#0055A5] rounded-full px-3.5 py-1.5 shadow-[0_4px_12px_rgba(0,119,182,0.15)] transition-all select-none cursor-pointer duration-300"
+                >
+                  Explore More →
+                </button>
               </div>
             </div>
 
@@ -972,12 +992,7 @@ function ProductEcosystemScene() {
                 <div className="flex items-center gap-3.5">
                   <div className="w-12 h-12 rounded-[14px] flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
                     style={{ background: "linear-gradient(135deg, #E0F2FE 0%, #BAE6FD 40%, #7DD3FC 100%)", boxShadow: "0 6px 20px rgba(0,119,182,0.20), 0 1px 0 rgba(255,255,255,0.8) inset" }}>
-                    <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none">
-                      <defs><linearGradient id="ic2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#0077B6" /><stop offset="100%" stopColor="#38BDF8" /></linearGradient></defs>
-                      <circle cx="12" cy="12" r="9" fill="url(#ic2)" opacity="0.15" stroke="url(#ic2)" strokeWidth="1.6" />
-                      <path d="M7.5 14.5L9.5 11l2.5 2.5 2.5-5L17 11" stroke="url(#ic2)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                      <circle cx="16.5" cy="7.5" r="2.5" fill="#38BDF8" />
-                    </svg>
+                    <img src="/clients/cxprism.png" className="w-9 h-9 object-contain" alt="CX Prism" />
                   </div>
                   <div>
                     <h3 className="text-[20px] font-[900] text-[#0A1628] leading-tight tracking-tight">CX Prism™</h3>
@@ -991,115 +1006,172 @@ function ProductEcosystemScene() {
 
               <div className="flex-1 min-h-0 rounded-[16px] overflow-hidden relative flex items-center justify-center"
                 style={{ background: "radial-gradient(ellipse at 50% 40%, rgba(59,169,245,0.07) 0%, rgba(240,249,255,0.6) 55%, rgba(248,252,255,0.8) 100%)", border: "1px solid rgba(186,230,253,0.35)" }}>
-                <svg viewBox="0 0 360 195" className="w-full h-full" xmlns="http://www.w3.org/2000/svg" style={{ maxHeight: "100%" }}>
+                <svg viewBox="0 0 540 380" className="w-full h-full" xmlns="http://www.w3.org/2000/svg" style={{ maxHeight: "100%" }}>
                   <defs>
-                    <radialGradient id="cxp-hub-g" cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" stopColor="#3BA9F5" stopOpacity="0.2" />
+                    <radialGradient id="node-glow" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stopColor="#3BA9F5" stopOpacity="0.08" />
                       <stop offset="100%" stopColor="#3BA9F5" stopOpacity="0" />
                     </radialGradient>
-                    <linearGradient id="cxp-bar-g" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#0077B6" stopOpacity="0.85" />
-                      <stop offset="100%" stopColor="#3BA9F5" stopOpacity="0.4" />
-                    </linearGradient>
-                    <linearGradient id="cxp-card-g" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="white" />
-                      <stop offset="100%" stopColor="#F0F9FF" stopOpacity="0.95" />
-                    </linearGradient>
-                    <filter id="cxp-glow-f">
-                      <feGaussianBlur stdDeviation="4" result="b" />
-                      <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+                    <filter id="svg-glow">
+                      <feGaussianBlur stdDeviation="3" result="blur" />
+                      <feMerge>
+                        <feMergeNode in="blur" />
+                        <feMergeNode in="SourceGraphic" />
+                      </feMerge>
                     </filter>
                   </defs>
 
-                  <circle cx="178" cy="97" r="80" fill="url(#cxp-hub-g)" />
+                  {/* Soft blue glow behind CX AI Engine */}
+                  <circle cx="380" cy="165" r="120" fill="url(#node-glow)" pointerEvents="none" />
 
-                  {/* Connection lines */}
-                  <path d="M100 72 L140 90" fill="none" stroke="#3BA9F5" strokeWidth="1.5" className="eco-flow-line" opacity="0.6" />
-                  <path d="M100 122 L140 105" fill="none" stroke="#0077B6" strokeWidth="1.5" className="eco-flow-line" opacity="0.6" />
-                  <path d="M218 90 L258 72" fill="none" stroke="#6EC8FF" strokeWidth="1.5" className="eco-flow-line" opacity="0.6" />
-                  <path d="M218 105 L258 122" fill="none" stroke="#3BA9F5" strokeWidth="1.5" className="eco-flow-line" opacity="0.6" />
+                  {/* CONNECTING LINES */}
+                  {/* Project Milestone -> NPS Trigger (Horizontal) */}
+                  <path d="M 220 45 L 330 45" fill="none" stroke="#BAE6FD" strokeWidth="2" />
+                  <path d="M 220 45 L 330 45" fill="none" stroke="#0077B6" strokeWidth="2" strokeDasharray="5 5" opacity="0.8">
+                    <animate attributeName="stroke-dashoffset" values="20;0" dur="1.2s" repeatCount="indefinite" />
+                  </path>
 
-                  {/* Particles */}
-                  <circle r="3" fill="#3BA9F5" opacity="0.9" filter="url(#cxp-glow-f)"><animateMotion dur="2s" repeatCount="indefinite" path="M100 72 L140 90" /></circle>
-                  <circle r="3" fill="#0077B6" opacity="0.85" filter="url(#cxp-glow-f)"><animateMotion dur="2.3s" repeatCount="indefinite" path="M218 90 L258 72" begin="0.5s" /></circle>
-                  <circle r="3" fill="#6EC8FF" opacity="0.9" filter="url(#cxp-glow-f)"><animateMotion dur="2.6s" repeatCount="indefinite" path="M218 105 L258 122" begin="1s" /></circle>
+                  {/* NPS Trigger -> Customer Feedback (S-Curve) */}
+                  <path d="M 420 69 C 420 110, 110 110, 110 139" fill="none" stroke="#BAE6FD" strokeWidth="2" />
+                  <path d="M 420 69 C 420 110, 110 110, 110 139" fill="none" stroke="#0077B6" strokeWidth="2" strokeDasharray="6 6" opacity="0.7">
+                    <animate attributeName="stroke-dashoffset" values="24;0" dur="1.5s" repeatCount="indefinite" />
+                  </path>
 
-                  {/* AI Brain card */}
-                  <g className="eco-float">
-                    <rect x="8" y="30" width="88" height="74" rx="14" fill="url(#cxp-card-g)" stroke="#BAE6FD" strokeWidth="1" filter="url(#cxp-glow-f)" />
-                    <rect x="8" y="30" width="88" height="18" rx="14" fill="#0077B6" opacity="0.07" />
-                    <text x="52" y="43" fontSize="8" fontWeight="900" fill="#0077B6" textAnchor="middle">AI BRAIN</text>
-                    {/* Neural dots */}
-                    <circle cx="28" cy="68" r="5" fill="#3BA9F5" opacity="0.25" />
-                    <circle cx="52" cy="58" r="5" fill="#0077B6" opacity="0.25" />
-                    <circle cx="76" cy="68" r="5" fill="#6EC8FF" opacity="0.25" />
-                    <circle cx="40" cy="78" r="4" fill="#3BA9F5" opacity="0.2" />
-                    <circle cx="64" cy="78" r="4" fill="#0077B6" opacity="0.2" />
-                    <line x1="28" y1="68" x2="52" y2="58" stroke="#3BA9F5" strokeWidth="1.2" opacity="0.5" />
-                    <line x1="52" y1="58" x2="76" y2="68" stroke="#0077B6" strokeWidth="1.2" opacity="0.5" />
-                    <line x1="28" y1="68" x2="40" y2="78" stroke="#3BA9F5" strokeWidth="1.2" opacity="0.5" />
-                    <line x1="76" y1="68" x2="64" y2="78" stroke="#0077B6" strokeWidth="1.2" opacity="0.5" />
-                    <circle cx="28" cy="68" r="3" fill="#3BA9F5" className="eco-glow" />
-                    <circle cx="52" cy="58" r="3" fill="#0077B6" className="eco-glow" />
-                    <circle cx="76" cy="68" r="3" fill="#6EC8FF" className="eco-glow" />
+                  {/* Customer Feedback -> CX AI Engine (Horizontal) */}
+                  <path d="M 205 165 L 255 165" fill="none" stroke="#BAE6FD" strokeWidth="2" />
+                  <path d="M 205 165 L 255 165" fill="none" stroke="#0077B6" strokeWidth="2" strokeDasharray="5 5" opacity="0.8">
+                    <animate attributeName="stroke-dashoffset" values="20;0" dur="1.2s" repeatCount="indefinite" />
+                  </path>
+
+                  {/* CX AI Engine -> Health Score (Curve) */}
+                  <path d="M 380 205 C 380 250, 95 250, 95 285" fill="none" stroke="#BAE6FD" strokeWidth="2" />
+                  <path d="M 380 205 C 380 250, 95 250, 95 285" fill="none" stroke="#0077B6" strokeWidth="2" strokeDasharray="5 5" opacity="0.6">
+                    <animate attributeName="stroke-dashoffset" values="20;0" dur="1.4s" repeatCount="indefinite" />
+                  </path>
+
+                  {/* CX AI Engine -> Sales CRM (Curve) */}
+                  <path d="M 380 205 C 380 250, 270 250, 270 285" fill="none" stroke="#BAE6FD" strokeWidth="2" />
+                  <path d="M 380 205 C 380 250, 270 250, 270 285" fill="none" stroke="#0077B6" strokeWidth="2" strokeDasharray="5 5" opacity="0.6">
+                    <animate attributeName="stroke-dashoffset" values="20;0" dur="1.4s" repeatCount="indefinite" />
+                  </path>
+
+                  {/* CX AI Engine -> Management (Curve) */}
+                  <path d="M 380 205 C 380 250, 445 250, 445 285" fill="none" stroke="#BAE6FD" strokeWidth="2" />
+                  <path d="M 380 205 C 380 250, 445 250, 445 285" fill="none" stroke="#0077B6" strokeWidth="2" strokeDasharray="5 5" opacity="0.6">
+                    <animate attributeName="stroke-dashoffset" values="20;0" dur="1.4s" repeatCount="indefinite" />
+                  </path>
+
+                  {/* CX AI Engine -> Revenue Intelligence Chip (Subtle vertical line) */}
+                  <line x1="380" y1="205" x2="380" y2="225" stroke="#BAE6FD" strokeWidth="1.5" strokeDasharray="3 3" />
+
+                  {/* ANIMATED PARTICLES */}
+                  <circle r="3.5" fill="#0ea5e9" filter="url(#svg-glow)">
+                    <animateMotion dur="1.8s" repeatCount="indefinite" path="M 220 45 L 330 45" />
+                  </circle>
+                  <circle r="3.5" fill="#0ea5e9" filter="url(#svg-glow)">
+                    <animateMotion dur="2.2s" repeatCount="indefinite" path="M 420 69 C 420 110, 110 110, 110 139" begin="0.4s" />
+                  </circle>
+                  <circle r="3.5" fill="#0ea5e9" filter="url(#svg-glow)">
+                    <animateMotion dur="1.6s" repeatCount="indefinite" path="M 205 165 L 255 165" begin="0.8s" />
+                  </circle>
+                  <circle r="3" fill="#0ea5e9" filter="url(#svg-glow)">
+                    <animateMotion dur="1.9s" repeatCount="indefinite" path="M 380 205 C 380 250, 95 250, 95 285" begin="1.1s" />
+                  </circle>
+                  <circle r="3" fill="#0ea5e9" filter="url(#svg-glow)">
+                    <animateMotion dur="1.7s" repeatCount="indefinite" path="M 380 205 C 380 250, 270 250, 270 285" begin="1.3s" />
+                  </circle>
+                  <circle r="3" fill="#0ea5e9" filter="url(#svg-glow)">
+                    <animateMotion dur="1.8s" repeatCount="indefinite" path="M 380 205 C 380 250, 445 250, 445 285" begin="1.5s" />
+                  </circle>
+
+                  {/* TOP ROW: Project Milestone */}
+                  <g className="transition-transform duration-300 hover:scale-[1.02] origin-[125px_45px] cursor-pointer">
+                    <rect x="30" y="21" width="190" height="48" rx="10" fill="#ffffff" stroke="#E2E8F0" strokeWidth="1.5" />
+                    {/* Trophy/Milestone icon */}
+                    <path d="M 44 36 L 56 36 L 56 43 C 56 46 53 49 50 49 L 50 52 L 54 52 L 54 54 L 38 54 L 38 52 L 42 52 L 42 49 C 39 49 36 46 36 43 L 36 36 Z" fill="none" stroke="#0077B6" strokeWidth="1.8" />
+                    <text x="135" y="50" fontSize="15" fontWeight="800" fill="#0F172A" textAnchor="middle">Project Milestone</text>
                   </g>
 
-                  {/* Analytics Dashboard top */}
-                  <g className="eco-float-2">
-                    <rect x="116" y="8" width="124" height="60" rx="14" fill="url(#cxp-card-g)" stroke="#BAE6FD" strokeWidth="1" filter="url(#cxp-glow-f)" />
-                    <rect x="116" y="8" width="124" height="18" rx="14" fill="#0077B6" opacity="0.07" />
-                    <text x="178" y="21.5" fontSize="7.5" fontWeight="900" fill="#0077B6" textAnchor="middle">Analytics Dashboard</text>
-                    {/* Bar chart */}
-                    <rect x="128" y="56" width="10" height="8" rx="2" fill="url(#cxp-bar-g)" />
-                    <rect x="142" y="48" width="10" height="16" rx="2" fill="url(#cxp-bar-g)" />
-                    <rect x="156" y="40" width="10" height="24" rx="2" fill="url(#cxp-bar-g)" />
-                    <rect x="170" y="35" width="10" height="29" rx="2" fill="url(#cxp-bar-g)" />
-                    <rect x="184" y="42" width="10" height="22" rx="2" fill="url(#cxp-bar-g)" />
-                    <rect x="198" y="50" width="10" height="14" rx="2" fill="url(#cxp-bar-g)" />
-                    <rect x="212" y="45" width="10" height="19" rx="2" fill="url(#cxp-bar-g)" />
-                    <path d="M128 56 L142 48 L156 40 L170 35 L184 42 L198 50 L212 45" stroke="#0077B6" strokeWidth="1.5" fill="none" strokeLinejoin="round" />
-                    <circle cx="170" cy="35" r="3" fill="#0077B6" className="eco-glow" />
+                  {/* TOP ROW: NPS Trigger */}
+                  <g className="transition-transform duration-300 hover:scale-[1.02] origin-[420px_45px] cursor-pointer">
+                    <rect x="330" y="21" width="180" height="48" rx="10" fill="#ffffff" stroke="#E2E8F0" strokeWidth="1.5" />
+                    {/* Mail/Trigger icon */}
+                    <rect x="344" y="39" width="16" height="12" rx="1.5" fill="none" stroke="#0077B6" strokeWidth="1.8" />
+                    <path d="M 344 41 L 352 46.5 L 360 41" fill="none" stroke="#0077B6" strokeWidth="1.8" strokeLinecap="round" />
+                    <text x="430" y="50" fontSize="15" fontWeight="800" fill="#0F172A" textAnchor="middle">NPS Trigger</text>
                   </g>
 
-                  {/* Health Score right */}
-                  <g className="eco-float-3">
-                    <rect x="264" y="22" width="90" height="80" rx="14" fill="url(#cxp-card-g)" stroke="#BAE6FD" strokeWidth="1" filter="url(#cxp-glow-f)" />
-                    <rect x="264" y="22" width="90" height="18" rx="14" fill="#0077B6" opacity="0.07" />
-                    <text x="309" y="35.5" fontSize="7.5" fontWeight="900" fill="#0077B6" textAnchor="middle">Health Score</text>
-                    <path d="M279 88 A 30 30 0 0 1 339 88" fill="none" stroke="#E2EEF8" strokeWidth="9" strokeLinecap="round" />
-                    <path d="M279 88 A 30 30 0 0 1 336 73" fill="none" stroke="url(#cxp-bar-g)" strokeWidth="9" strokeLinecap="round" />
-                    <text x="309" y="85" fontSize="16" fontWeight="900" fill="#0A1628" textAnchor="middle">82</text>
-                    <text x="309" y="96" fontSize="7" fontWeight="700" fill="#0077B6" textAnchor="middle">Healthy</text>
+                  {/* MIDDLE: Customer Feedback */}
+                  <g className="transition-transform duration-300 hover:scale-[1.02] origin-[110px_165px] cursor-pointer">
+                    <rect x="15" y="139" width="190" height="52" rx="10" fill="#ffffff" stroke="#E2E8F0" strokeWidth="1.5" />
+                    {/* Chat bubble icon */}
+                    <path d="M 30 159 L 42 159 C 45 159 47 161 47 164 C 47 167 45 169 42 169 L 36 169 L 32 173 L 32 169 C 30 169 28 167 28 164 C 28 161 30 159 30 159 Z" fill="none" stroke="#0077B6" strokeWidth="1.8" />
+                    <text x="120" y="171" fontSize="15" fontWeight="800" fill="#0F172A" textAnchor="middle">Customer Feedback</text>
                   </g>
 
-                  {/* Churn Prediction bottom left */}
-                  <g className="eco-float">
-                    <rect x="8" y="115" width="106" height="65" rx="14" fill="url(#cxp-card-g)" stroke="#BAE6FD" strokeWidth="1" filter="url(#cxp-glow-f)" />
-                    <rect x="8" y="115" width="106" height="18" rx="14" fill="#0077B6" opacity="0.07" />
-                    <text x="61" y="128.5" fontSize="7.5" fontWeight="900" fill="#0077B6" textAnchor="middle">Churn Prediction</text>
-                    <path d="M20 170 Q 38 145 60 155 T 102 140" fill="none" stroke="#0077B6" strokeWidth="2" strokeLinecap="round" />
-                    <path d="M20 170 Q 38 145 60 155 T 102 140 L102 173 L20 173Z" fill="#0077B6" opacity="0.07" />
-                    <circle cx="102" cy="140" r="3.5" fill="#0077B6" className="eco-glow" />
+                  {/* CENTER: CX AI Engine (Largest Highlighted Node) */}
+                  <g className="transition-transform duration-300 hover:scale-[1.02] origin-[380px_165px] cursor-pointer">
+                    <rect x="255" y="125" width="250" height="80" rx="14" fill="#F0F9FF" stroke="#0077B6" strokeWidth="2" className="filter drop-shadow-[0_4px_16px_rgba(0,119,182,0.18)]" />
+                    {/* Sparkles/Processor icon */}
+                    <path d="M 273 160 L 276 164 L 280 165 L 276 166 L 273 170 L 270 166 L 266 165 L 270 164 Z" fill="#0077B6" />
+                    <text x="390" y="172" fontSize="20" fontWeight="955" fill="#0077B6" textAnchor="middle">CX AI Engine</text>
                   </g>
 
-                  {/* Revenue Intel bottom right */}
-                  <g className="eco-float-2">
-                    <rect x="254" y="115" width="100" height="65" rx="14" fill="url(#cxp-card-g)" stroke="#BAE6FD" strokeWidth="1" filter="url(#cxp-glow-f)" />
-                    <rect x="254" y="115" width="100" height="18" rx="14" fill="#0077B6" opacity="0.07" />
-                    <text x="304" y="128.5" fontSize="7.5" fontWeight="900" fill="#0077B6" textAnchor="middle">Revenue Intel</text>
-                    <text x="304" y="153" fontSize="19" fontWeight="900" fill="#0A1628" textAnchor="middle">₹48.7L</text>
-                    <text x="304" y="170" fontSize="8" fontWeight="700" fill="#3BA9F5" textAnchor="middle">↑ 28% vs last qtr</text>
+                  {/* REVENUE INTELLIGENCE INSIGHT CHIP */}
+                  <g className="transition-transform duration-300 hover:scale-[1.02] origin-[380px_239px] cursor-pointer">
+                    <rect x="280" y="225" width="200" height="28" rx="14" fill="#F0F9FF" stroke="#BAE6FD" strokeWidth="1.2" />
+                    {/* Chart Up icon */}
+                    <path d="M 292 241 L 297 236 L 300 239 L 305 233 M 301 233 L 306 233 L 306 238" fill="none" stroke="#0077B6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    <text x="392" y="243" fontSize="12" fontWeight="850" fill="#0077B6" textAnchor="middle">Revenue Intel Alert</text>
+                  </g>
+
+                  {/* BOTTOM ROW: Health Score */}
+                  <g className="transition-transform duration-300 hover:scale-[1.02] origin-[95px_309px] cursor-pointer">
+                    <rect x="20" y="285" width="150" height="48" rx="10" fill="#ffffff" stroke="#E2E8F0" strokeWidth="1.5" />
+                    {/* Heart/Shield Icon */}
+                    <path d="M 34 300 C 31 297 27 300 27 304 C 27 309 34 313 34 313 C 34 313 41 309 41 304 C 41 300 37 297 34 300 Z" fill="none" stroke="#0077B6" strokeWidth="1.8" />
+                    <text x="105" y="314" fontSize="14.5" fontWeight="800" fill="#0F172A" textAnchor="middle">Health Score</text>
+                  </g>
+
+                  {/* BOTTOM ROW: Sales CRM */}
+                  <g className="transition-transform duration-300 hover:scale-[1.02] origin-[270px_309px] cursor-pointer">
+                    <rect x="195" y="285" width="150" height="48" rx="10" fill="#ffffff" stroke="#E2E8F0" strokeWidth="1.5" />
+                    {/* Database icon */}
+                    <ellipse cx="209" cy="303" rx="5" ry="2.5" fill="none" stroke="#0077B6" strokeWidth="1.8" />
+                    <path d="M 204 303 L 204 308.5 C 204 310 206 311 209 311 C 212 311 214 310 214 308.5 L 214 303" fill="none" stroke="#0077B6" strokeWidth="1.8" />
+                    <text x="280" y="314" fontSize="14.5" fontWeight="800" fill="#0F172A" textAnchor="middle">Sales CRM</text>
+                  </g>
+
+                  {/* BOTTOM ROW: Management */}
+                  <g className="transition-transform duration-300 hover:scale-[1.02] origin-[445px_309px] cursor-pointer">
+                    <rect x="370" y="285" width="150" height="48" rx="10" fill="#ffffff" stroke="#E2E8F0" strokeWidth="1.5" />
+                    {/* User Group icon */}
+                    <circle cx="384" cy="303" r="2.5" fill="none" stroke="#0077B6" strokeWidth="1.8" />
+                    <path d="M 379 310.5 C 379 308 381 307 384 307 C 387 307 389 308 389 310.5" fill="none" stroke="#0077B6" strokeWidth="1.8" />
+                    <text x="455" y="314" fontSize="14.5" fontWeight="800" fill="#0F172A" textAnchor="middle">Management</text>
                   </g>
                 </svg>
               </div>
 
-              <div className="flex flex-wrap gap-2 flex-shrink-0">
-                {["NPS Analytics", "Churn Predict", "Health Score", "Revenue Intel"].map((label) => (
-                  <span key={label} className="eco-chip inline-flex items-center text-[10px] font-bold rounded-full px-3 py-1.5 cursor-default"
+              {/* Feature chips & CTA */}
+              <div className="flex items-center justify-between flex-shrink-0 mt-1">
+                <div className="flex flex-wrap gap-2">
+                  <span className="eco-chip inline-flex items-center text-[10px] font-bold rounded-full px-3 py-1.5 cursor-default"
                     style={{ background: "linear-gradient(135deg, rgba(240,249,255,0.9) 0%, rgba(224,242,254,0.7) 100%)", border: "1px solid rgba(125,211,252,0.5)", color: "#0055A5", boxShadow: "0 2px 8px rgba(0,119,182,0.08), 0 1px 0 rgba(255,255,255,0.8) inset" }}>
-                    {label}
+                    AI-powered NPS, churn scoring &amp; risk alerts in Salesforce
                   </span>
-                ))}
+                </div>
+                <button 
+                  onClick={(e) => { 
+                    e.stopPropagation(); 
+                    if (typeof (window as any).__experienceNavigateToScene === 'function') {
+                      (window as any).__experienceNavigateToScene(10);
+                    }
+                  }}
+                  className="inline-flex items-center gap-1 text-[11px] font-extrabold text-white hover:text-white bg-[#0077B6] hover:bg-[#0055A5] border border-[#0077B6] hover:border-[#0055A5] rounded-full px-3.5 py-1.5 shadow-[0_4px_12px_rgba(0,119,182,0.15)] transition-all select-none cursor-pointer duration-300"
+                >
+                  Explore More →
+                </button>
               </div>
             </div>
           </div>
@@ -1124,10 +1196,7 @@ function ProductEcosystemScene() {
                 <div className="flex items-center gap-3.5">
                   <div className="w-12 h-12 rounded-[14px] flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
                     style={{ background: "linear-gradient(135deg, #E0F2FE 0%, #BAE6FD 40%, #7DD3FC 100%)", boxShadow: "0 6px 20px rgba(0,119,182,0.20), 0 1px 0 rgba(255,255,255,0.8) inset" }}>
-                    <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none">
-                      <defs><linearGradient id="ic3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#0077B6" /><stop offset="100%" stopColor="#0EA5E9" /></linearGradient></defs>
-                      <path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" stroke="url(#ic3)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
+                    <img src="/clients/caseflow.png" className="w-9 h-9 object-contain" alt="Case Flow" />
                   </div>
                   <div>
                     <h3 className="text-[20px] font-[900] text-[#0A1628] leading-tight tracking-tight">Case Flow</h3>
@@ -1229,13 +1298,25 @@ function ProductEcosystemScene() {
                 </svg>
               </div>
 
-              <div className="flex flex-wrap gap-2 flex-shrink-0">
-                {["Auto Routing", "SLA Automation", "Escalation Mgmt", "Resolution Track"].map((label) => (
-                  <span key={label} className="eco-chip inline-flex items-center text-[10px] font-bold rounded-full px-3 py-1.5 cursor-default"
+              {/* Feature chips & CTA */}
+              <div className="flex items-center justify-between flex-shrink-0 mt-1">
+                <div className="flex flex-wrap gap-2">
+                  <span className="eco-chip inline-flex items-center text-[10px] font-bold rounded-full px-3 py-1.5 cursor-default"
                     style={{ background: "linear-gradient(135deg, rgba(240,249,255,0.9) 0%, rgba(224,242,254,0.7) 100%)", border: "1px solid rgba(125,211,252,0.5)", color: "#0055A5", boxShadow: "0 2px 8px rgba(0,119,182,0.08), 0 1px 0 rgba(255,255,255,0.8) inset" }}>
-                    {label}
+                    From Customer Query to Resolution, Seamlessly
                   </span>
-                ))}
+                </div>
+                <button 
+                  onClick={(e) => { 
+                    e.stopPropagation(); 
+                    if (typeof (window as any).__experienceNavigateToScene === 'function') {
+                      (window as any).__experienceNavigateToScene(11);
+                    }
+                  }}
+                  className="inline-flex items-center gap-1 text-[11px] font-extrabold text-white hover:text-white bg-[#0077B6] hover:bg-[#0055A5] border border-[#0077B6] hover:border-[#0055A5] rounded-full px-3.5 py-1.5 shadow-[0_4px_12px_rgba(0,119,182,0.15)] transition-all select-none cursor-pointer duration-300"
+                >
+                  Explore More →
+                </button>
               </div>
             </div>
 
@@ -1254,15 +1335,7 @@ function ProductEcosystemScene() {
                 <div className="flex items-center gap-3.5">
                   <div className="w-12 h-12 rounded-[14px] flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
                     style={{ background: "linear-gradient(135deg, #E0F2FE 0%, #BAE6FD 40%, #7DD3FC 100%)", boxShadow: "0 6px 20px rgba(0,119,182,0.20), 0 1px 0 rgba(255,255,255,0.8) inset" }}>
-                    <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none">
-                      <defs><linearGradient id="ic4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#0077B6" /><stop offset="100%" stopColor="#38BDF8" /></linearGradient></defs>
-                      <circle cx="12" cy="12" r="3.5" fill="url(#ic4)" opacity="0.25" stroke="url(#ic4)" strokeWidth="1.6" />
-                      <circle cx="5" cy="6" r="2.5" stroke="#3BA9F5" strokeWidth="1.4" />
-                      <circle cx="19" cy="6" r="2.5" stroke="#3BA9F5" strokeWidth="1.4" />
-                      <circle cx="5" cy="18" r="2.5" stroke="#7DD3FC" strokeWidth="1.4" />
-                      <circle cx="19" cy="18" r="2.5" stroke="#7DD3FC" strokeWidth="1.4" />
-                      <path d="M7.5 7.5L10 10M16.5 7.5L14 10M7.5 16.5L10 14M16.5 16.5L14 14" stroke="url(#ic4)" strokeWidth="1.3" strokeLinecap="round" />
-                    </svg>
+                    <img src="/clients/nexora.png" className="w-9 h-9 object-contain" alt="Nexora" />
                   </div>
                   <div>
                     <h3 className="text-[20px] font-[900] text-[#0A1628] leading-tight tracking-tight">Nexora</h3>
@@ -1312,7 +1385,7 @@ function ProductEcosystemScene() {
                   <circle r="3" fill="#3BA9F5" opacity="0.85" filter="url(#nx-glow-f)"><animateMotion dur="2.3s" repeatCount="indefinite" path="M208 100 L262 100" begin="0.8s" /></circle>
                   <circle r="3" fill="#0077B6" opacity="0.9" filter="url(#nx-glow-f)"><animateMotion dur="2.1s" repeatCount="indefinite" path="M208 100 L262 145" begin="1.1s" /></circle>
 
-                  {/* Central Nexora Hub */}
+                  {/* Central AI Hub */}
                   <circle cx="180" cy="100" r="36" fill="white" filter="url(#nx-glow-f)" />
                   <circle cx="180" cy="100" r="34" fill="url(#nx-hub-g)" />
                   <text x="180" y="96" fontSize="8" fontWeight="900" fill="#0077B6" textAnchor="middle">NEXORA</text>
@@ -1377,13 +1450,25 @@ function ProductEcosystemScene() {
                 </svg>
               </div>
 
-              <div className="flex flex-wrap gap-2 flex-shrink-0">
-                {["Meeting Planner", "Activity Track", "Partner Mgmt", "Deal Pipeline"].map((label) => (
-                  <span key={label} className="eco-chip inline-flex items-center text-[10px] font-bold rounded-full px-3 py-1.5 cursor-default"
+              {/* Feature chips & CTA */}
+              <div className="flex items-center justify-between flex-shrink-0 mt-1">
+                <div className="flex flex-wrap gap-2">
+                  <span className="eco-chip inline-flex items-center text-[10px] font-bold rounded-full px-3 py-1.5 cursor-default"
                     style={{ background: "linear-gradient(135deg, rgba(240,249,255,0.9) 0%, rgba(224,242,254,0.7) 100%)", border: "1px solid rgba(125,211,252,0.5)", color: "#0055A5", boxShadow: "0 2px 8px rgba(0,119,182,0.08), 0 1px 0 rgba(255,255,255,0.8) inset" }}>
-                    {label}
+                    The Digital Command Center for Sourcing Teams
                   </span>
-                ))}
+                </div>
+                <button 
+                  onClick={(e) => { 
+                    e.stopPropagation(); 
+                    if (typeof (window as any).__experienceNavigateToScene === 'function') {
+                      (window as any).__experienceNavigateToScene(12);
+                    }
+                  }}
+                  className="inline-flex items-center gap-1 text-[11px] font-extrabold text-white hover:text-white bg-[#0077B6] hover:bg-[#0055A5] border border-[#0077B6] hover:border-[#0055A5] rounded-full px-3.5 py-1.5 shadow-[0_4px_12px_rgba(0,119,182,0.15)] transition-all select-none cursor-pointer duration-300"
+                >
+                  Explore More →
+                </button>
               </div>
             </div>
           </div>
