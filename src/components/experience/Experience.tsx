@@ -543,7 +543,15 @@ function WhoWeAreScene({ scene, isActive = false, activeCardIdx = 0 }: { scene: 
 
 function ProductEcosystemScene() {
   const [productSlide, setProductSlide] = useState(0);
+  const [showSwipeHint, setShowSwipeHint] = useState(true);
   const totalProductSlides = 2;
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowSwipeHint(false);
+    }, 6000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div
@@ -568,6 +576,26 @@ function ProductEcosystemScene() {
         @keyframes orbitSpin3 { from{transform:rotateZ(240deg) rotateX(30deg)} to{transform:rotateZ(600deg) rotateX(30deg)} }
         @keyframes spherePulse { 0%,100%{transform:scale(1);opacity:0.55} 50%{transform:scale(1.06);opacity:0.75} }
         @keyframes particleDrift { 0%{opacity:0;transform:translateY(0)} 30%{opacity:1} 70%{opacity:1} 100%{opacity:0;transform:translateY(-28px)} }
+        @keyframes spherePulse { 0%,100%{transform:scale(1);opacity:0.55} 50%{transform:scale(1.06);opacity:0.75} }
+        @keyframes particleDrift { 0%{opacity:0;transform:translateY(0)} 30%{opacity:1} 70%{opacity:1} 100%{opacity:0;transform:translateY(-28px)} }
+        @keyframes activePulseGlow {
+          0%, 100% {
+            box-shadow: 0 0 10px rgba(0, 119, 182, 0.4), 0 2px 8px rgba(0, 119, 182, 0.3);
+            transform: scale(1);
+          }
+          50% {
+            box-shadow: 0 0 22px rgba(0, 119, 182, 0.75), 0 2px 14px rgba(0, 119, 182, 0.55);
+            transform: scale(1.08);
+          }
+        }
+        @keyframes arrowBounceLeft {
+          0%, 100% { transform: translateX(0); }
+          50% { transform: translateX(-4px); }
+        }
+        @keyframes arrowBounceRight {
+          0%, 100% { transform: translateX(0); }
+          50% { transform: translateX(4px); }
+        }
         .eco-flow-line { stroke-dasharray: 10 6; animation: flowPulse 1.6s linear infinite; }
         .eco-float { animation: floatNode 3.2s ease-in-out infinite; }
         .eco-float-2 { animation: floatNode 4s ease-in-out infinite; animation-delay:0.9s; }
@@ -587,6 +615,15 @@ function ProductEcosystemScene() {
         .holo-p3 { animation: particleDrift 3.8s ease-in-out infinite; animation-delay:2.1s; }
         .holo-p4 { animation: particleDrift 5s ease-in-out infinite; animation-delay:0.6s; }
         .holo-p5 { animation: particleDrift 4.5s ease-in-out infinite; animation-delay:1.8s; }
+        .active-nav-dot {
+          animation: activePulseGlow 2.5s ease-in-out infinite;
+        }
+        .bounce-left-btn {
+          animation: arrowBounceLeft 3s ease-in-out infinite;
+        }
+        .bounce-right-btn {
+          animation: arrowBounceRight 3s ease-in-out infinite;
+        }
       ` }} />
 
       {/* Ambient background orbs */}
@@ -689,21 +726,45 @@ function ProductEcosystemScene() {
           </p>
         </div>
         {/* Slide nav */}
-        <div className="flex items-center gap-4">
-          <button onClick={() => setProductSlide(p => Math.max(0, p - 1))} disabled={productSlide === 0}
-            className="w-9 h-9 rounded-full flex items-center justify-center border border-slate-200/80 bg-white/90 text-slate-400 hover:border-[#0077B6] hover:text-[#0077B6] hover:bg-[#EFF8FF] hover:shadow-[0_4px_14px_rgba(0,119,182,0.15)] disabled:opacity-25 disabled:cursor-not-allowed transition-all duration-200 shadow-sm backdrop-blur">
-            <ChevronLeft className="w-4 h-4" />
-          </button>
-          <div className="flex items-center gap-2">
-            {Array.from({ length: totalProductSlides }).map((_, i) => (
-              <button key={i} onClick={() => setProductSlide(i)}
-                className={`rounded-full transition-all duration-300 ${i === productSlide ? "w-7 h-2.5 bg-gradient-to-r from-[#0077B6] to-[#3BA9F5] shadow-[0_2px_8px_rgba(0,119,182,0.4)]" : "w-2.5 h-2.5 bg-slate-200 hover:bg-slate-300"}`} />
-            ))}
+        <div className="flex flex-col items-center gap-2">
+          <div className="flex items-center gap-5 bg-[#F0F9FF]/85 border border-[#BAE6FD]/80 shadow-[0_8px_30px_rgba(0,119,182,0.05)] rounded-full px-5 py-2.5 backdrop-blur-md z-10">
+            <button 
+              onClick={() => setProductSlide(p => Math.max(0, p - 1))} 
+              disabled={productSlide === 0}
+              className={`w-11 h-11 rounded-full flex items-center justify-center border border-slate-200/80 bg-white/90 text-[#0077B6] hover:border-[#0077B6] hover:bg-[#EFF8FF] hover:shadow-[0_4px_16px_rgba(0,119,182,0.18)] disabled:opacity-20 disabled:cursor-not-allowed transition-all duration-300 shadow-sm backdrop-blur active:scale-90 ${productSlide > 0 ? "bounce-left-btn" : ""}`}
+            >
+              <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
+            </button>
+            <div className="flex items-center gap-3 relative px-1">
+              {Array.from({ length: totalProductSlides }).map((_, i) => (
+                <button 
+                  key={i} 
+                  onClick={() => setProductSlide(i)}
+                  className={`rounded-full transition-all duration-300 relative ${
+                    i === productSlide 
+                      ? "w-9.5 h-3.5 bg-gradient-to-r from-[#3BA9F5] to-[#7DD3FC] active-nav-dot" 
+                      : "w-2.5 h-2.5 bg-slate-200 hover:bg-slate-300"
+                  }`} 
+                >
+                  {i === productSlide && (
+                    <span className="absolute inset-0 rounded-full blur-[8px] bg-[#3BA9F5]/30 -z-10" />
+                  )}
+                </button>
+              ))}
+            </div>
+            <button 
+              onClick={() => setProductSlide(p => Math.min(totalProductSlides - 1, p + 1))} 
+              disabled={productSlide === totalProductSlides - 1}
+              className={`w-11 h-11 rounded-full flex items-center justify-center border border-slate-200/80 bg-white/90 text-[#0077B6] hover:border-[#0077B6] hover:bg-[#EFF8FF] hover:shadow-[0_4px_16px_rgba(0,119,182,0.18)] disabled:opacity-20 disabled:cursor-not-allowed transition-all duration-300 shadow-sm backdrop-blur active:scale-90 ${productSlide < totalProductSlides - 1 ? "bounce-right-btn" : ""}`}
+            >
+              <ChevronRight className="w-5 h-5 stroke-[2.5]" />
+            </button>
           </div>
-          <button onClick={() => setProductSlide(p => Math.min(totalProductSlides - 1, p + 1))} disabled={productSlide === totalProductSlides - 1}
-            className="w-9 h-9 rounded-full flex items-center justify-center border border-slate-200/80 bg-white/90 text-slate-400 hover:border-[#0077B6] hover:text-[#0077B6] hover:bg-[#EFF8FF] hover:shadow-[0_4px_14px_rgba(0,119,182,0.15)] disabled:opacity-25 disabled:cursor-not-allowed transition-all duration-200 shadow-sm backdrop-blur">
-            <ChevronRight className="w-4 h-4" />
-          </button>
+          {showSwipeHint && (
+            <div className="text-[10px] font-black text-[#0077B6]/70 uppercase tracking-widest animate-pulse mt-1 select-none transition-opacity duration-1000">
+              Swipe or Click to Explore Products →
+            </div>
+          )}
         </div>
       </div>
 

@@ -31,7 +31,7 @@ export default function WorkflowVisualizer3D({ architecture, industryId }: Workf
 
   return (
     <div
-      className="relative w-full h-full min-h-0 p-6 md:p-8 flex flex-col justify-between select-none overflow-hidden rounded-2xl bg-transparent"
+      className="relative w-full h-full min-h-0 pt-3 pb-2 px-5 md:px-6 flex flex-col justify-between select-none overflow-hidden rounded-2xl bg-transparent"
       style={{
         backgroundImage: `
           linear-gradient(to right, rgba(14, 165, 233, 0.03) 1px, transparent 1px),
@@ -154,7 +154,7 @@ export default function WorkflowVisualizer3D({ architecture, industryId }: Workf
       </svg>
 
       {/* TOP: Header Row */}
-      <div className="flex items-center justify-between border-b border-sky-100/60 pb-3 mb-4 shrink-0 relative z-10">
+      <div className="flex items-center justify-between border-b border-sky-100/60 pb-2 mb-2 shrink-0 relative z-10">
         <div>
           <span className="text-[9px] font-black text-sky-600 uppercase tracking-widest bg-sky-50 px-2 py-0.5 rounded border border-sky-100/80">
             Salesforce Implementation Journey
@@ -296,7 +296,7 @@ export default function WorkflowVisualizer3D({ architecture, industryId }: Workf
       </div>
 
       {/* FOOTER Info */}
-      <div className="mt-4 border-t border-sky-100/60 pt-3 flex items-center justify-between text-[9.5px] text-slate-400 font-semibold shrink-0 relative z-10">
+      <div className="mt-2 border-t border-sky-100/60 pt-2 flex items-center justify-between text-[9px] text-slate-400 font-semibold shrink-0 relative z-10">
         <span>Continuous flow lines map the digital transform sequence from challenge to value.</span>
         <span className="text-sky-600 bg-sky-50 px-2 py-0.5 rounded border border-sky-100">Live Architecture Map</span>
       </div>

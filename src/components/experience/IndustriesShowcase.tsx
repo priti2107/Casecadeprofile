@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { INDUSTRIES_SHOWCASE_DATA, IndustryData } from "./industryData";
 import WorkflowVisualizer3D from "./WorkflowVisualizer3D";
@@ -26,13 +26,41 @@ const IconMap = {
 
 export default function IndustriesShowcase() {
   const [selectedId, setSelectedId] = useState<string>("real-estate");
+  const [hasInteracted, setHasInteracted] = useState(false);
+  const [showArrow, setShowArrow] = useState(true);
+
+  // Auto-highlight loop on first mount
+  useEffect(() => {
+    if (hasInteracted) return;
+
+    const sequence = INDUSTRIES_SHOWCASE_DATA.map((d) => d.id);
+    let index = 0;
+
+    const interval = setInterval(() => {
+      index = (index + 1) % sequence.length;
+      setSelectedId(sequence[index]);
+
+      // Stop once we wrap back around to the first item (after demonstrating all)
+      if (index === 0) {
+        clearInterval(interval);
+      }
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [hasInteracted]);
+
+  // Arrow timer
+  useEffect(() => {
+    const timer = setTimeout(() => setShowArrow(false), 5000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const currentIndustry = INDUSTRIES_SHOWCASE_DATA.find((ind) => ind.id === selectedId) || INDUSTRIES_SHOWCASE_DATA[0];
   const IconComponent = IconMap[currentIndustry.iconName];
 
   return (
     <div
-      className="pointer-events-auto rounded-[32px] w-[92vw] md:w-[90vw] h-[88vh] md:h-[82vh] max-w-7xl relative overflow-hidden flex flex-col pt-4 pb-4 px-4 md:px-7 justify-between gap-3 border border-slate-100/80 shadow-[0_30px_90px_rgba(15,23,42,0.04)] bg-white/95"
+      className="pointer-events-auto rounded-[32px] w-[92vw] md:w-[90vw] h-[88vh] md:h-[82vh] max-w-7xl relative overflow-hidden flex flex-col pt-3 pb-3 px-4 md:px-7 justify-between gap-2.5 border border-slate-100/80 shadow-[0_30px_90px_rgba(15,23,42,0.04)] bg-white/95"
       style={{
         background: "linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.95) 100%)",
       }}
@@ -51,7 +79,7 @@ export default function IndustriesShowcase() {
         }}
       />
 
-      <style dangerouslySetInnerHTML={{
+       <style dangerouslySetInnerHTML={{
         __html: `
         .hide-scrollbar::-webkit-scrollbar {
           display: none !important;
@@ -59,6 +87,19 @@ export default function IndustriesShowcase() {
         .hide-scrollbar {
           -ms-overflow-style: none !important;
           scrollbar-width: none !important;
+        }
+        @keyframes activePillPulse {
+          0%, 100% {
+            box-shadow: 0 0 16px rgba(14, 165, 233, 0.25);
+            transform: scale(1.03);
+          }
+          50% {
+            box-shadow: 0 0 26px rgba(14, 165, 233, 0.55), 0 0 8px rgba(14, 165, 233, 0.3);
+            transform: scale(1.05);
+          }
+        }
+        .active-pill-pulse {
+          animation: activePillPulse 4s ease-in-out infinite;
         }
       `}} />
 
@@ -140,8 +181,18 @@ export default function IndustriesShowcase() {
       </div>
 
       {/* BOTTOM: Horizontal Industry Tab Selector */}
-      <div className="w-full relative z-10 shrink-0 border-t border-slate-100/80 pt-3">
-        <div className="flex gap-2 items-center overflow-x-auto pb-1 scrollbar-thin select-none justify-between md:justify-center">
+      <div className="w-full relative z-10 shrink-0 border-t border-slate-100/80 pt-2 flex flex-col items-center gap-1.5">
+        <div className="flex items-center gap-2 text-slate-400 select-none">
+          <span className="text-[10px] font-black uppercase tracking-widest">
+            Select an industry to explore its Salesforce implementation
+          </span>
+          {showArrow && (
+            <span className="text-[#0ea5e9] font-black text-[12px] animate-bounce block">
+              ↓
+            </span>
+          )}
+        </div>
+        <div className="flex gap-3 items-center overflow-x-auto py-3 scrollbar-thin select-none justify-between md:justify-center w-full">
           {INDUSTRIES_SHOWCASE_DATA.map((ind) => {
             const IndIcon = IconMap[ind.iconName];
             const isSelected = ind.id === selectedId;
@@ -149,19 +200,25 @@ export default function IndustriesShowcase() {
             return (
               <button
                 key={ind.id}
-                onClick={() => setSelectedId(ind.id)}
-                className={`flex items-center gap-2 px-3 py-2 rounded-xl transition-all duration-300 border cursor-pointer shrink-0 ${isSelected
-                    ? "bg-sky-50 border-sky-300 text-sky-700 shadow-[0_0_12px_rgba(14,165,233,0.25)] scale-[1.02]"
-                    : "bg-white/40 border-slate-200/50 hover:bg-slate-50/60 hover:border-slate-300 text-slate-600"
+                onClick={() => { setSelectedId(ind.id); setHasInteracted(true); }}
+                className={`relative flex items-center gap-2.5 px-4.5 py-3 rounded-2xl transition-all duration-300 border cursor-pointer shrink-0 ${isSelected
+                    ? "bg-sky-50 border-sky-300 text-sky-700 active-pill-pulse"
+                    : "bg-white/40 border-slate-200/50 hover:bg-slate-50/60 hover:border-slate-300 hover:scale-[1.02] hover:shadow-[0_4px_12px_rgba(14,165,233,0.08)] hover:-translate-y-[1px] text-slate-600 active:scale-95"
                   }`}
               >
+                {/* Tooltip Badge */}
+                {isSelected && !hasInteracted && (
+                  <span className="absolute -top-7 left-1/2 -translate-x-1/2 bg-[#0ea5e9] text-white text-[8px] font-black uppercase px-2 py-0.5 rounded-md shadow-md animate-bounce whitespace-nowrap z-50">
+                    Click to Explore
+                  </span>
+                )}
                 <div
-                  className={`size-5 rounded-lg flex items-center justify-center transition-colors ${isSelected ? "bg-sky-100 text-sky-600" : "bg-slate-100 text-slate-400"
+                  className={`size-7 rounded-xl flex items-center justify-center transition-colors ${isSelected ? "bg-sky-100 text-sky-600" : "bg-slate-100 text-slate-400"
                     }`}
                 >
-                  <IndIcon className="size-3" />
+                  <IndIcon className="size-4" />
                 </div>
-                <span className="text-[10px] md:text-[11px] font-extrabold tracking-tight">
+                <span className="text-[13px] md:text-[14px] font-black tracking-tight">
                   {ind.title.split(" & ")[0]}
                 </span>
               </button>
