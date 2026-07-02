@@ -1089,8 +1089,31 @@ function ProductEcosystemScene() {
 
               <div className="flex-1 min-h-0 rounded-[16px] overflow-hidden relative flex items-center justify-center"
                 style={{ background: "radial-gradient(ellipse at 50% 40%, rgba(59,169,245,0.07) 0%, rgba(240,249,255,0.6) 55%, rgba(248,252,255,0.8) 100%)", border: "1px solid rgba(186,230,253,0.35)" }}>
-                <svg viewBox="0 0 540 340" className="w-full h-full" xmlns="http://www.w3.org/2000/svg" style={{ maxHeight: "100%" }}>
+                <svg viewBox="0 0 540 350" className="w-full h-full" xmlns="http://www.w3.org/2000/svg" style={{ maxHeight: "100%" }}>
                   <defs>
+                    <style dangerouslySetInnerHTML={{ __html: `
+                      .prism-node-1 { animation: prismFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+                      .prism-conn-1 { stroke-dasharray: 20; stroke-dashoffset: 20; animation: drawStroke 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.4s; }
+                      .prism-node-2 { animation: prismFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.8s; }
+                      .prism-conn-2 { stroke-dasharray: 20; stroke-dashoffset: 20; animation: drawStroke 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 1.2s; }
+                      .prism-node-3 { animation: prismFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 1.6s; }
+                      .prism-conn-3 { stroke-dasharray: 20; stroke-dashoffset: 20; animation: drawStroke 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 2.0s; }
+                      .prism-node-engine { animation: scaleInEngine 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both; animation-delay: 2.4s; }
+                      .prism-conn-fork { stroke-dasharray: 450; stroke-dashoffset: 450; animation: drawStroke 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 2.9s; }
+                      .prism-node-out { animation: prismFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 3.4s; }
+                      
+                      @keyframes prismFadeIn {
+                        from { opacity: 0; transform: translateY(10px); }
+                        to { opacity: 1; transform: translateY(0); }
+                      }
+                      @keyframes scaleInEngine {
+                        0% { opacity: 0; transform: scale(0.85) translateY(5px); }
+                        100% { opacity: 1; transform: scale(1) translateY(0); }
+                      }
+                      @keyframes drawStroke {
+                        to { stroke-dashoffset: 0; }
+                      }
+                    ` }} />
                     <radialGradient id="node-glow" cx="50%" cy="50%" r="50%">
                       <stop offset="0%" stopColor="#3BA9F5" stopOpacity="0.08" />
                       <stop offset="100%" stopColor="#3BA9F5" stopOpacity="0" />
@@ -1105,159 +1128,125 @@ function ProductEcosystemScene() {
                   </defs>
 
                   {/* Soft blue glow behind CX AI Engine */}
-                  <circle cx="270" cy="191" r="100" fill="url(#node-glow)" pointerEvents="none" />
+                  <circle cx="270" cy="220" r="90" fill="url(#node-glow)" pointerEvents="none" />
 
-                  {/* CONNECTING LINES (Straight orthogonal flow) */}
-                  {/* Milestone -> Customer Feedback */}
-                  <path d="M 125 61 L 125 75 L 270 75 L 270 90" fill="none" stroke="#BAE6FD" strokeWidth="2.5" />
-                  <path d="M 125 61 L 125 75 L 270 75 L 270 90" fill="none" stroke="#0077B6" strokeWidth="2.5" strokeDasharray="4 4" opacity="0.8">
+                  {/* CONNECTING LINES */}
+                  {/* Milestone -> NPS Trigger */}
+                  <path d="M 270 57 L 270 75" fill="none" stroke="#BAE6FD" strokeWidth="2.5" className="prism-conn-1" />
+                  <path d="M 270 57 L 270 75" fill="none" stroke="#0077B6" strokeWidth="2.5" strokeDasharray="4 4" opacity="0.8" className="prism-conn-1">
                     <animate attributeName="stroke-dashoffset" values="16;0" dur="1.2s" repeatCount="indefinite" />
                   </path>
 
                   {/* NPS Trigger -> Customer Feedback */}
-                  <path d="M 415 61 L 415 75 L 270 75 L 270 90" fill="none" stroke="#BAE6FD" strokeWidth="2.5" />
-                  <path d="M 415 61 L 415 75 L 270 75 L 270 90" fill="none" stroke="#0077B6" strokeWidth="2.5" strokeDasharray="4 4" opacity="0.8">
+                  <path d="M 270 117 L 270 135" fill="none" stroke="#BAE6FD" strokeWidth="2.5" className="prism-conn-2" />
+                  <path d="M 270 117 L 270 135" fill="none" stroke="#0077B6" strokeWidth="2.5" strokeDasharray="4 4" opacity="0.8" className="prism-conn-2">
                     <animate attributeName="stroke-dashoffset" values="16;0" dur="1.2s" repeatCount="indefinite" />
                   </path>
 
                   {/* Customer Feedback -> CX AI Engine */}
-                  <path d="M 270 138 L 270 165" fill="none" stroke="#BAE6FD" strokeWidth="2.5" />
-                  <path d="M 270 138 L 270 165" fill="none" stroke="#0077B6" strokeWidth="2.5" strokeDasharray="4 4" opacity="0.8">
+                  <path d="M 270 177 L 270 195" fill="none" stroke="#BAE6FD" strokeWidth="2.5" className="prism-conn-3" />
+                  <path d="M 270 177 L 270 195" fill="none" stroke="#0077B6" strokeWidth="2.5" strokeDasharray="4 4" opacity="0.8" className="prism-conn-3">
                     <animate attributeName="stroke-dashoffset" values="16;0" dur="1.2s" repeatCount="indefinite" />
                   </path>
 
-                  {/* CX AI Engine -> Outputs (Health Score, CRM, Management) */}
-                  <path d="M 270 217 L 270 228" fill="none" stroke="#BAE6FD" strokeWidth="2.5" />
-                  <path d="M 270 217 L 270 228" fill="none" stroke="#0077B6" strokeWidth="2.5" strokeDasharray="4 4" opacity="0.8">
-                    <animate attributeName="stroke-dashoffset" values="16;0" dur="1.2s" repeatCount="indefinite" />
-                  </path>
-                  <path d="M 102.5 228 L 437.5 228" fill="none" stroke="#BAE6FD" strokeWidth="2.5" />
-                  {/* Drops */}
-                  <path d="M 102.5 228 L 102.5 275" fill="none" stroke="#BAE6FD" strokeWidth="2.5" />
-                  <path d="M 270 228 L 102.5 228 L 102.5 275" fill="none" stroke="#0077B6" strokeWidth="2.5" strokeDasharray="4 4" opacity="0.8">
-                    <animate attributeName="stroke-dashoffset" values="16;0" dur="1.2s" repeatCount="indefinite" />
-                  </path>
-                  <path d="M 270 228 L 270 275" fill="none" stroke="#BAE6FD" strokeWidth="2.5" />
-                  <path d="M 270 228 L 270 275" fill="none" stroke="#0077B6" strokeWidth="2.5" strokeDasharray="4 4" opacity="0.8">
-                    <animate attributeName="stroke-dashoffset" values="16;0" dur="1.2s" repeatCount="indefinite" />
-                  </path>
-                  <path d="M 437.5 228 L 437.5 275" fill="none" stroke="#BAE6FD" strokeWidth="2.5" />
-                  <path d="M 270 228 L 437.5 228 L 437.5 275" fill="none" stroke="#0077B6" strokeWidth="2.5" strokeDasharray="4 4" opacity="0.8">
+                  {/* CX AI Engine -> Outputs (Fork & Drops) */}
+                  <path d="M 270 245 L 270 265 M 80 265 L 460 265 M 80 265 L 80 290 M 270 265 L 270 290 M 460 265 L 460 290" fill="none" stroke="#BAE6FD" strokeWidth="2.5" className="prism-conn-fork" />
+                  <path d="M 270 245 L 270 265 M 80 265 L 460 265 M 80 265 L 80 290 M 270 265 L 270 290 M 460 265 L 460 290" fill="none" stroke="#0077B6" strokeWidth="2.5" strokeDasharray="4 4" opacity="0.8" className="prism-conn-fork">
                     <animate attributeName="stroke-dashoffset" values="16;0" dur="1.2s" repeatCount="indefinite" />
                   </path>
 
-                  {/* TRAVELING FLOW PARTICLES */}
+                  {/* TRAVELING SEQUENTIAL FLOW PARTICLES */}
                   <circle r="4.5" fill="#0ea5e9" filter="url(#svg-glow)">
-                    <animateMotion dur="4.5s" repeatCount="indefinite" path="M 125 61 L 125 75 L 270 75 L 270 90" />
+                    <animateMotion dur="4.5s" repeatCount="indefinite" path="M 270 245 L 270 265 L 80 265 L 80 290" begin="3.6s" />
                   </circle>
                   <circle r="4.5" fill="#0ea5e9" filter="url(#svg-glow)">
-                    <animateMotion dur="4.5s" repeatCount="indefinite" path="M 415 61 L 415 75 L 270 75 L 270 90" />
+                    <animateMotion dur="4.5s" repeatCount="indefinite" path="M 270 245 L 270 290" begin="4.1s" />
                   </circle>
                   <circle r="4.5" fill="#0ea5e9" filter="url(#svg-glow)">
-                    <animateMotion dur="4.5s" repeatCount="indefinite" path="M 270 138 L 270 165" begin="1.2s" />
-                  </circle>
-                  <circle r="4.5" fill="#0ea5e9" filter="url(#svg-glow)">
-                    <animateMotion dur="4.5s" repeatCount="indefinite" path="M 270 217 L 270 228 L 102.5 228 L 102.5 275" begin="2.4s" />
-                  </circle>
-                  <circle r="4.5" fill="#0ea5e9" filter="url(#svg-glow)">
-                    <animateMotion dur="4.5s" repeatCount="indefinite" path="M 270 217 L 270 275" begin="2.4s" />
-                  </circle>
-                  <circle r="4.5" fill="#0ea5e9" filter="url(#svg-glow)">
-                    <animateMotion dur="4.5s" repeatCount="indefinite" path="M 270 217 L 270 228 L 437.5 228 L 437.5 275" begin="2.4s" />
+                    <animateMotion dur="4.5s" repeatCount="indefinite" path="M 270 245 L 270 265 L 460 265 L 460 290" begin="4.6s" />
                   </circle>
 
-                  {/* TOP ROW: Milestone */}
-                  <g className="transition-transform duration-300 hover:scale-[1.02] origin-[125px_38px] cursor-pointer">
-                    <rect x="30" y="15" width="190" height="46" rx="10" fill="#ffffff" stroke="#E2E8F0" strokeWidth="1.5" />
-                    <g transform="translate(42, 28) scale(1.2)">
-                      <path d="M 2 16 L 2 2 M 2 2 L 14 5 L 2 8" fill="none" stroke="#0077B6" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                  {/* NODE 1: Project Milestone */}
+                  <g className="transition-transform duration-300 hover:scale-[1.02] origin-[270px_35px] cursor-pointer prism-node-1">
+                    <rect x="165" y="15" width="210" height="42" rx="10" fill="#ffffff" stroke="#E2E8F0" strokeWidth="1.5" />
+                    <g transform="translate(178, 26) scale(1.15)">
+                      <path d="M 3 14 L 3 2 M 3 2 L 13 5 L 3 8" fill="none" stroke="#0077B6" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                     </g>
-                    <text x="135" y="44" fontSize="15" fontWeight="800" fill="#0F172A" textAnchor="middle">Milestone</text>
+                    <text x="285" y="41" fontSize="15" fontWeight="700" fill="#0F172A" textAnchor="middle">Project Milestone</text>
                   </g>
 
-                  {/* TOP ROW: NPS Trigger */}
-                  <g className="transition-transform duration-300 hover:scale-[1.02] origin-[415px_38px] cursor-pointer">
-                    <rect x="320" y="15" width="190" height="46" rx="10" fill="#ffffff" stroke="#E2E8F0" strokeWidth="1.5" />
-                    {/* Survey Checklist Form Icon */}
-                    <g transform="translate(332, 26) scale(1.2)">
-                      <rect x="0" y="0" width="14" height="18" rx="1.5" fill="none" stroke="#0077B6" strokeWidth="1.8" />
-                      <line x1="3" y1="5" x2="11" y2="5" stroke="#0077B6" strokeWidth="1.5" />
-                      <line x1="3" y1="9" x2="11" y2="9" stroke="#0077B6" strokeWidth="1.5" />
-                      <line x1="3" y1="13" x2="8" y2="13" stroke="#0077B6" strokeWidth="1.5" />
+                  {/* NODE 2: NPS Trigger */}
+                  <g className="transition-transform duration-300 hover:scale-[1.02] origin-[270px_95px] cursor-pointer prism-node-2">
+                    <rect x="165" y="75" width="210" height="42" rx="10" fill="#ffffff" stroke="#E2E8F0" strokeWidth="1.5" />
+                    <g transform="translate(178, 86) scale(1.15)">
+                      <rect x="0" y="0" width="12" height="16" rx="1.5" fill="none" stroke="#0077B6" strokeWidth="1.8" />
+                      <line x1="3" y1="4" x2="9" y2="4" stroke="#0077B6" strokeWidth="1.5" />
+                      <line x1="3" y1="8" x2="9" y2="8" stroke="#0077B6" strokeWidth="1.5" />
+                      <line x1="3" y1="12" x2="7" y2="12" stroke="#0077B6" strokeWidth="1.5" />
                     </g>
-                    <text x="425" y="44" fontSize="15" fontWeight="800" fill="#0F172A" textAnchor="middle">NPS Trigger</text>
+                    <text x="285" y="101" fontSize="15" fontWeight="700" fill="#0F172A" textAnchor="middle">NPS Trigger</text>
                   </g>
 
-                  {/* ROW 2: Customer Feedback */}
-                  <g className="transition-transform duration-300 hover:scale-[1.02] origin-[270px_114px] cursor-pointer">
-                    <rect x="165" y="90" width="210" height="48" rx="10" fill="#ffffff" stroke="#E2E8F0" strokeWidth="1.5" />
-                    {/* Survey Form checklist icon */}
-                    <g transform="translate(178, 102) scale(1.2)">
-                      <rect x="0" y="0" width="14" height="18" rx="1.5" fill="none" stroke="#0077B6" strokeWidth="1.8" />
-                      <line x1="3" y1="5" x2="11" y2="5" stroke="#0077B6" strokeWidth="1.5" />
-                      <line x1="3" y1="9" x2="11" y2="9" stroke="#0077B6" strokeWidth="1.5" />
-                      <line x1="3" y1="13" x2="8" y2="13" stroke="#0077B6" strokeWidth="1.5" />
+                  {/* NODE 3: Customer Feedback */}
+                  <g className="transition-transform duration-300 hover:scale-[1.02] origin-[270px_155px] cursor-pointer prism-node-3">
+                    <rect x="165" y="135" width="210" height="42" rx="10" fill="#ffffff" stroke="#E2E8F0" strokeWidth="1.5" />
+                    <g transform="translate(178, 146) scale(1.15)">
+                      <path d="M 2 12 C 2 12.8 2.5 13.5 3.2 13.8 L 3.2 16 L 5.5 14.5 L 12 14.5 C 13.1 14.5 14 13.6 14 12.5 L 14 3.5 C 14 2.4 13.1 1.5 12 1.5 L 4 1.5 C 2.9 1.5 2 2.4 2 3.5 Z" fill="none" stroke="#0077B6" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                      <line x1="5" y1="5.5" x2="11" y2="5.5" stroke="#0077B6" strokeWidth="1.5" />
+                      <line x1="5" y1="9.5" x2="9" y2="9.5" stroke="#0077B6" strokeWidth="1.5" />
                     </g>
-                    <text x="282" y="120" fontSize="15.5" fontWeight="800" fill="#0F172A" textAnchor="middle">Customer Feedback</text>
+                    <text x="285" y="161" fontSize="15" fontWeight="700" fill="#0F172A" textAnchor="middle">Customer Feedback</text>
                   </g>
 
-                  {/* ROW 3: CX AI Engine */}
-                  <g className="transition-transform duration-300 hover:scale-[1.02] origin-[270px_191px] cursor-pointer">
-                    <rect x="145" y="165" width="250" height="52" rx="12" fill="#F0F9FF" stroke="#0077B6" strokeWidth="2" className="filter drop-shadow-[0_4px_16px_rgba(0,119,182,0.18)]" />
-                    {/* Brain AI icon */}
-                    <g transform="translate(158, 178) scale(1.3)">
+                  {/* NODE 4: CX AI Engine */}
+                  <g className="transition-transform duration-300 hover:scale-[1.02] origin-[270px_220px] cursor-pointer prism-node-engine">
+                    <rect x="145" y="195" width="250" height="50" rx="12" fill="#F0F9FF" stroke="#0077B6" strokeWidth="2" className="filter drop-shadow-[0_4px_16px_rgba(0,119,182,0.18)]" />
+                    <g transform="translate(158, 206) scale(1.3)">
                       <path d="M 8 13 C 4.5 13 2.5 10 2.5 7 C 2.5 2.5 6 2.5 8 4 C 10 2.5 13.5 2.5 13.5 7 C 13.5 10 11.5 13 8 13 Z" fill="none" stroke="#0077B6" strokeWidth="1.8" />
                       <path d="M 13.5 13 C 17 13 19 10 19 7 C 19 2.5 15.5 2.5 13.5 4 C 11.5 2.5 8 2.5 8 7 C 8 10 10 13 13.5 13 Z" fill="none" stroke="#0077B6" strokeWidth="1.8" />
                       <line x1="11" y1="4" x2="11" y2="14" stroke="#0077B6" strokeWidth="1.8" />
                     </g>
-                    <text x="290" y="197" fontSize="18.5" fontWeight="955" fill="#0077B6" textAnchor="middle">CX AI Engine</text>
-                  </g>
+                    <text x="290" y="226" fontSize="17.5" fontWeight="955" fill="#0077B6" textAnchor="middle">CX AI Engine</text>
 
-                  {/* REVENUE INTELLIGENCE INSIGHT CHIP (Notifications / Bell Icon) */}
-                  <g className="transition-transform duration-300 hover:scale-[1.02] origin-[270px_248px] cursor-pointer">
-                    <rect x="180" y="235" width="180" height="26" rx="13" fill="#F0F9FF" stroke="#BAE6FD" strokeWidth="1.2" />
-                    {/* Bell notification icon */}
-                    <g transform="translate(192, 240) scale(1.1)">
-                      <path d="M 6 12 C 6 9 8 7 11 7 C 14 7 16 9 16 12 M 3 16 H 19 L 17 14 V 12 C 17 9.5 15 8.5 13 8 V 6 H 9 V 8 C 7 8.5 5 9.5 5 12 V 14 Z" fill="none" stroke="#0077B6" strokeWidth="1.5" />
-                      <path d="M 9 18 C 9 19.5 10 20 11 20 C 12 20 13 19.5 13 18" fill="none" stroke="#0077B6" strokeWidth="1.5" />
+                    {/* FLOATING STATUS BADGE: Revenue Risk Alert */}
+                    <g transform="translate(230, 0)">
+                      <rect x="130" y="209" width="112" height="22" rx="11" fill="#FEF2F2" stroke="#FCA5A5" strokeWidth="1.2" className="filter drop-shadow-[0_2px_6px_rgba(239,68,68,0.12)]" />
+                      <g transform="translate(138, 213) scale(0.9)">
+                        <path d="M 6 12 C 6 9 8 7 11 7 C 14 7 16 9 16 12 M 3 16 H 19 L 17 14 V 12 C 17 9.5 15 8.5 13 8 V 6 H 9 V 8 C 7 8.5 5 9.5 5 12 V 14 Z" fill="none" stroke="#DC2626" strokeWidth="1.6" />
+                        <path d="M 9 18 C 9 19.5 10 20 11 20 C 12 20 13 19.5 13 18" fill="none" stroke="#DC2626" strokeWidth="1.6" />
+                      </g>
+                      <text x="194" y="224" fontSize="11" fontWeight="800" fill="#DC2626" textAnchor="middle">Risk Alert</text>
                     </g>
-                    <text x="278" y="252" fontSize="12" fontWeight="850" fill="#0077B6" textAnchor="middle">Revenue Intel Alert</text>
                   </g>
 
-                  {/* BOTTOM ROW: Health Score (Shield Analytics Icon) */}
-                  <g className="transition-transform duration-300 hover:scale-[1.02] origin-[102.5px_298px] cursor-pointer">
-                    <rect x="30" y="275" width="145" height="46" rx="10" fill="#ffffff" stroke="#E2E8F0" strokeWidth="1.5" />
-                    {/* Shield Analytics Icon */}
-                    <g transform="translate(42, 287) scale(1.3)">
+                  {/* BOTTOM ROW: Health Score */}
+                  <g className="transition-transform duration-300 hover:scale-[1.02] origin-[87.5px_311px] cursor-pointer prism-node-out">
+                    <rect x="15" y="290" width="145" height="42" rx="10" fill="#ffffff" stroke="#E2E8F0" strokeWidth="1.5" />
+                    <g transform="translate(25, 301) scale(1.15)">
                       <path d="M 2 4 V 9 C 2 13.5 7 16 7 16 C 7 16 12 13.5 12 9 V 4 L 7 2 Z" fill="none" stroke="#0077B6" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                     </g>
-                    <text x="115" y="304" fontSize="14.5" fontWeight="800" fill="#0F172A" textAnchor="middle">Health Score</text>
+                    <text x="97" y="316" fontSize="14.5" fontWeight="700" fill="#0F172A" textAnchor="middle">Health Score</text>
                   </g>
 
-                  {/* BOTTOM ROW: Sales CRM (CRM cylinders Stack) */}
-                  <g className="transition-transform duration-300 hover:scale-[1.02] origin-[270px_298px] cursor-pointer">
-                    <rect x="197.5" y="275" width="145" height="46" rx="10" fill="#ffffff" stroke="#E2E8F0" strokeWidth="1.5" />
-                    {/* CRM Stack Cylinders Icon */}
-                    <g transform="translate(209, 287) scale(1.3)">
-                      <ellipse cx="6" cy="3" rx="5" ry="1.5" fill="none" stroke="#0077B6" strokeWidth="1.8" />
-                      <ellipse cx="6" cy="8" rx="5" ry="1.5" fill="none" stroke="#0077B6" strokeWidth="1.8" />
-                      <ellipse cx="6" cy="13" rx="5" ry="1.5" fill="none" stroke="#0077B6" strokeWidth="1.8" />
-                      <line x1="1" y1="3" x2="1" y2="13" stroke="#0077B6" strokeWidth="1.8" />
-                      <line x1="11" y1="3" x2="11" y2="13" stroke="#0077B6" strokeWidth="1.8" />
+                  {/* BOTTOM ROW: Sales CRM */}
+                  <g className="transition-transform duration-300 hover:scale-[1.02] origin-[270px_311px] cursor-pointer prism-node-out">
+                    <rect x="197.5" y="290" width="145" height="42" rx="10" fill="#ffffff" stroke="#E2E8F0" strokeWidth="1.5" />
+                    <g transform="translate(208, 301) scale(1.15)">
+                      <ellipse cx="6" cy="4.5" rx="3.5" ry="3.5" fill="none" stroke="#0077B6" strokeWidth="1.8" />
+                      <path d="M 1 14 C 1 11.5 3.2 10.5 6 10.5 C 8.8 10.5 11 11.5 11 14" fill="none" stroke="#0077B6" strokeWidth="1.8" strokeLinecap="round" />
                     </g>
-                    <text x="282" y="304" fontSize="14.5" fontWeight="800" fill="#0F172A" textAnchor="middle">Sales CRM</text>
+                    <text x="280" y="316" fontSize="14.5" fontWeight="700" fill="#0F172A" textAnchor="middle">Sales CRM</text>
                   </g>
 
-                  {/* BOTTOM ROW: Management (Dashboard / Analytics speedometer Gauge icon) */}
-                  <g className="transition-transform duration-300 hover:scale-[1.02] origin-[437.5px_298px] cursor-pointer">
-                    <rect x="365" y="275" width="145" height="46" rx="10" fill="#ffffff" stroke="#E2E8F0" strokeWidth="1.5" />
-                    {/* speedometer gauge icon */}
-                    <g transform="translate(376, 287) scale(1.3)">
-                      <path d="M 2 12 C 2 6.5 6.5 2 12 2 C 17.5 2 22 6.5 22 12" fill="none" stroke="#0077B6" strokeWidth="1.8" strokeLinecap="round" />
-                      <line x1="12" y1="12" x2="17" y2="7" stroke="#0077B6" strokeWidth="1.8" strokeLinecap="round" />
-                      <circle cx="12" cy="12" r="2" fill="#0077B6" />
+                  {/* BOTTOM ROW: Management */}
+                  <g className="transition-transform duration-300 hover:scale-[1.02] origin-[452.5px_311px] cursor-pointer prism-node-out">
+                    <rect x="380" y="290" width="145" height="42" rx="10" fill="#ffffff" stroke="#E2E8F0" strokeWidth="1.5" />
+                    <g transform="translate(390, 301) scale(1.15)">
+                      <rect x="1" y="8" width="3" height="7" rx="0.5" fill="none" stroke="#0077B6" strokeWidth="1.8" />
+                      <rect x="6" y="3" width="3" height="12" rx="0.5" fill="none" stroke="#0077B6" strokeWidth="1.8" />
+                      <rect x="11" y="6" width="3" height="9" rx="0.5" fill="none" stroke="#0077B6" strokeWidth="1.8" />
                     </g>
-                    <text x="450" y="304" fontSize="14.5" fontWeight="800" fill="#0F172A" textAnchor="middle">Management</text>
+                    <text x="462" y="316" fontSize="14.5" fontWeight="700" fill="#0F172A" textAnchor="middle">Management</text>
                   </g>
                 </svg>
               </div>
